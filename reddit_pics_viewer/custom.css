@@ -1,0 +1,20 @@
+#jumbotron_div {
+    height: 20px ;
+	padding: 0px ;
+	margin: 0px ;
+	margin-bottom: 2px ;
+}
+
+#jumbotron_text {
+	font-size: 15px;
+	margin: 0px ;
+	padding-left: 10px ;
+}
+
+.content {
+	margin: 1px;
+}
+
+.float_buttons_right {
+	float: right;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<!-- Reddit Pics Viewer page. Copyright © Paul Koepke 2015  -->
+
+<!-- Just a page which will grab the RSS of any Reddit page and display the pictures linked in that page. It will probably do the following things:
+  Accept the subreddit name (after the reddit.com/r/) in a text field.
+  Grab the RSS feed, parse it, and store the image URLs. (Likely in a JavaScript array)
+    Possibly use only URLs from known good hosts: imgur.com and gfycat.com, possibly others later.
+    If a link goes to an HTML page instead of the image directly, dig into that page and get 
+  Display a single image at a time and have forward and back buttons.
+  Be responsive (at least mobile vs desktop), probably using Bootstrap.
+    Added JQuery, Bootstrap JS, Bootstrap CSS, and Bootstrap-theme CSS
+	Created .container divs. Declined to use .row and .column divs as they seem unnecessary for a simple page like this, and they didn't fix the image sizing problem.
+  Do everything in JavaScript and HTML - getting and parsing the RSS, changing the displayed image, etc.
+  Keep the subreddit and the image number in the URL querystring.
+  Later feature: by default hide NSFW posts, optionally show them. Make it a checkbox netxt to the subreddit name.
+  Consider hosting it on pkoepke.github.io/reddit_pics_viewer/ in case it takes off. -->
+  
+<!-- Tumbeasts by Matthew Inman are licensed under a Creative Commons Attribution 3.0 Unported License. Based on a work at theoatmeal.com.-->
+<!-- Wikipedia edit 2014 video by VGrias is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. http://commons.wikimedia.org/wiki/File:Wikipedia_Edit_2014.webm -->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paul Koepke&#39;s Reddit Pics Viewer</title>
+    <!-- removed stylesheet -->
+    <!-- <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-29633726-1', 'paulkoepke.com');
+      ga('send', 'pageview');
+    </script> -->
+    <!-- Bootstrap -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script> 
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet" href="custom.css" />
+  </head>
+  <body>
+    <div class="jumbotron" id="jumbotron_div" >
+      <span id="jumbotron_text">Reddit Pic Viewer</span> 
+	</div>
+    <div class="container-fluid">
+      <div id="div_for_text_and_inputs" class="content" >
+        Subreddit: /r/<input type="text" name="subreddit_input" >
+		<button type="button" class="btn btn-default" >Go</button>
+		<!-- Hide NSFW? <input type="checkbox" checked> -->
+	  </div>
+      <button type="button" class="btn btn-default">next&#8680;</button> <button type="button" class="btn btn-default">back&#8678;</button>
+      <span class="float_buttons_right">
+        <button type="button" class="btn btn-default">next&#8680;</button> <button type="button" class="btn btn-default">back&#8678;</button>
+      </span>
+      <div id="div_for_image" class="content" >Imgur: <br />
+        <span id="imgur_source_link"></span> 
+        <img id="image_tag" src="" class="img-responsive" />
+        <!-- <img id="image_tag" src="" style="max-width:100%;" /> -->
+      </div>
+    </div>
+    <div id="div_for_video" class="container-fluid" >Gfycat: <br />
+      <span id="gfycat_source_link"></span> 
+      <div align="center" class="embed-responsive embed-responsive-16by9">
+      <video id="video_tag" autoplay loop controls muted="muted" class="embed-responsive-item" >
+      <!-- <video id="video_tag" autoplay loop controls muted="muted" style="max-width:100%;"> -->
+        <source id="source_tag_for_video" src="" type="video/webm" />
+      </video> </div>
+	  <button type="button" class="btn btn-default">next&#8680;</button> <button type="button" class="btn btn-default">back&#8678;</button>
+      <span class="float_buttons_right">
+        <button type="button" class="btn btn-default">next&#8680;</button> <button type="button" class="btn btn-default">back&#8678;</button>
+      </span>
+    </div>
+  </body>
+  <script type="text/javascript" src="reddit_pics_viewer.js"></script>
+</html>
