@@ -17,7 +17,7 @@ var default_video = "https://upload.wikimedia.org/wikipedia/commons/4/4d/Wikiped
 default_video = "http://fat.gfycat.com/BaggyJollyCaribou.webm";
 default_video = "Triple_conj_VP8_Vorbis.webm";
 // $( "#source_tag_for_video" ).attr( "src", default_video );
-$( "#responsive_div_for_video" ).html('<video id="video_tag" autoplay loop controls muted="muted" class="embed-responsive-item" > <source id="source_tag_for_video" src="" type="video/webm" /></video>');
+$( "#responsive_div_for_video" ).html('<video id="video_tag" autoplay loop controls muted="muted" class="embed-responsive-item" > <source id="source_tag_for_video" src="Triple_conj_VP8_Vorbis.webm" type="video/webm" /></video>');
 
 //My modification:
 jsonUrl = "http://www.reddit.com/r/gifs.json?jsonp=jQuery";
