@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# last updated 6/22/14 10:22 PM EST
+
+CACHE:
+
+tip_calculator.html
+mobile.css
+styles.css
+
+NETWORK:
+
+http://google-analytics.com/*
+http://www.google-analytics.com/analytics.js
+http://www.google-analytics.com/ga.js
