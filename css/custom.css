@@ -18,3 +18,7 @@
 .float_buttons_right {
 	float: right;
 }
+
+.container-fluid {
+	max-width: 900px
+}
