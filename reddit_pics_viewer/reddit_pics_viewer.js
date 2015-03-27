@@ -18,6 +18,14 @@ default_video = "http://fat.gfycat.com/BaggyJollyCaribou.webm"
 default_video = "CreativeCommons.webm"
 $( "#source_tag_for_video" ).attr( "src", default_video );
 
-
-
+//My modification:
+jsonUrl = "http://www.reddit.com/r/gifs.json?jsonp=jQuery"
+$.ajax({
+  url: jsonUrl,
+  dataType: 'jsonp',
+  success: function(data){console.log("success:",data);},
+  error: function(error){console.log("error:",error);},
+  404: function(error){console.log("404 failed AJAX:",error);},
+  timeout: 5000
+})
 -->
