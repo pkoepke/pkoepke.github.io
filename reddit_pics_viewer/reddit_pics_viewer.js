@@ -25,13 +25,17 @@ default_video = "Triple_conj_VP8_Vorbis.webm";
 $( "#responsive_div_for_video" ).html('<video id="video_tag" autoplay loop controls muted="muted" class="embed-responsive-item" > <source id="source_tag_for_video" src="Triple_conj_VP8_Vorbis.webm" type="video/webm" /></video>');
 
 //My modification:
-jsonUrl = "http://www.reddit.com/r/gifs.json?jsonp=jQuery";
-$.ajax({
+jsonUrl = "https://www.reddit.com/r/gifs.json?jsonp=jQuery";
+console.log("Getting JSON from " + jsonUrl)
+redditJSON = $.ajax({
   url: jsonUrl,
   dataType: 'jsonp',
   success: function(data){console.log("success:",data);},
   error: function(error){console.log("error:",error);},
   404: function(error){console.log("404 failed AJAX:",error);},
-  timeout: 5000
+  timeout: 5
 })
+
+document.write( redditJSON )
+
 -->
