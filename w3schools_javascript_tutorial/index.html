@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>JavaScript test page</title>
+  </head>
+  <body>
+    <div class="site_header_background"></div>
+      <div class="site_structure">
+        <h1 id="h1">Paul Koepke's home page</h1>
+        <p class="content">Just testing JavaScript.</p>
+      </div>
+    <script>
+      var x = "This is a variable x.";
+      console.log(x);
+      //window.alert(x);
+      y = "This is a global variable y.";
+      console.log(y); document.write(y);
+      var addition = "5" + 3 + 2;
+      console.log(addition);
+      
+      var to_eval = "console.log('logged by an eval function')";
+      eval(to_eval);
+      
+	  var car_object = {
+		type: "Car",
+		brand: "Fiat",
+		model: "500",
+		color: "white",
+		allDetails: function() {
+			return this["type"] + this["brand"] + this.model + this.color;
+		}
+	}
+      // var car_object = {type: "Car", brand: "Ford", model: "Taurus", color: "white", allDetails: function() {return this["type"]+ this["brand"] + this.model + this.color;}}; // same thing on a single line
+	  console.log( car_object.type, car_object.brand );
+	  console.log( car_object["model"], car_object["color"] );
+	  console.log( car_object.allDetails() );
+	  console.log( car_object.allDetails );
+    </script>
+  </body>
+</html>
