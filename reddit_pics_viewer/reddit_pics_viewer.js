@@ -87,6 +87,6 @@ function grab_JSON( subreddit_to_load ) {
 }
 
 // Function to display the image or video
-function (subredditJSON) {
+/*function (subredditJSON) {
   
-}
+}*/
