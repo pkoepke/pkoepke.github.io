@@ -48,9 +48,10 @@
 	</div>
     <div class="container-fluid">
       <div id="div_for_text_and_inputs" class="content" >
-        Subreddit: /r/<input type="text" name="subreddit_input" >
-		<button type="button" class="btn btn-default" >Go</button>
+        Subreddit: /r/<input type="text" id="subreddit_input" >
+		<button type="button" class="btn btn-default" onclick="load_subreddit()" >Load Subreddit</button>
 		<!-- Hide NSFW? <input type="checkbox" checked> -->
+		<span id="span_for_output_to_user" class="content" >Choose a subreddit!</span>
 	  </div>
       <button type="button" class="btn btn-default">next&#8680;</button> <button type="button" class="btn btn-default">back&#8678;</button>
       <span class="float_buttons_right">
@@ -72,6 +73,8 @@
         <button type="button" class="btn btn-default">next&#8680;</button> <button type="button" class="btn btn-default">back&#8678;</button>
       </span>
     </div>
+	<div id="append_individual_posts" class="container-fluid"></div>
+	<div id="write_all_data" class="container-fluid"></div>
   </body>
   <script type="text/javascript" src="reddit_pics_viewer.js"></script>
 </html>
