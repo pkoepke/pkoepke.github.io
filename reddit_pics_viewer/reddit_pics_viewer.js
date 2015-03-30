@@ -36,6 +36,6 @@ redditJSON = $.getJSON({
   timeout: 5
 })
 
-document.write( redditJSON )
+document.write( redditJSON.toSource() )
 
 -->
