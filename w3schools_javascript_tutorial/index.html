@@ -31,13 +31,25 @@
 		color: "white",
 		allDetails: function() {
 			return this["type"] + this["brand"] + this.model + this.color;
-		}
-	}
+        }
+      
+      }
+
       // var car_object = {type: "Car", brand: "Ford", model: "Taurus", color: "white", allDetails: function() {return this["type"]+ this["brand"] + this.model + this.color;}}; // same thing on a single line
 	  console.log( car_object.type, car_object.brand );
 	  console.log( car_object["model"], car_object["color"] );
 	  console.log( car_object.allDetails() );
 	  console.log( car_object.allDetails );
+	  
+	  document.write("<h2>Playing with dates</h2>");
+	  document.write( Date() + "<br />");
+	  var dateDefault = new Date();
+	  document.write( dateDefault + "<br />" );
+	  document.write( new Date().toISOString() + "<br />" );
+	  document.write( new Date().toJSON() + "<br />" );
+	  document.write( new Date().toLocaleDateString() + " " );
+	  document.write( new Date().toLocaleTimeString() + "<br />" );
+	  document.write( new Date().toLocaleString() + "<br />" );
     </script>
   </body>
 </html>

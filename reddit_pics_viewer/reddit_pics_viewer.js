@@ -27,7 +27,7 @@ $( "#responsive_div_for_video" ).html('<video id="video_tag" autoplay loop contr
 //My modification:
 jsonUrl = "https://www.reddit.com/r/gifs.json?jsonp=jQuery";
 console.log("Getting JSON from " + jsonUrl)
-redditJSON = $.ajax({
+redditJSON = $.getJSON({
   url: jsonUrl,
   dataType: 'jsonp',
   success: function(data){console.log("success:",data);},
