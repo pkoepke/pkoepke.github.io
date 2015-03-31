@@ -48,29 +48,28 @@
 	</div>
     <div class="container-fluid">
       <div id="div_for_text_and_inputs" class="content" >
-        Subreddit: /r/<input type="text" id="subreddit_input" >
-		<button type="button" class="btn btn-default" onclick="load_subreddit()" >Load Subreddit</button>
-		<!-- Hide NSFW? <input type="checkbox" checked> -->
+        /r/<input type="text" id="subreddit_input" >
+		<button type="button" class="btn btn-default" onclick="load_subreddit()" >Load Sub</button>
+		<input type="checkbox" checked> 
 		<span id="span_for_output_to_user" class="content" onclick="log_redditJSON_to_console()" >Choose a subreddit.</span><span id="span_for_image_number" class="content" onclick="log_URLarray_to_console()" ></span>
 	  </div>
-      <button type="button" class="btn btn-default">next&#8680;</button> <button type="button" class="btn btn-default">back&#8678;</button>
+      <button type="button" class="btn btn-default" onclick="next()" >next&#8680;</button> <button type="button" class="btn btn-default" onclick="back()" >back&#8678;</button>
       <span class="float_buttons_right">
-        <button type="button" class="btn btn-default">next&#8680;</button> <button type="button" class="btn btn-default">back&#8678;</button>
+        <button type="button" class="btn btn-default" onclick="next()" >next&#8680;</button> <button type="button" class="btn btn-default" onclick="back()" >back&#8678;</button>
       </span>
-      <div id="div_for_image" class="content" >Imgur: <br />
-        <span id="imgur_source_link"></span> 
+      <div id="div_for_image" class="content" > 
         <img id="image_tag" src="" class="img-responsive" />
+        <span id="imgur_source_link"></span>
       </div>
     </div>
-    <div id="container_div_for_video" class="container-fluid" >Gfycat: <br />
-      <span id="gfycat_source_link"></span> 
+    <div id="container_div_for_video" class="container-fluid" >
       <div id="responsive_div_for_video" align="center" class="embed-responsive embed-responsive-16by9" >
       <video id="video_tag" autoplay loop controls muted="muted" class="embed-responsive-item" >
         <source id="source_tag_for_video" src="" type="video/webm" />
-      </video> </div>
-	  <button type="button" class="btn btn-default">next&#8680;</button> <button type="button" class="btn btn-default">back&#8678;</button>
+      </video> <span id="gfycat_source_link"></span> </div>
+	  <button type="button" class="btn btn-default" onclick="next()" >next&#8680;</button> <button type="button" class="btn btn-default" onclick="back()" >back&#8678;</button>
       <span class="float_buttons_right">
-        <button type="button" class="btn btn-default">next&#8680;</button> <button type="button" class="btn btn-default">back&#8678;</button>
+        <button type="button" class="btn btn-default" onclick="next()" >next&#8680;</button> <button type="button" class="btn btn-default" onclick="back()" >back&#8678;</button>
       </span>
     </div>
 	<div id="append_individual_posts" class="container-fluid"></div>

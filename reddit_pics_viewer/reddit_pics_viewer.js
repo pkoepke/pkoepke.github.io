@@ -60,7 +60,7 @@ function grab_JSON( subreddit_to_load ) {
     success: function(data) {
       redditJSON = data;
       // console.log( data ); // for testing only
-      $( "#span_for_output_to_user" ).html( "Finished loading." );
+      $( "#span_for_output_to_user" ).html( "Loaded." );
       parse_URLs();
 	  display_content();
     }, 
@@ -79,7 +79,7 @@ function log_URLarray_to_console() {
   console.log( URLarray );
 }
 
-// Function to parse all of the URLs and store the ones 
+// Function to parse all of the URLs from the Reddit JSON and store the ones from imgur.com and gfycat.com
 var URLarray = []
 function parse_URLs() { // console.log( redditJSON ); // for testing only
   $.each(redditJSON.data.children,
@@ -92,6 +92,17 @@ function parse_URLs() { // console.log( redditJSON ); // for testing only
       // console.log ( URLarray ); // for testing only
     }
   )
+  current_picture_number = 0;
+}
+
+// Function to grab an imgur page and display all images from it
+function get_parse_display_imgur_page() {
+  
+}
+
+// Function to grab a gfycat page and display the movie from it
+function get_parse_display_gfycat_page() {
+  
 }
 
 // Function to display the image or video
@@ -100,18 +111,81 @@ function display_content() {
   // console.log( URLarray ); // just for testing
   $( "#span_for_image_number" ).html( "Image #" + current_picture_number );
   currentURL = URLarray[ current_picture_number ]; // Just to save typing
-  // If the URL is directly to an image:
+  
   if ( is_URL_an_image( currentURL ) ) {
+	// If the URL is directly to an image, just display that image:
     $( "#imgur_source_link" ).html( currentURL );
+	$( "#image_tag" ).attr( "src", currentURL );
+    $( "#div_for_image" ).show()
+    $( "#container_div_for_video" ).hide()
+  } else if ( is_URL_a_movie( currentURL ) ) {
+	// If the URL is directly to an image, just display that image:
+    $( "#responsive_div_for_video" ).html('<video id="video_tag" autoplay loop controls muted="muted" class="embed-responsive-item" > <source id="source_tag_for_video" src="" type="video/webm" /></video>');
+	$( "#responsive_div_for_video" ).attr( "src", currentURL )
+    $( "#container_div_for_video" ).show()
+    $( "#div_for_image" ).hide()
+  } else if ( is_URL_to_imgur_page( currentURL ) ) {
+    // If the URL is to an imgur page, parse it and display all of the images.
+	
+  } else if ( is_URL_to_gfycat_page( currentURL ) ) {
+    // If the URL is to a gfycat page, parse it and display the movie
+	
   }
 }
 
-// Return True if the URL is directly to an image:
+// Return true if the URL is directly to an image:
 function is_URL_an_image( URL_to_check) {
+  if ( URL_to_check.search(".gifv") != -1 ) { return false }
+  else if (
+    URL_to_check.search(".gif") != -1 || URL_to_check.search(".png") != -1 || URL_to_check.search(".jpg") != -1 || URL_to_check.search(".jpeg") != -1
+  ) { return true }
+  else { return false }
+}
+
+// Return true if the URL is directly to a webm:
+function is_URL_a_movie( URL_to_check ) {
+  if ( URL_to_check.search(".webm") != -1 ) { console.log("it's a video"); return true }
+  else { return false }
+}
+
+// Return true if the URL is to imgur.com but not directly to an image or webm:
+function is_URL_to_imgur_page( URL_to_check ) {
   if (
-    URL_to_check.search(".gif") || URL_to_check.search(".png") || URL_to_check.search(".jpg") || URL_to_check.search(".jpeg")
-  ) { return true}
-  else { return false}
+    ( URL_to_check.search("imgur.com") != -1 )
+    && ! is_URL_an_image(URL_to_check)
+    && ! is_URL_a_movie(URL_to_check) ) {
+      return true;
+    } else { return false; }
+}
+
+// Return true if the URL is to gfycat.com but not directly to a webm:
+function is_URL_to_gfycat_page( URL_to_check ) {
+  if (
+    ( URL_to_check.search("gfycat.com") != -1 )
+    && ! is_URL_an_image(URL_to_check)
+    && ! is_URL_a_movie(URL_to_check) ) {
+      return true;
+    } else { return false; }
+}
+
+// Displays the next image
+function next() {
+  if ( current_picture_number == ( URLarray.length - 1) ) {
+    console.log( "Already on the last picture, can't move forward" );
+  } else { 
+    current_picture_number += 1;
+	display_content();
+  }
+}
+
+// Displays the previous image
+function back() {
+  if ( current_picture_number < 1 ) {
+    console.log( "Already on the last picture, can't move forward" );
+  } else { 
+    current_picture_number -= 1;
+	display_content();
+  }
 }
 
 // --------------------------------------------------------------------------------------------------
