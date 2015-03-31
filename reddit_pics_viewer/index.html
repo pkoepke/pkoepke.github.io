@@ -2,19 +2,19 @@
 
 <!-- Reddit Pics Viewer page. Copyright © Paul Koepke 2015  -->
 
-<!-- Just a page which will grab the RSS of any Reddit page and display the pictures linked in that page. It will probably do the following things:
+<!-- Just a page which will grab the JSON API of any Reddit page and display the pictures linked in that page. It will probably do the following things:
   Accept the subreddit name (after the reddit.com/r/) in a text field.
-  Grab the RSS feed, parse it, and store the image URLs. (Likely in a JavaScript array)
+  Grab the JSON feed, parse it, and store the image URLs. (Likely in a JavaScript array)
     Possibly use only URLs from known good hosts: imgur.com and gfycat.com, possibly others later.
-    If a link goes to an HTML page instead of the image directly, dig into that page and get 
-  Display a single image at a time and have forward and back buttons.
+    If a link goes to an HTML page instead of the image directly, dig into that page and get the URLs of all the relevant images on that page (e.g., an imgur album)
+  Display a single image at a time and have forward and back buttons. For imgur albums, consider displaying all images one on top of the other.
   Be responsive (at least mobile vs desktop), probably using Bootstrap.
     Added JQuery, Bootstrap JS, Bootstrap CSS, and Bootstrap-theme CSS
-	Created .container divs. Declined to use .row and .column divs as they seem unnecessary for a simple page like this, and they didn't fix the image sizing problem.
-  Do everything in JavaScript and HTML - getting and parsing the RSS, changing the displayed image, etc.
-  Keep the subreddit and the image number in the URL querystring.
-  Later feature: by default hide NSFW posts, optionally show them. Make it a checkbox netxt to the subreddit name.
-  Consider hosting it on pkoepke.github.io/reddit_pics_viewer/ in case it takes off. -->
+	Created .container divs. Declined to use .row and .column divs as they seem unnecessary for a simple page like this.
+  Do everything in JavaScript and HTML - getting and parsing the JSON, changing the displayed image, etc. Keep it a static page, no processing on the server so it can be hosted on GitHub.
+  Keep the subreddit and the image number in the URL querystring?
+  By default hide NSFW posts, optionally show them. Make it a checkbox next to the subreddit name.
+  Consider hosting it on pkoepke.github.io/reddit_pics_viewer/ -->
   
 <!-- Tumbeasts by Matthew Inman are licensed under a Creative Commons Attribution 3.0 Unported License. Based on a work at theoatmeal.com.-->
 <!-- Wikipedia edit 2014 video by VGrias is licensed under the Creative Commons Attribution-Share Alike 3.0 Unported license. http://commons.wikimedia.org/wiki/File:Wikipedia_Edit_2014.webm -->
@@ -51,7 +51,7 @@
         Subreddit: /r/<input type="text" id="subreddit_input" >
 		<button type="button" class="btn btn-default" onclick="load_subreddit()" >Load Subreddit</button>
 		<!-- Hide NSFW? <input type="checkbox" checked> -->
-		<span id="span_for_output_to_user" class="content" >Choose a subreddit!</span>
+		<span id="span_for_output_to_user" class="content" onclick="log_redditJSON_to_console()" >Choose a subreddit.</span>
 	  </div>
       <button type="button" class="btn btn-default">next&#8680;</button> <button type="button" class="btn btn-default">back&#8678;</button>
       <span class="float_buttons_right">
