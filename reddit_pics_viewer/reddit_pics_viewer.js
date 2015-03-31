@@ -13,7 +13,7 @@ http://imgur.com/gallery/I3cBLuV
 /* Flow: 
  * Set up the page with default images and/or hide image and video elements until they're needed. See function initial_set_up()
  * When the user enters a subreddit and clicks the Load Subreddit button, grab the subreddit name and do an async $.ajax() call to grab the JSON from Reddit. See function load_subreddit(), which calls function grab_JSON( subreddit_to_load ).
- * Once the JSON is successfully gotten, immediately parse all of the URLs in data.data.children. Those from imgur.com or gfycat.com get put in an array that will be used to cycle through the images.
+ * Once the JSON is successfully gotten, immediately parse all of the URLs in data.data.children. Those from imgur.com or gfycat.com get put in an array that will be used to cycle through the images. See function parse_URLs().
  * When the array is ready, 
  * 
  * 
@@ -60,8 +60,9 @@ function grab_JSON( subreddit_to_load ) {
     success: function(data) {
       redditJSON = data;
       // console.log( data ); // for testing only
-      $( "#span_for_output_to_user" ).html( "Finished loading." )
-      parse_URLs()
+      $( "#span_for_output_to_user" ).html( "Finished loading." );
+      parse_URLs();
+	  display_content();
     }, 
     error: function(error){console.log("AJAX error:",error); redditJSON = {}; $( "#span_for_output_to_user" ).html( "Error - are you sure that's a subreddit?" )},
     404: function(error){console.log("404 failed AJAX:",error); $( "#span_for_output_to_user" ).html( "404 error - couldn't get subreddit data." )},
@@ -73,6 +74,10 @@ function grab_JSON( subreddit_to_load ) {
 function log_redditJSON_to_console() {
   console.log( redditJSON );
 }
+// Just for testing URLarray
+function log_URLarray_to_console() {
+  console.log( URLarray );
+}
 
 // Function to parse all of the URLs and store the ones 
 var URLarray = []
@@ -82,7 +87,7 @@ function parse_URLs() { // console.log( redditJSON ); // for testing only
     function (i, post) {
       if ( ( post.data.domain.search( "imgur" ) != -1) || ( post.data.domain.search( "gfycat" ) != -1 )) {
         // console.log ( post.data.url + " " + post.data.domain.search( "imgur" ) + " " + post.data.domain.search( "gfycat" ) ) // for testing only
-		URLarray[URLarray.length] = post.data.url
+		URLarray[URLarray.length] = post.data.url;
       }
       // console.log ( URLarray ); // for testing only
     }
@@ -90,10 +95,24 @@ function parse_URLs() { // console.log( redditJSON ); // for testing only
 }
 
 // Function to display the image or video
-function display_content () {
-  console.log( URLarray );
+current_picture_number = 0;
+function display_content() {
+  // console.log( URLarray ); // just for testing
+  $( "#span_for_image_number" ).html( "Image #" + current_picture_number );
+  currentURL = URLarray[ current_picture_number ]; // Just to save typing
+  // If the URL is directly to an image:
+  if ( is_URL_an_image( currentURL ) ) {
+    $( "#imgur_source_link" ).html( currentURL );
+  }
 }
 
+// Return True if the URL is directly to an image:
+function is_URL_an_image( URL_to_check) {
+  if (
+    URL_to_check.search(".gif") || URL_to_check.search(".png") || URL_to_check.search(".jpg") || URL_to_check.search(".jpeg")
+  ) { return true}
+  else { return false}
+}
 
 // --------------------------------------------------------------------------------------------------
 
