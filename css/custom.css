@@ -1,3 +1,7 @@
 .container-fluid {
 	max-width: 900px
 }
+
+.navbar .navbar-collapse {
+	text-align: center;
+}

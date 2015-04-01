@@ -19,6 +19,14 @@
 	float: right;
 }
 
-.container-fluid {
+/*.container-fluid {
 	max-width: 900px
+}*/
+
+.img-responsive {
+	width: 100%;
+}
+
+.source_tag_for_video{
+	width: 100%;
 }
