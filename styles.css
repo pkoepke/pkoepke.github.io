@@ -1,0 +1,180 @@
+/* Copyright © Paul Koepke, 2014 */
+
+	* {
+		font-family: 'open sans', Verdana, arial, sans-serif;
+	}
+	
+	.sortable {
+		word-wrap: break-word;
+		word-break: break-all;
+		position: relative;
+		top: -12em;
+		margin-left:auto; 
+		margin-right:auto;
+	}
+
+@media only screen and (min-device-width: 768px) {
+	
+	.site_header_background {
+		width: 102%;
+		position: relative;
+		left: -.5em;
+		top: -.6em;
+		height: 12em;
+		
+		/* borrowed */ 
+		box-shadow: rgba(255, 255, 255, 0.6) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 5px 0px;
+		/* background-color: #606060; */
+		background: linear-gradient(to bottom, #7d7d7d 20%, #505050 100%);	
+	}
+	
+	h1 {
+		font-size: 3.5em;
+		font-family: 'open sans', sans-serif;
+		color: #00C2F2; /* was #00B7E5 */ /* also liked 00CCFF but that wasn't good for links */
+		position: relative;
+		left: -0.09em;
+	}
+
+	.site_structure {
+		font-size: .97em;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 50em;
+		position: relative;
+		top: -12em;
+	}
+
+	.navigation_bar  {
+		position: relative;
+		top: 0.5em;
+		background: linear-gradient(to bottom, #FAFAFA 50%, #E1E1E1 100%);
+		box-shadow: rgba(255, 255, 255, 0.6) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 5px 0px;
+		padding:.7em;
+		border-radius: 1em;
+	}
+
+	a:link {
+		color: #00B9F2;
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+
+	ul { /* remove formatting from unformatted lists so my links can be put into a navigation bar */
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	li { /* put my links list into a navigation bar */
+		display: inline;
+	}
+
+	.divider{
+		border-right: 1px solid #7d7d7d;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.menu_icon {
+		display: none;
+	}
+	
+	.adsbygoogle {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+}
+
+@media only screen and (max-device-width: 767.99999px) {
+	
+	.site_header_background {
+		width: 102%;
+		position: relative;
+		left: -.5em;
+		top: -.6em;
+		height: 26em;
+		
+		/* borrowed */ 
+		box-shadow: rgba(255, 255, 255, 0.6) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 5px 0px;
+		/* background-color: #606060; */
+		background: linear-gradient(to bottom, #7d7d7d 20%, #505050 100%);	
+	}
+	
+	h1 {
+		font-size: 4em;
+		font-family: 'open sans', sans-serif;
+		color: #00C2F2; /* was #00B7E5 */ /* also liked 00CCFF but that wasn't good for links */
+		position: relative;
+		left: -0.09em;
+		width: 6em;
+		/* top: -2.7em; */
+	}
+
+	.site_structure {
+		width: 90%;
+		max-width: 50em;
+		position: relative;
+		/* top: -12em; */
+		top: -18em;
+		font-size: 1.7em;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	.navigation_bar  {
+		/* position: relative;
+		float: right;
+		top: -8.5em;
+		z-index: 2; */
+		position: fixed;
+		right: 0.5em; 
+		top: 0.5em;
+		background: linear-gradient(to bottom, #FAFAFA 50%, #E1E1E1 100%);
+		box-shadow: rgba(255, 255, 255, 0.6) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 5px 0px;
+		padding:.7em;
+		border-radius: 1em;
+		font-size: 1.9em;
+		width: 7em;
+	}
+
+	a:link {
+		color: #00B9F2;
+	}
+
+	ul { /* remove formatting from unformatted lists so my links can be put into a navigation bar */
+		list-style-type: none;
+		padding: 0em;
+		margin: 0em;
+	}
+
+	li { /* put my links list into a navigation bar */
+		padding: 0em;
+		margin: 0em;
+		padding-top: 0.5em;
+	}
+	
+	li.no_border {
+		border-bottom: 0px solid #7d7d7d;
+		padding-bottom: 0em;
+	}
+	
+	.divider{
+		border-bottom: 3px solid #7d7d7d;
+		/* margin-bottom: 0.5em; */ 
+		padding-bottom: 0.7em;
+	}
+	
+	.menu_icon_span {
+		width: 6.3em;
+		float: right;
+	}
+	
+	.menu_icon {
+		width: 3em;
+		height: auto;
+		border-radius: 1em;
+		float: right;
+	}
+}

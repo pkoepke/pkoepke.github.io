@@ -1,0 +1,136 @@
+/* Copyright © Paul Koepke, 2014 */
+
+@media only screen and (min-device-width: 768px) {
+
+	* {
+		font-family: 'open sans', Verdana, arial, sans-serif;
+	}
+
+	h1 {
+		font-size: 3.5em;
+		font-family: 'open sans', sans-serif;
+		color: #00C2F2; /* was #00B7E5 */ /* also liked 00CCFF but that wasn't good for links */
+		position: relative;
+		left: 28.49em;
+	}
+
+	.site_structure {
+		font-size: .97em;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 50em;
+	}
+
+	.site_header {	
+		position: relative;
+		left: -100em;
+		width: 500%;
+		margin-top: -9.3em;
+		padding-bottom: 1.5em;
+		padding-top: 10em;
+		
+		/* borrowed */ 
+		box-shadow: rgba(255, 255, 255, 0.6) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 5px 0px;
+		/* background-color: #606060; */
+		background: linear-gradient(to bottom, #7d7d7d 50%, #505050 100%);
+		
+	}
+
+	.navigation_bar  {
+		position: relative;
+		top: -1.2em;
+		background: linear-gradient(to bottom, #FAFAFA 50%, #E1E1E1 100%);
+		box-shadow: rgba(255, 255, 255, 0.6) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 5px 0px;
+		padding:.6em;
+		border-radius: 1em;
+	}
+
+	a:link {
+		color: #00C2F2;
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+
+	ul { /* remove formatting from unformatted lists so my links can be put into a navigation bar */
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	li { /* put my links list into a navigation bar */
+		display: inline;
+	}
+
+	.divider{
+		border-left: 1px solid #7d7d7d;
+		margin: 0;
+		padding: 0;
+	}
+
+}
+
+@media only screen and (max-device-width: 767.99999px) {
+	* {
+		font-family: 'open sans', Verdana, arial, sans-serif;
+	}
+
+	h1 {
+		font-size: 7em;
+		font-family: 'open sans', sans-serif;
+		color: #00C2F2; /* was #00B7E5 */ /* also liked 00CCFF but that wasn't good for links */
+		padding-left: 1em;
+		width: 5em;
+	}
+
+	.site_structure {
+		font-size: 3em;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 100%;
+	}
+
+	.site_header {	
+		margin-left: -.5em;
+		margin-right: -.5em;
+		margin-top: -9.3em;
+		padding-bottom: 1.5em;
+		padding-top: 10em;
+		
+		/* borrowed */ 
+		box-shadow: rgba(255, 255, 255, 0.6) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 5px 0px;
+		/* background-color: #606060; */
+		background: linear-gradient(to bottom, #7d7d7d 50%, #505050 100%);
+		
+	}
+
+	.navigation_bar  {
+		position: relative;
+		top: -1.2em;
+		background: linear-gradient(to bottom, #FAFAFA 50%, #E1E1E1 100%);
+		box-shadow: rgba(255, 255, 255, 0.6) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 5px 0px;
+		padding:.6em;
+		border-radius: 1em;
+	}
+
+	a:link {
+		color: #00C2F2;
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+
+	ul { /* remove formatting from unformatted lists so my links can be put into a navigation bar */
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	li { /* put my links list into a navigation bar */
+		display: inline;
+	}
+
+	.divider{
+		border-left: 1px solid #7d7d7d;
+		margin: 0;
+		padding: 0;
+	}
+}
