@@ -36,9 +36,9 @@ window.onload = function() {
   /* console.log("window.onload ran");
   console.log(comicIdsDb);
   comicIdsDb().open(loadComicsIdsFromDb);
-  console.log(comicIdsDb.fetchComicIds;
+  console.log(comicIdsDb.fetchComicIds);
   comicIdsDb().fetchComicIds(function(x) { console.log(x)});
-  // currentComicId*/
+  // currentComicId*/ 
 };
 
 function loadComicsIdsFromDb() {
