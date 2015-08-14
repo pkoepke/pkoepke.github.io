@@ -1,42 +1,33 @@
-  /*function next() {
-    nextComicId = parseInt( document.getElementById("comic_id").innerHTML) + 1;
-    document.getElementById("comic_id").innerHTML = nextComicId;
-	document.getElementById("content").innerHTML = "<img src=" + comic_urls[nextComicId] + ">";
-	document.location = "./index2.html" + "?id=" + nextComicId
-  }*/
+document.addEventListener('DOMContentLoaded', function() {
+  currentComicId = parseInt( GetQueryStringParams('id') );
+  document.getElementById("comic_id").innerHTML = currentComicId;
+  document.getElementById("content").innerHTML = "<img style=\x22width: 100%; max-width: 800px\x22 src=" + comic_urls[currentComicId] + ">";
+}, false);
 
-  /* document.addEventListener('DOMContentLoaded', function() {
-    nextComicId = parseInt( GetQueryStringParams('id') ) + 1;
-    document.getElementById("comic_id").innerHTML = nextComicId;
-    document.getElementById("content").innerHTML = "<img style=\x22width: 100%\x22 src=" + comic_urls[nextComicId] + ">";
-  }, false); */
+function next() {
+  document.location = "./index.html" + "?id=" + (currentComicId + 1);
+}
 
-  document.addEventListener('DOMContentLoaded', function() {
-    currentComicId = parseInt( GetQueryStringParams('id') );
-    document.getElementById("comic_id").innerHTML = currentComicId;
-    document.getElementById("content").innerHTML = "<img style=\x22width: 100%; max-width: 800px\x22 src=" + comic_urls[currentComicId] + ">";
-  }, false);
+function back() {
+  document.location = "./index.html" + "?id=" + (currentComicId - 1);
+}
 
-  function next() {
-	document.location = "./index.html" + "?id=" + (currentComicId + 1);
-  }
-
-  function back() {
-  	document.location = "./index.html" + "?id=" + (currentComicId - 1);
-  }
-
-  function GetQueryStringParams(sParam) {
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++) {
-      var sParameterName = sURLVariables[i].split('=');
-      if (sParameterName[0] == sParam) {
-        return sParameterName[1];
-      }
+function GetQueryStringParams(sParam) {
+  var sPageURL = window.location.search.substring(1);
+  var sURLVariables = sPageURL.split('&');
+  for (var i = 0; i < sURLVariables.length; i++) {
+    var sParameterName = sURLVariables[i].split('=');
+    if (sParameterName[0] == sParam) {
+      return sParameterName[1];
     }
   }
+}
 
-  comic_urls = ["http://www.smbc-comics.com/comics/20020905-2.gif",
+function storeCurrentComicIdInIndexeddb () {
+
+}
+
+var comic_urls = ["http://www.smbc-comics.com/comics/20020905-2.gif",
 "http://www.smbc-comics.com/comics/20020907-2.gif",
 "http://www.smbc-comics.com/comics/20020909-2.gif",
 "http://www.smbc-comics.com/comics/20020916-2.gif",
