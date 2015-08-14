@@ -1,3 +1,5 @@
+var currentComicId = 0;
+
 document.addEventListener('DOMContentLoaded', function() {
   currentComicId = parseInt( GetQueryStringParams('id') );
   document.getElementById("comic_id").innerHTML = currentComicId;
