@@ -1,4 +1,3 @@
-<script>
   /*function next() {
     nextComicId = parseInt( document.getElementById("comic_id").innerHTML) + 1;
     document.getElementById("comic_id").innerHTML = nextComicId;
@@ -3740,4 +3739,3 @@
 "http://www.smbc-comics.com/comics/1434637716-20150618.png",
 "http://www.smbc-comics.com/comics/1434725082-20150619.png",
 "http://www.smbc-comics.com/comics/1434812362-20150620.png",]
-</script>
