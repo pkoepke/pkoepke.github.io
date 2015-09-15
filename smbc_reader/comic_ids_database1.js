@@ -42,6 +42,7 @@ var comicIdsDb = (function() {
   * Fetch all of the comicIds items in the datastore.
   */
   comicDb.fetchComicIds = function(callback) {
+    console.log("comibDb.fetchComicIds ran");
     var db = datastore;
     var transaction = db.transaction(['comicIds'], 'readwrite');
     var objStore = transaction.objectStore('comicIds');

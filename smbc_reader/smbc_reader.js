@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
   currentComicId = parseInt( GetQueryStringParams('id') );
   document.getElementById("comic_id").innerHTML = currentComicId;
   if(isNaN(currentComicId)) {
-    currentComicId = 0;
+    currentComicId = -1;
     next(currentComicId);
   }
   document.getElementById("content").innerHTML = "<img style=\x22width: 100%; max-width: 800px\x22 src=" + comic_urls[currentComicId] + ">";
@@ -30,21 +30,8 @@ function GetQueryStringParams(sParam) {
 }
 
 // Using an indexedDB to store viewed comic IDs. Based on http://blog.teamtreehouse.com/create-your-own-to-do-app-with-html5-and-indexeddb
-// Code is stored in ./comic_ids_database.js
+// Code is stored in ./comic_ids_database<version number>.js
 window.onload = function() {
   // app code goes here
-  /* console.log("window.onload ran");
-  console.log(comicIdsDb);
-  comicIdsDb().open(loadComicsIdsFromDb);
-  console.log(comicIdsDb.fetchComicIds);
-  comicIdsDb().fetchComicIds(function(x) { console.log(x)});
-  // currentComicId*/ 
+  console.log("window.onload ran");
 };
-
-function loadComicsIdsFromDb() {
-  console.log("loadComicsIdsFromDb ran");
-}
-
-function storeCurrentComicIdInIndexeddb () {
-
-}
