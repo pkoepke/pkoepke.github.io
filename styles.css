@@ -3,35 +3,35 @@
 	* {
 		font-family: 'open sans', Verdana, arial, sans-serif;
 	}
-	
+
 	.sortable {
 		word-wrap: break-word;
 		word-break: break-all;
 		position: relative;
 		top: -12em;
-		margin-left:auto; 
+		margin-left:auto;
 		margin-right:auto;
 	}
-	
-	.twitter-timeline{
+
+	.twitter-timeline-div{
 		text-align: center;
 	}
 
 @media only screen and (min-device-width: 768px) {
-	
+
 	.site_header_background {
 		width: 102%;
 		position: relative;
 		left: -.5em;
 		top: -.6em;
 		height: 12em;
-		
-		/* borrowed */ 
+
+		/* borrowed */
 		box-shadow: rgba(255, 255, 255, 0.6) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 5px 0px;
 		/* background-color: #606060; */
-		background: linear-gradient(to bottom, #7d7d7d 20%, #505050 100%);	
+		background: linear-gradient(to bottom, #7d7d7d 20%, #505050 100%);
 	}
-	
+
 	h1 {
 		font-size: 3.5em;
 		font-family: 'open sans', sans-serif;
@@ -79,11 +79,11 @@
 		margin: 0;
 		padding: 0;
 	}
-	
+
 	.menu_icon {
 		display: none;
 	}
-	
+
 	.adsbygoogle {
 		margin-left: auto;
 		margin-right: auto;
@@ -92,20 +92,20 @@
 }
 
 @media only screen and (max-device-width: 767.99999px) {
-	
+
 	.site_header_background {
 		width: 102%;
 		position: relative;
 		left: -.5em;
 		top: -.6em;
 		height: 26em;
-		
-		/* borrowed */ 
+
+		/* borrowed */
 		box-shadow: rgba(255, 255, 255, 0.6) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 5px 0px;
 		/* background-color: #606060; */
-		background: linear-gradient(to bottom, #7d7d7d 20%, #505050 100%);	
+		background: linear-gradient(to bottom, #7d7d7d 20%, #505050 100%);
 	}
-	
+
 	h1 {
 		font-size: 4em;
 		font-family: 'open sans', sans-serif;
@@ -126,14 +126,14 @@
 		margin-left: auto;
 		margin-right: auto;
 	}
-	
+
 	.navigation_bar  {
 		/* position: relative;
 		float: right;
 		top: -8.5em;
 		z-index: 2; */
 		position: fixed;
-		right: 0.5em; 
+		right: 0.5em;
 		top: 0.5em;
 		background: linear-gradient(to bottom, #FAFAFA 50%, #E1E1E1 100%);
 		box-shadow: rgba(255, 255, 255, 0.6) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px -1px 1px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 5px 0px;
@@ -158,23 +158,23 @@
 		margin: 0em;
 		padding-top: 0.5em;
 	}
-	
+
 	li.no_border {
 		border-bottom: 0px solid #7d7d7d;
 		padding-bottom: 0em;
 	}
-	
+
 	.divider{
 		border-bottom: 3px solid #7d7d7d;
-		/* margin-bottom: 0.5em; */ 
+		/* margin-bottom: 0.5em; */
 		padding-bottom: 0.7em;
 	}
-	
+
 	.menu_icon_span {
 		width: 6.3em;
 		float: right;
 	}
-	
+
 	.menu_icon {
 		width: 3em;
 		height: auto;
