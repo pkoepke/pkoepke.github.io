@@ -20,14 +20,14 @@
 				var combinedCssVar = document.getElementById("combinedCss");
 				combinedCssVar.setAttribute("href", "combined.css");
 			}
-		} 
+		}
 	</script> -->
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-			
+
 			ga('create', 'UA-29633726-1', 'paulkoepke.com');
 			ga('send', 'pageview');
 		</script>
@@ -48,21 +48,21 @@
 		<br /><br />
 		<script>
 			function start_calculations() {
-			
+
 			// get values
-			
+
 			var billAmount = document.getElementById("bill_amount").value;
 			var tipPercent = document.getElementById("tip_percent").value;
-		
+
 			// validate the the inputs are numbers
-			
+
 			if (tipPercent == "" || isNaN(tipPercent)) {
 				document.getElementById("tip_percent_after").innerHTML = "<br />Please enter a number";
 				// Removed this from the if/else chain so both warnings can be shown if both inputs have problems
 			} else {
 				document.getElementById("tip_percent_after").innerHTML = "<br />(Enter 50 for 50%)";
 			}
-			
+
 			if (billAmount == "" || isNaN(billAmount)) {
 				document.getElementById("bill_amount_after").innerHTML = "<br />Please enter a number";
 			} else if (tipPercent == "" || isNaN(tipPercent)) {
@@ -70,39 +70,39 @@
 			} else {
 				document.getElementById("bill_amount_after").innerHTML = "<br />";
 				document.getElementById("tip_percent_after").innerHTML = "<br />(Enter 50 for 50%)";
-				
+
 				// calculate
-			
+
 				var tipAmount = billAmount * (tipPercent / 100);
 				var totalWithTip = Number(billAmount) + Number(tipAmount);
-			
+
 				// output result
-			
+
 				document.getElementById("output").innerHTML = tipPercent + "% of $" + (Math.round(billAmount * 100) / 100).toFixed(2) + " is $" + (Math.round(tipAmount * 100) / 100).toFixed(2) + ", so your total should be $" + (Math.round(totalWithTip * 100) / 100).toFixed(2);
 			}
-		
+
 			}// end of function start_calculations()
-			
+
 			function tip_percent_buttons(buttonPercent) {
-		
+
 				// Set percent to the button's value
 				document.getElementById("tip_percent").value = buttonPercent;
-			
+
 				// Calculate
 				start_calculations();
 			}
 
 		</script>
 
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!--		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
 			<!-- paulkoepke.com Tip Calculator -->
-			<ins class="adsbygoogle"
+<!--			<ins class="adsbygoogle"
 			style="display:inline-block;width:728px;height:90px"
 			data-ad-client="ca-pub-1180729325210240"
 			data-ad-slot="1090894010"></ins>
 		<script>
 		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
+	</script> -->
 	</body>
-	
+
 </html>
