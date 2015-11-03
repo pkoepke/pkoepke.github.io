@@ -1,0 +1,60 @@
+#everything {
+  background-color: #42A5F5;
+  text-align:center;
+  width:80%;
+  max-width:30em;
+  min-width:15em;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 1em
+}
+
+/* Mobile site css. For tablets and phones in portrait mode. */
+
+@media only screen and (max-device-width: 767.99999px) {
+
+	* {
+		text-align:center;
+		font-family:Verdana,sans-serif;
+	}
+
+	.box_round {
+		border-radius: 60px;
+		background-color:#C1F0F6;
+		box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.6);
+		background: linear-gradient(150deg, #87e0fd, #05abe0);
+		width:85%;
+		margin-left:auto;
+		margin-right:auto;
+		padding:.4em;
+	}
+
+	h1{
+		font-size:4em;
+		font-family:Georgia;
+	}
+
+	p {
+		font-size:3em;
+	}
+
+	input[type="number"] {
+		font-family:Helvetica,Arial,sans-serif; font-size:1em;
+		width:5.2em; height:1.2em;
+		min-width:5.2em; min-height:1.2em;
+		padding-left:1em;
+	}
+
+	input[type="button"] {
+		font-size:0.8em;
+		width:3.9em; height:3em;
+		margin-bottom:.4em;
+		/*	margin-right:0.05em;
+		margin-left:0.05em; */
+	}
+
+	input.calculate_tip_button  {
+		width:16em; height:3em;
+	}
+
+}
