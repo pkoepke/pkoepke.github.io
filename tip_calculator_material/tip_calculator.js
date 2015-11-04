@@ -39,23 +39,7 @@ function tip_percent_buttons(buttonPercent) {
   start_calculations();
 }
 
-// logs the device's resolution, pixel density, and physical screen size to the console.
-function detect_resolution_pixel_density_screen_size() {
-  console.log("The window's resolution is: " + window.innerHeight + " x " + window.innerWidth);
-  console.log("The device's pixel density is: " + window.devicePixelRatio);
-  console.log("The device's computed physcal screen size (resolution / pixel density) is: " );
-}
-detect_resolution_pixel_density_screen_size() // detect as soon as the page loads.s
-
-function detect_if_mobile_device() {
-  var isMobi = navigator.userAgent.search("mobi");
-  console.log(isMobi);
-  if( isMobi > -1 ) {
-    document.write("mobile device per detect_if_mobile_device()");
-  }
-}
-detect_if_mobile_device();
-
+// Courtesy of detectmobilebrowsers.com
 function  detectmobilebrowsers_com() {
   var check = false;
   (function(a){
@@ -63,4 +47,12 @@ function  detectmobilebrowsers_com() {
   )(navigator.userAgent||navigator.vendor||window.opera);
   return check;
 }
-document.write("Is mobile device per detectmobilebrowsers_com(): " + detectmobilebrowsers_com());
+//document.write("Is mobile device per detectmobilebrowsers_com(): " + detectmobilebrowsers_com()); // for testing only.
+
+function swapMobileStyleSheets() {
+  if (!detectmobilebrowsers_com()) {
+    var mobileStyleSheetLinkElement = document.getElementById("mobileCss");
+    mobileStyleSheetLinkElement.setAttribute("href","mobile.css");
+  }
+}
+swapMobileStyleSheets();

@@ -1,4 +1,4 @@
-#everything {
+#everythingCard {
   background-color: #42A5F5;
   text-align:center;
   width:90%;
@@ -7,4 +7,17 @@
   margin-left:auto;
   margin-right:auto;
   margin-top: 1em;
+}
+
+#dollarSignSpan {
+  position: relative;
+  left:0.8em;
+}
+
+#bill_amount {
+  text-align: center;
+}
+
+#tip_percent {
+  text-align: center;
 }

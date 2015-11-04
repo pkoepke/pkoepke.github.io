@@ -1,0 +1,11 @@
+#everythingCard {
+  max-width: none;
+}
+
+p, input {
+  font-size: 1.5em;
+}
+
+input {
+  margin-bottom: 0.4em;
+}

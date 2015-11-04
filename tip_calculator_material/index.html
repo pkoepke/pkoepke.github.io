@@ -11,6 +11,7 @@
 		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link id="css" rel="stylesheet" type="text/css" href="styles.css">
+		<link id="mobileCss" rel="stylesheet" type="text/css" href="">
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -22,10 +23,11 @@
 		</script>
 	</head>
 	<body>
-		<div class="mdl-card mdl-shadow--16dp" id="everything">
+		<div class="mdl-card mdl-shadow--16dp" id="everythingCard">
+			<span id="everythingSpan">
 			<h1>Tip Calculator</h1>
-			<p><label for="bill_amount" >Bill amount:</label><span style="position: relative; left:0.8em" >$</span><input type="number" id="bill_amount" /><span id="bill_amount_after"><br /></span></p>
-			<p><label for="tip_percent" >Tip percent: </label><input type="number" id="tip_percent" onchange="start_calculations()" style="position: relative; left:0.2em" /><span id="tip_percent_after" ><br />(Enter 50 for 50%)</span></p>
+			<p><label for="bill_amount" >Bill amount:</label><span id="dollarSignSpan" >$</span><input type="number" id="bill_amount" /><span id="bill_amount_after"><br /></span></p>
+			<p><label for="tip_percent" >Tip percent: </label><input type="number" id="tip_percent" onchange="start_calculations()" /><span id="tip_percent_after" ><br />(Enter 50 for 50%)</span></p>
 			<p><input type="button" name="5_percent_tip_button" onclick="tip_percent_buttons(5)" value="5%" />
 			<input type="button" name="10_percent_tip_button" onclick="tip_percent_buttons(10)" value="10%" />
 			<input type="button" name="15_percent_tip_button" onclick="tip_percent_buttons(15)" value="15%" />
@@ -33,9 +35,9 @@
 			<input type="button" name="25_percent_tip_button" onclick="tip_percent_buttons(25)" value="25%" />
 			<input type="button" name="calculate_tip_button" class="calculate_tip_button" onclick="start_calculations()" value="Calculate other tip percent" /></p>
 			<p id="output" ><br /></p>
+		</span>
 		</div>
 		<br /><br />
 		<script src="./tip_calculator.js"></script>
 	</body>
-
 </html>
