@@ -52,7 +52,7 @@ function calculatePercentRounded(tipPercent) {
   var tipAmountRoundingDown = Math.round((totalAmountRoundedDown - billAmount) * 100) / 100;
   var tipPercentRoundingDown = Math.round((tipAmountRoundingDown / billAmount) * 100) / 100;
 
-  document.getElementById("output").innerHTML = tipPercent + "% rounding down is a tip of $" + tipAmountRoundingDown + ", so your total should be $" + (Number(billAmount) + Number(tipAmountRoundingDown)) + " which is a tip of " + tipPercentRoundingDown + "%.<br />";
+  document.getElementById("output").innerHTML = tipPercent + "% rounding down is a tip of $" + tipAmountRoundingDown + ", so your total should be $" + (Number(billAmount) + Number(tipAmountRoundingDown)) + " which is a tip of " + tipPercentRoundingDown + "%.<br /><br />";
   document.getElementById("output").innerHTML += tipPercent + "% rounding up is a tip of $" + tipAmountRoundingUp + ", so your total should be $" + (Number(billAmount) + Number(tipAmountRoundingUp)) + " which is a tip of " + tipPercentRoundingUp + "%.";
 }
 
