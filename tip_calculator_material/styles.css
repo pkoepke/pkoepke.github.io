@@ -27,3 +27,7 @@ h1 {
 #tip_percent {
   text-align: center;
 }
+
+input[type="button"] {
+  padding: 0.6em;
+}
