@@ -50,7 +50,7 @@ function  detectmobilebrowsers_com() {
 //document.write("Is mobile device per detectmobilebrowsers_com(): " + detectmobilebrowsers_com()); // for testing only.
 
 function swapMobileStyleSheets() {
-  if (!detectmobilebrowsers_com()) {
+  if (detectmobilebrowsers_com()) {
     var mobileStyleSheetLinkElement = document.getElementById("mobileCss");
     mobileStyleSheetLinkElement.setAttribute("href","mobile.css");
   }
