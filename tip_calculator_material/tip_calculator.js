@@ -49,6 +49,7 @@ function  detectmobilebrowsers_com() {
 }
 //document.write("Is mobile device per detectmobilebrowsers_com(): " + detectmobilebrowsers_com()); // for testing only.
 
+// Function to add a mobile stylesheet if the browser is a mobile browser
 function swapMobileStyleSheets() {
   if (detectmobilebrowsers_com()) {
     var mobileStyleSheetLinkElement = document.getElementById("mobileCss");
