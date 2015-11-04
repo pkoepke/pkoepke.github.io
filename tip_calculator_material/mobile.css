@@ -7,8 +7,8 @@ h1 {
 }
 
 p {
-  font-size: 4em;
-  margin: 0.1em;
+  font-size: 3em;
+  margin: 0.5em;
 }
 
 input[type=number] {
@@ -25,4 +25,6 @@ input[type=number] {
 input[type="button"] {
   font-size: 1.1em;
   margin: 0.1em;
+  margin-top: 0.3em;
+  martin-bottom: 0.3em;
 }
