@@ -1,5 +1,5 @@
 // runs when the user enters a number in the Tip Percent field. Is also called by tip_percent_buttons(), which is used when the user chooses a percent button.
-function start_calculations() {
+function calculationsWithoutRounding() {
   // get values
   var billAmount = document.getElementById("bill_amount").value;
   var tipPercent = document.getElementById("tip_percent").value;
@@ -28,7 +28,7 @@ function start_calculations() {
     document.getElementById("output").innerHTML = tipPercent + "% of $" + (Math.round(billAmount * 100) / 100).toFixed(2) + " is $" + (Math.round(tipAmount * 100) / 100).toFixed(2) + ", so your total should be $" + (Math.round(totalWithTip * 100) / 100).toFixed(2);
   }
 
-} // end of function start_calculations()
+} // end of function calculationsWithoutRounding()
 
 // runs when the user chooses a percent button.
 function tip_percent_buttons(buttonPercent) {
@@ -36,7 +36,24 @@ function tip_percent_buttons(buttonPercent) {
   document.getElementById("tip_percent").value = buttonPercent;
 
   // Calculate
-  start_calculations();
+  calculationsWithoutRounding();
+}
+
+function calculatePercentRounded(tipPercent) {
+  document.getElementById("tip_percent").value = tipPercent;
+
+  var billAmount = document.getElementById("bill_amount").value;
+  var tipAmountUnrounded = Number(billAmount * (tipPercent / 100));
+  var totalAmountUnrounded = Number(billAmount) + Number(tipAmountUnrounded);
+  var totalAmountRoundedUp = Math.ceil(totalAmountUnrounded);
+  var tipAmountRoundingUp = Math.round((totalAmountRoundedUp - billAmount) * 100) / 100;
+  var tipPercentRoundingUp = Math.round((tipAmountRoundingUp / billAmount) * 100) / 100;
+  var totalAmountRoundedDown = Math.floor(totalAmountUnrounded);
+  var tipAmountRoundingDown = Math.round((totalAmountRoundedDown - billAmount) * 100) / 100;
+  var tipPercentRoundingDown = Math.round((tipAmountRoundingDown / billAmount) * 100) / 100;
+
+  document.getElementById("output").innerHTML = tipPercent + "% rounding down is a tip of $" + tipAmountRoundingDown + ", so your total should be $" + (Number(billAmount) + Number(tipAmountRoundingDown)) + " which is a tip of " + tipPercentRoundingDown + "%.<br />";
+  document.getElementById("output").innerHTML += tipPercent + "% rounding up is a tip of $" + tipAmountRoundingUp + ", so your total should be $" + (Number(billAmount) + Number(tipAmountRoundingUp)) + " which is a tip of " + tipPercentRoundingUp + "%.";
 }
 
 // Courtesy of detectmobilebrowsers.com

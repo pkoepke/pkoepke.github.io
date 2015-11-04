@@ -8,6 +8,8 @@
   margin-left:auto;
   margin-right:auto;
   margin-top: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 h1 {
@@ -30,4 +32,6 @@ h1 {
 
 input[type="button"] {
   padding: 0.6em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
 }
