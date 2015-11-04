@@ -8,6 +8,7 @@ h1 {
 
 p {
   font-size: 4em;
+  margin: 0.1em;
 }
 
 input[type=number] {
@@ -16,6 +17,12 @@ input[type=number] {
   width:5.2em;
 }
 
+#dollarSignSpan {
+  position: relative;
+  left:0.6em;
+}
+
 input[type="button"] {
-  font-size: 1.7em;
+  font-size: 1.1em;
+  margin: 0.1em;
 }
