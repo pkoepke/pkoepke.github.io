@@ -1,10 +1,12 @@
 CACHE MANIFEST
-# last updated 10/22/2015 7:47 AM EST
+# last updated 11/4/2015 2:17 PM EST
 
 CACHE:
 
 index.html
-combined.css
+styles.css
+mobile.css
+tip_calculator.js
 
 NETWORK:
 
