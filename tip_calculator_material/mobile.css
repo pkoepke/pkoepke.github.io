@@ -16,6 +16,6 @@ input[type=number] {
   width:5.2em;
 }
 
-.button {
+input[type="button"] {
   font-size: 1.7em;
 }
