@@ -3,13 +3,14 @@
 }
 
 h1 {
-  font-size: 10em;
+  font-size: 7em;
 }
 
-p, input {
-  font-size: 3em;
+p {
+  font-size: 4em;
 }
 
 input {
   margin-bottom: 0.4em;
+  font-size: 2em;
 }
