@@ -23,7 +23,8 @@ input[type=number] {
 }
 
 input[type="button"] {
-  font-size: 1.1em;
+  font-size: 0.9em;
+  padding: .5em;
   margin: 0.1em;
   margin-top: 0.3em;
   martin-bottom: 0.3em;
