@@ -51,7 +51,7 @@ function  detectmobilebrowsers_com() {
 
 // Function to add a mobile stylesheet if the browser is a mobile browser
 function swapMobileStyleSheets() {
-  if (!detectmobilebrowsers_com()) {
+  if (detectmobilebrowsers_com()) {
     var mobileStyleSheetLinkElement = document.getElementById("mobileCss");
     mobileStyleSheetLinkElement.setAttribute("href","mobile.css");
   }
