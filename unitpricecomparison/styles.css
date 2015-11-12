@@ -1,14 +1,14 @@
-/* Unit Price Comparison website. Copyright © Paul Koepke 2014 */
+/* Unit Price Comparison website. Copyright ï¿½ Paul Koepke 2014 */
 
-/*	desktop site css. Mobile is below after the media query */ 
+/*	desktop site css. Mobile is below after the media query */
 
 /* .box_round taken from http://stackoverflow.com/questions/3607999/how-to-create-a-rounded-corner-background-box-using-css */
 @media only screen and (min-device-width: 768px) {
-	
+
 	.box_round {
-		border-radius: 30px;
+		/* border-radius: 30px; */
 		background-color:#C1F0F6;
-		box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.6);
+		box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.6);
 		/*	background: linear-gradient(to bottom, #87e0fd 0%,#53cbf1 40%,#05abe0 100%); */
 		background: linear-gradient(150deg, #87e0fd, #05abe0);
 		margin-left:auto;
@@ -31,37 +31,37 @@
 	table, td {
 		/* border: 1px solid black; /* Just for testing */
 		width: 17em; /* 18em; */
-		margin-left: auto; 
+		margin-left: auto;
 		margin-right: auto;
 		/* vertical-align: middle; */
 		font-size: 0.9em;
 		line-height: 1em
 		table-layout: fixed;
 	}
-	
+
 	.firstcolumn {
 		width: 3em;
 		/* font-size:4em; /* Just for testing */
 	}
-	
+
 	.othercolumns {
 		width: 4em;
 	}
-	
+
 	.lastcolumn {
 		width: 2em;
 	}
-	
+
 	.firstdollarsign {
 		position: relative;
 		right:19.3em;
 	}
-	
+
 	.seconddollarsign {
 		position: relative;
 		right:13.5em;
 	}
-	
+
 	.thirddollarsign {
 		position: relative;
 		right:7.6em;
@@ -72,15 +72,15 @@
 	}
 }
 
-/* Mobile site css. For tablets and phones in portrait mode. */ 
+/* Mobile site css. For tablets and phones in portrait mode. */
 
 @media only screen and (max-device-width: 767.99999px) {
-	
+
 	* {
 		text-align: center;
 		font-family: Verdana,sans-serif;
 	}
-	
+
 	.box_round {
 		border-radius: 30px;
 		background-color:#C1F0F6;
@@ -92,49 +92,49 @@
 		width:57em;
 		padding:.5em;
 	}
-	
+
 	h1 {
 		font-size:4em;
 		font-family:Georgia;
 	}
-	
+
 	table, td, th {
 		/* table-layout: fixed; */
 		/* border: 1px solid black; /* Just for testing */
 		/* width: 30em; /* 100%; */
-		margin-left:auto; 
+		margin-left:auto;
 		margin-right:auto;
 		font-size:1.7em;
 		line-height:1em
 	}
-	
+
 	.firstcolumn {
 		/* width: 2em; */
 		font-size:1.5em;
 	}
-	
+
 	.othercolumns {
 		width: 4em;
 	}
-	
+
 	.firstdollarsign {
 		position: relative;
 		right:17.8em;
 		font-size: 0.8em;
 	}
-	
+
 	.seconddollarsign {
 		position: relative;
 		right:12.5em;
 		font-size: 0.8em;
 	}
-	
+
 	.thirddollarsign {
 		position: relative;
 		right:7.1em;
 		font-size: 0.8em;
 	}
-	
+
 	input/*[type=number]*/ {
 		width: 3.5em; /* 4em; before I tried to add room for 5 digits + decimal. */
 		font-size: 1.2em;
