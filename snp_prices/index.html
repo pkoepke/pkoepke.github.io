@@ -22,17 +22,34 @@
 	<body>
 		<div class="box_round" id="everything">
 			<h1>S&P 500 price visualizer</h1>
-
+			<table id="priceTable">
+			</table>
 		</div>
 		<script>
 			// Papa.parse("http://finance.yahoo.com/d/quotes.csv?s=^GSPC&f=snl1", {
 			// Papa.parse("http://ichart.finance.yahoo.com/table.csv?s=^GSPC&ignore=.csv", {
-			Papa.parse("http://cors.io/?u=http://ichart.finance.yahoo.com/table.csv?s=^GSPC&ignore=.csv", {
+			var parsedPriceData;
+			// Papa.parse("http://cors.io/?u=http://ichart.finance.yahoo.com/table.csv?s=^GSPC&ignore=.csv", {
+			Papa.parse("http://www.paulkoepke.com/snp_prices/S&P 500 all data from Yahoo 11.12.15.csv", { // pointing to GitHub pages for testing so I don't get in trouble for hitting the Yahoo Finance API several times per minute.
 				download: true,
 				complete: function(results) {
-					console.log(results);
+					parsedPriceData = results;
+					console.log("finished parsing CSV into parsedPriceData: " + parsedPriceData);
+					printPriceDataToTable();
 				}
 			});
+
+			function printPriceDataToTable() {
+				// document.getElementById("everything").innerHTML += (parsedPriceData.data[0][0]);
+				var priceTable = document.getElementById("priceTable");
+				priceTable.innerHTML += "<tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>"
+				parsedPriceData.data.forEach(function(arrayInData, arrayInDataIndex) {
+					arrayInData.forEach(function(elementInArrayInData, elementInArrayInDataIndex) {
+						// document.getElementById("everything").innerHTML += (elementInArrayInData);
+						console.log(elementInArrayInDataIndex);
+					} )
+				})
+			}
 		</script>
 	</body>
 </html>
