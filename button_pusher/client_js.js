@@ -61,4 +61,4 @@ if (detectmobilebrowsers_com()) {
 }
 window.addEventListener('load',convertAllTimesToClientTimezone,false);
 window.addEventListener('load', function() { hideUnhideResizeLoadingSpinner("hide"); },false);
-window.addEventListener('load', function() { httpGetAsync('current_entries',overWriteEverythingAfterButtonDiv);},false);
+window.addEventListener('load', function() { httpGetAsync('http://pkoepke.noip.me/current_entries/',overWriteEverythingAfterButtonDiv);},false);
