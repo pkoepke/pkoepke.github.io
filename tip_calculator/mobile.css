@@ -1,3 +1,7 @@
+html * { /* Hack to disable Chrome font boosting. Breaks font sizing on small screens in Chrome. */
+  max-height:1000000px;
+}
+
 #everythingCard {
   max-width: none;
 }
