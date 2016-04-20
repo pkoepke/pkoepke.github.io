@@ -1,0 +1,12 @@
+html * { /* Hack to disable Chrome font boosting. Breaks small screen emulation in desktop Chrome. */
+  max-height:1000000px;
+}
+
+body {
+  font-family: "open sans", Verdana, arial, sans-serif;
+  font-size: 2.5rem;
+}
+
+input[type="button"] {
+  font-size: 2.5rem;
+}
