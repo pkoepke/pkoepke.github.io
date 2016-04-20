@@ -4,9 +4,19 @@ html * { /* Hack to disable Chrome font boosting. Breaks small screen emulation 
 
 body {
   font-family: "open sans", Verdana, arial, sans-serif;
+  font-size: 5rem;
+  text-align: center;
+}
+
+h3 {
   font-size: 2.5rem;
 }
 
 input[type="button"] {
-  font-size: 2.5rem;
+  font-size: 5rem;
+}
+
+.itemCard {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.2s ease-in-out;
 }
