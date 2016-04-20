@@ -30,6 +30,7 @@ input, .expandButton, .clearAllButton {
 
 input, .itemPricePerUnits {
   width: 22%;
+  margin: 1px;
 }
 
 input{
