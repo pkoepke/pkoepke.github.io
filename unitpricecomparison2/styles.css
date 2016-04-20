@@ -4,17 +4,21 @@ html * { /* Hack to disable Chrome font boosting. Breaks small screen emulation 
 
 body {
   font-family: "open sans", Verdana, arial, sans-serif;
-  font-size: 2rem;
+  font-size: 3rem;
   text-align: center;
 }
 
 h3 {
-  font-size: 2.75rem;
+  font-size: 3rem;
   margin: 10px;
 }
 
+.expandButton, .clearAllButton {
+  height: 4rem;
+}
+
 input, .expandButton, .clearAllButton {
-  font-size: 2.25rem;
+  font-size: 3rem;
 }
 
 input, .itemPricePerUnits {
