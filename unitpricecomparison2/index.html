@@ -201,14 +201,14 @@
 				allSecondRows = Array.prototype.slice.call(allSecondRows); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
 				if (allSecondRows[0].style.display == 'none') { // display all if first is currently hidden
 					allSecondRows.forEach( function (currentNode, index) {
-						$(".itemSecondRowDiv").slideDown('fast');
+						$(".itemSecondRowDiv").fadeIn();
 						//currentNode.style.height = 'initial';
 						//currentNode.style.display = 'initial';
 					});
 					document.getElementById('expandCollapseButton').innerHTML = 'Collapse';
 				} else { // otherwise hide all and rename the button.
 					allSecondRows.forEach( function (currentNode, index) {
-						$(".itemSecondRowDiv").slideUp('fast');
+						$(".itemSecondRowDiv").fadeOut();
 						//currentNode.style.height = 0;
 						//currentNode.style.display = 'none';
 					});
