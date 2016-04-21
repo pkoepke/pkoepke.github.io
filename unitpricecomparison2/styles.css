@@ -5,7 +5,7 @@ html * { /* Hack to disable Chrome font boosting. Breaks small screen emulation 
 body {
   font-family: "open sans", Verdana, arial, sans-serif;
   font-size: 3rem;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 h3 {
@@ -14,7 +14,7 @@ h3 {
   margin-bottom: 15px;
 }
 
-.expandButton, .clearAllButton {
+button {
   height: 4rem;
 }
 
@@ -24,11 +24,15 @@ h3 {
   margin-bottom: 17px;
 }
 
+.itemSecondRowDiv {
+  transition: height 2s;
+}
+
 :placeholder-shown, .itemLabel {
   font-size: 2.25rem;
 }
 
-input, .expandButton, .clearAllButton {
+input, button {
   font-size: 3rem;
 }
 

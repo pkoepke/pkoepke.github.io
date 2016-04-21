@@ -9,8 +9,9 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<title>Unit Price Comparison - by Paul Koepke</title>
 		<link id="styles" rel="stylesheet" type="text/css" href="styles.css">
-		<!--<link rel="icon" type="image/png" href="/favicon.png">
-		<script>
+		<!--<link rel="icon" type="image/png" href="/favicon.png"> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<!--<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -23,8 +24,8 @@
 	<body>
 		<div id="everythingDiv" class="everythingDiv" >
 			<h3>Unit Price Comparison
-			<button id="expandButton" class="expandButton">Expand</button>
-			<button id="clearAllButton" class="clearAllButton" onclick="clearAll()">Clear all</button></h3>
+			<button id="expandCollapseButton" class="expandCollapseButton" onclick="expandCollapseSecondRow()" >Collapse</button>
+			<button id="clearAllButton" class="clearAllButton" onclick="clearAll()" >Clear all</button></h3>
 			<div id="item1CardDiv" class="itemCard" >
 				<div class="itemFirstRowDiv" id="item1FirstRowDiv">
 					<span id="item1Label" class="itemLabel">Item 1</span>
@@ -131,6 +132,8 @@
 			</div><!-- end item8CardDiv -->
 		</div> <!-- end everythingDiv -->
 		<script>
+			expandCollapseSecondRow(); // initially the second row is shown, but it should be immediately hidden
+
 			function doAllCalculations() {
 				var allDataObject = {
 					price: [],
@@ -175,7 +178,7 @@
 			function displayAllPricesPerUnit(allDataObject) {
 				var nodeList = document.getElementsByClassName('itemPricePerUnits'); // create NodeList object of all nodes of this Class.
 				nodeList = Array.prototype.slice.call(nodeList); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
-				nodeList.forEach( function (currentNode, index){
+				nodeList.forEach( function (currentNode, index) {
 					if(isNaN(allDataObject.pricePerUnit[index])) { // if the current pricePerUnit is NaN, revert the span to the starting HTML.
 						currentNode.innerHTML = '$/unit';
 					} else {
@@ -193,8 +196,24 @@
 				doAllCalculations(); // Resets all of the unit price fields.
 			}
 
-			function localizeCurrency() {
-
+			function expandCollapseSecondRow() {
+				var allSecondRows = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of this Class.
+				allSecondRows = Array.prototype.slice.call(allSecondRows); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+				if (allSecondRows[0].style.display == 'none') { // display all if first is currently hidden
+					allSecondRows.forEach( function (currentNode, index) {
+						$(".itemSecondRowDiv").slideDown('fast');
+						//currentNode.style.height = 'initial';
+						//currentNode.style.display = 'initial';
+					});
+					document.getElementById('expandCollapseButton').innerHTML = 'Collapse';
+				} else { // otherwise hide all and rename the button.
+					allSecondRows.forEach( function (currentNode, index) {
+						$(".itemSecondRowDiv").slideUp('fast');
+						//currentNode.style.height = 0;
+						//currentNode.style.display = 'none';
+					});
+					document.getElementById('expandCollapseButton').innerHTML = 'Expand';
+				}
 			}
 
 		</script>
