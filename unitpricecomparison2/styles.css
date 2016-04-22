@@ -69,6 +69,10 @@ input {
   text-align: left;
 }
 
+.itemPricePerUnitsPlaceholder {
+  color: #A9A9A9; /* Should be the same color as the default placeholder color. */
+}
+
 .quantity {
   margin-left: 0.4rem;
 }
