@@ -89,7 +89,9 @@ function expandCollapseSecondRow() {
 
 function addIosStyles() {
 	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+	document.getElementById('everythingDiv').innerHTML += userAgent;
   if( userAgent.indexOf('iPad') > -1 || userAgent.match('iPhone') > -1 || userAgent.match('iPod') > -1 ) {
     document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./iosStyles.css">';
+		document.getElementById('everythingDiv').innerHTML += 'JavaScript thinks this is an Apple device.';
   }
 }
