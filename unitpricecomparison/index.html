@@ -3,146 +3,136 @@
 <!-- Unit price comparison tool. Copyright © Paul Koepke, 2014 -->
 
 <html manifest="unitpricecomparison.appcache">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<title>Unit Price Comparison - by Paul Koepke</title>
-		<link id="styles" rel="stylesheet" type="text/css" href="styles.css">
-		<link rel="icon" type="image/png" href="/favicon.png">
-		<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <head>
+    <meta charset="UTF-8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#003FD1">
+    <title>Unit Price Comparison - by Paul Koepke</title>
+    <link id="styles" rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" type="image/png" href="./unitPriceComparisonIcon.png">
+    <script type="text/javascript" src="./script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!--<script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-			ga('create', 'UA-29633726-1', 'paulkoepke.com');
-			ga('send', 'pageview');
-		</script>
-	</head>
-	<body>
-		<div class="box_round" id="everything">
-			<h1>Unit Price Comparison</h1>
-			<table>
-				<tr class="firstrow"> <td class="firstcolumn"></td> <td class="othercolumns">Item 1 </td> <td class="othercolumns">Item 2 </td> <td class="othercolumns">Item 3 </td> </tr>
-				<tr class="secondrow">
-					<td class="firstcolumn">Price:</td>
-					<td class="othercolumns"> <input type="number" id="item_1_price" tabindex=1 onchange="start_calculations()" onkeydown="start_calculations()" onkeyup="start_calculations()" onkeypress="start_calculations()" oncut="start_calculations()" onpaste="start_calculations()" /> </td>
-					<td class="othercolumns"> <input type="number" id="item_2_price" tabindex=3 onchange="start_calculations()" onkeydown="start_calculations()" onkeyup="start_calculations()" onkeypress="start_calculations()" oncut="start_calculations()" onpaste="start_calculations()" /> </td>
-					<td class="othercolumns"> <input type="number" id="item_3_price" tabindex=5 onchange="start_calculations()" onkeydown="start_calculations()" onkeyup="start_calculations()" onkeypress="start_calculations()" oncut="start_calculations()" onpaste="start_calculations()" /> </td>
-					<!-- <td class="lastcolumn"><span class="firstdollarsign" >$</span><span class="seconddollarsign" >$</span><span class="thirddollarsign" >$</span></td> -->
-				</tr>
-				<tr class="thirdrow">
-					<td class="firstcolumn">Units:</td>
-					<td class="othercolumns"> <input type="number" id="item_1_units" tabindex=2 onchange="start_calculations()" onkeydown="start_calculations()" onkeyup="start_calculations()" onkeypress="start_calculations()" oncut="start_calculations()" onpaste="start_calculations()" /> </td>
-					<td class="othercolumns"> <input type="number" id="item_2_units" tabindex=4 onchange="start_calculations()" onkeydown="start_calculations()" onkeyup="start_calculations()" onkeypress="start_calculations()" oncut="start_calculations()" onpaste="start_calculations()" /> </td>
-					<td class="othercolumns"> <input type="number" id="item_3_units" tabindex=6 onchange="start_calculations()" onkeydown="start_calculations()" onkeyup="start_calculations()" onkeypress="start_calculations()" oncut="start_calculations()" onpaste="start_calculations()" /> </td>
-				</tr>
-				<tr class="fourthrow">
-					<td class="firstcolumn"></td>
-					<td class="othercolumns"> <span id="item_1_price_per_units" > <br /> </span> </td>
-					<td class="othercolumns"> <span id="item_2_price_per_units" > <br /> <br /> </span> </td>
-					<td class="othercolumns"> <span id="item_3_price_per_units" > <br /> <br /> </span> </td>
-				</tr>
-				<tr class="fifthrow"> <td class="firstcolumn"></td> <td class="othercolumns">Item 4 </td> <td class="othercolumns">Item 5 </td> <td class="othercolumns">Item 6 </td> </tr>
-				<tr class="sixthrow">
-					<td class="firstcolumn">Price:</td>
-					<td class="othercolumns"> <input type="number" id="item_4_price" tabindex=7 onchange="start_calculations()" onkeydown="start_calculations()" onkeyup="start_calculations()" onkeypress="start_calculations()" oncut="start_calculations()" onpaste="start_calculations()" /> </td>
-					<td class="othercolumns"> <input type="number" id="item_5_price" tabindex=9 onchange="start_calculations()" onkeydown="start_calculations()" onkeyup="start_calculations()" onkeypress="start_calculations()" oncut="start_calculations()" onpaste="start_calculations()" /> </td>
-					<td class="othercolumns"> <input type="number" id="item_6_price" tabindex=11 onchange="start_calculations()" onkeydown="start_calculations()" onkeyup="start_calculations()" onkeypress="start_calculations()" oncut="start_calculations()" onpaste="start_calculations()" /> </td>
-					<!-- <td class="lastcolumn"><span class="firstdollarsign" >$</span><span class="seconddollarsign" >$</span><span class="thirddollarsign" >$</span></td> -->
-				</tr>
-				<tr class="seventhrow">
-					<td class="firstcolumn">Units:</td>
-					<td class="othercolumns"> <input type="number" id="item_4_units" tabindex=8 onchange="start_calculations()" onkeydown="start_calculations()" onkeyup="start_calculations()" onkeypress="start_calculations()" oncut="start_calculations()" onpaste="start_calculations()" /> </td>
-					<td class="othercolumns"> <input type="number" id="item_5_units" tabindex=10 onchange="start_calculations()" onkeydown="start_calculations()" onkeyup="start_calculations()" onkeypress="start_calculations()" oncut="start_calculations()" onpaste="start_calculations()" /> </td>
-					<td class="othercolumns"> <input type="number" id="item_6_units" tabindex=12 onchange="start_calculations()" onkeydown="start_calculations()" onkeyup="start_calculations()" onkeypress="start_calculations()" oncut="start_calculations()" onpaste="start_calculations()" /> </td>
-				</tr>
-				<tr class="eighthrow">
-					<td class="firstcolumn"></td>
-					<td class="othercolumns"> <span id="item_4_price_per_units" > <br /> </span> </td>
-					<td class="othercolumns"> <span id="item_5_price_per_units" > <br /> <br /> </span> </td>
-					<td class="othercolumns"> <span id="item_6_price_per_units" > <br /> <br /> </span> </td>
-				</tr>
-			</table>
-		</div>
-		<script>
-			function start_calculations() {
-
-				// document.getElementById("item_1_price_per_units").innerHTML = "start_calculations() called"; // just for testing
-
-				var item1Price = document.getElementById("item_1_price").value;
-				item1Price = item1Price.replace('$','')
-				var item1Units = document.getElementById("item_1_units").value;
-				var item2Price = document.getElementById("item_2_price").value;
-				item2Price = item2Price.replace('$','')
-				var item2Units = document.getElementById("item_2_units").value;
-				var item3Price = document.getElementById("item_3_price").value;
-				item3Price = item3Price.replace('$','')
-				var item3Units = document.getElementById("item_3_units").value;
-				var item4Price = document.getElementById("item_4_price").value;
-				item4Price = item4Price.replace('$','')
-				var item4Units = document.getElementById("item_4_units").value;
-				var item5Price = document.getElementById("item_5_price").value;
-				item5Price = item5Price.replace('$','')
-				var item5Units = document.getElementById("item_5_units").value;
-				var item6Price = document.getElementById("item_6_price").value;
-				item6Price = item6Price.replace('$','')
-				var item6Units = document.getElementById("item_6_units").value;
-
-				if (item1Price == "" || isNaN(item1Price) || item1Units == "" || isNaN(item1Units) ) {
-					document.getElementById("item_1_price_per_units").innerHTML = " <br/> <br /> ";
-				} else {
-					document.getElementById("item_1_price_per_units").innerHTML = ( "$" + (item1Price / item1Units).toFixed(2) + " <br /> <br /> " );
-				}
-
-				if (item2Price == "" || isNaN(item2Price) || item2Units == "" || isNaN(item2Units) ) {
-					document.getElementById("item_2_price_per_units").innerHTML = " <br /> <br /> ";
-				} else {
-					document.getElementById("item_2_price_per_units").innerHTML = ( "$" + (item2Price / item2Units).toFixed(2) + " <br /> <br /> " );
-				}
-
-				if (item3Price == "" || isNaN(item3Price) || item3Units == "" || isNaN(item3Units) ) {
-					document.getElementById("item_3_price_per_units").innerHTML = " <br /> <br /> ";
-				} else {
-					document.getElementById("item_3_price_per_units").innerHTML = ( "$" + (item3Price / item3Units).toFixed(2) + " <br /> <br /> " );
-				}
-				if (item4Price == "" || isNaN(item4Price) || item4Units == "" || isNaN(item4Units) ) {
-					document.getElementById("item_4_price_per_units").innerHTML = " <br /> <br /> ";
-				} else {
-					document.getElementById("item_4_price_per_units").innerHTML = ( "$" + (item4Price / item4Units).toFixed(2) + " <br /> <br /> " );
-				}
-
-				if (item5Price == "" || isNaN(item5Price) || item5Units == "" || isNaN(item5Units) ) {
-					document.getElementById("item_5_price_per_units").innerHTML = " <br /> <br /> ";
-				} else {
-					document.getElementById("item_5_price_per_units").innerHTML = ( "$" + (item5Price / item5Units).toFixed(2) + " <br /> <br /> " );
-				}
-
-				if (item6Price == "" || isNaN(item6Price) || item6Units == "" || isNaN(item6Units) ) {
-					document.getElementById("item_6_price_per_units").innerHTML = " <br /> <br /> ";
-				} else {
-					document.getElementById("item_6_price_per_units").innerHTML = ( "$" + (item6Price / item6Units).toFixed(2) + " <br /> <br /> " );
-				}
-			}
-
-			function addDollarSignAndCalculate(currentInput) {
-				var currentValue = currentInput.value;
-				currentValue = currentValue.replace('$','');
-				var currentValueOutput = '$' + currentValue;
-				currentInput.setAttribute('type','text');
-				currentInput.value = currentValueOutput;
-				turnBackToNumber(currentInput);
-			}
-
-			function turnBackToNumber(currentInput) {
-				// var currentValue = currentInput.value;
-				// var currentValueOutput = currentValue.replace('$','');
-				currentInput.setAttribute('type','number')
-				// currentInput.value = currentValueOutput;
-				// start_calculations()
-			}
-
-		</script>
-	</body>
+      ga('create', 'UA-29633726-1', 'paulkoepke.com');
+      ga('send', 'pageview');
+    </script>-->
+  </head>
+  <body>
+    <div id="everythingDiv" class="everythingDiv" >
+      <h3><img class="unitPriceComparisonIcon" src="./unitPriceComparisonIcon.png">
+        Unit Price Comparison
+        <span class="buttonsSpan"><button id="expandCollapseButton" class="expandCollapseButton" onclick="expandCollapseSecondRow()" ></button>
+        <button id="clearAllButton" class="clearAllButton" onclick="clearAll()" ><img class="multiplicationSign" src="./Multiplication_Sign.svg"></button></span></h3>
+      <div id="item1CardDiv" class="itemCard" >
+        <div class="itemFirstRowDiv" id="item1FirstRowDiv">
+          <span id="item1Label" class="itemLabel">Item 1</span>
+          <input type="number" id="item1Price" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="number" id="item1Units" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <span id="item1PricePerUnits" class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
+        </div> <!-- end item1FirstRowDiv -->
+        <div class="itemSecondRowDiv" id="item1SecondRowDiv">
+          <input type="text" id="item1Name" class="itemName" placeholder="Name" >
+          <input type="number" id="item1quantity" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="text" id="item1UnitsName" class="unitsName" placeholder="Unit name">
+        </div> <!-- end item1SecondRowDiv -->
+      </div><!-- end item1CardDiv -->
+      <div id="item2CardDiv" class="itemCard" >
+        <div class="itemFirstRowDiv" id="item2FirstRowDiv">
+          <span id="item2Label" class="itemLabel">Item 2</span>
+          <input type="number" id="item2Price" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="number" id="item2Units" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <span id="item2PricePerUnits" class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
+        </div> <!-- end item2FirstRowDiv -->
+        <div class="itemSecondRowDiv" id="item2SecondRowDiv">
+          <input type="text" id="item2Name" class="itemName" placeholder="Item 2 name">
+          <input type="number" id="item2quantity" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="text" id="item2UnitsName" class="unitsName" placeholder="Unit name">
+        </div> <!-- end item2SecondRowDiv -->
+      </div><!-- end item2CardDiv -->
+      <div id="item3CardDiv" class="itemCard" >
+        <div class="itemFirstRowDiv" id="item3FirstRowDiv">
+          <span id="item3Label" class="itemLabel">Item 3</span>
+          <input type="number" id="item3Price" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="number" id="item3Units" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <span id="item3PricePerUnits" class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
+        </div> <!-- end item3FirstRowDiv -->
+        <div class="itemSecondRowDiv" id="item3SecondRowDiv">
+          <input type="text" id="item3Name" class="itemName" placeholder="Item 3 name">
+          <input type="number" id="item3quantity" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="text" id="item3UnitsName" class="unitsName" placeholder="Unit name">
+        </div> <!-- end item3SecondRowDiv -->
+      </div><!-- end item3CardDiv -->
+      <div id="item4CardDiv" class="itemCard" >
+        <div class="itemFirstRowDiv" id="item4FirstRowDiv">
+          <span id="item4Label" class="itemLabel">Item 4</span>
+          <input type="number" id="item4Price" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="number" id="item4Units" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <span id="item4PricePerUnits" class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
+        </div> <!-- end item4FirstRowDiv -->
+        <div class="itemSecondRowDiv" id="item4SecondRowDiv">
+          <input type="text" id="item4Name" class="itemName" placeholder="Item 4 name">
+          <input type="number" id="item4quantity" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="text" id="item4UnitsName" class="unitsName" placeholder="Unit name">
+        </div> <!-- end item4SecondRowDiv -->
+      </div><!-- end item4CardDiv -->
+      <div id="item5CardDiv" class="itemCard" >
+        <div class="itemFirstRowDiv" id="item5FirstRowDiv">
+          <span id="item5Label" class="itemLabel">Item 5</span>
+          <input type="number" id="item5Price" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="number" id="item5Units" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <span id="item5PricePerUnits" class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
+        </div> <!-- end item5FirstRowDiv -->
+        <div class="itemSecondRowDiv" id="item5SecondRowDiv">
+          <input type="text" id="item5Name" class="itemName" placeholder="Item 5 name">
+          <input type="number" id="item5quantity" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="text" id="item5UnitsName" class="unitsName" placeholder="Unit name">
+        </div> <!-- end item5SecondRowDiv -->
+      </div><!-- end item5CardDiv -->
+      <div id="item6CardDiv" class="itemCard" >
+        <div class="itemFirstRowDiv" id="item6FirstRowDiv">
+          <span id="item6Label" class="itemLabel">Item 6</span>
+          <input type="number" id="item6Price" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="number" id="item6Units" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <span id="item6PricePerUnits" class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
+        </div> <!-- end item6FirstRowDiv -->
+        <div class="itemSecondRowDiv" id="item6SecondRowDiv">
+          <input type="text" id="item6Name" class="itemName" placeholder="Item 6 name">
+          <input type="number" id="item6quantity" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="text" id="item6UnitsName" class="unitsName" placeholder="Unit name">
+        </div> <!-- end item6SecondRowDiv -->
+      </div><!-- end item6CardDiv -->
+      <div id="item7CardDiv" class="itemCard" >
+        <div class="itemFirstRowDiv" id="item7FirstRowDiv">
+          <span id="item7Label" class="itemLabel">Item 7</span>
+          <input type="number" id="item7Price" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="number" id="item7Units" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <span id="item7PricePerUnits" class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
+        </div> <!-- end item7FirstRowDiv -->
+        <div class="itemSecondRowDiv" id="item7SecondRowDiv">
+          <input type="text" id="item7Name" class="itemName" placeholder="Item 7 name">
+          <input type="number" id="item7quantity" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="text" id="item7UnitsName" class="unitsName" placeholder="Unit name">
+        </div> <!-- end item7SecondRowDiv -->
+      </div><!-- end item7CardDiv -->
+      <div id="item8CardDiv" class="itemCard" >
+        <div class="itemFirstRowDiv" id="item8FirstRowDiv">
+          <span id="item8Label" class="itemLabel">Item 8</span>
+          <input type="number" id="item8Price" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="number" id="item8Units" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <span id="item8PricePerUnits" class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
+        </div> <!-- end item8FirstRowDiv -->
+        <div class="itemSecondRowDiv" id="item8SecondRowDiv">
+          <input type="text" id="item8Name" class="itemName" placeholder="Item 8 name">
+          <input type="number" id="item8quantity" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
+          <input type="text" id="item8UnitsName" class="unitsName" placeholder="Unit name">
+        </div> <!-- end item8SecondRowDiv -->
+      </div><!-- end item8CardDiv -->
+    </div> <!-- end everythingDiv -->
+  </body>
 </html>

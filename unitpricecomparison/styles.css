@@ -1,145 +1,90 @@
-/* Unit Price Comparison website. Copyright � Paul Koepke 2014 */
-
-/*	desktop site css. Mobile is below after the media query */
-
-/* .box_round taken from http://stackoverflow.com/questions/3607999/how-to-create-a-rounded-corner-background-box-using-css */
-@media only screen and (min-device-width: 768px) {
-
-	.box_round {
-		/* border-radius: 30px; */
-		background-color:#C1F0F6;
-		box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.6);
-		/*	background: linear-gradient(to bottom, #87e0fd 0%,#53cbf1 40%,#05abe0 100%); */
-		background: linear-gradient(150deg, #87e0fd, #05abe0);
-		margin-left:auto;
-		margin-right:auto;
-		/* width: 22em; */ /* original width. Replaced with wider because it looked small on desktop */
-		width:80%; max-width:30em; min-width:20em;
-		padding:.5em;
-	}
-
-	* {
-		text-align: center;
-		font-family: Verdana,sans-serif;
-	}
-
-	h1 {
-		font-size: 1.5em;
-		font-family: Georgia;
-	}
-
-	table, td {
-		/* border: 1px solid black; /* Just for testing */
-		width: 17em; /* 18em; */
-		margin-left: auto;
-		margin-right: auto;
-		/* vertical-align: middle; */
-		font-size: 0.9em;
-		line-height: 1em
-		table-layout: fixed;
-	}
-
-	.firstcolumn {
-		width: 3em;
-		/* font-size:4em; /* Just for testing */
-	}
-
-	.othercolumns {
-		width: 4em;
-	}
-
-	.lastcolumn {
-		width: 2em;
-	}
-
-	.firstdollarsign {
-		position: relative;
-		right:19.3em;
-	}
-
-	.seconddollarsign {
-		position: relative;
-		right:13.5em;
-	}
-
-	.thirddollarsign {
-		position: relative;
-		right:7.6em;
-	}
-
-	input/*[type=number]*/ {
-		width: 6em;
-	}
+html * { /* Hack to disable Chrome font boosting. Breaks small screen emulation in desktop Chrome. */
+  max-height:1000000px;
 }
 
-/* Mobile site css. For tablets and phones in portrait mode. */
+body {
+  font-family: "open sans", Verdana, arial, sans-serif;
+  background-color: #F0F0F0;
+  margin: 0px;
+  max-width: 70rem;
+  white-space: nowrap;
+}
 
-@media only screen and (max-device-width: 767.99999px) {
+h3 {
+  font-size: 3.25rem;
+  padding: 1rem;
+  margin: 0px;
+  background-color: #003FD1;
+  color: #FFFFFF;
+  font-weight: normal;
+  vertical-align: top;
+}
 
-	* {
-		text-align: center;
-		font-family: Verdana,sans-serif;
-	}
+.unitPriceComparisonIcon {
+  height: 1.5em;
+  vertical-align: bottom;
+}
 
-	.box_round {
-		border-radius: 30px;
-		background-color:#C1F0F6;
-		box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.6);
-		/*	background: linear-gradient(to bottom, #87e0fd 0%,#53cbf1 40%,#05abe0 100%); */
-		background: linear-gradient(150deg, #87e0fd, #05abe0);
-		margin-left:auto;
-		margin-right:auto;
-		width:57em;
-		padding:.5em;
-	}
+.multiplicationSign, .expandCollapseArrow {
+  height: 1em;
+  vertical-align: -15%;
+  padding: 1px;
+}
 
-	h1 {
-		font-size:4em;
-		font-family:Georgia;
-	}
+button {
+  height: 4rem;
+  min-width: 6rem;
+}
 
-	table, td, th {
-		/* table-layout: fixed; */
-		/* border: 1px solid black; /* Just for testing */
-		/* width: 30em; /* 100%; */
-		margin-left:auto;
-		margin-right:auto;
-		font-size:1.7em;
-		line-height:1em
-	}
+.buttonsSpan {
+  float:right;
+}
 
-	.firstcolumn {
-		/* width: 2em; */
-		font-size:1.5em;
-	}
+.itemCard {
+  box-shadow: 0px 0px 10px #000000;
+  margin: 0.7rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #FFFFFF;
+  padding: 0.5rem;
+}
 
-	.othercolumns {
-		width: 4em;
-	}
+.itemFirstRowDiv, .itemSecondRowDiv {
+  text-align: center;
+}
 
-	.firstdollarsign {
-		position: relative;
-		right:17.8em;
-		font-size: 0.8em;
-	}
+:placeholder-shown, input, button, .itemPricePerUnits {
+  font-size: 3rem;
+  text-align: center;
+}
 
-	.seconddollarsign {
-		position: relative;
-		right:12.5em;
-		font-size: 0.8em;
-	}
+input, .itemPricePerUnits, .itemLabel {
+  width: 25%;
+  margin: 0.7rem;
+}
 
-	.thirddollarsign {
-		position: relative;
-		right:7.1em;
-		font-size: 0.8em;
-	}
+.itemLabel {
+  font-size: 2.7rem;
+}
 
-	input/*[type=number]*/ {
-		width: 3.5em; /* 4em; before I tried to add room for 5 digits + decimal. */
-		font-size: 1.2em;
-		text-align:right;
-		/* float:right;
-		clear:both; */
-	}
+input {
+  border-width: 0px;
+  border-bottom: 2px solid;
+  border-color: #7C7C7C;
+}
+
+.itemPricePerUnits {
+  display: inline-block;
+}
+
+.highlightedPricePerUnits {
+  background-color: #1ECF7A;
+}
+
+.itemPricePerUnitsPlaceholder {
+  color: #A9A9A9; /* Should be the same color as the default placeholder color. */
+}
+
+.itemName, .quantity, .unitsName {
+  width: 30%;
 }

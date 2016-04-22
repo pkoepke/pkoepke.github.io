@@ -1,10 +1,16 @@
 CACHE MANIFEST
-# last updated 3/22/2016 8:02 AM EST
+# last updated 4/22/2016 3:56 AM EST
 
 CACHE:
 
 index.html
 styles.css
+script.js
+iosStyles.css
+Pfeil_oben.svg
+Pfeil_unten.svg
+unitPriceComparisonIcon.png
+Multiplication_Sign.svg
 
 NETWORK:
 
