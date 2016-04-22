@@ -34,7 +34,10 @@ h3 {
 button {
   height: 4rem;
   min-width: 6rem;
-  vertical-align: 15%;
+}
+
+.buttonsSpan {
+  float:right;
 }
 
 .itemCard {
