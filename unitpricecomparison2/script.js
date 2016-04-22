@@ -92,6 +92,5 @@ function addIosStyles() {
 	document.getElementById('everythingDiv').innerHTML += userAgent;
   if( userAgent.indexOf('iPad') > -1 || userAgent.indexOf('iPhone') > -1 || userAgent.indexOf('iPod') > -1 ) {
     document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./iosStyles.css">';
-		document.getElementById('everythingDiv').innerHTML += 'JavaScript thinks this is an Apple device.';
   }
 }
