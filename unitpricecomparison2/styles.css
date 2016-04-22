@@ -18,6 +18,7 @@ h3 {
   font-weight: normal;
   vertical-align: top;
   white-space: nowrap;
+  width: 200%;
 }
 
 .unitPriceComparisonIcon {
@@ -33,7 +34,7 @@ h3 {
 
 button {
   height: 4rem;
-  min-width: 5rem;
+  min-width: 6rem;
   vertical-align: 15%;
 }
 
