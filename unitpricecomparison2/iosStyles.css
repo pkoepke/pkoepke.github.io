@@ -1,0 +1,3 @@
+html * { /* Hack to disable Chrome font boosting. Breaks small screen emulation in desktop Chrome. */
+  font-size: 0.9rem;
+}

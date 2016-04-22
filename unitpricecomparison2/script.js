@@ -85,3 +85,9 @@ function expandCollapseSecondRow() {
   document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_unten.svg">';
   }
 }
+
+function addIosStyles() {
+  if( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i ) ) {
+    document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./iosStyles.css">';
+  }
+}
