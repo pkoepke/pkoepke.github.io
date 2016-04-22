@@ -13,6 +13,7 @@ function doAllCalculations() {
   getAllPriceUnitQuantity(allDataObject, 'quantity');
   calculateAllPricesPerUnit(allDataObject);
   displayAllPricesPerUnit(allDataObject);
+	highlightLowestPricePerUnit(allDataObject);
 }
 
 function getAllPriceUnitQuantity(allDataObject, currentField) {
@@ -54,6 +55,23 @@ function displayAllPricesPerUnit(allDataObject) {
       currentNode.className = 'itemPricePerUnits';
     }
   });
+}
+
+function highlightLowestPricePerUnit(allDataObject) {
+  var lowestPpuObject = {
+		lowestPpu: Infinity,
+		lowestIndex: -1
+	}
+	allDataObject.pricePerUnit.forEach( function(currentPpu, index) {
+		if (currentPpu < lowestPpuObject.lowestPpu) { // NaN < Infinity and NaN < any number are both false so this check is all we need to catch NaN values.
+			lowestPpuObject.lowestPpu = currentPpu;
+			lowestPpuObject.lowestIndex = index;
+		}
+	});
+	lowestPpuObject.lowestIndex += 1; // have to add 1 because indexes start counting at zero but my IDs start at 1.
+	var spanToHighlightId = 'item' + lowestPpuObject.lowestIndex + 'PricePerUnits';
+	try {	document.getElementById(spanToHighlightId).className = 'itemPricePerUnits highlightedPricePerUnits';
+} catch (err) { /* getElementById will be null if there is no unit prices to highlight, so errors are expected here. There's no need to do anything in resposne to the error. */ }
 }
 
 function clearAll() {

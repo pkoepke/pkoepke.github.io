@@ -49,6 +49,10 @@ button {
   padding: 0.5rem;
 }
 
+.itemFirstRowDiv, .itemSecondRowDiv {
+  text-align: center;
+}
+
 :placeholder-shown, input, button, .itemPricePerUnits {
   font-size: 3rem;
   text-align: center;
@@ -71,13 +75,16 @@ input {
 
 .itemPricePerUnits {
   display: inline-block;
-  text-align: left;
+}
+
+.highlightedPricePerUnits {
+  background-color: #1ECF7A;
 }
 
 .itemPricePerUnitsPlaceholder {
   color: #A9A9A9; /* Should be the same color as the default placeholder color. */
 }
 
-.quantity {
-  margin-left: 0.4rem;
+.itemName, .quantity, .unitsName {
+  width: 30%;
 }
