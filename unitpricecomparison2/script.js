@@ -1,4 +1,5 @@
-window.onload = expandCollapseSecondRow; // initially the second row is shown, but it should be immediately hidden
+window.addEventListener('load', expandCollapseSecondRow, false); // initially the second row is shown, but it should be immediately hidden
+window.addEventListener('load', addIosStyles, false);
 
 function doAllCalculations() {
   var allDataObject = {
@@ -87,7 +88,8 @@ function expandCollapseSecondRow() {
 }
 
 function addIosStyles() {
-  if( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i ) ) {
+	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  if( userAgent.indexOf('iPad') > -1 || userAgent.match('iPhone') > -1 || userAgent.match('iPod') > -1 ) {
     document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./iosStyles.css">';
   }
 }
