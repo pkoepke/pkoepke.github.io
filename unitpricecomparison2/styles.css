@@ -10,13 +10,14 @@ body {
 }
 
 h3 {
-  font-size: 3.5rem;
+  font-size: 3.25rem;
   padding: 1rem;
   margin: 0px;
   background-color: #003FD1;
   color: #FFFFFF;
   font-weight: normal;
   vertical-align: top;
+  white-space: nowrap;
 }
 
 .unitPriceComparisonIcon {
@@ -57,7 +58,7 @@ input, .itemPricePerUnits, .itemLabel {
   margin: 0.3rem;
 }
 
-input{
+input {
   border-width: 0px;
   border-bottom: 2px solid;
   border-color: #7C7C7C;
