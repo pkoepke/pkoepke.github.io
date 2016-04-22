@@ -89,7 +89,6 @@ function expandCollapseSecondRow() {
 
 function addIosStyles() {
 	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-	document.getElementById('everythingDiv').innerHTML += userAgent;
   if( userAgent.indexOf('iPad') > -1 || userAgent.indexOf('iPhone') > -1 || userAgent.indexOf('iPod') > -1 ) {
     document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./iosStyles.css">';
   }
