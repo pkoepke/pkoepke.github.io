@@ -48,12 +48,8 @@ button {
   background-color: #FFFFFF;
 }
 
-:placeholder-shown, .itemLabel {
-  font-size: 3rem;
-}
-
-input, button, .itemPricePerUnits {
-  font-size: 3rem;
+:placeholder-shown, .itemLabel, input, button, .itemPricePerUnits {
+  font-size: 2.5rem;
 }
 
 input, .itemPricePerUnits, .itemLabel {
