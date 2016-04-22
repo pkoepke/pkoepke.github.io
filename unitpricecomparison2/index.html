@@ -24,10 +24,10 @@
 	</head>
 	<body>
 		<div id="everythingDiv" class="everythingDiv" >
-			<h3><img src="./unitPriceComparisonIcon.png">
+			<h3><img class="unitPriceComparisonIcon" src="./unitPriceComparisonIcon.png">
 				Unit Price Comparison
 				<button id="expandCollapseButton" class="expandCollapseButton" onclick="expandCollapseSecondRow()" ></button>
-				<button id="clearAllButton" class="clearAllButton" onclick="clearAll()" >✕</button></h3>
+				<button id="clearAllButton" class="clearAllButton" onclick="clearAll()" ><img class="multiplicationSign" src="./Multiplication_Sign.svg"></button></h3>
 			<div id="item1CardDiv" class="itemCard" >
 				<div class="itemFirstRowDiv" id="item1FirstRowDiv">
 					<span id="item1Label" class="itemLabel">Item 1</span>
@@ -207,14 +207,16 @@
 					});*/
 					$(".itemSecondRowDiv").slideDown('slow');
 					//$(".itemSecondRowDiv").fadeIn();
-					document.getElementById('expandCollapseButton').innerHTML = '▲';
+					//document.getElementById('expandCollapseButton').innerHTML = '▲';
+					document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_oben.svg">';
 				} else { // otherwise hide all and rename the button.
 					/*allSecondRows.forEach( function (currentNode, index) {
 						currentNode.style.display = 'none';
 					});*/
 					//$(".itemSecondRowDiv").fadeOut();
 					$(".itemSecondRowDiv").slideUp('slow');
-					document.getElementById('expandCollapseButton').innerHTML = '▼';
+					//document.getElementById('expandCollapseButton').innerHTML = '▼';
+					document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_unten.svg">';
 				}
 			}
 
