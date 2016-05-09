@@ -1,5 +1,11 @@
 h3 {
-
+  font-size: 3.25rem;
+  padding: 1rem;
+  margin: 0px;
+  background-color: #003FD1;
+  color: #FFFFFF;
+  font-weight: normal;
+  vertical-align: top;
 }
 
 button {
