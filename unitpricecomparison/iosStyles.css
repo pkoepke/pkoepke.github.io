@@ -1,3 +1,7 @@
-h3, .itemLabel, .price, .units, .itemPricePerUnits, .itemName, .quantity, .unitsName {
-  font-size: 0.8em;
+h3 {
+  
+}
+
+.itemLabel, .price, .units, .itemPricePerUnits, .itemName, .quantity, .unitsName {
+  
 }
