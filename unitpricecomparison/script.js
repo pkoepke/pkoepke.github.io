@@ -89,6 +89,7 @@ function clearAll() {
 }
 
 function storeSecondRowHeight() {
+	console.log('storeSecondRowHeight() is starting. var secondRowInitialHeight is now ' + secondRowInitialHeight);
   secondRowInitialHeight = document.getElementById('item1SecondRowDiv').style.height;
   console.log('storeSecondRowHeight() ran. var secondRowInitialHeight is now ' + secondRowInitialHeight);
 }
