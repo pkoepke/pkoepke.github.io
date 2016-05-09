@@ -8,7 +8,7 @@ button {
 }
 
 .itemLabel, .price, .units, .itemPricePerUnits, .itemName, .quantity, .unitsName {
-  width: 20%;
+  width: 22%;
 }
 
 .itemSecondRowDiv {
