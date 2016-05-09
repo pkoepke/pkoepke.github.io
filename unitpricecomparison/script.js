@@ -1,4 +1,4 @@
-window.addEventListener('load', storeSecondRowHeight, false); // store the initial heights of the second row in px because CSS animations don't work with auto heights. Apparently this includes 'initial' heights?
+document.addEventListener('load', storeSecondRowHeight, false); // store the initial heights of the second row in px because CSS animations don't work with auto heights. Apparently this includes 'initial' heights?
 window.addEventListener('load', expandCollapseSecondRow, false); // initially the second row is shown, but it should be immediately hidden
 window.addEventListener('load', addIosStyles, false);
 
@@ -89,8 +89,8 @@ function clearAll() {
 }
 
 function storeSecondRowHeight() {
-	console.log('storeSecondRowHeight() is starting. var secondRowInitialHeight is now ' + secondRowInitialHeight);
-  secondRowInitialHeight = document.getElementById('item1SecondRowDiv').style.height;
+  console.log('storeSecondRowHeight() is starting. var secondRowInitialHeight is now ' + secondRowInitialHeight);
+  secondRowInitialHeight = document.getElementById('item1SecondRowDiv').style.clientHeight;
   console.log('storeSecondRowHeight() ran. var secondRowInitialHeight is now ' + secondRowInitialHeight);
 }
 
