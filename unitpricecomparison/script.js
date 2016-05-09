@@ -4,7 +4,7 @@ window.addEventListener('load', addIosStyles, false);
 
 var transitionDelayInSeconds = 1;
 var transitionDelayInMiliSeconds = transitionDelayInSeconds * 1000;
-var secondRowInitialHeight = '81px'; // just throwing in a default height, this should be overwritten when the page loads by storeSecondRowHeight().
+var secondRowInitialHeight = '82px'; // just throwing in a default height, this should be overwritten when the page loads by storeSecondRowHeight().
 
 function doAllCalculations() {
   var allDataObject = {
@@ -90,7 +90,7 @@ function clearAll() {
 
 function storeSecondRowHeight() {
   console.log('storeSecondRowHeight() is starting. var secondRowInitialHeight is now ' + secondRowInitialHeight);
-  secondRowInitialHeight = document.getElementById('item1SecondRowDiv').clientHeight;
+  //secondRowInitialHeight = document.getElementById('item1SecondRowDiv').clientHeight;
   console.log('storeSecondRowHeight() ran. var secondRowInitialHeight is now ' + secondRowInitialHeight);
 }
 
