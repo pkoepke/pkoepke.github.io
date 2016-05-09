@@ -51,6 +51,7 @@ button {
 
 .itemFirstRowDiv, .itemSecondRowDiv {
   text-align: center;
+  transition: 1s;
 }
 
 :placeholder-shown, input, button, .itemPricePerUnits {
@@ -87,4 +88,8 @@ input {
 
 .itemName, .quantity, .unitsName {
   width: 30%;
+}
+
+.hidden {
+	height: 0px;
 }
