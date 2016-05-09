@@ -1,6 +1,10 @@
 h3 {
-  font-size: .5em;
-  color: red;
+  font-size: .8em;
+}
+
+button {
+  height: 1em;
+  min-width: 0;
 }
 
 .itemLabel, .price, .units, .itemPricePerUnits, .itemName, .quantity, .unitsName {
