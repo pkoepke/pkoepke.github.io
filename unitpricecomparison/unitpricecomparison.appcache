@@ -1,16 +1,16 @@
 CACHE MANIFEST
-# last updated Mon May 09 2016 15:06:04 GMT-0400 (Eastern Daylight Time)
+# last updated ue May 10 2016 17:22:31 GMT-0400 (Eastern Daylight Time)
 
 CACHE:
 
+desktopStyles.css
 index.html
-styles.css
-script.js
 iosStyles.css
-Pfeil_oben.svg
-Pfeil_unten.svg
-unitPriceComparisonIcon.png
 Multiplication_Sign.svg
+Pfeil_unten.svg
+script.js
+styles.css
+unitPriceComparisonIcon.png
 
 NETWORK:
 
