@@ -97,29 +97,6 @@ function expandCollapseSecondRow() {
   allSecondRows = Array.prototype.slice.call(allSecondRows); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
   
   if (allSecondRows[0].style.height == '0px') { // display all if first is currently hidden
-    var i = 0;
-    function next() {
-      if(i < allSecondRows.length) {
-		var currentNode = allSecondRows[i];
-        currentNode.style.height = secondRowInitialHeight;
-	    i++;
-	    setTimeout(next, 100);
-		setTimeout(function() {
-          var allChildElements = currentNode.childNodes;
-	      allChildElements = Array.prototype.slice.call(allChildElements);
-          allChildElements.forEach( function(currentChildElement) {
-            if(currentChildElement.nodeType == 1) {
-              currentChildElement.style.display = 'initial';
-            }
-          });
-        }, 300);
-      }
-    }
-    next();
-    document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_oben.svg">';
-  }
-  /* old code that moved expanded all rows at once
-  
     allSecondRows.forEach( function(currentNode) {
       currentNode.style.height = secondRowInitialHeight;
       // show all child nodes after height transition
@@ -132,28 +109,9 @@ function expandCollapseSecondRow() {
           }
         });
       }, transitionDelayInMiliSeconds);
-  });*/
-  else { // otherwise hide all and rename the button.
-    var i = 0;
-    function next() {
-      if(i < allSecondRows.length) {
-        allSecondRows.forEach( function(currentNode) {
-          setTimeout(function() {var allChildElements = currentNode.childNodes;
-          allChildElements = Array.prototype.slice.call(allChildElements);
-          allChildElements.forEach( function(currentChildElement) {
-            if(currentChildElement.nodeType == 1) {
-              currentChildElement.style.display = 'none';
-            }
-          });}, 0);
-          var currentNode = allSecondRows[i];
-          currentNode.style.height = '0px';
-		});
-      i++;
-      setTimeout(next, 100);
-      }
-    }
-    next();
-    /* old code that moved expanded all rows at once
+  });
+    document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_oben.svg">';
+  } else { // otherwise hide all and rename the button.
     allSecondRows.forEach( function(currentNode) {
       // hide all child nodes before setting height to zero
       var allChildElements = currentNode.childNodes;
@@ -164,7 +122,7 @@ function expandCollapseSecondRow() {
         }
       });
       currentNode.style.height = '0px'; // sets height to zero. Triggers CSS transition to animate transition.
-    });*/
+    });
     document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_unten.svg">';
   }
 }
