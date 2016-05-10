@@ -52,7 +52,6 @@ button {
 
 .itemFirstRowDiv, .itemSecondRowDiv {
   text-align: center;
-  transition: 500ms;
 }
 
 :placeholder-shown, input, button, .itemPricePerUnits {
