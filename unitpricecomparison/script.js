@@ -1,10 +1,5 @@
-window.addEventListener('load', storeSecondRowHeight, false); // store the initial heights of the second row in px because CSS animations don't work with auto heights. Apparently this includes 'initial' heights?
 window.addEventListener('load', expandCollapseSecondRow, false); // initially the second row is shown, but it should be immediately hidden
 window.addEventListener('load', addIosStyles, false);
-
-var transitionDelayInSeconds = 1;
-var transitionDelayInMiliSeconds = transitionDelayInSeconds * 1000;
-var secondRowInitialHeight = '81px'; // just throwing in a default height, this should be overwritten when the page loads by storeSecondRowHeight().
 
 function doAllCalculations() {
   var allDataObject = {
@@ -18,7 +13,7 @@ function doAllCalculations() {
   getAllPriceUnitQuantity(allDataObject, 'quantity');
   calculateAllPricesPerUnit(allDataObject);
   displayAllPricesPerUnit(allDataObject);
-  highlightLowestPricePerUnit(allDataObject);
+	highlightLowestPricePerUnit(allDataObject);
 }
 
 function getAllPriceUnitQuantity(allDataObject, currentField) {
@@ -64,18 +59,18 @@ function displayAllPricesPerUnit(allDataObject) {
 
 function highlightLowestPricePerUnit(allDataObject) {
   var lowestPpuObject = {
-    lowestPpu: Infinity,
-    lowestIndex: -1
-  }
-  allDataObject.pricePerUnit.forEach( function(currentPpu, index) {
-    if (currentPpu < lowestPpuObject.lowestPpu) { // NaN < Infinity and NaN < any number are both false so this check is all we need to catch NaN values.
-      lowestPpuObject.lowestPpu = currentPpu;
-      lowestPpuObject.lowestIndex = index;
-    }
-  });
-  lowestPpuObject.lowestIndex += 1; // have to add 1 because indexes start counting at zero but my IDs start at 1.
-  var spanToHighlightId = 'item' + lowestPpuObject.lowestIndex + 'PricePerUnits';
-  try { document.getElementById(spanToHighlightId).className = 'itemPricePerUnits highlightedPricePerUnits';
+		lowestPpu: Infinity,
+		lowestIndex: -1
+	}
+	allDataObject.pricePerUnit.forEach( function(currentPpu, index) {
+		if (currentPpu < lowestPpuObject.lowestPpu) { // NaN < Infinity and NaN < any number are both false so this check is all we need to catch NaN values.
+			lowestPpuObject.lowestPpu = currentPpu;
+			lowestPpuObject.lowestIndex = index;
+		}
+	});
+	lowestPpuObject.lowestIndex += 1; // have to add 1 because indexes start counting at zero but my IDs start at 1.
+	var spanToHighlightId = 'item' + lowestPpuObject.lowestIndex + 'PricePerUnits';
+	try {	document.getElementById(spanToHighlightId).className = 'itemPricePerUnits highlightedPricePerUnits';
 } catch (err) { /* getElementById will be null if there is no unit prices to highlight, so errors are expected here. There's no need to do anything in resposne to the error. */ }
 }
 
@@ -88,103 +83,30 @@ function clearAll() {
   doAllCalculations(); // Resets all of the unit price fields.
 }
 
-function storeSecondRowHeight() {
-  secondRowInitialHeight = document.getElementById('item1SecondRowDiv').clientHeight + 'px';
-}
-
 function expandCollapseSecondRow() {
   var allSecondRows = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of this Class.
   allSecondRows = Array.prototype.slice.call(allSecondRows); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
-  
-  if (allSecondRows[0].style.height == '0px') { // display all if first is currently hidden
-    var i = 0;
-    function next() {
-      if(i < allSecondRows.length) {
-		var currentNode = allSecondRows[i];
-        currentNode.style.height = secondRowInitialHeight;
-	    i++;
-	    setTimeout(next, 100);
-		setTimeout(function() {
-          var allChildElements = currentNode.childNodes;
-	      allChildElements = Array.prototype.slice.call(allChildElements);
-          allChildElements.forEach( function(currentChildElement) {
-            if(currentChildElement.nodeType == 1) {
-              currentChildElement.style.display = 'initial';
-            }
-          });
-        }, 300);
-      }
-    }
-    next();
-    document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_oben.svg">';
-  }
-  /* old code that moved expanded all rows at once
-  
-    allSecondRows.forEach( function(currentNode) {
-      currentNode.style.height = secondRowInitialHeight;
-      // show all child nodes after height transition
-      setTimeout( function() {
-        var allChildElements = currentNode.childNodes;
-        allChildElements = Array.prototype.slice.call(allChildElements);
-        allChildElements.forEach( function(currentChildElement) {
-          if(currentChildElement.nodeType == 1) {
-            currentChildElement.style.display = 'initial';
-          }
-        });
-      }, transitionDelayInMiliSeconds);
-  });*/
-  else { // otherwise hide all and rename the button.
-    var i = 0;
-    function next() {
-      if(i < allSecondRows.length) {
-        allSecondRows.forEach( function(currentNode) {
-          setTimeout(function() {var allChildElements = currentNode.childNodes;
-          allChildElements = Array.prototype.slice.call(allChildElements);
-          allChildElements.forEach( function(currentChildElement) {
-            if(currentChildElement.nodeType == 1) {
-              currentChildElement.style.display = 'none';
-            }
-          });}, 0);
-          var currentNode = allSecondRows[i];
-          currentNode.style.height = '0px';
-		});
-      i++;
-      setTimeout(next, 100);
-      }
-    }
-    next();
-    /* old code that moved expanded all rows at once
-    allSecondRows.forEach( function(currentNode) {
-      // hide all child nodes before setting height to zero
-      var allChildElements = currentNode.childNodes;
-      allChildElements = Array.prototype.slice.call(allChildElements);
-      allChildElements.forEach( function(currentChildElement) {
-        if(currentChildElement.nodeType == 1) {
-          currentChildElement.style.display = 'none';
-        }
-      });
-      currentNode.style.height = '0px'; // sets height to zero. Triggers CSS transition to animate transition.
+  if (allSecondRows[0].style.display == 'none') { // display all if first is currently hidden
+    /*allSecondRows.forEach( function (currentNode, index) {
+      currentNode.style.display = 'initial';
     });*/
-    document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_unten.svg">';
+    //$(".itemSecondRowDiv").slideDown('slow');
+  $(".itemSecondRowDiv").fadeIn();
+  //document.getElementById('expandCollapseButton').innerHTML = '?';
+  document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_oben.svg">';
+  } else { // otherwise hide all and rename the button.
+    /*allSecondRows.forEach( function (currentNode, index) {
+    currentNode.style.display = 'none';
+  });*/
+  $(".itemSecondRowDiv").fadeOut();
+  //$(".itemSecondRowDiv").slideUp('slow');
+  //document.getElementById('expandCollapseButton').innerHTML = '?';
+  document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_unten.svg">';
   }
-}
-
-function hideUnhideSecondRowChildren(currentNode) {
-  currentNode.style.height = secondRowInitialHeight;
-  // show all child nodes after height transition
-  setTimeout( function() {
-    var allChildElements = currentNode.childNodes;
-    allChildElements = Array.prototype.slice.call(allChildElements);
-    allChildElements.forEach( function(currentChildElement) {
-      if(currentChildElement.nodeType == 1) {
-        currentChildElement.style.display = 'initial';
-      }
-    });
-  }, transitionDelayInMiliSeconds);
 }
 
 function addIosStyles() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
   if( userAgent.indexOf('iPad') > -1 || userAgent.indexOf('iPhone') > -1 || userAgent.indexOf('iPod') > -1 ) {
     document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./iosStyles.css">';
   }
