@@ -111,7 +111,8 @@ function expandCollapseSecondRow() {
         });
       }, transitionDelayInMiliSeconds);
   });
-    document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_oben.svg">';
+  //document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_oben.svg">';
+  document.getElementById('expandCollapseArrow').style.transform = 'rotate(180deg)';
   } else { // otherwise hide all and rename the button.
     allSecondRows.forEach( function(currentNode) {
       // hide all child nodes before setting height to zero
@@ -124,7 +125,8 @@ function expandCollapseSecondRow() {
       });
       currentNode.style.height = '0px'; // sets height to zero. Triggers CSS transition to animate transition.
     });
-    document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_unten.svg">';
+    //document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_unten.svg">';
+	document.getElementById('expandCollapseArrow').style.transform = 'rotate(0deg)';
   }
 }
 
