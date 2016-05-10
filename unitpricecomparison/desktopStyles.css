@@ -1,0 +1,24 @@
+body {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+button {
+  height: 3rem;
+  min-width: 4rem;
+}
+
+.multiplicationSign, .expandCollapseArrow {
+  height: 2rem;
+  vertical-align: 15%;
+}
+
+
+.itemLabel, .price, .units, .itemPricePerUnits, .itemName, .quantity, .unitsName {
+  font-size: 1.5rem;
+}
