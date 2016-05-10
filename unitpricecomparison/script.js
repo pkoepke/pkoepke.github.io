@@ -105,7 +105,7 @@ function expandCollapseSecondRow() {
         var allChildElements = currentNode.childNodes;
         allChildElements = Array.prototype.slice.call(allChildElements);
         allChildElements.forEach( function(currentChildElement) {
-          if(currentChildElement.nodeType == 1) {
+          if(currentChildElement.nodeType == 1 && currentNode.style.height == secondRowInitialHeight) { // possible race condition here - if the setTimeout timer is shorter than the card animation time, the card won't be fully extended when this height check fires and this check will fail.
             currentChildElement.style.display = 'initial';
           }
         });
@@ -126,19 +126,22 @@ function expandCollapseSecondRow() {
       currentNode.style.height = '0px'; // sets height to zero. Triggers CSS transition to animate transition.
     });
     //document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_unten.svg">';
-	document.getElementById('expandCollapseArrow').style.transform = 'rotate(0deg)';
+    document.getElementById('expandCollapseArrow').style.transform = 'rotate(0deg)';
   }
 }
 
 function hideUnhideSecondRowChildren(currentNode) {
-  currentNode.style.height = secondRowInitialHeight;
   // show all child nodes after height transition
   setTimeout( function() {
     var allChildElements = currentNode.childNodes;
     allChildElements = Array.prototype.slice.call(allChildElements);
     allChildElements.forEach( function(currentChildElement) {
       if(currentChildElement.nodeType == 1) {
-        currentChildElement.style.display = 'initial';
+        if(currentChildElement.style.display = 'none') {
+          currentChildElement.style.display = 'initial';
+        } else {
+          currentChildElement.style.display = 'none';
+        }
       }
     });
   }, transitionDelayInMiliSeconds);
