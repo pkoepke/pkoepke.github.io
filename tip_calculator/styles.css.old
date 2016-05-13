@@ -1,0 +1,47 @@
+* {
+  transition: 1s;
+}
+
+#everythingCard {
+  background-color: #42A5F5;
+  text-align:center;
+  font-family:Verdana,sans-serif;
+  width:90%;
+  max-width:32em;
+  min-width:16em;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 1em;
+  padding: 1em;
+  /*padding-left: 1em;
+  padding-right: 1em;*/
+}
+
+h1 {
+  font-family:Georgia;
+  font-size: 3em;
+  font-weight: normal;
+}
+
+#dollarSignSpan {
+  position: relative;
+  left:0.8em;
+}
+
+#billAmount {
+  text-align: center;
+}
+
+#tipPercent {
+  text-align: center;
+}
+
+input[type="button"] {
+  padding: 0.6em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
+#output {
+  text-align: left;
+}
