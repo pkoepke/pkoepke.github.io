@@ -14,6 +14,7 @@ body {
 .contentCard {
   background-color: #FFFFFF;
   display: block;
+  height: 37.2rem;
   width: 720px;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -53,6 +54,10 @@ p {
   text-align: center;
 }
 
+#tipPercentAfter{
+  font-size:0.9em
+}
+
 input[type=number] {
   margin-bottom: 0.4em;
   font-size: 1em;
@@ -82,17 +87,23 @@ input[type="button"] {
 }
 
 #twentyfivePercentTipButton {
-  top: 16rem;
+  top: 12rem;
+  right: 6.5rem;
 }
 
 #twentyPercentRoundedUpTipButton {
-  top: 20rem;
+  top: 16rem;
   width: 15rem;
   white-space: normal;
 }
 
 #calculateTipButton {
-  top: 27rem;
+  top: 16rem;
+  right: 16rem;
   width: 15rem;
   white-space: normal;
+}
+
+#output {
+  margin-top: 7rem;
 }

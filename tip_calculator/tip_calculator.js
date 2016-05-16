@@ -131,10 +131,9 @@ function  detectBobileBrowsers() {
 //document.write('Is mobile device per detectBobileBrowsers(): ' + detectBobileBrowsers()); // for testing only.
 
 // Function to add a mobile stylesheet if the browser is a mobile browser
-function swapMobileStyleSheets() {
-  if (detectBobileBrowsers()) {
-    var mobileStyleSheetLinkElement = document.getElementById('mobileCss');
-    mobileStyleSheetLinkElement.setAttribute('href','mobile.css');
+function addDesktopStyles() {
+  if (!detectBobileBrowsers()) {
+    document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./desktopStyles.css">';
   }
 }
-swapMobileStyleSheets();
+//addDesktopStyles();
