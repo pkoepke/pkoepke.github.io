@@ -24,15 +24,12 @@
 	<body>
 		<h3><img class="unitPriceComparisonIcon" src="./unitPriceComparisonIcon.png">Tip Calculator</h3>
 		<div class="contentCard" id="contentCard">
-			<p><label for="billAmount" >Bill amount:</label><span id="dollarSignSpan" >$</span><input type="number" id="billAmount" /><span id="billAmountAfter"><br /></span></p>
-			<p><label for="tipPercent" >Tip percent: &nbsp;</label><input type="number" id="tipPercent" onchange="calculationsWithoutRounding()" /><span id="tipPercentAfter" ><br />(Enter 50 for 50%)</span></p>
+			<p class="amountAndPercent"><label for="billAmount" >Bill amount:<span id="dollarSignSpan" >$</span></label><input type="number" id="billAmount" /><span id="billAmountAfter"><br /></span></p>
+			<p class="amountAndPercent"><label for="tipPercent" >Tip percent: &nbsp;</label><input type="number" id="tipPercent" onchange="calculationsWithoutRounding()" /><span id="tipPercentAfter" ><br />(Enter 50 for 50%)</span></p>
 			<p><input type="button" id="fivePercentTipButton" onclick="tipPercentButtons(5)" value="&nbsp;5%" />
 			<input type="button" id="tenPercentTipButton" onclick="tipPercentButtons(10)" value="10%" />
-			<input type="button" id="fifteenPercentTipButton" onclick="tipPercentButtons(15)" value="15%" />
-			<input type="button" id="twentyPercentTipButton" onclick="tipPercentButtons(20)" value="20%" />
-			<input type="button" id="twentyfivePercentTipButton" onclick="tipPercentButtons(25)" value="25%" />
-			<input type="button" id="twentyPercentRoundedUpTipButton" onclick="calculatePercentRounded(20)" value="20% rounded to the dollar" />
-			<input type="button" id="calculateTipButton" class="calculateTipButton" onclick="calculationsWithoutRounding()" value="Calculate other tip percent" /></p>
+			<input type="button" id="twentyPercentRoundedUpTipButton" onclick="calculatePercentWithRounding(20)" value="20% and rounded" />
+			<input type="button" id="calculateTipButton" class="calculateTipButton" onclick="calculationsWithoutRounding()" value="Calculate other percent" /></p>
 			<p id="output" >Tip and total amounts:<br /></p>
 		</div>
 		<br /><br />

@@ -1,9 +1,4 @@
-// calculates tip using exactly the percent entered in the Tip Percent field.
-function calculationsWithoutRounding() {
-  // get values
-  var billAmount = document.getElementById('billAmount').value;
-  var tipPercent = document.getElementById('tipPercent').value;
-
+function checkInputsDisplayErrorsReturn(billAmount, tipPercent) {
   // validate the the inputs are numbers. If they aren't, show an error.
   var areFieldsNumbers = true;
   if( !checkIfBillAmountFieldIsANumber(billAmount) ) { // if Bill Amount is NaN or blank, set areFieldsNumbers = false and display error message.
@@ -15,6 +10,18 @@ function calculationsWithoutRounding() {
       displayNormalTipPercentAfter();
     }
   } else { displayNormalBillAmountAfter(); }
+  
+  return areFieldsNumbers;
+}
+
+// calculates tip using exactly the percent entered in the Tip Percent field.
+function calculationsWithoutRounding() {
+  // get values
+  var billAmount = document.getElementById('billAmount').value;
+  var tipPercent = document.getElementById('tipPercent').value;
+
+  // validate the the inputs are numbers. If they aren't, show an error.
+  var areFieldsNumbers = checkInputsDisplayErrorsReturn(billAmount, tipPercent);
 
   if(areFieldsNumbers) { // if Bill Amount was a number, then run checks on Tip Percent
     if( !checkIfTipFieldIsANumber(tipPercent) ) {
@@ -22,7 +29,6 @@ function calculationsWithoutRounding() {
       displayTipPercentAfterError();
     } else { displayNormalTipPercentAfter(); }
   }
-  console.log(areFieldsNumbers);
 
   // if both fields are numbers, calculate.
   if(areFieldsNumbers) {
@@ -41,22 +47,13 @@ function tipPercentButtons(buttonPercent) {
   calculationsWithoutRounding();
 }
 
-function calculatePercentRounded(tipPercent) {
+function calculatePercentWithRounding(tipPercent) {
   // get values
   document.getElementById('tipPercent').value = tipPercent;
   var billAmount = document.getElementById('billAmount').value;
 
   // validate the the inputs are numbers. If they aren't, show an error.
-  var areFieldsNumbers = true;
-  if( !checkIfBillAmountFieldIsANumber(billAmount) ) { // if Bill Amount is NaN or blank, set areFieldsNumbers = false and display error message.
-    areFieldsNumbers = false;
-    displayBillAmountAfterError();
-    if ( !checkIfTipFieldIsANumber(tipPercent) ) {
-      displayTipPercentAfterError();
-    } else {
-      displayNormalTipPercentAfter();
-    }
-  } else { displayNormalBillAmountAfter(); }
+  var areFieldsNumbers = checkInputsDisplayErrorsReturn(billAmount, tipPercent);
 
   if(areFieldsNumbers) { // if Bill Amount was a number, then run checks on Tip Percent
     if( !checkIfTipFieldIsANumber(tipPercent) ) {
@@ -64,10 +61,16 @@ function calculatePercentRounded(tipPercent) {
       displayTipPercentAfterError();
     } else { displayNormalTipPercentAfter(); }
   }
-  console.log(areFieldsNumbers);
 
   // if both fields are numbers, calculate.
   if(areFieldsNumbers) {
+    //first do the calculations without rounding
+    var tipAmount = billAmount * (tipPercent / 100);
+    var totalWithTip = Number(billAmount) + Number(tipAmount);
+    // output result without rounding
+    document.getElementById('output').innerHTML = tipPercent + '% of $' + (Math.round(billAmount * 100) / 100).toFixed(2) + ' is $' + (Math.round(tipAmount * 100) / 100).toFixed(2) + ', so your total should be $' + ((Math.round(totalWithTip * 100) / 100).toFixed(2)) + '.<br /><br />';
+    
+    // second do the calculations without rounding
     var tipAmountUnrounded = Number(billAmount * (tipPercent / 100));
     var totalAmountUnrounded = Number(billAmount) + Number(tipAmountUnrounded);
     var totalAmountRoundedUp = Math.ceil(totalAmountUnrounded);
@@ -76,7 +79,7 @@ function calculatePercentRounded(tipPercent) {
     var totalAmountRoundedDown = Math.floor(totalAmountUnrounded);
     var tipAmountRoundingDown = Math.round((totalAmountRoundedDown - billAmount) * 100) / 100;
     var tipPercentRoundingDown = Math.round((tipAmountRoundingDown / billAmount) * 100) / 100;
-    document.getElementById('output').innerHTML = tipPercent + '% rounding down is a tip of $' + tipAmountRoundingDown.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingDown)).toFixed(2) + ' which is a tip of ' + tipPercentRoundingDown * 100 + '%.<br /><br />';
+    document.getElementById('output').innerHTML += tipPercent + '% rounding down is a tip of $' + tipAmountRoundingDown.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingDown)).toFixed(2) + ' which is a tip of ' + tipPercentRoundingDown * 100 + '%.<br /><br />';
     document.getElementById('output').innerHTML += tipPercent + '% rounding up is a tip of $' + tipAmountRoundingUp.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingUp)).toFixed(2) + ' which is a tip of ' + tipPercentRoundingUp * 100 + '%.';
   } else { displayOriginalOutput(); }
 }
