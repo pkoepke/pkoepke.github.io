@@ -90,11 +90,11 @@ function calculatePercentWithRounding() {
     // output rounded up result
     document.getElementById('output').innerHTML += tipPercent + '% rounding up is a tip of $' + tipAmountRoundingUp.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingUp)).toFixed(2) + ' which is a tip of ' + tipPercentRoundingUp * 100 + '%.<br /><br />';
     
-    // rounding down breask for bills of $1.01-$1.66, $2.01-$2.49, or $3.01-$3.33. Since rounding down in this instance would be super cheap anyway, we'll 
-    if(billAmount >= 3.31) {
+    // rounding down breask for bills of $1.01-$1.66, $2.01-$2.49, $3.01-$3.33, or $4.01-4.16. Since rounding down in this instance would be super cheap anyway, we'll 
+    if(billAmount >= 4.17) {
       document.getElementById('output').innerHTML += tipPercent + '% rounding down is a tip of $' + tipAmountRoundingDown.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingDown)).toFixed(2) + ' which is a tip of ' + tipPercentRoundingDown * 100 + '%.';
     } else {
-      document.getElementById('output').innerHTML += 'Rounding down for bills under $3.31 can sometimes result in a negative tip, and would be really cheap anyway. So we don\'t round down for bills that small.';
+      document.getElementById('output').innerHTML += 'Rounding down for bills under $4.16 can sometimes result in a negative tip, and would be really cheap anyway. So we don\'t round down for bills that small.';
     }
   } else { displayOriginalOutput(); }
 }
