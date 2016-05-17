@@ -73,23 +73,29 @@ function calculatePercentWithRounding() {
 
   // if both fields are numbers, calculate.
   if(areFieldsNumbers) {
-    //first do the calculations without rounding
-    var tipAmount = billAmount * (tipPercent / 100);
-    var totalWithTip = Number(billAmount) + Number(tipAmount);
-    // output result without rounding
-    document.getElementById('output').innerHTML = tipPercent + '% of $' + (Math.round(billAmount * 100) / 100).toFixed(2) + ' is $' + (Math.round(tipAmount * 100) / 100).toFixed(2) + ', so your total should be $' + ((Math.round(totalWithTip * 100) / 100).toFixed(2)) + '.<br /><br />';
-    
-    // second do the calculations without rounding
+    // first do the calculations without rounding and output the result. These values will be used during the rounding calculations.
     var tipAmountUnrounded = Number(billAmount * (tipPercent / 100));
     var totalAmountUnrounded = Number(billAmount) + Number(tipAmountUnrounded);
+    document.getElementById('output').innerHTML = tipPercent + '% of $' + (Math.round(billAmount * 100) / 100).toFixed(2) + ' is $' + (Math.round(tipAmountUnrounded * 100) / 100).toFixed(2) + ', so your total should be $' + ((Math.round(totalAmountUnrounded * 100) / 100).toFixed(2)) + '.<br /><br />';
+    
+    // second do the calculations without and withrounding using values from unrounded calculations
     var totalAmountRoundedUp = Math.ceil(totalAmountUnrounded);
     var tipAmountRoundingUp = Math.round((totalAmountRoundedUp - billAmount) * 100) / 100;
     var tipPercentRoundingUp = Math.round((tipAmountRoundingUp / billAmount) * 100) / 100;
+    
     var totalAmountRoundedDown = Math.floor(totalAmountUnrounded);
     var tipAmountRoundingDown = Math.round((totalAmountRoundedDown - billAmount) * 100) / 100;
     var tipPercentRoundingDown = Math.round((tipAmountRoundingDown / billAmount) * 100) / 100;
-    document.getElementById('output').innerHTML += tipPercent + '% rounding down is a tip of $' + tipAmountRoundingDown.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingDown)).toFixed(2) + ' which is a tip of ' + tipPercentRoundingDown * 100 + '%.<br /><br />';
-    document.getElementById('output').innerHTML += tipPercent + '% rounding up is a tip of $' + tipAmountRoundingUp.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingUp)).toFixed(2) + ' which is a tip of ' + tipPercentRoundingUp * 100 + '%.';
+    
+    // output rounded up result
+    document.getElementById('output').innerHTML += tipPercent + '% rounding up is a tip of $' + tipAmountRoundingUp.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingUp)).toFixed(2) + ' which is a tip of ' + tipPercentRoundingUp * 100 + '%.<br /><br />';
+    
+    // rounding down breask for bills of $1.01-$1.66, $2.01-$2.49, or $3.01-$3.33. Since rounding down in this instance would be super cheap anyway, we'll 
+    if(billAmount >= 3.31) {
+      document.getElementById('output').innerHTML += tipPercent + '% rounding down is a tip of $' + tipAmountRoundingDown.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingDown)).toFixed(2) + ' which is a tip of ' + tipPercentRoundingDown * 100 + '%.';
+    } else {
+      document.getElementById('output').innerHTML += 'Rounding down for bills under $3.31 can sometimes result in a negative tip, and would be really cheap anyway. So we don\'t round down for bills that small.';
+    }
   } else { displayOriginalOutput(); }
 }
 
