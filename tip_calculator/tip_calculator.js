@@ -47,10 +47,19 @@ function tipPercentButtons(buttonPercent) {
   calculationsWithoutRounding();
 }
 
-function calculatePercentWithRounding(tipPercent) {
+// runs when the user chooses a percent button with rounding to set the Tip Percent field then run the percent calculations with rounding
+function tipPercentButtonsWithRounding(buttonPercent) {
+  // Set percent to the button's value
+  document.getElementById('tipPercent').value = buttonPercent;
+  // Calculate
+  calculatePercentWithRounding();
+}
+
+// called when tipPercentButtonsWithRounding() is called, or when the bill amount changes on the assumption that this is the most common use case.
+function calculatePercentWithRounding() {
   // get values
-  document.getElementById('tipPercent').value = tipPercent;
   var billAmount = document.getElementById('billAmount').value;
+  var tipPercent = document.getElementById('tipPercent').value;
 
   // validate the the inputs are numbers. If they aren't, show an error.
   var areFieldsNumbers = checkInputsDisplayErrorsReturn(billAmount, tipPercent);
@@ -112,7 +121,7 @@ function checkIfTipFieldIsANumber(tipPercent) {
 }
 
 function displayNormalTipPercentAfter() {
-  document.getElementById('tipPercentAfter').innerHTML = '<br />(Enter 50 for 50%)';
+  document.getElementById('tipPercentAfter').innerHTML = '<br />(Enter 20 for 20%)';
 }
 
 function displayTipPercentAfterError() {

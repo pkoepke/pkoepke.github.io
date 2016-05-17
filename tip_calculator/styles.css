@@ -71,6 +71,7 @@ input[type=number] {
   margin-bottom: 0.4em;
   font-size: 1em;
   width:5.2em;
+  border: 1px solid;
 }
 
 input[type="button"] {
