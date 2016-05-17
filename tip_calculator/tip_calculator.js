@@ -94,7 +94,7 @@ function calculatePercentWithRounding() {
     if(billAmount >= 4.17) {
       document.getElementById('output').innerHTML += tipPercent + '% rounding down is a tip of $' + tipAmountRoundingDown.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingDown)).toFixed(2) + ' which is a tip of ' + tipPercentRoundingDown * 100 + '%.';
     } else {
-      document.getElementById('output').innerHTML += 'Rounding down for bills under $4.16 can sometimes result in a negative tip, and would be really cheap anyway. So we don\'t round down for bills that small.';
+      document.getElementById('output').innerHTML += 'Rounding down for bills under $4.17 can sometimes result in a negative tip, and would be really cheap anyway. So we don\'t round down for bills that small.';
     }
   } else { displayOriginalOutput(); }
 }
