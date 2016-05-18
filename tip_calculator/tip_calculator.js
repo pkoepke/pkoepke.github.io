@@ -1,3 +1,6 @@
+//window.addEventListener('load', addIosStyles, false);
+//window.addEventListener('load', addDesktopStyles, false);
+
 function checkInputsDisplayErrorsReturn(billAmount, tipPercent) {
   // validate the the inputs are numbers. If they aren't, show an error.
   var areFieldsNumbers = true;
@@ -10,7 +13,7 @@ function checkInputsDisplayErrorsReturn(billAmount, tipPercent) {
       displayNormalTipPercentAfter();
     }
   } else { displayNormalBillAmountAfter(); }
-  
+
   return areFieldsNumbers;
 }
 
@@ -77,20 +80,20 @@ function calculatePercentWithRounding() {
     var tipAmountUnrounded = Number(billAmount * (tipPercent / 100));
     var totalAmountUnrounded = Number(billAmount) + Number(tipAmountUnrounded);
     document.getElementById('output').innerHTML = tipPercent + '% of $' + (Math.round(billAmount * 100) / 100).toFixed(2) + ' is $' + (Math.round(tipAmountUnrounded * 100) / 100).toFixed(2) + ', so your total should be $' + ((Math.round(totalAmountUnrounded * 100) / 100).toFixed(2)) + '.<br /><br />';
-    
+
     // second do the calculations without and withrounding using values from unrounded calculations
     var totalAmountRoundedUp = Math.ceil(totalAmountUnrounded);
     var tipAmountRoundingUp = Math.round((totalAmountRoundedUp - billAmount) * 100) / 100;
     var tipPercentRoundingUp = Math.round((tipAmountRoundingUp / billAmount) * 100) / 100;
-    
+
     var totalAmountRoundedDown = Math.floor(totalAmountUnrounded);
     var tipAmountRoundingDown = Math.round((totalAmountRoundedDown - billAmount) * 100) / 100;
     var tipPercentRoundingDown = Math.round((tipAmountRoundingDown / billAmount) * 100) / 100;
-    
+
     // output rounded up result
     document.getElementById('output').innerHTML += tipPercent + '% rounding up is a tip of $' + tipAmountRoundingUp.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingUp)).toFixed(2) + ' which is a tip of ' + tipPercentRoundingUp * 100 + '%.<br /><br />';
-    
-    // rounding down breask for bills of $1.01-$1.66, $2.01-$2.49, $3.01-$3.33, or $4.01-4.16. Since rounding down in this instance would be super cheap anyway, we'll 
+
+    // rounding down results in negative tips for bills of $1.01-$1.66, $2.01-$2.49, $3.01-$3.33, or $4.01-4.16. We'll display a warning instead of giving the negative tip amount.
     if(tipAmountRoundingDown >= 0) {
       document.getElementById('output').innerHTML += tipPercent + '% rounding down is a tip of $' + tipAmountRoundingDown.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingDown)).toFixed(2) + ' which is a tip of ' + tipPercentRoundingDown * 100 + '%.';
     } else {
@@ -154,4 +157,3 @@ function addDesktopStyles() {
     document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./desktopStyles.css">';
   }
 }
-//addDesktopStyles();

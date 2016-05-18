@@ -11,6 +11,21 @@ body {
   margin-right: auto;
 }
 
+h3 {
+  font-size: 3.25rem;
+  padding: 1rem;
+  margin: 0px;
+  background-color: #003FD1;
+  color: #FFFFFF;
+  font-weight: normal;
+  vertical-align: top;
+}
+
+.unitPriceComparisonIcon {
+  height: 1.5em;
+  vertical-align: bottom;
+}
+
 .contentCard {
   background-color: #FFFFFF;
   display: block;
@@ -26,23 +41,8 @@ body {
   position: relative; /* had to do this so buttons could be positioned absolute to this div */
 }
 
-h3 {
-  font-size: 3.25rem;
-  padding: 1rem;
-  margin: 0px;
-  background-color: #003FD1;
-  color: #FFFFFF;
-  font-weight: normal;
-  vertical-align: top;
-}
-
-.unitPriceComparisonIcon {
-  height: 1.2em;
-  vertical-align: bottom;
-}
-
 p {
-  font-size: 3.5rem;
+  font-size: 3rem;
   margin: 0.5em;
 }
 
@@ -75,7 +75,7 @@ input[type=number] {
 }
 
 input[type="button"] {
-  font-size: 3.5rem;
+  font-size: 3rem;
   padding: 0.6rem;
   margin-top: 0.3em;
   margin-bottom: 0.3em;

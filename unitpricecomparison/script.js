@@ -96,7 +96,7 @@ function storeSecondRowHeight() {
 function expandCollapseSecondRow() {
   var allSecondRows = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of this Class.
   allSecondRows = Array.prototype.slice.call(allSecondRows); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
-  
+
   if (allSecondRows[0].style.height == '0px') { // display all if first is currently hidden
     allSecondRows.forEach( function(currentNode) {
       currentNode.style.height = secondRowInitialHeight;
