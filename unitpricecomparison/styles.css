@@ -1,6 +1,6 @@
 html * { /* Hack to disable Chrome font boosting. Breaks small screen emulation in desktop Chrome. */
   max-height:1000000px;
-  transition: 1s;
+  transition: 0.5s;
 }
 
 body {
@@ -54,7 +54,6 @@ button {
 
 .itemFirstRowDiv, .itemSecondRowDiv {
   text-align: center;
-  transition: 0.5s;
 }
 
 :placeholder-shown, input, button, .itemPricePerUnits {
