@@ -44,8 +44,7 @@ h3 {
 }
 
 p {
-  /* font-size: 3rem; for some reason this isn't working */
-  font-size: 48px;
+  font-size: 3rem;
   margin: 0.5em;
 }
 
