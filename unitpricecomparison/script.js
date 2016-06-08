@@ -12,11 +12,13 @@ function doAllCalculations() {
     price: [],
     units: [],
     quantity: [],
-    pricePerUnit: []
+    pricePerUnit: [],
+    allItemPricePerUnitsSpans: []
   }
   getAllPriceUnitQuantity(allDataObject, 'price');
   getAllPriceUnitQuantity(allDataObject, 'units');
   getAllPriceUnitQuantity(allDataObject, 'quantity');
+  getAllPricePerUnitSpans(allDataObject);
   calculateAllPricesPerUnit(allDataObject);
   displayAllPricesPerUnit(allDataObject);
   highlightLowestPricePerUnit(allDataObject);
@@ -32,6 +34,10 @@ function getAllPriceUnitQuantity(allDataObject, currentField) {
       allDataObject[currentField][index] = Number(currentNode.value);
     }
   }); // iterate over the nodeList array and get the values from each item.
+}
+
+function getAllPricePerUnitSpans(allDataObject) {
+  allDataObject.allItemPricePerUnitsSpans = document.getElementsByClassName('itemPricePerUnits');
 }
 
 function calculateAllPricesPerUnit(allDataObject) {
@@ -65,19 +71,17 @@ function displayAllPricesPerUnit(allDataObject) {
 
 function highlightLowestPricePerUnit(allDataObject) {
   var lowestPpuObject = {
-    lowestPpu: Infinity,
+    lowestPpuValue: Infinity,
     lowestIndex: -1
   }
   allDataObject.pricePerUnit.forEach( function(currentPpu, index) {
-    if (currentPpu < lowestPpuObject.lowestPpu) { // NaN < Infinity and NaN < any number are both false so this check is all we need to catch NaN values.
-      lowestPpuObject.lowestPpu = currentPpu;
+    if (currentPpu < lowestPpuObject.lowestPpuValue) { // NaN < Infinity and NaN < any number are both false so this check is all we need to catch NaN values.
+      lowestPpuObject.lowestPpuValue = currentPpu;
       lowestPpuObject.lowestIndex = index;
     }
   });
-  lowestPpuObject.lowestIndex += 1; // have to add 1 because indexes start counting at zero but my IDs start at 1.
-  var spanToHighlightId = 'item' + lowestPpuObject.lowestIndex + 'PricePerUnits';
-  try { document.getElementById(spanToHighlightId).className = 'itemPricePerUnits highlightedPricePerUnits';
-} catch (err) { /* getElementById will be null if there is no unit prices to highlight, so errors are expected here. There's no need to do anything in resposne to the error. */ }
+  try { allDataObject.allItemPricePerUnitsSpans[lowestPpuObject.lowestIndex].className = 'itemPricePerUnits highlightedPricePerUnits';
+  } catch (err) { /* getElementById will be null if there is no unit prices to highlight, so errors are expected here. There's no need to do anything in resposne to the error. */ }
 }
 
 function clearAll() {
@@ -90,7 +94,9 @@ function clearAll() {
 }
 
 function storeSecondRowHeight() {
-  secondRowInitialHeight = document.getElementById('item1SecondRowDiv').clientHeight + 'px';
+  var nodeList = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of the current Class.
+  nodeList = Array.prototype.slice.call(nodeList); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+  secondRowInitialHeight = nodeList[0].clientHeight + 'px';
 }
 
 function expandCollapseSecondRow() {
