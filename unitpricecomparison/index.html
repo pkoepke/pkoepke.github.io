@@ -27,8 +27,9 @@
     <div id="everythingDiv" class="everythingDiv" >
       <h3><img class="unitPriceComparisonIcon" src="./unitPriceComparisonIcon.png">
         Unit Price Comparison
-        <span class="buttonsSpan"><button id="expandCollapseButton" class="expandCollapseButton" onclick="expandCollapseSecondRow()" ><img id="expandCollapseArrow" class="expandCollapseArrow" src="./Pfeil_unten.svg"></button>
+        <span class="buttonsSpan"><button class="expandCollapseButton" onclick="expandCollapseSecondRow()" ><img id="expandCollapseArrow" class="expandCollapseArrow" src="./Pfeil_unten.svg"></button>
         <button id="clearAllButton" class="clearAllButton" onclick="clearAll()" ><img class="multiplicationSign" src="./Multiplication_Sign.svg"></button></span></h3>
+      <div class="allCardsDiv">
       <div class="itemCard" >
         <div class="itemFirstRowDiv" >
           <span class="itemLabel">Item 1</span>
@@ -37,7 +38,7 @@
           <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
         </div>
         <div class="itemSecondRowDiv" >
-          <input type="text" class="itemName" placeholder="Name" >
+          <input type="text" class="itemName" placeholder="Item name" >
           <input type="number" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
           <input type="text" class="unitsName" placeholder="Unit name">
         </div>
@@ -50,7 +51,7 @@
           <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
         </div>
         <div class="itemSecondRowDiv" id="item2SecondRowDiv">
-          <input type="text" class="itemName" placeholder="Item 2 name">
+          <input type="text" class="itemName" placeholder="Item name">
           <input type="number" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
           <input type="text" class="unitsName" placeholder="Unit name">
         </div>
@@ -63,7 +64,7 @@
           <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
         </div>
         <div class="itemSecondRowDiv" id="item3SecondRowDiv">
-          <input type="text" class="itemName" placeholder="Item 3 name">
+          <input type="text" class="itemName" placeholder="Item name">
           <input type="number" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
           <input type="text" class="unitsName" placeholder="Unit name">
         </div>
@@ -76,63 +77,16 @@
           <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
         </div>
         <div class="itemSecondRowDiv" id="item4SecondRowDiv">
-          <input type="text" class="itemName" placeholder="Item 4 name">
+          <input type="text" class="itemName" placeholder="Item name">
           <input type="number" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
           <input type="text" class="unitsName" placeholder="Unit name">
         </div>
       </div>
-      <div class="itemCard" >
-        <div class="itemFirstRowDiv" id="item5FirstRowDiv">
-          <span class="itemLabel">Item 5</span>
-          <input type="number" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
-          <input type="number" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
-          <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
-        </div>
-        <div class="itemSecondRowDiv" id="item5SecondRowDiv">
-          <input type="text" class="itemName" placeholder="Item 5 name">
-          <input type="number" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
-          <input type="text" class="unitsName" placeholder="Unit name">
-        </div>
       </div>
-      <div class="itemCard" >
-        <div class="itemFirstRowDiv" id="item6FirstRowDiv">
-          <span class="itemLabel">Item 6</span>
-          <input type="number" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
-          <input type="number" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
-          <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
-        </div>
-        <div class="itemSecondRowDiv" id="item6SecondRowDiv">
-          <input type="text" class="itemName" placeholder="Item 6 name">
-          <input type="number" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
-          <input type="text" class="unitsName" placeholder="Unit name">
-        </div>
-      </div>
-      <div class="itemCard" >
-        <div class="itemFirstRowDiv" id="item7FirstRowDiv">
-          <span class="itemLabel">Item 7</span>
-          <input type="number" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
-          <input type="number" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
-          <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
-        </div>
-        <div class="itemSecondRowDiv" id="item7SecondRowDiv">
-          <input type="text" class="itemName" placeholder="Item 7 name">
-          <input type="number" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
-          <input type="text" class="unitsName" placeholder="Unit name">
-        </div>
-      </div>
-      <div class="itemCard" >
-        <div class="itemFirstRowDiv" id="item8FirstRowDiv">
-          <span class="itemLabel">Item 8</span>
-          <input type="number" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
-          <input type="number" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
-          <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
-        </div>
-        <div class="itemSecondRowDiv" id="item8SecondRowDiv">
-          <input type="text" class="itemName" placeholder="Item 8 name">
-          <input type="number" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">
-          <input type="text" class="unitsName" placeholder="Unit name">
-        </div>
-      </div>
+      <span class="buttonsSpan">
+        <button class="addCardButton" onclick="addCard()" ><img class="addRowImg" src="./plus_sign.svg"></button>
+        <button class="removeCardButton" onclick="removeCard()" ><img class="removeRowImg" src="./Minus_symbol.svg"></button>
+      </span>
     </div> <!-- end everythingDiv -->
   </body>
 </html>

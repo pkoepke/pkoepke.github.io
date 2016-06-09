@@ -102,7 +102,6 @@ function storeSecondRowHeight() {
 function expandCollapseSecondRow() {
   var allSecondRows = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of this Class.
   allSecondRows = Array.prototype.slice.call(allSecondRows); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
-
   if (allSecondRows[0].style.height == '0px') { // display all if first is currently hidden
     allSecondRows.forEach( function(currentNode) {
       currentNode.style.height = secondRowInitialHeight;
@@ -143,7 +142,7 @@ function hideUnhideSecondRowChildren(currentNode) {
     allChildElements = Array.prototype.slice.call(allChildElements);
     allChildElements.forEach( function(currentChildElement) {
       if(currentChildElement.nodeType == 1) {
-        if(currentChildElement.style.display = 'none') {
+        if(currentChildElement.style.display == 'none') {
           currentChildElement.style.display = 'initial';
         } else {
           currentChildElement.style.display = 'none';
@@ -151,6 +150,40 @@ function hideUnhideSecondRowChildren(currentNode) {
       }
     });
   }, transitionDelayInMiliSeconds);
+}
+
+function addCard() {
+  var currentNumberOfCards = document.getElementsByClassName('itemCard').length + 1;
+  var cardHtml = '<div class="itemCard" >\n    <div class="itemFirstRowDiv" >\n      <span class="itemLabel">Item ' + currentNumberOfCards + '</span>\n      <input type="number" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">\n      <input type="number" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">\n      <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>\n    </div>\n    <div class="itemSecondRowDiv" >\n      <input type="text" class="itemName" placeholder="Name" >\n      <input type="number" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">\n      <input type="text" class="unitsName" placeholder="Unit name">\n    </div>\n  </div>';
+  var allCardsDiv = document.getElementsByClassName('allCardsDiv')[0];
+  //allCardsDiv.innerHTML += cardHtml;
+  var newDiv = document.createElement('div'); // create a new div HtmlElement.
+  newDiv.innerHTML = cardHtml; // add desired HTML within the new div.
+  var newDiv = newDiv.firstChild; // wipe out the unwanted exterior div, firstChild is the HTML we want.
+  var allSecondRows = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of this Class. Here we're just using this to check whether the cards are expanded or collapsed by checking the first card.
+  allSecondRows = Array.prototype.slice.call(allSecondRows); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+  var currentNode = newDiv;
+  if (allSecondRows[0].style.height == '0px') { // hide second row of new itemCard if other second rows are hidden, otherwise do nothing (so no else block)
+    var itemSecondRowDiv = newDiv.childNodes[3];
+    itemSecondRowDiv.style.height = '0px';
+    var allChildElements = itemSecondRowDiv.childNodes; // hide fields in second row.
+    allChildElements = Array.prototype.slice.call(allChildElements);
+    allChildElements.forEach( function(currentChildElement) {
+      if(currentChildElement.nodeType == 1) { // possible race condition here - if the setTimeout timer is shorter than the card animation time, the card won't be fully extended when this height check fires and this check will fail.
+        currentChildElement.style.display = 'none';
+      }
+    });
+  }
+  allCardsDiv.appendChild(newDiv); // since we created a <div> then added the itemCard HTML within it, we need to add only the div's first child element which is the itemCard div.
+}
+
+function removeCard() {
+  var allCardDivs = document.getElementsByClassName('itemCard');
+  if (allCardDivs.length > 2) { // only remove the card if there are more than 2 cards remaining.
+    var cardDivToRemove = allCardDivs[allCardDivs.length -1];
+    cardDivToRemove.parentNode.removeChild(cardDivToRemove);
+  }
+  doAllCalculations();
 }
 
 function addIosStyles() {
