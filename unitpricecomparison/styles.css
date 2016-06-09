@@ -28,11 +28,10 @@ h3 {
   vertical-align: bottom;
 }
 
-.multiplicationSign, .expandCollapseArrow, {
-  height: 1em;
+.multiplicationSign, .expandCollapseArrow {
+  height: 4rem;
   vertical-align: -15%;
   padding: 1px;
-  width: 0.7em;
 }
 
 .addRowImg, .removeRowImg {
