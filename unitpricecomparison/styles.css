@@ -37,7 +37,7 @@ h3 {
 .addRowImg, .removeRowImg {
   padding: 1px;
   width: 0.7em;
-  vertical-align: 9%;
+  vertical-align: 0%;
 }
 
 .removeCardButton {
