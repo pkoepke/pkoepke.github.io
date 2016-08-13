@@ -35,6 +35,7 @@ h3 {
 
 .expandCollapseArrow {
   transition: 0.5s;
+  will-change: transition;
 }
 
 
@@ -73,6 +74,7 @@ button {
 .itemSecondRowDiv {
   text-align: center;
   transition: 0.5s;
+  will-change: transition;
 }
 
 :placeholder-shown, input, button, .itemPricePerUnits {
@@ -98,6 +100,7 @@ input {
 .itemPricePerUnits {
   display: inline-block;
   transition: 0.5s;
+  will-change: transition;
 }
 
 .highlightedPricePerUnits {
