@@ -34,7 +34,7 @@ h3 {
 }
 
 .expandCollapseArrow {
-  transition: 0.5s;
+  transition: 2s;
   will-change: transition;
 }
 
@@ -73,7 +73,7 @@ button {
 
 .itemSecondRowDiv {
   text-align: center;
-  transition: 0.5s;
+  transition: 2s;
   will-change: transition;
 }
 
@@ -99,7 +99,7 @@ input {
 
 .itemPricePerUnits {
   display: inline-block;
-  transition: 0.5s;
+  transition: 2s;
   will-change: transition;
 }
 
