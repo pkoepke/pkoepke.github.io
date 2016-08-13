@@ -22,6 +22,11 @@ h3 {
   vertical-align: top;
 }
 
+.transition {
+  transition: 0.5s;
+  /*will-change: transition;*/
+}
+
 .unitPriceComparisonIcon {
   height: 1.5em;
   vertical-align: bottom;
@@ -32,12 +37,6 @@ h3 {
   vertical-align: -15%;
   padding: 1px;
 }
-
-.expandCollapseArrow {
-  transition: 2s;
-  will-change: transition;
-}
-
 
 .addRowImg, .removeRowImg {
   padding: 1px;
@@ -71,12 +70,6 @@ button {
   text-align: center;
 }
 
-.itemSecondRowDiv {
-  text-align: center;
-  transition: 2s;
-  will-change: transition;
-}
-
 :placeholder-shown, input, button, .itemPricePerUnits {
   font-size: 3rem;
   text-align: center;
@@ -99,8 +92,6 @@ input {
 
 .itemPricePerUnits {
   display: inline-block;
-  transition: 2s;
-  will-change: transition;
 }
 
 .highlightedPricePerUnits {

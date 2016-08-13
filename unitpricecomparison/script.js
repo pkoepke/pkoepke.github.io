@@ -2,8 +2,9 @@ window.addEventListener('load', storeSecondRowHeight, false); // store the initi
 window.addEventListener('load', expandCollapseSecondRow, false); // initially the second row is shown, but it should be immediately hidden
 window.addEventListener('load', addIosStyles, false);
 window.addEventListener('load', addDesktopStyles, false);
+window.addEventListener('load', addTransitionSyles, false);
 
-var transitionDelayInSeconds = 0.5;
+var transitionDelayInSeconds = 2;
 var transitionDelayInMiliSeconds = transitionDelayInSeconds * 1000;
 var secondRowInitialHeight = '81px'; // just throwing in a default height, this should be overwritten when the page loads by storeSecondRowHeight().
 
@@ -26,7 +27,7 @@ function doAllCalculations() {
 
 function getAllPriceUnitQuantity(allDataObject, currentField) {
   var nodeList = document.getElementsByClassName(currentField); // create NodeList object of all nodes of the current Class.
-  nodeList = Array.prototype.slice.call(nodeList); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+  nodeList = convertNodeListToArray(nodeList);
   nodeList.forEach( function(currentNode, index) {
     if(currentNode.value === '' || Number.isNaN(currentNode.value)) { // if the value of the current item is blank or NaN
       allDataObject[currentField][index] = NaN;
@@ -57,14 +58,14 @@ function calculateAllPricesPerUnit(allDataObject) {
 
 function displayAllPricesPerUnit(allDataObject) {
   var nodeList = document.getElementsByClassName('itemPricePerUnits'); // create NodeList object of all nodes of this Class.
-  nodeList = Array.prototype.slice.call(nodeList); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+  nodeList = convertNodeListToArray(nodeList);
   nodeList.forEach( function (currentNode, index) {
     if(isNaN(allDataObject.pricePerUnit[index])) { // if the current pricePerUnit is NaN, revert the span to the starting HTML.
       currentNode.innerHTML = '$/unit';
-      currentNode.className = 'itemPricePerUnits itemPricePerUnitsPlaceholder';
+      currentNode.className = 'itemPricePerUnits itemPricePerUnitsPlaceholder transition';
     } else {
       currentNode.innerHTML = '$' + Math.round(allDataObject.pricePerUnit[index] * 1000) / 1000;
-      currentNode.className = 'itemPricePerUnits';
+      currentNode.className = 'itemPricePerUnits transition';
     }
   });
 }
@@ -80,28 +81,32 @@ function highlightLowestPricePerUnit(allDataObject) {
       lowestPpuObject.lowestIndex = index;
     }
   });
-  try { allDataObject.allItemPricePerUnitsSpans[lowestPpuObject.lowestIndex].className = 'itemPricePerUnits highlightedPricePerUnits';
+  try { allDataObject.allItemPricePerUnitsSpans[lowestPpuObject.lowestIndex].className = 'itemPricePerUnits highlightedPricePerUnits transition';
   } catch (err) { /* getElementById will be null if there is no unit prices to highlight, so errors are expected here. There's no need to do anything in resposne to the error. */ }
 }
 
 function clearAll() {
   var allInputs = document.getElementsByTagName('input');
-  allInputs = Array.prototype.slice.call(allInputs); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+  allInputs = convertNodeListToArray(allInputs);
   allInputs.forEach(function(currentNode) {
     currentNode.value = '';
   });
   doAllCalculations(); // Resets all of the unit price fields.
 }
 
+function convertNodeListToArray(nodeListToConvert) {
+  return nodeListToConvert = Array.prototype.slice.call(nodeListToConvert); // convert NodeList to an Array for easier functional iterating - NodeList doesn't have forEach but arrays do. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+}
+
 function storeSecondRowHeight() {
   var nodeList = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of the current Class.
-  nodeList = Array.prototype.slice.call(nodeList); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+  nodeList = convertNodeListToArray(nodeList);
   secondRowInitialHeight = nodeList[0].clientHeight + 'px';
 }
 
 function expandCollapseSecondRow() {
   var allSecondRows = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of this Class.
-  allSecondRows = Array.prototype.slice.call(allSecondRows); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+  allSecondRows = convertNodeListToArray(allSecondRows);
   if (allSecondRows[0].style.height == '0px') { // display all if first is currently hidden
     allSecondRows.forEach( function(currentNode) {
       currentNode.style.height = secondRowInitialHeight;
@@ -161,7 +166,7 @@ function addCard() {
   newDiv.innerHTML = cardHtml; // add desired HTML within the new div.
   var newDiv = newDiv.firstChild; // wipe out the unwanted exterior div, firstChild is the HTML we want.
   var allSecondRows = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of this Class. Here we're just using this to check whether the cards are expanded or collapsed by checking the first card.
-  allSecondRows = Array.prototype.slice.call(allSecondRows); // convert NodeList to an Array for easier functional iterating. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+  allSecondRows = convertNodeListToArray(allSecondRows);
   var currentNode = newDiv;
   if (allSecondRows[0].style.height == '0px') { // hide second row of new itemCard if other second rows are hidden, otherwise do nothing (so no else block)
     var itemSecondRowDiv = newDiv.childNodes[3];
@@ -184,6 +189,17 @@ function removeCard() {
     cardDivToRemove.parentNode.removeChild(cardDivToRemove);
   }
   doAllCalculations();
+}
+
+function addTransitionSyles() {
+  var classesToReceiveStyle = ['itemPricePerUnits','expandCollapseArrow','itemSecondRowDiv']
+  classesToReceiveStyle.forEach( function(currentClass) {
+    var elementsToReceiveStyle = document.getElementsByClassName(currentClass);
+    elementsToReceiveStyle = convertNodeListToArray(elementsToReceiveStyle);
+    elementsToReceiveStyle.forEach( function(currentElement) {
+      currentElement.className += ' transition';
+    });
+  });
 }
 
 function addIosStyles() {
