@@ -23,8 +23,13 @@ h3 {
 }
 
 .transition {
-  transition: 0.5s;
+  transition: 1s;
   /*will-change: transition;*/
+}
+
+.hideUnhideDelay {
+  transition-delay: 1s;
+  transition-duration: 0s;
 }
 
 .unitPriceComparisonIcon {
