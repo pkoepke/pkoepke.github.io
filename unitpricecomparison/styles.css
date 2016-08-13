@@ -1,6 +1,5 @@
 html * { /* Hack to disable Chrome font boosting. Breaks small screen emulation in desktop Chrome. */
   max-height:1000000px;
-  transition: 0.5s;
 }
 
 body {
@@ -34,6 +33,11 @@ h3 {
   padding: 1px;
 }
 
+.expandCollapseArrow {
+  transition: 0.5s;
+}
+
+
 .addRowImg, .removeRowImg {
   padding: 1px;
   width: 0.7em;
@@ -66,6 +70,11 @@ button {
   text-align: center;
 }
 
+.itemSecondRowDiv {
+  text-align: center;
+  transition: 0.5s;
+}
+
 :placeholder-shown, input, button, .itemPricePerUnits {
   font-size: 3rem;
   text-align: center;
@@ -88,6 +97,7 @@ input {
 
 .itemPricePerUnits {
   display: inline-block;
+  transition: 0.5s;
 }
 
 .highlightedPricePerUnits {
