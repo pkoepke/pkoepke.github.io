@@ -4,7 +4,7 @@ window.addEventListener('load', addIosStyles, false);
 window.addEventListener('load', addDesktopStyles, false);
 window.addEventListener('load', addTransitionSyles, false);
 
-var transitionDelayInSeconds = 1;
+var transitionDelayInSeconds = 0.5;
 var transitionDelayInMiliSeconds = transitionDelayInSeconds * 1000;
 var secondRowInitialHeight = '81px'; // just throwing in a default height, this should be overwritten when the page loads by storeSecondRowHeight().
 
@@ -138,23 +138,6 @@ function expandCollapseSecondRow() {
     //document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_unten.svg">';
     document.getElementById('expandCollapseArrow').style.transform = 'rotate(0deg)';
   }
-}
-
-function hideUnhideSecondRowChildren(currentNode) {
-  // show all child nodes after height transition
-  setTimeout( function() {
-    var allChildElements = currentNode.childNodes;
-    allChildElements = Array.prototype.slice.call(allChildElements);
-    allChildElements.forEach( function(currentChildElement) {
-      if(currentChildElement.nodeType == 1) {
-        if(currentChildElement.style.display == 'none') {
-          currentChildElement.style.display = 'initial';
-        } else {
-          currentChildElement.style.display = 'none';
-        }
-      }
-    });
-  }, transitionDelayInMiliSeconds);
 }
 
 function addCard() {

@@ -13,9 +13,9 @@ button {
   min-width: 4rem;
 }
 
-.multiplicationSign, .expandCollapseArrow {
+.multiplicationSign, .expandCollapseArrow, .addRowImg, .removeRowImg {
   height: 2rem;
-  vertical-align: 15%;
+  vertical-align: 10%;
 }
 
 
