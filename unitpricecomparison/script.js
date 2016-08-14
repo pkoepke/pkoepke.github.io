@@ -4,7 +4,7 @@ window.addEventListener('load', addIosStyles, false);
 window.addEventListener('load', addDesktopStyles, false);
 window.addEventListener('load', addTransitionSyles, false);
 
-var transitionDelayInSeconds = 1;
+var transitionDelayInSeconds = 0.5;
 var transitionDelayInMiliSeconds = transitionDelayInSeconds * 1000;
 var secondRowInitialHeight = '81px'; // just throwing in a default height, this should be overwritten when the page loads by storeSecondRowHeight().
 
