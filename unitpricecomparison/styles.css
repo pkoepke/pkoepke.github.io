@@ -1,5 +1,7 @@
 html * { /* Hack to disable Chrome font boosting. Breaks small screen emulation in desktop Chrome. */
   max-height:1000000px;
+  transition: 1s;
+  transition-property: linear;
 }
 
 body {
@@ -22,10 +24,10 @@ h3 {
   vertical-align: top;
 }
 
-.transition {
+/*.transition {
   transition: height 1s;
-  /*will-change: transition;*/
-}
+  will-change: transition;
+}*/
 
 .unitPriceComparisonIcon {
   height: 1.5em;
