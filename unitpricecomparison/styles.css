@@ -23,7 +23,7 @@ h3 {
 }
 
 .transition {
-  transition: height 0.5s;
+  transition: height 1s;
   /*will-change: transition;*/
 }
 
