@@ -4,7 +4,7 @@ window.addEventListener('load', addIosStyles, false);
 window.addEventListener('load', addDesktopStyles, false);
 window.addEventListener('load', addTransitionSyles, false);
 
-var transitionDelayInSeconds = 0.5;
+var transitionDelayInSeconds = 0.25;
 var transitionDelayInMiliSeconds = transitionDelayInSeconds * 1000;
 var secondRowInitialHeight = '81px'; // just throwing in a default height, this should be overwritten when the page loads by storeSecondRowHeight().
 
@@ -117,6 +117,9 @@ function expandCollapseSecondRow() {
         allChildElements.forEach( function(currentChildElement) {
           if(currentChildElement.nodeType == 1 && currentNode.style.height == secondRowInitialHeight) { // possible race condition here - if the setTimeout timer is shorter than the card animation time, the card won't be fully extended when this height check fires and this check will fail.
             currentChildElement.style.display = 'initial';
+            setTimeout( function() {
+              //currentChildElement.style.opacity = 1;
+            }, transitionDelayInMiliSeconds);
           }
         });
       }, transitionDelayInMiliSeconds);
@@ -130,7 +133,10 @@ function expandCollapseSecondRow() {
       allChildElements = Array.prototype.slice.call(allChildElements);
       allChildElements.forEach( function(currentChildElement) {
         if(currentChildElement.nodeType == 1) {
-          currentChildElement.style.display = 'none';
+          //currentChildElement.style.opacity = 0;
+          //setTimeout( function() {
+            currentChildElement.style.display = 'none';
+          //}, transitionDelayInMiliSeconds);
         }
       });
       currentNode.style.height = '0px'; // sets height to zero. Triggers CSS transition to animate transition.
