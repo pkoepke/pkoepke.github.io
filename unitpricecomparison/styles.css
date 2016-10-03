@@ -21,7 +21,7 @@ h3 {
   background-color: #003FD1;
   color: #FFFFFF;
   font-weight: normal;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 /*.transition {
@@ -31,12 +31,12 @@ h3 {
 
 .unitPriceComparisonIcon {
   height: 1.9rem;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .multiplicationSign, .expandCollapseArrow, .addRowImg, .removeRowImg {
   height: 1rem;
-  vertical-align: top;
+  vertical-align: middle;
   padding: 1px;
 }
 
@@ -51,6 +51,7 @@ button {
 
 .buttonsSpan {
   float:right;
+  vertical-align: middle;
 }
 
 .itemCard {
