@@ -1,5 +1,6 @@
 window.addEventListener('load', storeSecondRowHeight, false); // store the initial heights of the second row in px because CSS animations don't work with auto heights. Apparently this includes 'initial' heights?
 window.addEventListener('load', expandCollapseSecondRow, false); // initially the second row is shown, but it should be immediately hidden
+window.addEventListener('load', addStyles, false);
 window.addEventListener('load', addIosStyles, false);
 window.addEventListener('load', addDesktopStyles, false);
 window.addEventListener('load', addTransitionSyles, false);
@@ -189,6 +190,10 @@ function addTransitionSyles() {
       currentElement.className += ' transition';
     });
   });
+}
+
+function addStyles() {
+  document.head.innerHTML += '<link id="styles" rel="stylesheet" type="text/css" href="styles.css">';
 }
 
 function addIosStyles() {
