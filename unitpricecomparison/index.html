@@ -90,4 +90,113 @@
       </span>
     </div> <!-- end everythingDiv -->
   </body>
+  <style>
+  html * { /* Hack to disable Chrome font boosting. Breaks small screen emulation in desktop Chrome. */
+    max-height:1000000px;
+    transition: 0.5s;
+    transition-timing-function: linear;
+  }
+
+  body {
+    font-family: "open sans", Verdana, arial, sans-serif;
+    background-color: #F0F0F0;
+    /*max-width: 70rem;*/
+    margin: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: nowrap;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    padding: 0.4rem;
+    margin: 0px;
+    background-color: #003FD1;
+    color: #FFFFFF;
+    font-weight: normal;
+    /*vertical-align: middle;*/
+  }
+
+  /*.transition {
+    transition: height 1s;
+    will-change: transition;
+  }*/
+
+  .unitPriceComparisonIcon {
+    height: 1.9rem;
+    /*vertical-align: middle;*/
+  }
+
+  .multiplicationSign, .expandCollapseArrow, .addRowImg, .removeRowImg {
+    height: 1rem;
+    /*vertical-align: middle;*/
+    padding: 1px;
+  }
+
+  .removeCardButton {
+    margin-right: 1rem;
+  }
+
+  button {
+    height: 1.5rem;
+    min-width: 1rem;
+  }
+
+  .buttonsSpan {
+    float:right;
+    /*vertical-align: middle;*/
+  }
+
+  .itemCard {
+    box-shadow: 0px 0px 10px #000000;
+    margin: 0.6rem;
+    background-color: #FFFFFF;
+    padding: 0.1rem;
+  }
+
+  .itemFirstRowDiv, .itemSecondRowDiv {
+    text-align: center;
+  }
+
+  :placeholder-shown, input, button, .itemPricePerUnits {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  input, .itemPricePerUnits, .itemLabel {
+    width: 25%;
+    margin: 0.3rem;
+  }
+
+  .itemLabel {
+    font-size: 1rem;
+  }
+
+  input {
+    border-width: 0px;
+    border-bottom: 2px solid;
+    border-color: #7C7C7C;
+  }
+
+  .itemPricePerUnits {
+    display: inline-block;
+  }
+
+  .highlightedPricePerUnits {
+    background-color: #1ECF7A;
+  }
+
+  .itemPricePerUnitsPlaceholder {
+    color: #A9A9A9; /* Should be the same color as the default placeholder color. */
+  }
+
+  .itemName, .quantity, .unitsName {
+    width: 29%;
+  }
+
+  .hidden {
+  	height: 0px;
+  }
+
+  </style>
 </html>
