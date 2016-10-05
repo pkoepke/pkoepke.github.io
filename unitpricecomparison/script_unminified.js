@@ -7,7 +7,21 @@ var transitionDelayInSeconds = 0.25;
 var transitionDelayInMiliSeconds = transitionDelayInSeconds * 1000;
 var secondRowInitialHeight = '81px'; // just throwing in a default height, this should be overwritten when the page loads by storeSecondRowHeight().
 
+function addStyles() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  if( userAgent.indexOf('iPad') > -1 || userAgent.indexOf('iPhone') > -1 || userAgent.indexOf('iPod') > -1 ) {
+    //document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./iosStyles_unminified.css">'; // // for using multiple files instead of inlining styles and JS.
+    document.getElementById('stylesTag').innerHTML += 'h3 {font-size: 3rem;} button {height: 1em; min-width: 0; max-width 2em; vertical-align: 15%;} .itemLabel, .price, .units, .itemPricePerUnits, .itemName, .quantity, .unitsName {width: 22%;}'; // for minified and inlined version
+  } else if (!detectBobileBrowsers()) {
+    //document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./desktopStyles_unminified.css">'; // for using multiple files instead of inlining styles and JS.
+    document.getElementById('stylesTag').innerHTML += 'body {max-width: 960px; margin-left: auto; margin-right: auto;} h3 {font-size: 2rem;} button {height: 3rem; min-width: 4rem;} .multiplicationSign, .expandCollapseArrow, .addRowImg, .removeRowImg {height: 2rem; vertical-align: 10%;} .itemLabel, .price, .units, .itemPricePerUnits, .itemName, .quantity, .unitsName {font-size: 1.5rem;}'; // for minified and inlined version.
+  }
+}
+
 function doAllCalculations() {
+  // When a calculation is triggered, this function starts the whole process and walks through each necessary function.
+  // To avoid global state, every calculation instance gets an object that holds all of its data - inputs from the web page and results of each function's calculation. When the calculation is complete the outputs are written to the page and the object (and all of its data) becomes inaccessible once the function returns. Each new calculation gets its own data directly from the page so there's no chance of new calculations interfering with old.
+  // It might be more 'functional' if each function returned a new object, which was then passed to the next function without modifying the original object, as the allDataObject currently acts as pseudo-global state. But using the same object is simple and sufficient since each function can't proceed until the previous one returns.
   var allDataObject = {
     price: [],
     units: [],
@@ -97,7 +111,7 @@ function convertNodeListToArray(nodeListToConvert) {
   return nodeListToConvert = Array.prototype.slice.call(nodeListToConvert); // convert NodeList to an Array for easier functional iterating - NodeList doesn't have forEach but arrays do. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
 }
 
-function storeSecondRowHeight() {
+function storeSecondRowHeight() { // runs at window.onload, stores the height of the second row. Allows CSS transitions to work since 'auto' height is not allowed for transitions.
   var nodeList = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of the current Class.
   nodeList = convertNodeListToArray(nodeList);
   secondRowInitialHeight = nodeList[0].clientHeight + 'px';
@@ -106,7 +120,7 @@ function storeSecondRowHeight() {
 function expandCollapseSecondRow() {
   var allSecondRows = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of this Class.
   allSecondRows = convertNodeListToArray(allSecondRows);
-  if (allSecondRows[0].style.height == '0px') { // display all if first is currently hidden
+  if (allSecondRows[0].style.height == '0px') { // expand all if first is currently collapsed
     allSecondRows.forEach( function(currentNode) {
       currentNode.style.height = secondRowInitialHeight;
       // show all child nodes after height transition
@@ -117,31 +131,29 @@ function expandCollapseSecondRow() {
           if(currentChildElement.nodeType == 1 && currentNode.style.height == secondRowInitialHeight) { // possible race condition here - if the setTimeout timer is shorter than the card animation time, the card won't be fully extended when this height check fires and this check will fail.
             currentChildElement.style.display = 'initial';
             setTimeout( function() {
-              //currentChildElement.style.opacity = 1;
+              currentChildElement.style.opacity = 1;
             }, transitionDelayInMiliSeconds);
           }
         });
       }, transitionDelayInMiliSeconds);
   });
-  //document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_oben.svg">';
-  document.getElementById('expandCollapseArrow').style.transform = 'rotate(180deg)';
-  } else { // otherwise hide all and rename the button.
+  document.getElementById('expandCollapseArrow').style.transform = 'rotate(180deg)'; // rotate the arrow button
+} else { // otherwise collapse all
     allSecondRows.forEach( function(currentNode) {
       // hide all child nodes before setting height to zero
       var allChildElements = currentNode.childNodes;
       allChildElements = Array.prototype.slice.call(allChildElements);
       allChildElements.forEach( function(currentChildElement) {
         if(currentChildElement.nodeType == 1) {
-          //currentChildElement.style.opacity = 0;
-          //setTimeout( function() {
+          currentChildElement.style.opacity = 0;
+          setTimeout( function() {
             currentChildElement.style.display = 'none';
-          //}, transitionDelayInMiliSeconds);
+            currentNode.style.height = '0px'; // sets height to zero. Triggers CSS transition to animate transition.
+          }, transitionDelayInMiliSeconds);
         }
       });
-      currentNode.style.height = '0px'; // sets height to zero. Triggers CSS transition to animate transition.
     });
-    //document.getElementById('expandCollapseButton').innerHTML = '<img class="expandCollapseArrow" src="./Pfeil_unten.svg">';
-    document.getElementById('expandCollapseArrow').style.transform = 'rotate(0deg)';
+    document.getElementById('expandCollapseArrow').style.transform = 'rotate(0deg)'; // rotate the arrow button
   }
 }
 
@@ -179,8 +191,8 @@ function removeCard() {
   doAllCalculations();
 }
 
-function addTransitionSyles() {
-  var classesToReceiveStyle = ['itemPricePerUnits','expandCollapseArrow','itemSecondRowDiv']
+function addTransitionSyles() { // adds transition class only to elements that should have CSS transitions
+  var classesToReceiveStyle = ['itemPricePerUnits','expandCollapseArrow', 'itemName', 'quantity', 'unitsName' ,'itemSecondRowDiv']
   classesToReceiveStyle.forEach( function(currentClass) {
     var elementsToReceiveStyle = document.getElementsByClassName(currentClass);
     elementsToReceiveStyle = convertNodeListToArray(elementsToReceiveStyle);
@@ -188,17 +200,6 @@ function addTransitionSyles() {
       currentElement.className += ' transition';
     });
   });
-}
-
-function addStyles() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-  if( userAgent.indexOf('iPad') > -1 || userAgent.indexOf('iPhone') > -1 || userAgent.indexOf('iPod') > -1 ) {
-    //document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./iosStyles.css">';
-    document.getElementById('stylesTag').innerHTML += 'h3 {font-size: 3rem;} button {height: 1em; min-width: 0; max-width 2em; vertical-align: 15%;} .itemLabel, .price, .units, .itemPricePerUnits, .itemName, .quantity, .unitsName {width: 22%;}';
-  } else if (!detectBobileBrowsers()) {
-    //document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./desktopStyles.css">';
-    document.getElementById('stylesTag').innerHTML += 'body {max-width: 960px; margin-left: auto; margin-right: auto;} h3 {font-size: 2rem;} button {height: 3rem; min-width: 4rem;} .multiplicationSign, .expandCollapseArrow, .addRowImg, .removeRowImg {height: 2rem; vertical-align: 10%;} .itemLabel, .price, .units, .itemPricePerUnits, .itemName, .quantity, .unitsName {font-size: 1.5rem;}';
-  }
 }
 
 // Courtesy of detectmobilebrowsers.com

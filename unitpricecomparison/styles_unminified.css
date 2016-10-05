@@ -1,13 +1,15 @@
 html * { /* Hack to disable Chrome font boosting. Breaks small screen emulation in desktop Chrome. */
   max-height:1000000px;
-  transition: 0.5s;
-  transition-timing-function: linear;
+  /*transition: 0.5s;*/
+}
+
+.transition {
+  transition: 0.25s;
 }
 
 body {
   font-family: "open sans", Verdana, arial, sans-serif;
   background-color: #F0F0F0;
-  /*max-width: 70rem;*/
   margin: 0px;
   margin-left: auto;
   margin-right: auto;
@@ -23,11 +25,6 @@ h3 {
   font-weight: normal;
   /*vertical-align: middle;*/
 }
-
-/*.transition {
-  transition: height 1s;
-  will-change: transition;
-}*/
 
 .unitPriceComparisonIcon {
   height: 1.9rem;
