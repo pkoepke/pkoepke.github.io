@@ -5,7 +5,7 @@ var fs = require('fs');
 // minify HTML
 var unminifiedHtml = fs.readFileSync('./index_unminified.html', 'utf8');
 //console.log(unminifiedHtml); // for testing only
-var minify = require('/home/paul/.npm-global/lib/node_modules/html-minifier').minify;
+var minify = require('../node_modules/html-minifier').minify;
 var minifiedHtml = minify(unminifiedHtml, {
   removeComments: true,
   removeCommentsFromCDATA: true,
@@ -18,14 +18,14 @@ minifiedHtml = minifiedHtml.replace('</html>','');
 console.log(minifiedHtml); // for testing only
 
 // minify CSS
-var CleanCSS = require('/home/paul/.npm-global/lib/node_modules/clean-css');
+var CleanCSS = require('../node_modules/clean-css');
 var unminifiedCss = fs.readFileSync('styles_unminified.css', 'utf8');
 // console.log(unminifiedCss); // for testing only
 var minifiedCss = new CleanCSS().minify(unminifiedCss).styles;
 // console.log(minifiedCss);
 
 // minify JS
-var UglifyJS = require('/home/paul/.npm-global/lib/node_modules/uglify-js');
+var UglifyJS = require('../node_modules/uglify-js');
 var minifiedJs = UglifyJS.minify('./script_unminified.js'); // reading from file built in, no need for fs.
 // console.log(minifiedJs.code); // minified output
 
