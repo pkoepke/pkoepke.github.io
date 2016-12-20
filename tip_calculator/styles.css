@@ -14,8 +14,8 @@ body {
 }
 
 h3 {
-  font-size: 3.25rem;
-  padding: 1rem;
+  font-size: 1.3rem;
+  padding: 0.4rem;
   margin: 0px;
   background-color: #003FD1;
   color: #FFFFFF;
@@ -25,7 +25,8 @@ h3 {
 
 .unitPriceComparisonIcon {
   height: 1.5em;
-  vertical-align: bottom;
+  margin-right: 0.5rem;
+  vertical-align: middle;
 }
 
 .contentCard {
@@ -33,18 +34,15 @@ h3 {
   display: block;
   height: auto;
   width: 95%;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0.6rem;
+  padding: 0.1rem;
   background-color: #FFFFFF;
-  padding: 0.5rem;
   box-shadow: 0px 0px 10px #000000;
   position: relative; /* had to do this so buttons could be positioned absolute to this div */
 }
 
 p {
-  font-size: 3rem;
+  font-size: 1.2rem;
   margin: 0.5em;
 }
 
@@ -77,45 +75,7 @@ input[type=number] {
 }
 
 input[type="button"] {
-  font-size: 3rem;
   padding: 0.6rem;
   margin-top: 0.3em;
   margin-bottom: 0.3em;
-  /*position: absolute;
-  right: 8px;
-  top: 0;*/
 }
-
-/*#tenPercentTipButton {
-  top: 4rem;
-}
-
-#fifteenPercentTipButton {
-  top: 8rem;
-}
-
-#twentyPercentTipButton {
-  top: 12rem;
-}
-
-#twentyfivePercentTipButton {
-  top: 12rem;
-  right: 6.5rem;
-}
-
-#twentyPercentRoundedUpTipButton {
-  top: 16rem;
-  width: 15rem;
-  white-space: normal;
-}
-
-#calculateTipButton {
-  top: 16rem;
-  right: 16rem;
-  width: 15rem;
-  white-space: normal;
-}
-
-#output {
-  margin-top: 7rem;
-}*/
