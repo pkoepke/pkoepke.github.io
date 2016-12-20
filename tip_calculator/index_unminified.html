@@ -10,8 +10,8 @@
     <meta name=viewport content="width=device-width, initial-scale=1">
     <title>Tip Calculator - by Paul Koepke</title>
     <link rel="icon" type="image/png" href="./tipCalculatorIcon_512x512.png">
-    <!--<link id="css" rel="stylesheet" type="text/css" href="styles_unminified.css">
-    <script src="./script_unminified.js"></script>-->
+    <link id="css" rel="stylesheet" type="text/css" href="styles_unminified.css">
+    <script src="./script_unminified.js"></script>
     <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -22,7 +22,7 @@
     </script>
   </head>
   <body>
-    <h3><img class="unitPriceComparisonIcon" src="./tipCalculatorIcon_512x512.png">Tip Calculator</h3>
+    <h3><img class="unitPriceComparisonIcon" src="./tipCalculatorIcon_512x512.svg">Tip Calculator</h3>
     <div class="contentCard" id="contentCard">
       <p class="amountAndPercent"><label for="billAmount" >Bill amount:<span id="dollarSignSpan" >$</span></label><input type="number" id="billAmount" onchange="calculatePercentWithRounding()" onkeyup="calculatePercentWithRounding()"  oncut="calculatePercentWithRounding()" onpaste="calculatePercentWithRounding()" /><span id="billAmountAfter"><br /></span></p>
       <p class="amountAndPercent"><label for="tipPercent" >Tip percent: &nbsp;</label><input type="number" id="tipPercent" value="20" onchange="calculationsWithoutRounding()" /><span id="tipPercentAfter" ><br />(Enter 20 for 20%)</span></p>
