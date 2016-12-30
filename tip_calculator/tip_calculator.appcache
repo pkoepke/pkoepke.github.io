@@ -1,11 +1,11 @@
 CACHE MANIFEST
-# last updated: Wed Dec 21 2016 16:47:11 GMT-0500 (Eastern Standard Time)
+# last updated: Fri Dec 30 2016 14:13:39 GMT-0500 (Eastern Standard Time)
 
 CACHE:
 
 index.html
-tipCalculatorIcon_512x512.png
-tipCalculatorIcon_512x512.svg
+https://cdn.rawgit.com/pkoepke/pkoepke.github.io/master/tip_calculator/tipCalculatorIcon_512x512.png
+https://cdn.rawgit.com/pkoepke/pkoepke.github.io/master/tip_calculator/tipCalculatorIcon_512x512.svg
 
 NETWORK:
 

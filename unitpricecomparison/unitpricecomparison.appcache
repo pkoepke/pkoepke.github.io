@@ -1,15 +1,15 @@
 CACHE MANIFEST
-# last updated: Wed Dec 21 2016 16:47:11 GMT-0500 (Eastern Standard Time)
+# last updated: Fri Dec 30 2016 14:13:39 GMT-0500 (Eastern Standard Time)
 
 CACHE:
 
 index.html
-Minus_symbol.svg
-Multiplication_Sign.svg
-Pfeil_unten.svg
-plus_sign.svg
-unitPriceComparisonIcon.png
-unitPriceComparisonIcon.svg
+https://cdn.rawgit.com/pkoepke/pkoepke.github.io/master/unitpricecomparison/Minus_symbol.svg
+https://cdn.rawgit.com/pkoepke/pkoepke.github.io/master/unitpricecomparison/Multiplication_Sign.svg
+https://cdn.rawgit.com/pkoepke/pkoepke.github.io/master/unitpricecomparison/Pfeil_unten.svg
+https://cdn.rawgit.com/pkoepke/pkoepke.github.io/master/unitpricecomparison/plus_sign.svg
+https://cdn.rawgit.com/pkoepke/pkoepke.github.io/master/unitpricecomparison/unitPriceComparisonIcon.png
+https://cdn.rawgit.com/pkoepke/pkoepke.github.io/master/unitpricecomparison/unitPriceComparisonIcon.svg
 
 NETWORK:
 
