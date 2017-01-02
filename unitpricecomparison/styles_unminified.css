@@ -47,7 +47,15 @@ button {
   padding: 1px;
 }
 
-.multiplicationSign, .expandCollapseArrow {
+.expandCollapseArrow {
+  position: relative;
+  top: -0.3rem;
+  transform: rotate(180deg);
+  transform-origin: 50% 70%;
+  display: inline-block;
+}
+
+.multiplicationSign {
   position: relative;
   top: -0.2rem;
 }
@@ -56,12 +64,6 @@ button {
   font-size: x-large;
   position: relative;
   top: -0.3rem;
-}
-
-.expandCollapseArrow {
-  transform: rotate(180deg);
-  transform-origin: 50% 70%;
-  display: inline-block;
 }
 
 .removeCardButton {
@@ -116,5 +118,5 @@ input {
 }
 
 .hidden {
-  height: 0px;
+	height: 0px;
 }
