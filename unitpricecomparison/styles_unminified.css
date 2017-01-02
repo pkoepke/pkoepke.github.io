@@ -31,24 +31,41 @@ h3 {
   /*vertical-align: middle;*/
 }
 
-.multiplicationSign, .expandCollapseArrow, .addRowImg, .removeRowImg {
-  height: 1rem;
-  /*vertical-align: middle;*/
-  padding: 1px;
-}
-
-.removeCardButton {
-  margin-right: 1rem;
-}
-
 button {
   height: 1.5rem;
   min-width: 1rem;
+  vertical-align: bottom;
 }
 
 .buttonsSpan {
   float:right;
   /*vertical-align: middle;*/
+}
+
+.multiplicationSign, .expandCollapseArrow, .addRowImg, .removeRowImg {
+  height: 1rem;
+  padding: 1px;
+}
+
+.multiplicationSign, .expandCollapseArrow {
+  position: relative;
+  top: -0.2rem;
+}
+
+.addRowImg, .removeRowImg {
+  font-size: x-large;
+  position: relative;
+  top: -0.3rem;
+}
+
+.expandCollapseArrow {
+  transform: rotate(180deg);
+  transform-origin: 50% 65%;
+  display: inline-block;
+}
+
+.removeCardButton {
+  margin-right: 1rem;
 }
 
 .itemCard {
