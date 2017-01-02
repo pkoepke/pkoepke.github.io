@@ -21,7 +21,7 @@ function addStyles() {
 function doAllCalculations() {
   // When a calculation is triggered, this function starts the whole process and walks through each necessary function.
   // To avoid global state, every calculation instance gets an object that holds all of its data - inputs from the web page and results of each function's calculation. When the calculation is complete the outputs are written to the page and the object (and all of its data) becomes inaccessible once the function returns. Each new calculation gets its own data directly from the page so there's no chance of new calculations interfering with old.
-  // It might be more 'functional' if each function returned a new object, which was then passed to the next function without modifying the original object, as the allDataObject currently acts as pseudo-global state. But using the same object is simple and sufficient since each function can't proceed until the previous one returns.
+  // It might be more 'functional' if each function returned a new object, which was then passed to the next function without modifying the original object, as the allDataObject currently acts as pseudo-global state. But using the same object for each function in squence is simple and sufficient since each function blocks, so the next can't proceed until the previous one returns.
   var allDataObject = {
     price: [],
     units: [],
@@ -95,7 +95,7 @@ function highlightLowestPricePerUnit(allDataObject) {
     }
   });
   try { allDataObject.allItemPricePerUnitsSpans[lowestPpuObject.lowestIndex].className = 'itemPricePerUnits highlightedPricePerUnits transition';
-  } catch (err) { /* The array item will be null if there is no unit prices to highlight, so errors are expected here. There's no need to do anything in resposne to the error. */ }
+} catch (err) { /* The array item will be null if there is no unit prices to highlight, so errors are expected here. There's no need to do anything in resposne to the error. */ }
 }
 
 function clearAll() {
@@ -112,9 +112,9 @@ function convertNodeListToArray(nodeListToConvert) {
 }
 
 function storeSecondRowHeight() { // runs at window.onload, stores the height of the second row. Allows CSS transitions to work since 'auto' height is not allowed for transitions.
-  var nodeList = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of the current Class.
-  nodeList = convertNodeListToArray(nodeList);
-  secondRowInitialHeight = nodeList[0].clientHeight + 'px';
+var nodeList = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of the current Class.
+nodeList = convertNodeListToArray(nodeList);
+secondRowInitialHeight = nodeList[0].clientHeight + 'px';
 }
 
 function expandCollapseSecondRow() {
@@ -129,32 +129,32 @@ function expandCollapseSecondRow() {
         allChildElements = Array.prototype.slice.call(allChildElements);
         allChildElements.forEach( function(currentChildElement) {
           if(currentChildElement.nodeType == 1 && currentNode.style.height == secondRowInitialHeight) { // possible race condition here - if the setTimeout timer is shorter than the card animation time, the card won't be fully extended when this height check fires and this check will fail.
-            currentChildElement.style.display = 'initial';
-            setTimeout( function() {
-              currentChildElement.style.opacity = 1;
-            }, transitionDelayInMiliSeconds);
-          }
-        });
-      }, transitionDelayInMiliSeconds);
-  });
-  document.getElementById('expandCollapseArrow').style.transform = 'rotate(180deg)'; // rotate the arrow button
-} else { // otherwise collapse all
-    allSecondRows.forEach( function(currentNode) {
-      // hide all child nodes before setting height to zero
-      var allChildElements = currentNode.childNodes;
-      allChildElements = Array.prototype.slice.call(allChildElements);
-      allChildElements.forEach( function(currentChildElement) {
-        if(currentChildElement.nodeType == 1) {
-          currentChildElement.style.opacity = 0;
+          currentChildElement.style.display = 'initial';
           setTimeout( function() {
-            currentChildElement.style.display = 'none';
-            currentNode.style.height = '0px'; // sets height to zero. Triggers CSS transition to animate transition.
+            currentChildElement.style.opacity = 1;
           }, transitionDelayInMiliSeconds);
         }
       });
+    }, transitionDelayInMiliSeconds);
+  });
+  document.getElementById('expandCollapseArrow').style.transform = 'rotate(180deg)'; // rotate the arrow button
+} else { // otherwise collapse all
+  allSecondRows.forEach( function(currentNode) {
+    // hide all child nodes before setting height to zero
+    var allChildElements = currentNode.childNodes;
+    allChildElements = Array.prototype.slice.call(allChildElements);
+    allChildElements.forEach( function(currentChildElement) {
+      if(currentChildElement.nodeType == 1) {
+        currentChildElement.style.opacity = 0;
+        setTimeout( function() {
+          currentChildElement.style.display = 'none';
+          currentNode.style.height = '0px'; // sets height to zero. Triggers CSS transition to animate transition.
+        }, transitionDelayInMiliSeconds);
+      }
     });
-    document.getElementById('expandCollapseArrow').style.transform = 'rotate(0deg)'; // rotate the arrow button
-  }
+  });
+  document.getElementById('expandCollapseArrow').style.transform = 'rotate(0deg)'; // rotate the arrow button
+}
 }
 
 function addCard() {
@@ -175,11 +175,11 @@ function addCard() {
     allChildElements = Array.prototype.slice.call(allChildElements);
     allChildElements.forEach( function(currentChildElement) {
       if(currentChildElement.nodeType == 1) { // possible race condition here - if the setTimeout timer is shorter than the card animation time, the card won't be fully extended when this height check fires and this check will fail.
-        currentChildElement.style.display = 'none';
-      }
-    });
-  }
-  allCardsDiv.appendChild(newDiv); // since we created a <div> then added the itemCard HTML within it, we need to add only the div's first child element which is the itemCard div.
+      currentChildElement.style.display = 'none';
+    }
+  });
+}
+allCardsDiv.appendChild(newDiv); // since we created a <div> then added the itemCard HTML within it, we need to add only the div's first child element which is the itemCard div.
 }
 
 function removeCard() {
