@@ -63,7 +63,7 @@ p {
   font-size:0.9em
 }
 
-.amountAndPercent {
+.noWhiteSpaceWrap {
   white-space: nowrap;
 }
 
