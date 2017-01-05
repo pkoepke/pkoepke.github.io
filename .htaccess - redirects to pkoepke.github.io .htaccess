@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^paulkoepke.com [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.paulkooepke.com [NC]
+RewriteRule ^(.*)$ https://pkoepke.github.io/$1 [L,R=301,NC]

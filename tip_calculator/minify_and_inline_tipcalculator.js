@@ -15,7 +15,7 @@ var minifiedHtml = minify(unminifiedHtml, {
   removeEmptyAttributes: true
 });
 minifiedHtml = minifiedHtml.replace('</html>','');
-console.log(minifiedHtml); // for testing only
+// console.log(minifiedHtml); // for testing only
 
 // minify CSS
 var CleanCSS = require('../node_modules/clean-css');
@@ -29,6 +29,11 @@ var UglifyJS = require('../node_modules/uglify-js');
 var minifiedJs = UglifyJS.minify('./script_unminified.js'); // reading from file built in, no need for fs.
 // console.log(minifiedJs.code); // minified output
 
+// add Google Analytics <script> tag to the very end.
+var googleAnalyticsScriptTag = fs.readFileSync('../Google Analytics script/google_analytics_script_tag.txt', 'utf8');
+console.log(googleAnalyticsScriptTag); // for testing only
+
 // string that will eventually be written to disk as index.html. Will include all HTML, CSS, and JS once it's all minified.
-var htmlCssJSComined = minifiedHtml + '<style id="stylesTag">' + minifiedCss + '</style><script>' + minifiedJs.code + '</script></html>';
+var htmlCssJSComined = minifiedHtml + '<style id="stylesTag">' + minifiedCss + '</style><script>' + minifiedJs.code + '</script>' + googleAnalyticsScriptTag + '</html>';
 fs.writeFileSync('./index.html',htmlCssJSComined);
+console.log('Minified and inlined. Done.');
