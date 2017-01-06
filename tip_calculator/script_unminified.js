@@ -39,13 +39,13 @@ function calculatePercentWithRounding() {
     var tipPercentRoundingDown = Math.round((tipAmountRoundingDown / billAmount) * 100) / 100;
 
     // output rounded up result
-    document.getElementById('output').innerHTML += tipPercent + '% rounding up is a tip of $' + tipAmountRoundingUp.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingUp)).toFixed(2) + ' which is a tip of ' + Number(tipPercentRoundingUp * 100).toFixed(2) + '%.<br /><br />';
+    document.getElementById('output').innerHTML += tipPercent + '% rounding up is a tip of $' + tipAmountRoundingUp.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingUp)).toFixed(2) + ' which is a tip of ' + Number(tipPercentRoundingUp * 100).toFixed(0) + '%.<br /><br />';
 
     // rounding down results in negative tips for bills of $1.01-$1.66, $2.01-$2.49, $3.01-$3.33, or $4.01-4.16. We'll display a warning instead of giving the negative tip amount.
     if(tipAmountRoundingDown >= 0) {
-      document.getElementById('output').innerHTML += tipPercent + '% rounding down is a tip of $' + tipAmountRoundingDown.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingDown)).toFixed(2) + ' which is a tip of ' + Number(tipPercentRoundingDown * 100).toFixed(2) + '%.';
+      document.getElementById('output').innerHTML += tipPercent + '% rounding down is a tip of $' + tipAmountRoundingDown.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingDown)).toFixed(2) + ' which is a tip of ' + Number(tipPercentRoundingDown * 100).toFixed(0) + '%.';
     } else {
-      document.getElementById('output').innerHTML += tipPercent + '% rounding down would be a negative tip ($' + tipAmountRoundingDown.toFixed(2) + ') because the bill amount is very small.';
+      document.getElementById('output').innerHTML += tipPercent + '% rounding down would be a negative or zero tip ($' + tipAmountRoundingDown.toFixed(2) + ') because the bill amount is very small.';
     }
   } else { displayOriginalOutput(); }
 }
