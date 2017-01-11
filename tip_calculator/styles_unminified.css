@@ -1,9 +1,3 @@
-* {
-  /* Hack to disable Chrome font boosting. Causes Chrome to enlarge the output unnecessarily. */
-  max-height:1000000px;
-  transition: 1s;
-}
-
 body {
   font-family: "open sans", Verdana, arial, sans-serif;
   background-color: #F0F0F0;
@@ -67,7 +61,7 @@ p {
   white-space: nowrap;
 }
 
-input[type=number] {
+input[type=number], input[type=text] {
   margin-bottom: 0.4em;
   font-size: 1em;
   width:5.2em;

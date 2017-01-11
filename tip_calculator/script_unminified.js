@@ -1,9 +1,10 @@
 /*  Flow:
-    1. Bill Amount or Tip Percent fields change. This could be user input to either field or pressing a % button. % buttons call tipPercentButtonsWithRounding().
-    2. Field change kicks off calculatePercentWithRounding().
-    3. checkInputsDisplayErrorsReturn() checks if the fields are numbers, displays error messages, and returns True (are numbers, continue calculations) or False (are not numbers, stop calculations and display the original output placeholder).
-    4. calculatePercentWithRounding() finishes the calculations and displays the outputs.
+1. Bill Amount or Tip Percent fields change. This could be user input to either field or pressing a % button. % buttons call tipPercentButtonsWithRounding().
+2. Field change kicks off calculatePercentWithRounding().
+3. checkInputsDisplayErrorsReturn() checks if the fields are numbers, displays error messages, and returns True (are numbers, continue calculations) or False (are not numbers, stop calculations and display the original output placeholder).
+4. calculatePercentWithRounding() finishes the calculations and displays the outputs.
 */
+window.addEventListener('load', displayOriginalOutput, false);
 
 // runs when the user chooses a percent button with rounding to set the Tip Percent field then run the percent calculations with rounding
 function tipPercentButtonsWithRounding(buttonPercent) {
@@ -47,7 +48,7 @@ function calculatePercentWithRounding() {
     } else {
       document.getElementById('output').innerHTML += tipPercent + '% rounding down would be a negative or zero tip ($' + tipAmountRoundingDown.toFixed(2) + ') because the bill amount is very small.';
     }
-  } else { displayOriginalOutput(); }
+  }
 }
 
 function checkInputsDisplayErrorsReturn(billAmount, tipPercent) { // Checks whether the inputs are numbers, if not displays an error in the output and returns False so computations stop.
@@ -56,12 +57,13 @@ function checkInputsDisplayErrorsReturn(billAmount, tipPercent) { // Checks whet
   if( !isANumber(billAmount) ) { // if Bill Amount is NaN or blank, set areFieldsNumbers = false and display error message.
     areFieldsNumbers = false;
     if( !isANumber(tipPercent) ) {
-      document.getElementById('output').innerHTML = 'Please enter numbers in the Bill Amount and Tip Percent field.';
+      document.getElementById('output').innerHTML = 'Please enter valid numbers in the Bill Amount and Tip Percent field.';
     } else {
-      document.getElementById('output').innerHTML = 'Please enter a number in the Bill Amount field.';
+      document.getElementById('output').innerHTML = 'Please enter a valid number in the Bill Amount field.';
     }
   } else if( !isANumber(tipPercent)) {
-    document.getElementById('output').innerHTML = 'Please enter a number in the Tip Percent field.';
+    areFieldsNumbers = false;
+    document.getElementById('output').innerHTML = 'Please enter a valid number in the Tip Percent field.';
   } else { displayOriginalOutput(); }
   return areFieldsNumbers;
 }
@@ -73,6 +75,26 @@ function isANumber(numberToCheck) {
 
 function displayOriginalOutput() {
   document.getElementById('output').innerHTML = 'Tip and total amounts:';
+}
+
+function isAllowedKey(event) { // combining several answers from http://stackoverflow.com/questions/2808184/restricting-input-to-textbox-allowing-only-numbers-and-decimal-point
+  var keyCode = event.keyCode; // grab they key code
+  var variousAllowedkeyCodes = [8, 9, 46, 35, 36, 37, 38, 39, 40, 115] // always-allowed key codes. Allowed: backspace 8, tab 9, delete 46, end 35, home 36, left arrow 37, up arrow 38, right arrow 39, down arrow 40, F5 115.
+  if (variousAllowedkeyCodes.indexOf(keyCode) != -1) { // return true if an allowed control key is pressed.
+    return true;
+  } else if ((48 <= keyCode && keyCode <= 57) || (96 <= keyCode && keyCode <= 105)) { // return true if a keyboard number or numpad key is pressed
+    return true;
+  } else if (keyCode == 110 || keyCode == 190) {
+    // return true if the period or numpad decimal is pressed, but only if there is not already a decimal in the number. If there is already a decimal, return false so only one decimal can be entered.
+    // This DOES NOT WORK for numbers with trailing decimals like '1.'' because event.target.value for a numeric input does not return trailing decimals. So we can't detect extra decimals unless there is a character after the decimal. So '1.1.' or '.3.' can be prevented, but not '1..'.
+    // Also, once two decimals make it into the field, .value completely breaks because the value is NaN. So '1..1.' is allowed because the first two decimals break .value .
+    // This could be fixed by making the input's type something else, like text, but then smartphones wouldn't present the user with a nice keypad to enter their numbers. So that's a no-go.
+    var currentValue = event.target.value;
+    if (((keyCode == 110) || (keyCode == 190)) && currentValue.indexOf('.') != -1) {
+      return false;
+    } else { return true; } // if there isn't already a decimal, return true.
+  }
+  else { return false; } // if the key wasn't caught by any of the conditions above, it isn't an allowed key. Return false.
 }
 
 // runs when the user chooses a percent button to set the Tip Percent field then run the calculations without rounding. Not used anymore, will remove from a future version.
