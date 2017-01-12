@@ -15,10 +15,15 @@ function tipPercentButtonsWithRounding(buttonPercent) {
 }
 
 // Runs all the calculations including rounding up and down. Runs when Bill Amount or Tip Percent fields change, or when tipPercentButtonsWithRounding() is called by pressing a % button.
-function calculatePercentWithRounding() {
+function calculatePercentWithRounding(event) {
   // get values from web page.
   var billAmount = document.getElementById('billAmount').value;
   var tipPercent = document.getElementById('tipPercent').value;
+
+  // Check for double decimal after a number, e.g. '1..', '22..', etc.
+  console.log('oninput="calculatePercentWithRounding(event)":"')
+  console.log(event);
+  //if (event.)
 
   // validate the the inputs are numbers. If they aren't, store False in var areFieldsNumbers so we know to stop and show an error. If they are numbers, store True in var areFieldsNumbers so the computations continue.
   var areFieldsNumbers = checkInputsDisplayErrorsReturn(billAmount, tipPercent);
@@ -78,6 +83,8 @@ function displayOriginalOutput() {
 }
 
 function isAllowedKey(event) { // combining several answers from http://stackoverflow.com/questions/2808184/restricting-input-to-textbox-allowing-only-numbers-and-decimal-point
+  console.log('onkeydown="return isAllowedKey(event)":')
+  console.log(event);
   var keyCode = event.keyCode; // grab they key code
   var variousAllowedkeyCodes = [8, 9, 46, 35, 36, 37, 38, 39, 40, 115] // always-allowed key codes. Allowed: backspace 8, tab 9, delete 46, end 35, home 36, left arrow 37, up arrow 38, right arrow 39, down arrow 40, F5 115.
   if (variousAllowedkeyCodes.indexOf(keyCode) != -1) { // return true if an allowed control key is pressed.

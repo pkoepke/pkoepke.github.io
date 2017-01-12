@@ -21,10 +21,12 @@
   <div class="card" id="card">
     <p class="amountAndPercent">
       <span class="noWhiteSpaceWrap">
-        <label for="billAmount" >Bill amount:<span id="dollarSignSpan" >$</span></label><input type="number" step=0.01 id="billAmount" onkeydown="return isAllowedKey(event)" onkeyup="calculatePercentWithRounding()" onchange="calculatePercentWithRounding()" oncut="calculatePercentWithRounding()" onpaste="calculatePercentWithRounding()" />
+        <!-- keeping old line, trying oninput <label for="billAmount" >Bill amount:<span id="dollarSignSpan" >$</span></label><input type="number" step=0.01 id="billAmount" onkeydown="return isAllowedKey(event)" onkeyup="calculatePercentWithRounding()" onchange="calculatePercentWithRounding()" oncut="calculatePercentWithRounding()" onpaste="calculatePercentWithRounding()" />-->
+        <label for="billAmount" >Bill amount:<span id="dollarSignSpan" >$</span></label><input type="number" step=0.01 id="billAmount" onkeydown="return isAllowedKey(event)" oninput="calculatePercentWithRounding(event)" />
       </span>&#8203;<!--For some reason the 2 spans don't allow wrapping on minified into a single line. Adding a zero-width space &#8203; between them fixes this in the minfied version.-->
       <span class="noWhiteSpaceWrap">
-        <label for="tipPercent" >Tip percent: &nbsp;</label><input type="number" id="tipPercent" value="20" onkeydown="return isAllowedKey(event)" onkeyup="calculatePercentWithRounding()" onchange="calculatePercentWithRounding()" oncut="calculatePercentWithRounding()" onpaste="calculatePercentWithRounding()" />
+        <!-- keeping old line, trying oninput<label for="tipPercent" >Tip percent: &nbsp;</label><input type="number" id="tipPercent" value="20" onkeydown="return isAllowedKey(event)" onkeyup="calculatePercentWithRounding()" onchange="calculatePercentWithRounding()" oncut="calculatePercentWithRounding()" onpaste="calculatePercentWithRounding()" />-->
+        <label for="tipPercent" >Tip percent: &nbsp;</label><input type="number" id="tipPercent" value="20" onkeydown="return isAllowedKey(event)" oninput="calculatePercentWithRounding(event)" />
       </span>
     </p>
     <p>
