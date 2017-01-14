@@ -5,6 +5,12 @@
 4. calculatePercentWithRounding() finishes the calculations and displays the outputs.
 */
 window.addEventListener('load', displayOriginalOutput, false);
+window.addEventListener('load', giveBillAmountFocus, false);
+
+function giveBillAmountFocus(event) {
+  console.log(event);
+  document.getElementById('billAmount').focus();
+}
 
 // runs when the user chooses a percent button with rounding to set the Tip Percent field then run the percent calculations with rounding
 function tipPercentButtonsWithRounding(buttonPercent) {
@@ -17,8 +23,20 @@ function tipPercentButtonsWithRounding(buttonPercent) {
 // Runs all the calculations including rounding up and down. Runs when Bill Amount or Tip Percent fields change, or when tipPercentButtonsWithRounding() is called by pressing a % button.
 function calculatePercentWithRounding(event) {
   // get values from web page.
-  var billAmount = document.getElementById('billAmount').value;
-  var tipPercent = document.getElementById('tipPercent').value;
+  var billAmountInputElement = document.getElementById('billAmount');
+  var tipPercentInputElement = document.getElementById('tipPercent');
+  var billAmount = billAmountInputElement.value;
+  var tipPercent = tipPercentInputElement.value;
+
+  /*if (billAmount < 0) {
+    billAmountInputElement.value = billAmount * -1;
+    billAmount = billAmountInputElement.value;
+  }
+
+  if (tipPercent < 0) {
+    tipPercentInputElement.value = tipPercent * -1;
+    tipPercent = tipPercentInputElement.value;
+  }*/
 
   // validate the the inputs are numbers. If they aren't, store False in var areFieldsNumbers so we know to stop and show an error. If they are numbers, store True in var areFieldsNumbers so the computations continue.
   var areFieldsNumbers = checkInputsDisplayErrorsReturn(billAmount, tipPercent);
@@ -85,7 +103,6 @@ function isAllowedKey(event) { // combining several answers from http://stackove
        logAllProperties(Object.getPrototypeOf(obj));
   }
   logAllProperties(event);*/
-
 
   var keyCode = event.keyCode; // grab they key code
   var variousAllowedkeyCodes = [8, 9, 46, 35, 36, 37, 38, 39, 40, 115] // always-allowed key codes. Allowed: backspace 8, tab 9, delete 46, end 35, home 36, left arrow 37, up arrow 38, right arrow 39, down arrow 40, F5 115.
