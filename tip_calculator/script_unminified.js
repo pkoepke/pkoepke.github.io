@@ -5,12 +5,11 @@
 4. calculatePercentWithRounding() finishes the calculations and displays the outputs.
 */
 
-// Add event listeners to the windows to run code when the pae loads.
+// Add event listeners to the windows to run code when the page loads.
 window.addEventListener('load', displayOriginalOutput, false);
 window.addEventListener('load', giveBillAmountFocus, false);
 
 function giveBillAmountFocus(event) {
-  console.log(event);
   document.getElementById('billAmount').focus();
 }
 
