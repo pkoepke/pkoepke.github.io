@@ -134,7 +134,7 @@ function isIos() {
 // If the OS is iOS, move the dollar sign span to make it line up better.
 function fixDollarSignSpacingOnIos() {
   if(isIos) {
-    document.getElementById('dollarSignSpan').offsetLeft  = '0.5em';
+    document.getElementById('dollarSignSpan').style.left = '0.7em';
   }
 }
 
