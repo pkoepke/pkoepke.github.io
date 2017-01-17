@@ -4,6 +4,8 @@
 3. checkInputsDisplayErrorsReturn() checks if the fields are numbers, displays error messages, and returns True (are numbers, continue calculations) or False (are not numbers, stop calculations and display the original output placeholder).
 4. calculatePercentWithRounding() finishes the calculations and displays the outputs.
 */
+
+// Add event listeners to the windows to run code when the pae loads.
 window.addEventListener('load', displayOriginalOutput, false);
 window.addEventListener('load', giveBillAmountFocus, false);
 
@@ -121,6 +123,20 @@ function isAllowedKey(event) { // combining several answers from http://stackove
     } else { return true; } // if there isn't already a decimal, return true.
   }
   else { return false; } // if the key wasn't caught by any of the conditions above, it isn't an allowed key. Return false.
+}
+
+// Determine if the operating system is iOS.
+function isIos() {
+  if( userAgent.indexOf('iPad') > -1 || userAgent.indexOf('iPhone') > -1 || userAgent.indexOf('iPod') > -1 ) {
+    return true;
+  } else return false;
+}
+
+// If the OS is iOS, move the dollar sign span to make it line up better.
+function fixDollarSignSpacingOnIos() {
+  if(isIos) {
+    document.getElementById('dollarSignSpan').offsetLeft  = '0.5em';
+  }
 }
 
 // runs when the user chooses a percent button to set the Tip Percent field then run the calculations without rounding. Not used anymore, will remove from a future version.
