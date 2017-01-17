@@ -4,6 +4,10 @@ var fs = require('fs');
 
 // minify HTML
 var unminifiedHtml = fs.readFileSync('./index_unminified.html', 'utf8');
+unminifiedHtml = unminifiedHtml.replace('<!--<html manifest="tip_calculator.appcache">-->','<html manifest="tip_calculator.appcache">') // Uncomment appcache line
+unminifiedHtml = unminifiedHtml.replace('<html>','') // Remove extra <html> tag
+unminifiedHtml = unminifiedHtml.replace('<link id="css" rel="stylesheet" type="text/css" href="styles_unminified.css">','') // Remove css since it will be inlined
+unminifiedHtml = unminifiedHtml.replace('<script src="./script_unminified.js"></script>','') // Remove script file since it will be inlined
 //console.log(unminifiedHtml); // for testing only
 var minify = require('../node_modules/html-minifier').minify;
 var minifiedHtml = minify(unminifiedHtml, {
@@ -15,6 +19,9 @@ var minifiedHtml = minify(unminifiedHtml, {
   removeEmptyAttributes: true
 });
 minifiedHtml = minifiedHtml.replace('</html>','');
+var indexOfHead = minifiedHtml.indexOf('</head>');
+var minifiedHeader = minifiedHtml.substr(0,indexOfHead);
+var minifiedBody = minifiedHtml.substr(indexOfHead);
 // console.log(minifiedHtml); // for testing only
 
 // minify CSS
@@ -31,9 +38,9 @@ var minifiedJs = UglifyJS.minify('./script_unminified.js'); // reading from file
 
 // add Google Analytics <script> tag to the very end.
 var googleAnalyticsScriptTag = fs.readFileSync('../Google Analytics script/google_analytics_script_tag.txt', 'utf8');
-console.log(googleAnalyticsScriptTag); // for testing only
+//console.log(googleAnalyticsScriptTag); // for testing only
 
 // string that will eventually be written to disk as index.html. Will include all HTML, CSS, and JS once it's all minified.
-var htmlCssJSComined = minifiedHtml + '<style id="stylesTag">' + minifiedCss + '</style><script>' + minifiedJs.code + '</script>' + googleAnalyticsScriptTag + '</html>';
+var htmlCssJSComined = minifiedHeader + '<style id="stylesTag">' + minifiedCss + '</style>' + minifiedBody + '<script>' + minifiedJs.code + '</script>' + googleAnalyticsScriptTag + '</html>';
 fs.writeFileSync('./index.html',htmlCssJSComined);
 console.log('Minified and inlined. Done.');
