@@ -22,6 +22,9 @@ var minifiedHtml = minify(unminifiedHtml, {
 });
 minifiedHtml = minifiedHtml.replace('</body>','')
 minifiedHtml = minifiedHtml.replace('</html>','');
+var indexOfHead = minifiedHtml.indexOf('</head>');
+var minifiedHeader = minifiedHtml.substr(0,indexOfHead);
+var minifiedBody = minifiedHtml.substr(indexOfHead);
 
 // Minify CSS, store in var minifiedCss.
 var CleanCSS = require('../node_modules/clean-css');
@@ -49,13 +52,12 @@ fs.writeFileSync('./temp_unminified_Js.js',unminifiedJs); // Write the temp file
 var minifiedJs = UglifyJS.minify('./temp_unminified_Js.js'); // Read JS from temp file. Reading from file is built in to UglifyJS, no need for fs.
 fs.unlinkSync('./temp_unminified_Js.js'); // Delete the temp file.
 minifiedJs = minifiedJs.code; // convert UglifyJS object to string with just the minified code.
-fs.writeFileSync('./minifiedJs_test_output.js',minifiedJs);
 
 // add Google Analytics <script> tag to the very end.
 var googleAnalyticsScriptTag = fs.readFileSync('../Google Analytics script/google_analytics_script_tag.txt', 'utf8');
 
 // String that will eventually be written to disk as index.html. Will include all HTML, CSS, and JS once it's all minified.
-var htmlCssJSComined = minifiedHtml + '<style id="stylesTag">' + minifiedCss + '</style><script>' + minifiedJs + '</script>' + googleAnalyticsScriptTag + '</body></html>';
+var htmlCssJSComined = minifiedHeader + '<style id="stylesTag">' + minifiedCss + '</style>' + minifiedBody + '<script>' + minifiedJs + '</script>' + googleAnalyticsScriptTag + '</body></html>';
 fs.writeFileSync('./index.html',htmlCssJSComined);
 
 // Automate updating appcache with current date and time.
