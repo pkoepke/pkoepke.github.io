@@ -106,7 +106,7 @@ function isAllowedKey(event) { // combining several answers from http://stackove
   logAllProperties(event);*/
 
   var keyCode = event.keyCode; // grab they key code
-  var variousAllowedkeyCodes = [8, 9, 46, 35, 36, 37, 38, 39, 40, 115] // always-allowed key codes. Allowed: backspace 8, tab 9, delete 46, end 35, home 36, left arrow 37, up arrow 38, right arrow 39, down arrow 40, F5 115.
+  var variousAllowedkeyCodes = [8, 9, 46, 35, 36, 37, 38, 39, 40, 115]; // always-allowed key codes. Allowed: backspace 8, tab 9, delete 46, end 35, home 36, left arrow 37, up arrow 38, right arrow 39, down arrow 40, F5 115.
   if (variousAllowedkeyCodes.indexOf(keyCode) != -1) { // return true if an allowed control key is pressed.
     return true;
   } else if ((48 <= keyCode && keyCode <= 57) || (96 <= keyCode && keyCode <= 105)) { // return true if a keyboard number or numpad key is pressed
@@ -128,7 +128,7 @@ function isAllowedKey(event) { // combining several answers from http://stackove
 function isIos() {
   if( userAgent.indexOf('iPad') > -1 || userAgent.indexOf('iPhone') > -1 || userAgent.indexOf('iPod') > -1 ) {
     return true;
-  } else return false;
+  } else { return false; } 
 }
 
 // If the OS is iOS, move the dollar sign span to make it line up better.

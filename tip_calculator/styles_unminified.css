@@ -8,7 +8,7 @@ body {
 }
 
 h3 {
-  fonst-size: 1.3rem;
+  font-size: 1.3rem;
   padding: 0.4rem;
   margin: 0px;
   background-color: #003FD1;
@@ -17,7 +17,7 @@ h3 {
   vertical-align: top;
 }
 
-.unitPriceComparisonIcon {
+.tipCalculatorIcon {
   height: 1.5em;
   margin-right: 0.5rem;
   vertical-align: middle;

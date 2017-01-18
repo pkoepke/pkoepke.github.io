@@ -1,5 +1,5 @@
 body {
-  max-width: 960px;
+  max-width: 60rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -9,13 +9,30 @@ h3 {
 }
 
 button {
-  height: 3rem;
-  min-width: 4rem;
+  height: 2rem;
+  min-width: 3rem;
+  position:relative;
+  top: -0.4rem;
 }
 
-.multiplicationSign, .expandCollapseArrow, .addRowImg, .removeRowImg {
-  height: 2rem;
-  vertical-align: 10%;
+.expandCollapseArrow {
+  font-size: 2rem;
+  position: relative;
+  top: -0.8rem;
+  left: -0.1rem;
+  transform-origin: center 140% 0
+}
+
+.multiplicationSign {
+  font-size: 2rem;
+  position: relative;
+  top: -0.65rem;
+}
+
+.addRowCharSpan, .removeRowCharSpan {
+  font-size: 2.4rem;
+  position: relative;
+  top: -0.5rem;
 }
 
 

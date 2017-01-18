@@ -1,6 +1,5 @@
-html * { /* Hack to disable Chrome font boosting. Breaks small screen emulation in desktop Chrome. */
-  max-height:1000000px;
-  /*transition: 0.5s;*/
+html * {
+  transition: 0.5s;
 }
 
 .transition {

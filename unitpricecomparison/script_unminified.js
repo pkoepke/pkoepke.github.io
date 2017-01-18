@@ -1,7 +1,7 @@
 window.addEventListener('load', storeSecondRowHeight, false); // store the initial heights of the second row in px because CSS animations don't work with auto heights. Apparently this includes 'initial' heights?
 window.addEventListener('load', expandCollapseSecondRow, false); // initially the second row is shown, but it should be immediately hidden
 window.addEventListener('load', addStyles, false); // Adds iOS or Desktop styles if either is detected by addStyles().
-window.addEventListener('load', addTransitionSyles, false); // Adds transition class only to elements that should have CSS transitions.
+// window.addEventListener('load', addTransitionSyles, false); // Adds transition class only to elements that should have CSS transitions.  Not using for now.
 
 var transitionDelayInSeconds = 0.05;
 var transitionDelayInMiliSeconds = transitionDelayInSeconds * 1000;
@@ -10,11 +10,11 @@ var secondRowInitialHeight = '81px'; // just throwing in a default height, this 
 function addStyles() { // if iPad, iPhone, or iPod, add iOS styles. If !detectBobileBrowsers(), add Desktop styles.
   var userAgent = navigator.userAgent || navigator.vendor || window.opera;
   if( userAgent.indexOf('iPad') > -1 || userAgent.indexOf('iPhone') > -1 || userAgent.indexOf('iPod') > -1 ) {
-    //document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./iosStyles_unminified.css">'; // // for use with multiple files instead of inlining styles and JS.
-    document.getElementById('stylesTag').innerHTML += 'h3 {font-size: 3rem;} button {height: 1em; min-width: 0; max-width 2em; vertical-align: 15%;} .itemLabel, .price, .units, .itemPricePerUnits, .itemName, .quantity, .unitsName {width: 22%;}'; // for minified and inlined version
+    document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./iosStyles_unminified.css">'; // for use with multiple files instead of inlining styles and JS. Minify and inline script replaces this with the minified version.
+    // For use in minified version with <style id="stylesTag">: document.getElementById('stylesTag').innerHTML += minifiedIosCss;
   } else if (!detectBobileBrowsers()) {
-    //document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./desktopStyles_unminified.css">'; // for use with multiple files instead of inlining styles and JS.
-    document.getElementById('stylesTag').innerHTML += 'body {max-width: 960px; margin-left: auto; margin-right: auto;} h3 {font-size: 2rem;} button {height: 3rem; min-width: 4rem;} .multiplicationSign, .expandCollapseArrow, .addRowImg, .removeRowImg {height: 2rem; vertical-align: 10%;} .itemLabel, .price, .units, .itemPricePerUnits, .itemName, .quantity, .unitsName {font-size: 1.5rem;}'; // for minified and inlined version.
+    document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./desktopStyles_unminified.css">'; // for use with multiple files instead of inlining styles and JS. Minify and inline script replaces this with the minified version.
+    // For use in minified version with <style id="stylesTag">: document.getElementById('stylesTag').innerHTML += minifiedDesktopCss;
   }
 }
 
@@ -28,7 +28,7 @@ function doAllCalculations() {
     quantity: [],
     pricePerUnit: [],
     allItemPricePerUnitsSpans: []
-  }
+  };
   getAllPriceUnitQuantity(allDataObject, 'price');
   getAllPriceUnitQuantity(allDataObject, 'units');
   getAllPriceUnitQuantity(allDataObject, 'quantity');
@@ -87,7 +87,7 @@ function highlightLowestPricePerUnit(allDataObject) {
   var lowestPpuObject = {
     lowestPpuValue: Infinity,
     lowestIndex: -1
-  }
+  };
   allDataObject.pricePerUnit.forEach( function(currentPpu, index) {
     if (currentPpu < lowestPpuObject.lowestPpuValue) { // NaN < Infinity and NaN < any number are both false so this check is all we need to catch NaN values.
       lowestPpuObject.lowestPpuValue = currentPpu;
@@ -159,7 +159,7 @@ function expandCollapseSecondRow() {
 
 function addCard() {
   var currentNumberOfCards = document.getElementsByClassName('itemCard').length + 1;
-  var cardHtml = '<div class="itemCard" >\n    <div class="itemFirstRowDiv" >\n      <span class="itemLabel">Item ' + currentNumberOfCards + '</span>\n      <input type="number" class="price" placeholder="Price $" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">\n      <input type="number" class="units" placeholder="Units" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">\n      <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>\n    </div>\n    <div class="itemSecondRowDiv" >\n      <input type="text" class="itemName" placeholder="Name" >\n      <input type="number" class="quantity" placeholder="Qty" onchange="doAllCalculations()" onkeyup="doAllCalculations()"  oncut="doAllCalculations()" onpaste="doAllCalculations()">\n      <input type="text" class="unitsName" placeholder="Unit name">\n    </div>\n  </div>';
+  var cardHtml = '<div class="itemCard" >\n    <div class="itemFirstRowDiv" >\n      <span class="itemLabel">Item ' + currentNumberOfCards + '</span>\n      <input type="number" class="price" placeholder="Price $" oninput="doAllCalculations()">\n      <input type="number" class="units" placeholder="Units" oninput="doAllCalculations()">\n      <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>\n    </div>\n    <div class="itemSecondRowDiv" >\n      <input type="text" class="itemName" placeholder="Name" >\n      <input type="number" class="quantity" placeholder="Qty" oninput="doAllCalculations()">\n      <input type="text" class="unitsName" placeholder="Unit name">\n    </div>\n  </div>';
   var allCardsDiv = document.getElementsByClassName('allCardsDiv')[0];
   //allCardsDiv.innerHTML += cardHtml;
   var newDiv = document.createElement('div'); // create a new div HtmlElement.
@@ -192,7 +192,7 @@ function removeCard() {
 }
 
 function addTransitionSyles() { // adds transition class only to elements that should have CSS transitions
-  var classesToReceiveStyle = ['itemPricePerUnits','expandCollapseArrow', 'itemName', 'quantity', 'unitsName' ,'itemSecondRowDiv']
+  var classesToReceiveStyle = ['itemPricePerUnits','expandCollapseArrow', 'itemName', 'quantity', 'unitsName' ,'itemSecondRowDiv'];
   classesToReceiveStyle.forEach( function(currentClass) {
     var elementsToReceiveStyle = document.getElementsByClassName(currentClass);
     elementsToReceiveStyle = convertNodeListToArray(elementsToReceiveStyle);

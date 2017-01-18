@@ -1,5 +1,4 @@
 CACHE MANIFEST
-# last updated: Tue Jan 17 2017 15:28:51 GMT-0500 (Eastern Standard Time)
 
 CACHE:
 
@@ -9,3 +8,5 @@ NETWORK:
 
 http://google-analytics.com/*
 https://cdn.rawgit.com/*
+
+# last updated: Wed Jan 18 2017 16:19:54 GMT-0500 (Eastern Standard Time)
