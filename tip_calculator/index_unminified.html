@@ -21,11 +21,11 @@
     <div class="card" id="card">
       <p class="amountAndPercent">
         <span class="noWhiteSpaceWrap">
-          <label for="billAmount" >Bill amount:<span id="dollarSignSpan" >$</span></label><input type="number" id="billAmount" min="0" inputmode="numeric" pattern="[0-9]*\.?" step=0.01  onkeydown="return isAllowedKey(event)" oninput="calculatePercentWithRounding(event)" />
+          <label for="billAmount" >Bill amount:<span id="dollarSignSpan" >$</span></label><input type="number" id="billAmount" min="0" inputmode="numeric" step=0.01  onkeydown="return isAllowedKey(event)" oninput="calculatePercentWithRounding(event)" />
         </span>&#8203;<!--For some reason the 2 spans don't allow wrapping on minified into a single line. Adding a zero-width space &#8203; between them fixes this in the minfied version.-->
         <span class="noWhiteSpaceWrap">
           <!-- keeping old line, trying oninput<label for="tipPercent" >Tip percent: &nbsp;</label><input type="number" id="tipPercent" value="20" onkeydown="return isAllowedKey(event)" onkeyup="calculatePercentWithRounding()" onchange="calculatePercentWithRounding()" oncut="calculatePercentWithRounding()" onpaste="calculatePercentWithRounding()" />-->
-          <label for="tipPercent" >Tip percent: &nbsp;</label><input type="number" id="tipPercent" value="20" min="0" inputmode="numeric" pattern="[0-9]*" onkeydown="return isAllowedKey(event)" oninput="calculatePercentWithRounding(event)" />
+          <label for="tipPercent" >Tip percent: &nbsp;</label><input type="number" id="tipPercent" value="20" min="0" inputmode="numeric" onkeydown="return isAllowedKey(event)" oninput="calculatePercentWithRounding(event)" />
         </span>
       </p>
       <p>
