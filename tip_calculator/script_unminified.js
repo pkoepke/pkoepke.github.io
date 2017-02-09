@@ -139,7 +139,7 @@ function applyIosStyles() {
     document.getElementById('dollarSignSpan').style.left = '0.7em';
     let textInputs = document.querySelectorAll('input[type=button]');
     for (currentButton of textInputs) {
-      //currentButton.style.fontSize = '1em';
+      currentButton.style.fontSize = '1rem';
     }
   }
 }
