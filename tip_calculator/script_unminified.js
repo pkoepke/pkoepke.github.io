@@ -140,6 +140,7 @@ function applyIosStyles() {
     let textInputs = document.querySelectorAll('input[type=button]');
     for (currentButton of textInputs) {
       currentButton.style.fontSize = '1.1em';
+      currentButton.style.fontSize = '2em';
     }
   }
 }
