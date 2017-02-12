@@ -42,7 +42,7 @@ button {
   /*vertical-align: middle;*/
 }
 
-.multiplicationSign, .expandCollapseArrow, .addRowImg, .removeRowImg {
+.multiplicationSign, .expandCollapseArrow, .addCardCharSpan, .removeCardCharSpan {
   height: 1rem;
   padding: 1px;
 }
@@ -60,7 +60,7 @@ button {
   top: -0.2rem;
 }
 
-.addRowImg, .removeRowImg {
+.addCardCharSpan, .removeCardCharSpan {
   font-size: x-large;
   position: relative;
   top: -0.3rem;
