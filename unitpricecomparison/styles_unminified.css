@@ -22,6 +22,7 @@ h3 {
   background-color: #003FD1;
   color: #FFFFFF;
   font-weight: normal;
+  white-space: nowrap;
   /*vertical-align: middle;*/
 }
 
