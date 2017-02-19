@@ -1,6 +1,6 @@
-window.addEventListener('load', change_navigation_display, false); // Run change_navigation_display once the window loads, otherwise some HTML elements aren't found.
+//window.addEventListener('load', change_navigation_display, false); // Run change_navigation_display once the window loads, otherwise some HTML elements aren't found.
 
-function change_navigation_display() {
+/*function change_navigation_display() { // Old method.
   var windowWidth = window.matchMedia( '(max-device-width: 767.99999px)' );
   if (windowWidth.matches){
     if (document.getElementById('navigation_menu').style.display == 'none') {
@@ -15,4 +15,13 @@ function change_navigation_display() {
       // document.getElementById('h1').innerHTML += 'else'; // for testing only
     }
   }
-}
+}*/
+
+/*function change_navigation_display() { // New method .
+  var navigationList = document.getElementById('navigation_menu_list');
+  if (navigationList.style.display == 'none') {
+    navigationList.style.display = 'initial';
+  } else {
+    navigationList.style.display = 'none';
+  }
+}*/
