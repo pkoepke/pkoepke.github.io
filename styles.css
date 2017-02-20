@@ -1,18 +1,21 @@
 body {
 	font-family: 'open sans', Verdana, arial, sans-serif;
 	color:#444;
+	margin: 0;
+	background-color: #F6F6F6;
 }
 
 .contentDiv {
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 70rem;
+	background-color: #FAFAFA;
 }
 
-h1 {
+h1 {0
 	font-size: 2.2rem;
 	font-family: 'open sans', sans-serif;
-	max-width:65%;
+	margin-top: 0;
 	/*color: #00C2F2; */ /* was #00B7E5 */ /* also liked 00CCFF but that wasn't good for links */
 }
 
@@ -24,7 +27,7 @@ h1 {
 
 ul { /* remove formatting from unformatted lists so my links can be put into a navigation bar */
 	list-style-type: none;
-  padding: 0px;
+  padding: 0;
   text-align: center;
 }
 
