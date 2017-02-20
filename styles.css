@@ -18,7 +18,8 @@ h1 {
 
 .navigation_menu {
   color: white;
-  background-color: #444;
+  /*background-color: #444;*/
+	background-color: #003FD1;
 }
 
 ul { /* remove formatting from unformatted lists so my links can be put into a navigation bar */
@@ -33,7 +34,8 @@ li {
 }
 
 li:hover {
-    background-color:#000;
+    /*background-color:#000;*/
+		background-color:#001A57;
 }
 
 a:link, a:visited, a:hover, a:active {
