@@ -9,15 +9,16 @@ function createUrl() {
 
   var path = originalUrl.replace(originalDomain, '')
   path = path.slice(path.lastIndexOf("/") + 1);
-  console.log(path);
   path = path.split(".")[0];
-  console.log(path);
   path = path.split('?')[0];
-  console.log(path);
 
   var gifvUrl = newDomainAndProtocol + '/' + path +'.gifv';
-  document.getElementById('output').innerHTML = gifvUrl;
   document.getElementById('outputInput').value = gifvUrl;
+  var a = document.createElement('a');
+  a.appendChild(document.createTextNode(gifvUrl));
+  a.href = gifvUrl;
+  console.log(a);
+  document.getElementById('output').appendChild(a);
 }
 
 //http://stackoverflow.com/a/23945027/3784441
