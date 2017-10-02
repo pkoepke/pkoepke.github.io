@@ -1,4 +1,4 @@
-body {
+ {
 	font-family: 'open sans', Verdana, arial, sans-serif;
 	color:#444;
 	margin: 0;
@@ -50,4 +50,5 @@ li:hover {
 
 input {
 	width: auto;
+	border: 1px solid black;
 }
