@@ -40,8 +40,11 @@ li:hover {
 .content {
   clear: both;
 	margin: 0 10px 0 10px;
+}
+
+.flexbox {
 	display:flex;
-	flex-direction:row;
+  flex-direction:row;
 }
 
 .twitter-timeline-div{
@@ -50,5 +53,5 @@ li:hover {
 
 input {
 	width: auto;
-	border: 1px inset black;
+	border: 1px solid gray;
 }
