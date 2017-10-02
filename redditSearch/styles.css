@@ -17,14 +17,8 @@ h1 {
 	font-family: 'open sans', sans-serif;
 	margin-top: 0;
 	margin-left: 2px;
-	margin: 0 10px 0 10px; 
+	margin: 0 10px 0 10px;
 	/*color: #00C2F2; */ /* was #00B7E5 */ /* also liked 00CCFF but that wasn't good for links */
-}
-
-.navigation_menu {
-  color: white;
-  /*background-color: #444;*/
-	background-color: #003FD1;
 }
 
 ul { /* remove formatting from unformatted lists so my links can be put into a navigation bar */
@@ -43,16 +37,17 @@ li:hover {
 		background-color:#001A57;
 }
 
-a:link, a:visited, a:hover, a:active {
-  color: white;
-  font-color: white;
-}
-
 .content {
   clear: both;
 	margin: 0 10px 0 10px;
+	display:flex;
+	flex-direction:row;
 }
 
 .twitter-timeline-div{
 	text-align: center;
+}
+
+input {
+	width: auto;
 }
