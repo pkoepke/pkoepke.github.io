@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Paul Koepke">
+	<meta name="description" content="Barbell plates calculator">
+	<title>Paul Koepke's home page</title>
+	<link id="styles" rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<script src="barbellPlatesCalculator.js"></script>
+	<!--<script src="js/detectMobileBrowsers.js"></script>-->
+</head>
+<body>
+	<div class="contentDiv">
+		<h1 id="h1">Barbell plates calculator</h1>
+    <div class="content">
+			<p>
+        <div><label>Desired weight: </label><input id="desiredWeight" type="number" oninput="calculate()"></div>
+        <div><label>Bar weight: </label><input id="barWeight" type="number" value="45" oninput="calculate()"></div>
+        <div><label>Include 15-lbs plates?</label><input id="fifteensYesNo" type="checkbox" onchange="calculate()"></div>
+      </p>
+      <p id="output" />
+	  </div>
+  </div>
+</body>
+</html>
