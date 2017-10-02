@@ -6,7 +6,7 @@
 	<meta name="author" content="Paul Koepke">
 	<meta name="description" content="Reddit search generator">
 	<title>Paul Koepke's home page</title>
-	<!--<link id="styles" rel="stylesheet" type="text/css" href="styles.css">-->
+	<link id="styles" rel="stylesheet" type="text/css" href="/styles.css">
 	<link rel="icon" type="image/png" href="favicon.png">
 	<script src="redditSearch.js"></script>
 	<!--<script src="js/detectMobileBrowsers.js"></script>-->
@@ -15,16 +15,16 @@
 	<div class="contentDiv">
 		<h1 id="h1">Reddit search generator</h1>
     <p>
-      <label>query: </label><input id="query" type="text">
-      <label>subreddit: </label><input id="subreddit" type="text">
+      <label>query: </label><input id="query" type="text"><br>
+      <label>subreddit: </label><input id="subreddit" type="text"><br>
       <label>Sort type: </label>
       <select id="sort">
         <option value="top">top</option>
         <option value="relevance">relevance</option>
         <option value="new">new</option>
         <option value="comments">comments</option>
-      </select>
-      <label>Time: </label>
+      </select><br>
+      <label>Time: </label><br>
       <select id="time">
         <option value="hour">past hour</option>
         <option value="day">past 24 hours</option>
@@ -32,8 +32,8 @@
         <option value="month">past month</option>
         <option value="year">past year</option>
         <option value="all" selected="selected">all time</option>
-      </select>
-      <label>Include NSFW?</label><input id="nsfw" type="checkbox">
+      </select><br>
+      <label>Include NSFW?</label><input id="nsfw" type="checkbox"><br>
       <input type="button" value="generate" onclick="generate()">
     </p>
     <p id="output"></p>
