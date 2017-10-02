@@ -23,24 +23,24 @@ h3 {
   color: #FFFFFF;
   font-weight: normal;
   white-space: nowrap;
-  /*vertical-align: middle;*/
+  vertical-align: middle;
 }
 
 .unitPriceComparisonIcon {
   height: 1.9rem;
-  /*vertical-align: middle;*/
 }
 
 button {
   height: 1.5rem;
   min-width: 1rem;
+  vertical-align: middle;
   position:relative;
-  top: -0.4rem;
+  top: 1px;
 }
 
 .buttonsSpan {
   float:right;
-  /*vertical-align: middle;*/
+  vertical-align: middle;
 }
 
 .multiplicationSign, .expandCollapseArrow, .addCardCharSpan, .removeCardCharSpan {
