@@ -45,13 +45,13 @@ li:hover {
 .flexbox {
 	display:flex;
   flex-direction:row;
+	flex-wrap: wrap;
 }
 
-.twitter-timeline-div{
-	text-align: center;
-}
-
-input {
+input, select {
 	width: auto;
 	border: 1px solid gray;
+	margin-right: 1rem;
 }
+
+.lineDiv {}

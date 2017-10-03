@@ -16,16 +16,16 @@
 		<h1 id="h1">Reddit search generator</h1>
     <div class="content">
 			<p class="flexbox">
-        <label>query: </label><input id="query" type="text">
-        <label>subreddit: </label><input id="subreddit" type="text">
-        <label>Sort type: </label>
+        <span><label>query: </label><input id="query" type="text"></span>
+        <span><label>subreddit: </label><input id="subreddit" type="text"></span>
+        <span><label>Sort type: </label>
         <select id="sort">
           <option value="top">top</option>
           <option value="relevance">relevance</option>
           <option value="new">new</option>
           <option value="comments">comments</option>
-        </select>
-        <label>Time: </label>
+        </select></span>
+        <span><label>Time: </label>
         <select id="time">
           <option value="hour">past hour</option>
           <option value="day">past 24 hours</option>
@@ -33,9 +33,9 @@
           <option value="month">past month</option>
           <option value="year">past year</option>
           <option value="all" selected="selected">all time</option>
-        </select>
-        <label>Include NSFW?</label><input id="nsfw" type="checkbox">
-        <input type="button" value="generate" onclick="generate()">
+        </select></span>
+        <span><label>Include NSFW?</label><input id="nsfw" type="checkbox"></span>
+        <span><input type="button" value="generate" onclick="generate()"></span>
       </p>
       <p id="output" />
 	  </div>
