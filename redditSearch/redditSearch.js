@@ -1,6 +1,7 @@
 function generate() {
   const query = document.getElementById('query').value;
   let subreddit = document.getElementById('subreddit').value;
+  subreddit = subreddit.replace(" ","");
   if (subreddit !== "") { subreddit = 'r/' + subreddit + '/'; }
   const sort = document.getElementById('sort').value;
   const time = document.getElementById('time').value;
