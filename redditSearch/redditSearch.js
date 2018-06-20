@@ -1,7 +1,7 @@
 function generate() {
   const query = document.getElementById('query').value;
   let subreddit = document.getElementById('subreddit').value;
-  subreddit = subreddit.replace(" ","");
+  subreddit = subreddit.split(' ').join(''); // Remove all spaces in the subreddit name. String.replace only does the first one unless you use regular expressions.
   if (subreddit !== "") { subreddit = 'r/' + subreddit + '/'; }
   const sort = document.getElementById('sort').value;
   const time = document.getElementById('time').value;
