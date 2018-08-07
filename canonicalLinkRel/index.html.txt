@@ -1,0 +1,7 @@
+<html>
+  <head>
+  </head>
+  <body>
+    Testing &gt;link rel="canonical" href="http://example.com/" /&lt;
+  </body>
+</html>
