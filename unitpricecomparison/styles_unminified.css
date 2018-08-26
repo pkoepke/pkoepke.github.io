@@ -40,7 +40,6 @@ button {
 
 .buttonsSpan {
   float:right;
-  vertical-align: middle;
 }
 
 .multiplicationSign, .expandCollapseArrow, .addCardCharSpan, .removeCardCharSpan {
