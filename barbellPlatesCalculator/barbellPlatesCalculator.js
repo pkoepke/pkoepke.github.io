@@ -34,7 +34,7 @@ function calculate() {
     if (a15s) output += a15s + ' 15s, ' + a15s/2 + ' per side<br>'
     if (a10s) output += a10s + ' 10s, ' + a10s/2 + ' per side<br>'
     if (a5s) output += a5s + ' 5s, ' + a5s/2 + ' per side<br>'
-    if (a2halfs) output += a2halfs + ' 2.5s, ' + a2halfs/2 + ' per side'
+    if (a2halfs) output += a2halfs + ' 2.5s, ' + a2halfs/2 + ' per side<br>'
     if (remainingWeight) output += 'Remaning weight: ' + remainingWeight + ' lbs.'
     document.getElementById('output').innerHTML = output;
   }
