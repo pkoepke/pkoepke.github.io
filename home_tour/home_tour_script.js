@@ -244,7 +244,11 @@ function unfinished_basement() {
   add_picture("<img src='./pictures/unfinished_basement/2013-10-17_08.42.58_small.jpg'>")
 }
 
-document.head.innerHTML += '<script type="text/javascript" src="/js/detectMobileBrowsers.js"></script>'
+function addDetectMobileBrowsers() {
+  let scriptNode = document.createElement('script');
+  scriptNode.setAttribute('src', '/js/detectMobileBrowsers.js');
+  document.head.appendChild(scriptNode);
+}
 
 window.addEventListener('load', function enlarge_buttons(event) {
   // Old way
