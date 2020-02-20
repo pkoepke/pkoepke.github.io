@@ -245,11 +245,11 @@ function unfinished_basement() {
 }
 
 // Directly pull code to detect mobile browsers so it's always up to date. Courtesy of http://hgoebl.github.io/mobile-detect.js/
-let mobile - detect_Node = document.createElement('script');
-mobile - detect_Node.setAttribute('src', 'https://cdn.jsdelivr.net/npm/mobile-detect@1.4.4/mobile-detect.min.js');
-document.head.appendChild(mobile - detect_Node); // Adds a <script> tag to the DOM so the
+let mobileDetectNode = document.createElement('script');
+mobileDetectNode.setAttribute('src', 'https://cdn.jsdelivr.net/npm/mobile-detect@1.4.4/mobile-detect.min.js');
+document.head.appendChild(mobileDetectNode); // Adds a <script> tag to the DOM so the
 
-(function enlarge_buttons() {
+window.addEventListener('load', function enlarge_buttons(event) {
   /* old way
   let buttons = document.querySelectorAll("button[type=button]");
   if (buttons[0].offsetHeight < 22) {
@@ -261,4 +261,4 @@ document.head.appendChild(mobile - detect_Node); // Adds a <script> tag to the D
   if (MobileDetect.isPhoneSized()) {
     document.head.innerHTML += ('<style> button { font-size: 300% ; } </style>');
   }
-})();
+});
