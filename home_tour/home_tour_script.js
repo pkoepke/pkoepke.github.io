@@ -248,7 +248,7 @@ function unfinished_basement() {
   let buttons = document.querySelectorAll("button[type=button]");
   if (buttons[0].offsetHeight < 22) {
     (function() {
-      document.head.innerHTML += ('<style> button { font-size: 200% ; } </style>');
+      document.head.innerHTML += ('<style> button { font-size: 300% ; } </style>');
     })();
   }
 })();
