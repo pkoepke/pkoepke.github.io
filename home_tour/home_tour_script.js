@@ -248,19 +248,22 @@ function unfinished_basement() {
   let scriptNode = document.createElement('script');
   scriptNode.setAttribute('src', '/js/detectMobileBrowsers.js');
   document.head.appendChild(scriptNode);
-})();
-
-window.addEventListener('load', function enlarge_buttons(event) {
-  // Old way
-  /* let buttons = document.querySelectorAll("button[type=button]");
-  if (buttons[0].offsetHeight < 22) {
-    (function() {
-      document.head.innerHTML += ('<style> button { font-size: 300% ; } </style>');
-    })();
-  }*/
-  // New way
-  console.log("detectMobileBrowsers(): " + detectMobileBrowsers())
   if (detectMobileBrowsers()) {
     document.head.innerHTML += ('<style> button { font-size: 300% ; } </style>');
   }
-});
+})();
+
+//window.addEventListener('load', function enlarge_buttons(event) {
+// Old way
+/* let buttons = document.querySelectorAll("button[type=button]");
+if (buttons[0].offsetHeight < 22) {
+  (function() {
+    document.head.innerHTML += ('<style> button { font-size: 300% ; } </style>');
+  })();
+}*/
+// New way
+/*  console.log("detectMobileBrowsers(): " + detectMobileBrowsers())
+  if (detectMobileBrowsers()) {
+    document.head.innerHTML += ('<style> button { font-size: 300% ; } </style>');
+  }
+});*/
