@@ -244,26 +244,26 @@ function unfinished_basement() {
   add_picture("<img src='./pictures/unfinished_basement/2013-10-17_08.42.58_small.jpg'>")
 }
 
-(function addDetectMobileBrowsers() {
+function addDetectMobileBrowsers() {
   let scriptNode = document.createElement('script');
   scriptNode.setAttribute('src', '/js/detectMobileBrowsers.js');
   document.head.appendChild(scriptNode);
   if (detectMobileBrowsers()) {
     document.head.innerHTML += ('<style> button { font-size: 300% ; } </style>');
   }
-})();
+}
 
-//window.addEventListener('load', function enlarge_buttons(event) {
-// Old way
-/* let buttons = document.querySelectorAll("button[type=button]");
-if (buttons[0].offsetHeight < 22) {
-  (function() {
-    document.head.innerHTML += ('<style> button { font-size: 300% ; } </style>');
-  })();
-}*/
-// New way
-/*  console.log("detectMobileBrowsers(): " + detectMobileBrowsers())
+window.addEventListener('load', function enlarge_buttons(event) {
+  // Old way
+  /* let buttons = document.querySelectorAll("button[type=button]");
+  if (buttons[0].offsetHeight < 22) {
+    (function() {
+      document.head.innerHTML += ('<style> button { font-size: 300% ; } </style>');
+    })();
+  }*/
+  // New way
+  console.log("detectMobileBrowsers(): " + detectMobileBrowsers())
   if (detectMobileBrowsers()) {
     document.head.innerHTML += ('<style> button { font-size: 300% ; } </style>');
   }
-});*/
+});
