@@ -276,20 +276,18 @@ function addDetectMobileBrowsers() {
 }
 
 function enlarge_buttons() {
-  // Old way
-  /* let buttons = document.querySelectorAll("button[type=button]");
-  if (buttons[0].offsetHeight < 22) {
-    (function() {
-      document.head.innerHTML += ('<style> button { font-size: 300% ; } </style>');
-    })();
-  }*/
-  // New way
   if (detectMobileBrowsers()) {
     document.head.innerHTML += ('<style> button { font-size: 300% ; } </style>');
   }
 }
 
-//window.addEventListener('load', );
+function addExternalJs(url, callback) {
+  var e = document.createElement('script');
+  e.src = url;
+  e.type = 'text/javascript';
+  e.addEventListener('load', callback);
+  document.head.appendChild(e);
+}
 
-addDetectMobileBrowsers();
-enlarge_buttons();
+addExternalJs('/js/detectMobileBrowsers.js', enlarge_buttons); // for production use.
+//addExternalJs('https://paulkoepke.com/js/detectMobileBrowsers.js', enlarge_buttons); // for development use.
