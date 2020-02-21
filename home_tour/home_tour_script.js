@@ -264,15 +264,11 @@ function unfinished_basement() {
   add_picture("<img src='./pictures/unfinished_basement/2013-10-17_08.42.58_small.jpg'>")
 }
 
-function addDetectMobileBrowsers() {
+function addDetectMobileBrowsers() { // Not used anymore, retaining as an example.
   let scriptNode = document.createElement('script');
-  scriptNode.setAttribute('src', '/js/detectMobileBrowsers.js'); // for production use.
-  // scriptNode.setAttribute('src', 'https://paulkoepke.com/js/detectMobileBrowsers.js'); // for development use.
+  scriptNode.setAttribute('src', '/js/detectMobileBrowsers.js');
   scriptNode.async = false;
   document.head.appendChild(scriptNode);
-  /*  if (detectMobileBrowsers()) {
-      document.head.innerHTML += ('<style> button { font-size: 300% ; } </style>');
-    }*/
 }
 
 function enlarge_buttons() {
@@ -282,11 +278,11 @@ function enlarge_buttons() {
 }
 
 function addExternalJs(url, callback) {
-  var e = document.createElement('script');
-  e.src = url;
-  e.type = 'text/javascript';
-  e.addEventListener('load', callback);
-  document.head.appendChild(e);
+  var scriptNode = document.createElement('script');
+  scriptNode.src = url;
+  scriptNode.type = 'text/javascript';
+  scriptNode.addEventListener('load', callback);
+  document.head.appendChild(scriptNode);
 }
 
 addExternalJs('/js/detectMobileBrowsers.js', enlarge_buttons); // for production use.
