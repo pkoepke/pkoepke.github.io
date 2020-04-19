@@ -17,7 +17,7 @@ h1 {
 	font-family: 'open sans', sans-serif;
 	margin-top: 0;
 	margin-left: 2px;
-	margin: 0 10px 0 10px; 
+	margin: 0 10px 0 10px;
 	/*color: #00C2F2; */ /* was #00B7E5 */ /* also liked 00CCFF but that wasn't good for links */
 }
 
@@ -43,7 +43,7 @@ li:hover {
 		background-color:#001A57;
 }
 
-a:link, a:visited, a:hover, a:active {
+.link_list {
   color: white;
   font-color: white;
 }
