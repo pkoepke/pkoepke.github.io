@@ -48,7 +48,7 @@ function calculatePercentWithRounding(event) {
   var areFieldsNumbers = checkInputsDisplayErrorsReturn(billAmount, tipPercent);
 
   // if both fields are numbers, calculate.
-  if(areFieldsNumbers) {
+  if (areFieldsNumbers) {
     // first do the calculations without rounding and output the result. These values will be used during the rounding calculations.
     var tipAmountUnrounded = Number(billAmount * (tipPercent / 100));
     var totalAmountUnrounded = Number(billAmount) + Number(tipAmountUnrounded);
@@ -67,7 +67,7 @@ function calculatePercentWithRounding(event) {
     document.getElementById('output').innerHTML += tipPercent + '% rounding up is a tip of $' + tipAmountRoundingUp.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingUp)).toFixed(2) + ' which is a tip of ' + Number(tipPercentRoundingUp * 100).toFixed(0) + '%.<br /><br />';
 
     // rounding down results in negative tips for bills of $1.01-$1.66, $2.01-$2.49, $3.01-$3.33, or $4.01-4.16. We'll display a warning instead of giving the negative tip amount.
-    if(tipAmountRoundingDown >= 0) {
+    if (tipAmountRoundingDown >= 0) {
       document.getElementById('output').innerHTML += tipPercent + '% rounding down is a tip of $' + tipAmountRoundingDown.toFixed(2) + ', so your total should be $' + (Number(billAmount) + Number(tipAmountRoundingDown)).toFixed(2) + ' which is a tip of ' + Number(tipPercentRoundingDown * 100).toFixed(0) + '%.';
     } else {
       document.getElementById('output').innerHTML += tipPercent + '% rounding down would be a negative or zero tip ($' + tipAmountRoundingDown.toFixed(2) + ') because the bill amount is very small.';
@@ -78,17 +78,19 @@ function calculatePercentWithRounding(event) {
 function checkInputsDisplayErrorsReturn(billAmount, tipPercent) { // Checks whether the inputs are numbers, if not displays an error in the output and returns False so computations stop.
   // validate the the inputs are numbers. If they aren't, show an error.
   var areFieldsNumbers = true;
-  if( !isANumber(billAmount) ) { // if Bill Amount is NaN or blank, set areFieldsNumbers = false and display error message.
+  if (!isANumber(billAmount)) { // if Bill Amount is NaN or blank, set areFieldsNumbers = false and display error message.
     areFieldsNumbers = false;
-    if( !isANumber(tipPercent) ) {
+    if (!isANumber(tipPercent)) {
       document.getElementById('output').innerHTML = 'Please enter valid numbers in the Bill Amount and Tip Percent field.';
     } else {
       document.getElementById('output').innerHTML = 'Please enter a valid number in the Bill Amount field.';
     }
-  } else if( !isANumber(tipPercent)) {
+  } else if (!isANumber(tipPercent)) {
     areFieldsNumbers = false;
     document.getElementById('output').innerHTML = 'Please enter a valid number in the Tip Percent field.';
-  } else { displayOriginalOutput(); }
+  } else {
+    displayOriginalOutput();
+  }
   return areFieldsNumbers;
 }
 
@@ -124,9 +126,12 @@ function isAllowedKey(event) { // combining several answers from http://stackove
     var currentValue = event.target.value;
     if (((keyCode == 110) || (keyCode == 190)) && currentValue.indexOf('.') != -1) {
       return false;
-    } else { return true; } // if there isn't already a decimal, return true.
-  }
-  else { return false; } // if the key wasn't caught by any of the conditions above, it isn't an allowed key. Return false.
+    } else {
+      return true;
+    } // if there isn't already a decimal, return true.
+  } else {
+    return false;
+  } // if the key wasn't caught by any of the conditions above, it isn't an allowed key. Return false.
 }
 
 // Determine if the operating system is iOS.
@@ -139,7 +144,7 @@ function isAllowedKey(event) { // combining several answers from http://stackove
 
 // If the OS is iOS, move the dollar sign span to make it line up better, and make the text on the buttons slightly larger.
 function applyIosStyles() {
-  if(isOsIos()) {
+  if (isOsIos()) {
     document.getElementById('dollarSignSpan').style.left = '0.7em';
     // ES6 way that uglify-js can't handle.
     /* let r allButtons = document.querySelectorAll('input[type=button]');
@@ -149,7 +154,7 @@ function applyIosStyles() {
     // Older way that uglify-js can handle.
     var allButtons = document.querySelectorAll('input[type=button]'); // create NodeList object of all input input[type=button].
     allButtons = convertNodeListToArray(allButtons);
-    allButtons.forEach( function (currentButton, index) {
+    allButtons.forEach(function(currentButton, index) {
       currentButton.style.fontSize = '1rem';
     });
   }
@@ -176,18 +181,30 @@ function calculationsWithoutRounding() {
   // validate the the inputs are numbers. If they aren't, show an error.
   var areFieldsNumbers = checkInputsDisplayErrorsReturn(billAmount, tipPercent);
 
-  if(areFieldsNumbers) { // if Bill Amount was a number, then run checks on Tip Percent
-    if( !checkIfTipFieldIsANumber(tipPercent) ) {
+  if (areFieldsNumbers) { // if Bill Amount was a number, then run checks on Tip Percent
+    if (!checkIfTipFieldIsANumber(tipPercent)) {
       areFieldsNumbers = false;
       displayTipPercentAfterError();
-    } else { displayNormalTipPercentAfter(); }
+    } else {
+      displayNormalTipPercentAfter();
+    }
   }
 
   // if both fields are numbers, calculate.
-  if(areFieldsNumbers) {
+  if (areFieldsNumbers) {
     var tipAmount = billAmount * (tipPercent / 100);
     var totalWithTip = Number(billAmount) + Number(tipAmount);
     // output result
     document.getElementById('output').innerHTML = tipPercent + '% of $' + (Math.round(billAmount * 100) / 100).toFixed(2) + ' is $' + (Math.round(tipAmount * 100) / 100).toFixed(2) + ', so your total should be $' + ((Math.round(totalWithTip * 100) / 100).toFixed(2));
-  } else { displayOriginalOutput(); }
+  } else {
+    displayOriginalOutput();
+  }
+}
+
+function switchCss(event) {
+  let colorCss = document.getElementById('colorCss');
+  console.log(colorCss);
+  if (colorCss.getAttribute('href') == 'darkTheme.css') colorCss.setAttribute('href', 'lightTheme.css');
+  else colorCss.setAttribute('href', 'darkTheme.css');
+
 }
