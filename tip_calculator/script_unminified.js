@@ -203,8 +203,17 @@ function calculationsWithoutRounding() {
 
 function switchCss(event) {
   let colorCss = document.getElementById('colorCss');
-  console.log(colorCss);
-  if (colorCss.getAttribute('href') == 'darkTheme.css') colorCss.setAttribute('href', 'lightTheme.css');
-  else colorCss.setAttribute('href', 'darkTheme.css');
-
+  if (colorCss.getAttribute('href') == 'darkTheme.css') {
+    localStorage.setItem('theme', 'light'); // Remember last choice for future visits
+    colorCss.setAttribute('href', 'lightTheme.css');
+  } else {
+    localStorage.setItem('theme', 'dark'); // Remember last choice for future visits
+    colorCss.setAttribute('href', 'darkTheme.css');
+  }
 }
+
+function setThemeOnLoad() {
+  if (localStorage.getItem('theme') == 'light') colorCss.setAttribute('href', 'lightTheme.css');
+  else if (localStorage.getItem('theme') == 'dark') colorCss.setAttribute('href', 'darkTheme.css');
+}
+setThemeOnLoad(); // Run when the page loads
