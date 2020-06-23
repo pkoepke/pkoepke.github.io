@@ -68,4 +68,6 @@ input[type="button"] {
   padding: 0.6rem;
   margin-top: 0.3em;
   margin-bottom: 0.3em;
+  border: 0px solid;
+  border-radius: 2px;
 }
