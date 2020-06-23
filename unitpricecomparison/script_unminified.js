@@ -1,7 +1,7 @@
 window.addEventListener('load', storeFirstRowHeight, false); // store the initial heights of the second row in px because CSS animations don't work with auto heights. Apparently this includes 'initial' heights?
 window.addEventListener('load', expandCollapseSecondRow, false); // initially the second row is shown, but it should be immediately hidden
 window.addEventListener('load', addStyles, false); // Adds iOS or Desktop styles if either is detected by addStyles().
-// window.addEventListener('load', addTransitionSyles, false); // Adds transition class only to elements that should have CSS transitions.  Not using for now.
+window.addEventListener('load', addTransitionSyles, false); // Adds transition class only to elements that should have CSS transitions.  Not using for now.
 
 var transitionDelayInSeconds = 0.05;
 var transitionDelayInMiliSeconds = transitionDelayInSeconds * 1000;
@@ -214,3 +214,20 @@ function detectMobileBrowsers() {
   })(navigator.userAgent || navigator.vendor || window.opera);
   return check;
 }
+
+function switchCss(event) {
+  let colorCss = document.getElementById('colorCss');
+  if (colorCss.getAttribute('href') == 'darkTheme.css') {
+    localStorage.setItem('theme', 'light'); // Remember last choice for future visits
+    colorCss.setAttribute('href', 'lightTheme.css');
+  } else {
+    localStorage.setItem('theme', 'dark'); // Remember last choice for future visits
+    colorCss.setAttribute('href', 'darkTheme.css');
+  }
+}
+
+function setThemeOnLoad() {
+  if (localStorage.getItem('theme') == 'light') colorCss.setAttribute('href', 'lightTheme.css');
+  else if (localStorage.getItem('theme') == 'dark') colorCss.setAttribute('href', 'darkTheme.css');
+}
+setThemeOnLoad(); // Run when the page loads

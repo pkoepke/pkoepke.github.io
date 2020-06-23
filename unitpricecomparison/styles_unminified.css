@@ -1,6 +1,6 @@
-html * {
+/*html * {
   transition: 0.5s;
-}
+}*/
 
 .transition {
   transition: 0.25s;
@@ -86,8 +86,8 @@ button {
   text-align: center;
 }
 
-input, .itemPricePerUnits, .itemLabel {
-  width: 25%;
+input[type=number], input[type=text], .itemPricePerUnits, .itemLabel {
+  width: 20%;
   margin: 0.3rem;
 }
 
