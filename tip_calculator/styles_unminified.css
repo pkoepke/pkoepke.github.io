@@ -55,6 +55,7 @@ p {
 
 .noWhiteSpaceWrap {
   white-space: nowrap;
+  margin-right: 0.4rem;
 }
 
 input[type=number], input[type=text] {
@@ -65,7 +66,7 @@ input[type=number], input[type=text] {
 }
 
 input[type="button"] {
-  padding: 0.6rem;
+  padding: 0.7rem;
   margin-top: 0.3em;
   margin-bottom: 0.3em;
   border: 0px solid;
