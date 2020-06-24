@@ -8,7 +8,7 @@ var transitionDelayInMiliSeconds = transitionDelayInSeconds * 1000;
 var firstrowInitialHeight = '81px'; // just throwing in a default height, this should be overwritten when the page loads by storeFirstRowHeight().
 
 function addStyles() { // if iPad, iPhone, or iPod, add iOS styles. If !detectMobileBrowsers(), add Desktop styles.
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  let userAgent = navigator.userAgent || navigator.vendor || window.opera;
   if (userAgent.indexOf('iPad') > -1 || userAgent.indexOf('iPhone') > -1 || userAgent.indexOf('iPod') > -1) {
     document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./iosStyles_unminified.css">'; // for use with multiple files instead of inlining styles and JS. Minify and inline script replaces this with the minified version.
     // For use in minified version with <style id="stylesTag">: document.getElementById('stylesTag').innerHTML += minifiedIosCss;
@@ -22,7 +22,7 @@ function doAllCalculations() {
   // When a calculation is triggered, this function starts the whole process and walks through each necessary function.
   // To avoid global state, every calculation instance gets an object that holds all of its data - inputs from the web page and results of each function's calculation. When the calculation is complete the outputs are written to the page and the object (and all of its data) becomes inaccessible once the function returns. Each new calculation gets its own data directly from the page so there's no chance of new calculations interfering with old.
   // It might be more 'functional' if each function returned a new object, which was then passed to the next function without modifying the original object, as the allDataObject currently acts as pseudo-global state. But using the same object is simple and sufficient since each function can't proceed until the previous one returns.
-  var allDataObject = {
+  let allDataObject = {
     price: [],
     units: [],
     quantity: [],
@@ -39,7 +39,7 @@ function doAllCalculations() {
 }
 
 function getAllPriceUnitQuantity(allDataObject, currentField) {
-  var nodeList = document.getElementsByClassName(currentField); // create NodeList object of all nodes of the current Class.
+  let nodeList = document.getElementsByClassName(currentField); // create NodeList object of all nodes of the current Class.
   nodeList = convertNodeListToArray(nodeList);
   nodeList.forEach(function(currentNode, index) {
     if (currentNode.value === '' || Number.isNaN(currentNode.value)) { // if the value of the current item is blank or NaN
@@ -97,7 +97,7 @@ function highlightLowestPricePerUnit(allDataObject) {
   try {
     allDataObject.allItemPricePerUnitsSpans[lowestPpuObject.lowestIndex].className = 'itemPricePerUnits highlightedPricePerUnits transition';
   } catch (err) {
-    /* The array item will be null if there is no unit prices to highlight, so errors are expected here. There's no need to do anything in resposne to the error. */
+    /* The array item will be null if there is no unit prices to highlight, so errors are expected here. There's no need to do anything in response to the error. */
   }
 }
 
@@ -105,7 +105,7 @@ function clearAll() {
   var allInputs = document.getElementsByTagName('input');
   allInputs = convertNodeListToArray(allInputs);
   allInputs.forEach(function(currentNode) {
-    currentNode.value = '';
+    if (currentNode.type != 'button') currentNode.value = '';
   });
   doAllCalculations(); // Resets all of the unit price fields.
 }
