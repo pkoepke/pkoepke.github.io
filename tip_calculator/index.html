@@ -21,22 +21,24 @@
 
 <body>
   <main>
-    <h3><img class="tipCalculatorIcon" alt="Tip Calculator Icon" src="tipCalculatorIcon_128x128.png">Tip Calculator <input type="button" value="Dark/light theme" onclick="switchCss(event) "></input></h3>
+    <h3><img class="tipCalculatorIcon" alt="Tip Calculator Icon" src="tipCalculatorIcon_128x128.png"><span id="headerText">Tip Calculator</span><input type="button" id="themeButton" value="Dark/light theme" onclick="switchCss(event) "></input></h3>
     <div class="card" id="card">
-      <p class="amountAndPercent">
-        <span class="noWhiteSpaceWrap">
-          <label for="billAmount">Bill amount:<span id="dollarSignSpan">$</span></label><input type="number" id="billAmount" min="0" inputmode="numeric" step=0.01 onkeydown="return isAllowedKey(event)" oninput="calculatePercentWithRounding(event)" />
-        </span>
-        <span class="noWhiteSpaceWrap">
-          <label for="tipPercent">Tip percent: &nbsp;</label><input type="number" id="tipPercent" value="20" min="0" inputmode="numeric" onkeydown="return isAllowedKey(event)" oninput="calculatePercentWithRounding(event)" />
-        </span>
-      </p>
-      <p>
-        <input type="button" id="fivePercentTipButton" onclick="tipPercentButtonsWithRounding(5)" value="&nbsp;5%" />
-        <input type="button" id="tenPercentTipButton" onclick="tipPercentButtonsWithRounding(10)" value="10%" />
-        <input type="button" id="fifteenPercentTipButton" onclick="tipPercentButtonsWithRounding(15)" value="15%" />
-        <input type="button" id="twentyPercentRoundedUpTipButton" onclick="tipPercentButtonsWithRounding(20)" value="20%" />
-        <!--<input type="button" id="calculateTipButton" class="calculateTipButton" onclick="calculationsWithoutRounding()" value="Calculate other percent" />-->
+      <form>
+        <p class="amountAndPercent">
+          <span class="noWhiteSpaceWrap">
+            <label for="billAmount">Bill amount:<span id="dollarSignSpan">$</span></label><input type="number" id="billAmount" min="0" inputmode="decimal" step=0.01 onkeydown="return isAllowedKey(event)" oninput="calculatePercentWithRounding(event)"
+              pattern="[0-9]*.?[0-9]*" />
+          </span>
+          <span class="noWhiteSpaceWrap">
+            <label for="tipPercent">Tip percent: &nbsp;</label><input type="number" id="tipPercent" value="20" min="0" inputmode="numeric" onkeydown="return isAllowedKey(event)" oninput="calculatePercentWithRounding(event)" />
+          </span>
+        </p>
+      </form>
+      <p class="tipButtons">
+        <input type="button" id="fivePercentTipButton" onclick="tipPercentButtonsWithRounding(5)" value="&nbsp;5%"></button>
+        <input type="button" id="tenPercentTipButton" onclick="tipPercentButtonsWithRounding(10)" value="10%"></button>
+        <input type="button" id="fifteenPercentTipButton" onclick="tipPercentButtonsWithRounding(15)" value="15%"></button>
+        <input type="button" id="twentyPercentRoundedUpTipButton" onclick="tipPercentButtonsWithRounding(20)" value="20%"></button>
       </p>
       <p id="output"></p> <!-- Initial value will be set by displayOriginalOutput() when the page loads.-->
       <!--<p id="testOutput"></p>-->

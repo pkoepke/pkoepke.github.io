@@ -1,3 +1,7 @@
+:focus {
+  outline: none;
+}
+
 body {
   background-color: #FFFFFF;
 }
@@ -7,6 +11,21 @@ body {
   box-shadow: 0px 0px 10px #000000;
 }
 
-input[type="button"] {
+button, input[type="button"] {
   box-shadow: 0px 0px 3px #505050;
+  background-color: #EFEFEF;
+}
+
+#themeButton:focus {
+  outline: 1px solid #99BADD;
+}
+
+input[type=number], input[type=text] {
+  background-color: #EFEFEF;
+  border-width: 0px 0px 1px 0px;
+  border-color: #BBBBBB;
+}
+
+input[type=number]:focus, input[type=text]:focus {
+  border-bottom: 1px solid #012169;
 }
