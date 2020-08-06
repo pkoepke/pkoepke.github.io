@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#003FD1">
+  <meta name="description" content="Recipe Picker">
+  <meta name="keywords" content="Recipe">
+  <meta name="author" content="Paul Koepke">
+  <title>Recipe Picker</title>
+  <!--<link id="css" rel="stylesheet" type="text/css" href="styles.css">
+  <link id="colorCss" rel="stylesheet" type="text/css" href="darkTheme.css">-->
+</head>
+
+<body>
+  <main>
+    <h3>Recipe picker</h3>
+    <input type="button" value="Pick a recipe" onclick="pickRecipe()">
+    <p id=output></p>
+  </main>
+</body>
+
+<script type="text/javascript" src="script.js"></script>
+
+<style>
+  body {
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+  li {
+    margin: .2rem;
+  }
+
+  .selected {
+    outline: 1px solid black;
+  }
+</style>
+
+</html>

@@ -28,14 +28,14 @@ function calculate() {
     remainingWeight = remainingWeight - (a2halfs * 2.5)
 
     let output = barWeight + 'lbs bar<br>'
-    if (a45s) output += a45s + ' 45s, ' + a45s/2 + ' per side<br>'
-    if (a35s) output += a35s + ' 35s, ' + a35s/2 + ' per side<br>'
-    if (a25s) output += a25s + ' 25s, ' + a25s/2 + ' per side<br>'
-    if (a15s) output += a15s + ' 15s, ' + a15s/2 + ' per side<br>'
-    if (a10s) output += a10s + ' 10s, ' + a10s/2 + ' per side<br>'
-    if (a5s) output += a5s + ' 5s, ' + a5s/2 + ' per side<br>'
-    if (a2halfs) output += a2halfs + ' 2.5s, ' + a2halfs/2 + ' per side<br>'
-    if (remainingWeight) output += 'Remaning weight: ' + remainingWeight + ' lbs.'
+    if (a45s) output += a45s + ' 45s, ' + a45s / 2 + ' per side<br>'
+    if (a35s) output += a35s + ' 35s, ' + a35s / 2 + ' per side<br>'
+    if (a25s) output += a25s + ' 25s, ' + a25s / 2 + ' per side<br>'
+    if (a15s) output += a15s + ' 15s, ' + a15s / 2 + ' per side<br>'
+    if (a10s) output += a10s + ' 10s, ' + a10s / 2 + ' per side<br>'
+    if (a5s) output += a5s + ' 5s, ' + a5s / 2 + ' per side<br>'
+    if (a2halfs) output += a2halfs + ' 2.5s, ' + a2halfs / 2 + ' per side<br>'
+    if (remainingWeight) output += 'Remaining weight: ' + remainingWeight + ' lbs.'
     document.getElementById('output').innerHTML = output;
   }
 }
