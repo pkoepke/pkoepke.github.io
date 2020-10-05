@@ -213,7 +213,12 @@ function switchCss(event) {
 }
 
 function setThemeOnLoad() {
-  if (localStorage.getItem('theme') == 'light') colorCss.setAttribute('href', 'lightTheme.css');
-  else if (localStorage.getItem('theme') == 'dark') colorCss.setAttribute('href', 'darkTheme.css');
+  // If localStorage is supported, add a Theme button and load the theme. Otherwise leave the theme dark.
+  if (window.localStorage) {
+    document.getElementById('themeButtonSpan').innerHTML += '<input type="button" id="themeButton" value="Dark/light theme" onclick="switchCss(event) "></input>';
+    if (localStorage.getItem('theme') == 'light') colorCss.setAttribute('href', 'lightTheme.css');
+    else if (localStorage.getItem('theme') == 'dark') colorCss.setAttribute('href', 'darkTheme.css');
+  }
 }
-setThemeOnLoad(); // Run when the page loads
+
+window.addEventListener("load", setThemeOnLoad, false); // Run when the page loads

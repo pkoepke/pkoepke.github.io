@@ -13,7 +13,7 @@
   <meta name="author" content="Paul Koepke">
   <title>Tip Calculator - by Paul Koepke</title>
   <link id="css" rel="stylesheet" type="text/css" href="styles_unminified.css">
-  <link id="colorCss" rel="stylesheet" type="text/css" href="lightTheme.css">
+  <link id="colorCss" rel="stylesheet" type="text/css" href="darkTheme.css">
   <script type="text/javascript" src="script_unminified.js"></script>
   <script type="text/javascript" src="../js/isOsIos.js"></script>
   <link rel="icon" type="image/png" href="tipCalculatorIcon_128x128.png">
@@ -21,7 +21,7 @@
 
 <body>
   <main>
-    <h3><img class="tipCalculatorIcon" alt="Tip Calculator Icon" src="tipCalculatorIcon_128x128.png"><span id="headerText">Tip Calculator</span><input type="button" id="themeButton" value="Dark/light theme" onclick="switchCss(event) "></input></h3>
+    <h3><img class="tipCalculatorIcon" alt="Tip Calculator Icon" src="tipCalculatorIcon_128x128.png"><span id="headerText">Tip Calculator</span><span id="themeButtonSpan"></span></h3>
     <div class="card" id="card">
       <form>
         <p class="amountAndPercent">
