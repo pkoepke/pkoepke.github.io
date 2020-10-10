@@ -10,10 +10,10 @@ var firstrowInitialHeight = '81px'; // just throwing in a default height, this s
 function addStyles() { // if iPad, iPhone, or iPod, add iOS styles. If !detectMobileBrowsers(), add Desktop styles.
   let userAgent = navigator.userAgent || navigator.vendor || window.opera;
   if (userAgent.indexOf('iPad') > -1 || userAgent.indexOf('iPhone') > -1 || userAgent.indexOf('iPod') > -1) {
-    document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./iosStyles_unminified.css">'; // for use with multiple files instead of inlining styles and JS. Minify and inline script replaces this with the minified version.
+    document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./iosStyles.css">'; // for use with multiple files instead of inlining styles and JS. Minify and inline script replaces this with the minified version.
     // For use in minified version with <style id="stylesTag">: document.getElementById('stylesTag').innerHTML += minifiedIosCss;
   } else if (!detectMobileBrowsers()) {
-    document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./desktopStyles_unminified.css">'; // for use with multiple files instead of inlining styles and JS. Minify and inline script replaces this with the minified version.
+    document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./desktopStyles.css">'; // for use with multiple files instead of inlining styles and JS. Minify and inline script replaces this with the minified version.
     // For use in minified version with <style id="stylesTag">: document.getElementById('stylesTag').innerHTML += minifiedDesktopCss;
   }
 }
@@ -121,7 +121,7 @@ function storeFirstRowHeight() { // runs at window.onload, stores the height of 
 }
 
 function expandCollapseSecondRow() {
-  storeFirstRowHeight(); // in case styles have chaned, begin by grabbing the desired height
+  storeFirstRowHeight(); // in case styles have changed, begin by grabbing the desired height. Fist row's and second row's heights should always be the same.
   var allSecondRows = document.getElementsByClassName('itemSecondRowDiv'); // create NodeList object of all nodes of this Class.
   allSecondRows = convertNodeListToArray(allSecondRows);
   if (allSecondRows[0].style.height == '0px') { // expand all if first is currently collapsed
