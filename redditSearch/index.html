@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,35 +12,39 @@
 	<script src="redditSearch.js"></script>
 	<!--<script src="js/detectMobileBrowsers.js"></script>-->
 </head>
+
 <body>
 	<div class="contentDiv">
 		<h1 id="h1">Reddit search generator</h1>
-    <div class="content">
+		<div class="content">
 			<p class="flexbox">
-        <span><label>query: </label><input id="query" type="text"></span>
-        <span><label>subreddit: </label><input id="subreddit" type="text"></span>
-        <span><label>Sort type: </label>
-        <select id="sort">
-          <option value="top">top</option>
-          <option value="relevance">relevance</option>
-          <option value="new">new</option>
-          <option value="comments">comments</option>
-        </select></span>
-        <span><label>Time: </label>
-        <select id="time">
-          <option value="hour">past hour</option>
-          <option value="day">past 24 hours</option>
-          <option value="week">past week</option>
-          <option value="month">past month</option>
-          <option value="year">past year</option>
-          <option value="all" selected="selected">all time</option>
-        </select></span>
-		<span><label>Site:</label><input name="oldOrNewReddit"id="oldReddit" type="radio" value="old" checked="checked">old.reddit.com</input><input name="oldOrNewReddit" id="newREddit" type="radio" value="new">www.reddit.com (new site)</input></span>
-        <span><label>Include NSFW?</label><input id="nsfw" type="checkbox"></span>
-        <span><input type="button" value="generate" onclick="generate()"></span>
-      </p>
-      <p id="output" />
-	  </div>
-  </div>
+				<span><label>query: </label><input id="query" type="text" oninput="generate()"></span>
+				<span><label>subreddit: </label><input id="subreddit" type="text" oninput="generate()"></span>
+				<span><label>Sort type: </label>
+					<select id="sort" oninput="generate()">
+						<option value="top">top</option>
+						<option value="relevance">relevance</option>
+						<option value="new">new</option>
+						<option value="comments">comments</option>
+					</select></span>
+				<span><label>Time: </label>
+					<select id="time" oninput="generate()">
+						<option value="hour">past hour</option>
+						<option value="day">past 24 hours</option>
+						<option value="week">past week</option>
+						<option value="month">past month</option>
+						<option value="year">past year</option>
+						<option value="all" selected="selected">all time</option>
+					</select></span>
+				<span><label>Site:</label><input name="oldOrNewReddit" id="oldReddit" type="radio" value="old" checked="checked" oninput="generate()">old.reddit.com</input><input name="oldOrNewReddit" id="newREddit" type="radio" value="new"
+						oninput="generate()">www.reddit.com
+					(new
+					site)</input></span>
+				<span><label>Include NSFW?</label><input id="nsfw" type="checkbox" oninput="generate()"></span>
+			</p>
+			<p id="output" />
+		</div>
+	</div>
 </body>
+
 </html>
