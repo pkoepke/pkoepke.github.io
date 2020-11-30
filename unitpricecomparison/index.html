@@ -1,90 +1,45 @@
 <!DOCTYPE html>
-
-<!--<html manifest="cache.manifest" lang="en-us">-->
-<html lang="en-us">
-
+<html>
 <head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    Fore more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+  -->
+  <base href="/">
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="mobile-web-app-capable" content="yes">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#003FD1">
-  <meta name="description" content="Unit Price Comparison tool">
-  <meta name="keywords" content="Unit,Price,Comparison,Compare,Calculate">
-  <meta name="author" content="Paul Koepke">
-  <title>Unit Price Comparison - by Paul Koepke</title>
-  <link id="styles" rel="stylesheet" type="text/css" href="styles.css">
-  <link id="colorCss" rel="stylesheet" type="text/css" href="lightTheme.css">
-  <script type="text/javascript" src="./script.js"></script>
-  <link rel="icon" type="image/png" href="unitPriceComparisonIcon.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="unit_price_comparison">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>unit_price_comparison</title>
+  <link rel="manifest" href="manifest.json">
 </head>
-
 <body>
-  <div id="everythingDiv" class="everythingDiv">
-    <h3><img class="unitPriceComparisonIcon" alt="Unit Price Comparison Icon" src="unitPriceComparisonIcon.png">
-      <span class="headerSpan">Unit Price Comparison</span>
-      <span class="buttonsSpan"><button class="expandCollapseButton" onclick="expandCollapseSecondRow()"><span id="expandCollapseArrow" class="expandCollapseArrow">➔</span></button>
-        <button id="clearAllButton" class="clearAllButton" onclick="clearAll()"><span class="multiplicationSign">✖</span></button></span></h3>
-    <div class="allCardsDiv">
-      <div class="itemCard">
-        <div class="itemFirstRowDiv">
-          <span class="itemLabel">Item 1</span>
-          <input type="number" class="price" placeholder="Price $" oninput="doAllCalculations()">
-          <input type="number" class="units" placeholder="Units" oninput="doAllCalculations()">
-          <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
-        </div>
-        <div class="itemSecondRowDiv">
-          <input type="text" class="itemName" placeholder="Item name">
-          <input type="number" class="quantity" placeholder="Qty" oninput="doAllCalculations()">
-          <input type="text" class="unitsName" placeholder="Unit name">
-        </div>
-      </div>
-      <div class="itemCard">
-        <div class="itemFirstRowDiv" id="item2FirstRowDiv">
-          <span class="itemLabel">Item 2</span>
-          <input type="number" class="price" placeholder="Price $" oninput="doAllCalculations()">
-          <input type="number" class="units" placeholder="Units" oninput="doAllCalculations()">
-          <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
-        </div>
-        <div class="itemSecondRowDiv" id="item2SecondRowDiv">
-          <input type="text" class="itemName" placeholder="Item name">
-          <input type="number" class="quantity" placeholder="Qty" oninput="doAllCalculations()">
-          <input type="text" class="unitsName" placeholder="Unit name">
-        </div>
-      </div>
-      <div class="itemCard">
-        <div class="itemFirstRowDiv" id="item3FirstRowDiv">
-          <span class="itemLabel">Item 3</span>
-          <input type="number" class="price" placeholder="Price $" oninput="doAllCalculations()">
-          <input type="number" class="units" placeholder="Units" oninput="doAllCalculations()">
-          <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
-        </div>
-        <div class="itemSecondRowDiv" id="item3SecondRowDiv">
-          <input type="text" class="itemName" placeholder="Item name">
-          <input type="number" class="quantity" placeholder="Qty" oninput="doAllCalculations()">
-          <input type="text" class="unitsName" placeholder="Unit name">
-        </div>
-      </div>
-      <div class="itemCard">
-        <div class="itemFirstRowDiv" id="item4FirstRowDiv">
-          <span class="itemLabel">Item 4</span>
-          <input type="number" class="price" placeholder="Price $" oninput="doAllCalculations()">
-          <input type="number" class="units" placeholder="Units" oninput="doAllCalculations()">
-          <span class="itemPricePerUnits itemPricePerUnitsPlaceholder">$/unit</span>
-        </div>
-        <div class="itemSecondRowDiv" id="item4SecondRowDiv">
-          <input type="text" class="itemName" placeholder="Item name">
-          <input type="number" class="quantity" placeholder="Qty" oninput="doAllCalculations()">
-          <input type="text" class="unitsName" placeholder="Unit name">
-        </div>
-      </div>
-    </div>
-    <span class="buttonsSpan">
-      <button type="button" value="Dark/light theme" onclick="switchCss(event) ">Dark/light theme</button>
-      <button class="addCardButton" onclick="addCard()"><span class="addCardCharSpan">+</span></button>
-      <button class="removeCardButton" onclick="removeCard()"><span class="removeCardCharSpan">−</span></button>
-    </span>
-  </div> <!-- end everythingDiv -->
+  <!-- This script installs service_worker.js to provide PWA functionality to
+       application. For more information, see:
+       https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('flutter-first-frame', function () {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=747341906');
+      });
+    }
+  </script>
+  <script src="main.dart.js" type="application/javascript"></script>
 </body>
-
 </html>
