@@ -21,7 +21,8 @@ let recipies = [
   'Beer can chicken',
   'Marinated pork loin / turkey loin',
   'Tony Chachere \'s jambalaya or gumbo mix',
-  'Baked potatoes'
+  'Baked potatoes',
+  'Homemade pizza'
 ]
 
 function writeRecipes(recipies) {
