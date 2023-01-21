@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Paul Koepke">
+	<meta name="description" content="Twitter Nitter converter">
+	<title>Twitter Nitter converter</title>
+	<link id="styles" rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<script src="twitternitter.js"></script>
+	<!--<script src="js/detectMobileBrowsers.js"></script>-->
+</head>
+<body>
+	<div class="contentDiv">
+		<h1 id="h1">Twitter Nitter converter</h1>
+    <div class="content">
+			<p>
+        <div><label>Twitter URL: </label><input id="twitterUrl" type="text" oninput="twitterToNitter()"></div>
+				<p id="twitterToNitterOutput" />
+        <div><label>Nitter URL: </label><input id="nitterUrl" type="text" oninput="nitterToTwitter()"></div>
+				<p id="nitterToTwitterOutput" />
+      </p>
+	  </div>
+  </div>
+</body>
+</html>
