@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Paul Koepke">
+	<meta name="description" content="Weight to plates calculator">
+	<title>Plates to Weight calculator</title>
+	<link id="styles" rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<script src="platesToWeightCalculator.js"></script>
+	<!--<script src="js/detectMobileBrowsers.js"></script>-->
+</head>
+<body>
+	<div class="contentDiv">
+		<h1 id="h1">Plates to Weight calculator</h1>
+    <div class="content">
+			<p>
+				Enter the total number of plates including both sides. So if there's a single 45 on each side that's 2 total.
+        <div><label>45s: </label><input id="45s" type="number" oninput="calculate()"></div>
+				<div><label>35s: </label><input id="35s" type="number" oninput="calculate()"></div>
+				<div><label>25s: </label><input id="25s" type="number" oninput="calculate()"></div>
+				<div><label>15s: </label><input id="15s" type="number" oninput="calculate()"></div>
+				<div><label>10s: </label><input id="10s" type="number" oninput="calculate()"></div>
+				<div><label>5s: </label><input id="5s" type="number" oninput="calculate()"></div>
+				<div><label>2.5s: </label><input id="2.5s" type="number" oninput="calculate()"></div>
+        <div><label>Bar weight: </label><input id="barWeight" type="number" value="45" oninput="calculate()"></div>
+      </p>
+      <p id="output" />
+	  </div>
+  </div>
+</body>
+</html>
