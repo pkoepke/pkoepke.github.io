@@ -38,9 +38,17 @@ li {
   padding: 0.5rem 0.3rem 0.5rem 0.3rem; /* top right bottom left*/
 }
 
+a li {
+	text-decoration: underline;
+}
+
 li:hover {
     /*background-color:#000;*/
 		background-color:#001A57;
+}
+
+a::visited {
+	color: #551A8B;
 }
 
 .link_list {
