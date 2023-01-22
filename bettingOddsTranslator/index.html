@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Paul Koepke">
+	<meta name="description" content="Betting Odds Translator">
+	<title>Betting Odds Translator</title>
+	<link id="styles" rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<script src="bettingOddsTranslator.js"></script>
+</head>
+
+<body>
+	<div class="contentDiv">
+		<h1 id="h1">Betting Odds Translator</h1>
+		<div class="content">
+			<p>Moneyline
+			<form>
+				<div><label>Favored team: </label><input id="favoredTeamName" type="text" oninput="calculateMoneyline()">
+					<label>Odds -</label><input id="favoredTeamOdds" type="number" oninput="calculateMoneyline()">
+				</div>
+				<div><label>Underdog: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input id="otherTeamName" type="text"
+						oninput="calculateMoneyline()">
+					<label>Odds +</label><input id="15s" type="number" oninput="calculateMoneyline()">
+				</div>
+			</form>
+			</p>
+			<p id="moneylineOutput" />
+			<p>Spread: negative means favorite, positive means underdog.
+			</p>
+		</div>
+	</div>
+</body>
+
+</html>
