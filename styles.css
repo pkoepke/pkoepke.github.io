@@ -47,13 +47,8 @@ li:hover {
 		background-color:#001A57;
 }
 
-a:visited {
-	color: #551A8B;
-}
-
 .link_list {
   color: white;
-  font-color: white;
 }
 
 .content {
