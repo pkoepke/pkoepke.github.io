@@ -54,25 +54,6 @@ input {
   border: 1px solid gray;
 }
 
-.flexbox {
-  display: flex;
-  margin: 0.2em;
-  justify-content: center;
-}
-
-.labelBox,
-.inputBox,
-.buttonBox {
-  display: flex;
-  flex-direction: column;
-  padding: 0em 0em 0em 0.3em;
-  white-space: nowrap;
-}
-
-.labelBox {
-  text-align: right;
-}
-
 .numberInput {
   height: 1.2em;
   margin: 0em 0em 0.19em 0em;
@@ -87,4 +68,12 @@ input[type="button"] {
   margin: 0em 1em 0.192em 0em;
   padding: 0em 1em 0em 1em;
   vertical-align: top;
+}
+
+.table {
+  table-layout: fixed;
+}
+
+.table tr > td:first-child {
+  text-align: right;
 }
