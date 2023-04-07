@@ -21,7 +21,21 @@ function calculate() {
 
 function addSubtractPlate(plate, action) {
   elem = (document.getElementById(plate));
+  value = parseInt(elem.value);
   if (action === '+') {
-    elem.value = parseInt(elem.value) + 1;
-  } else if (action === '-') { elem.value = parseInt(elem.value) - 1; }
+    result = value + 1;
+    if (isNaN(result)) {
+      elem.value = 1;
+    } else {
+      elem.value = result
+    }
+  } else if (action === '-') {
+    result = value - 1;
+    if (isNaN(result) || result < 0) {
+      elem.value = 0;
+    } else {
+      elem.value = result
+    }
+  }
+  calculate()
 }
