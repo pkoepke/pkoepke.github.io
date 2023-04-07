@@ -18,3 +18,10 @@ function calculate() {
   if (!isNaN(newWeight)) weight += newWeight;
   document.getElementById('output').innerHTML = weight + " lbs";
 }
+
+function addSubtractPlate(plate, action) {
+  elem = (document.getElementById(plate));
+  if (action === '+') {
+    elem.value = parseInt(elem.value) + 1;
+  } else if (action === '-') { elem.value = parseInt(elem.value) - 1; }
+}
