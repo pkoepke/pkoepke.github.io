@@ -62,3 +62,13 @@ input[type="button"] {
 .table tr > td:first-child {
   text-align: right;
 }
+
+/* Firefox */
+input[type="number"] {
+  appearance: textfield;
+}
+
+/* Webkit */
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
