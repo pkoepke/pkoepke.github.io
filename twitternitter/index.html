@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,17 +12,17 @@
 	<script src="twitternitter.js"></script>
 	<!--<script src="js/detectMobileBrowsers.js"></script>-->
 </head>
+
 <body>
 	<div class="contentDiv">
 		<h1 id="h1">Twitter Nitter converter</h1>
-    <div class="content">
+		<div class="content">
 			<p>
-        <div><label>Twitter URL: </label><input id="twitterUrl" type="text" oninput="twitterToNitter()"></div>
-				<p id="twitterToNitterOutput" />
-        <div><label>Nitter URL: </label><input id="nitterUrl" type="text" oninput="nitterToTwitter()"></div>
-				<p id="nitterToTwitterOutput" />
-      </p>
-	  </div>
-  </div>
+			<div><label>Twitter or Nitter URL: </label><input id="url" type="text" oninput="convertAll()"></div>
+			<p id="output" />
+			</p>
+		</div>
+	</div>
 </body>
+
 </html>
