@@ -1,28 +1,29 @@
 body {
-	font-family: 'open sans', Verdana, arial, sans-serif;
-	color:#444;
-	margin: 0;
-	background-color: #F6F6F6;
+  font-family: "open sans", Verdana, arial, sans-serif;
+  color: #444;
+  margin: 0;
+  background-color: #f6f6f6;
 }
 
 .contentDiv {
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 70rem;
-	background-color: #FAFAFA;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 70rem;
+  background-color: #fafafa;
 }
 
 h1 {
-	font-size: 2.2rem;
-	font-family: 'open sans', sans-serif;
-	margin-top: 0;
-	margin-left: 2px;
-	margin: 0 10px 0 10px;
-	/*color: #00C2F2; */ /* was #00B7E5 */ /* also liked 00CCFF but that wasn't good for links */
+  font-size: 2.2rem;
+  font-family: "open sans", sans-serif;
+  margin-top: 0;
+  margin-left: 2px;
+  margin: 0 10px 0 10px;
+  /*color: #00C2F2; */ /* was #00B7E5 */ /* also liked 00CCFF but that wasn't good for links */
 }
 
-ul { /* remove formatting from unformatted lists so my links can be put into a navigation bar */
-	list-style-type: none;
+ul {
+  /* remove formatting from unformatted lists so my links can be put into a navigation bar */
+  list-style-type: none;
   padding: 0;
   text-align: center;
 }
@@ -33,22 +34,32 @@ li {
 }
 
 li:hover {
-    /*background-color:#000;*/
-		background-color:#001A57;
+  /*background-color:#000;*/
+  background-color: #001a57;
 }
 
 .content {
   clear: both;
-	margin: 0 10px 0 10px;
-	display:flex;
-	flex-direction:column;
+  margin: 0 10px 0 10px;
+  display: flex;
+  flex-direction: column;
 }
 
-.twitter-timeline-div{
-	text-align: center;
+.twitter-timeline-div {
+  text-align: center;
 }
 
 input {
-	width: auto;
-	border: 1px solid gray;
+  width: auto;
+  border: 1px solid gray;
+}
+
+/* Firefox */
+input[type="number"] {
+  appearance: textfield;
+}
+
+/* Webkit */
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
