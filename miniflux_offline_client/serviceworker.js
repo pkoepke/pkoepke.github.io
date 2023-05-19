@@ -1,0 +1,1 @@
+console.log('the Service Worker did a console.log!')
