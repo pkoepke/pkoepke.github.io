@@ -5,6 +5,5 @@
   "scope": "/",
   "start_url": "/",
   "name": "Miniflux Offline Client",
-  "short_name": "Miniflux Offline Client",
   "description": "A Miniflux client that stores items in IndexedDB"
 }
