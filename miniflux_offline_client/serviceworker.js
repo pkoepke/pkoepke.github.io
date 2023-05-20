@@ -1,3 +1,5 @@
+// TODO: add periodic background sync: https://developer.mozilla.org/en-US/docs/Web/API/Web_Periodic_Background_Synchronization_API
+
 const cacheName = 'miniflux_offline_client'
 
 // Once the SW is installed, cache files for offline use.
@@ -11,4 +13,9 @@ self.addEventListener("install", (e) => {
       await cache.addAll(contentToCache);
     })()
   );
+});
+
+// Listen for network requests.
+self.addEventListener("fetch", (e) => {
+  console.log(`[Service Worker] Fetched resource ${e.request.url}`);
 });
