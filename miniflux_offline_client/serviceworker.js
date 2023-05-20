@@ -1,3 +1,5 @@
+const cacheName = 'miniflux_offline_client'
+
 // Once the SW is installed, cache files for offline use.
 self.addEventListener("install", (e) => {
   console.log("Service Worker Install event fired, caching files.");
