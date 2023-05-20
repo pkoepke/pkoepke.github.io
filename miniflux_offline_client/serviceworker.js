@@ -19,11 +19,11 @@ self.addEventListener("fetch", (e) => {
   e.respondWith(
     (async () => {
       const r = await caches.match(e.request);
-      console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
+      console.log(`[Service Worker] Fetching resource: ${e.request.url}`); // Attempt to serve from cache.
       if (r) {
-        return r;
+        return r; // Ends here if the resource is in the cache.
       }
-      const response = await fetch(e.request);
+      const response = await fetch(e.request); // If the resource wasn't found in the cache, fetch it online.
       const cache = await caches.open(cacheName);
       console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
       cache.put(e.request, response.clone());
