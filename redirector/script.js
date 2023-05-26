@@ -28,4 +28,4 @@ const redirect = () => {
     document.getElementById('content').innerHTML = 'Invalid domain.';
   }
 }
-//redirect();
+redirect();
