@@ -6,7 +6,7 @@ const redirect = () => {
   if (newUrl.hostname == 'extrafabulouscomics.com' || newUrl.hostname == 'www.extrafabulouscomics.com') {
     window.location.replace(newUrl);
   } else {
-    document.getElementsByTagName('body')[0].innerHTML += 'Invalid domain.';
+    document.getElementById('content').innerHTML = 'Invalid domain.';
   }
 }
 redirect();
