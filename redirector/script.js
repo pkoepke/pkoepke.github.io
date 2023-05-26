@@ -1,12 +1,12 @@
 const redirect = () => {
   newUrl = new URL(new URLSearchParams(window.location.search).get('redirectUrl'));
   console.log(newUrl);
-  console.log(newUrl.indexOf('extrafabulouscomics.com'));
+  console.log(newUrl.hostname);
 
-  /*if ((newUrl.indexOf('extrafabulouscomics.com') >= 0) && ((newUrl.indexOf('extrafabulouscomics.com') <= 12))) {
+  if (newUrl.hostname == 'extrafabulouscomics.com' || newUrl.hostname == 'www.extrafabulouscomics.com') {
     window.location.replace(newUrl);
   } else {
     document.getElementsByTagName('body')[0].innerHTML += 'Invalid domain.';
-  }*/
+  }
 }
 redirect();
