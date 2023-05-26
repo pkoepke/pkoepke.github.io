@@ -18,11 +18,11 @@ const calculateNewUrl = (currentComic, direction) => {
 
 const redirect = () => {
   let newUrl = new URL(new URLSearchParams(window.location.search).get('redirectUrl'));
-  const direction = new URLSearchParams(window.location.search).get('direction');
-  console.log('newUrl: ' + newUrl + ' direction: ' + direction)
-  newUrl = calculateNewUrl(newUrl.toString(), direction);
 
   if (newUrl.hostname == 'extrafabulouscomics.com' || newUrl.hostname == 'www.extrafabulouscomics.com') {
+    const direction = new URLSearchParams(window.location.search).get('direction');
+    console.log('newUrl: ' + newUrl + ' direction: ' + direction)
+    newUrl = calculateNewUrl(newUrl.toString(), direction);
     window.location.replace(newUrl);
   } else {
     document.getElementById('content').innerHTML = 'Invalid domain.';
