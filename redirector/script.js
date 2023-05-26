@@ -1,21 +1,26 @@
-const calculateCurrentPrevNext = (currentComic) => {
+const calculateNewUrl = (currentComic, direction) => {
   currentComic = currentComic.slice(-5); // example: https://www.extrafabulouscomics.com/____1
   currentComic = parseInt(currentComic.replace(/\D/g, ''));
 
-  let nextComic = currentComic + 1;
-  nextComic = nextComic.toString().padStart(5, '_');
-  nextComic = 'https://www.extrafabulouscomics.com/' + nextComic;
+  let numberToAdd = 1;
+  if (direction == 'prev') {
+    numberToAdd = -1;
+  }
 
-  let prevComic = currentComic - 1;
-  prevComic = prevComic.toString().padStart(5, '_');
-  prevComic = 'https://www.extrafabulouscomics.com/' + prevComic;
+  let newComic = currentComic + numberToAdd;
+  newComic = newComic.toString().padStart(5, '_');
+  newComic = 'https://www.extrafabulouscomics.com/' + newComic;
 
-  return { 'current': currentComic, 'next': nextComic, 'prev': prevComic };
+  console.log('newComic: ' + newComic);
+
+  return newComic;
 }
 
-const redirect = (direction) => {
-  newUrl = new URL(new URLSearchParams(window.location.search).get('redirectUrl'));
-  newUrl = calculateCurrentPrevNext(newUrl.toString());
+const redirect = () => {
+  let newUrl = new URL(new URLSearchParams(window.location.search).get('redirectUrl'));
+  const direction = new URLSearchParams(window.location.search).get('direction');
+  console.log('newUrl: ' + newUrl + ' direction: ' + direction)
+  newUrl = calculateNewUrl(newUrl.toString(), direction);
 
   if (newUrl.hostname == 'extrafabulouscomics.com' || newUrl.hostname == 'www.extrafabulouscomics.com') {
     window.location.replace(newUrl);
@@ -23,4 +28,4 @@ const redirect = (direction) => {
     document.getElementById('content').innerHTML = 'Invalid domain.';
   }
 }
-redirect();
+//redirect();
