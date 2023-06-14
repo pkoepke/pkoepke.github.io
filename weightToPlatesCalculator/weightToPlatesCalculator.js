@@ -1,4 +1,4 @@
-function calculate() {
+const calculatePlates = () => {
   const desiredWeight = parseInt(document.getElementById('desiredWeight').value);
   const barWeight = parseInt(document.getElementById('barWeight').value);
   const fifteensYesNo = document.getElementById('fifteensYesNo').checked;
@@ -38,4 +38,11 @@ function calculate() {
     if (remainingWeight) output += 'Remaining weight: ' + remainingWeight + ' lbs.'
     document.getElementById('output').innerHTML = output;
   }
+}
+
+const calculateWeight = () => {
+  const max = parseInt(document.getElementById('1RM').value);
+  const percent = parseInt(document.getElementById('percent').value);
+  document.getElementById('desiredWeight').value = max * percent / 100;
+  calculatePlates();
 }
