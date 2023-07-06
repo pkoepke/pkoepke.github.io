@@ -58,6 +58,12 @@ li:hover {
   margin: 0 10px 0 10px;
 }
 
-.twitter-timeline-div {
-  text-align: center;
+img {
+  height: 0.8em;
+  filter: invert(1);
+  /*padding: 0.4em 0em 0em 0.4em;
+  margin: 0.5em 0em 0em 0.4em;*/
+  position: relative;
+  top: 0.1em;
+  left: 0.2em;
 }
