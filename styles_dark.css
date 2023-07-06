@@ -1,6 +1,6 @@
 body {
   font-family: "open sans", Verdana, arial, sans-serif;
-  color: #cccccc;
+  color: /*#cccccc*/ white;
   margin: 0;
   background-color: #000000;
 }
@@ -37,7 +37,7 @@ li {
 }
 
 a {
-  color: #003fd1;
+  color: #0085f3;
 }
 
 ul a {
@@ -46,7 +46,7 @@ ul a {
 
 a li {
   text-decoration: underline; /* Do underline text within li items since they're links. */
-  color: #eeeeee;
+  color: /*#eeeeee*/ white;
 }
 
 li:hover {
