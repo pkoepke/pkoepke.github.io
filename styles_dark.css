@@ -1,6 +1,6 @@
 body {
   font-family: "open sans", Verdana, arial, sans-serif;
-  color: #bbb;
+  color: #cccccc;
   margin: 0;
   background-color: #000000;
 }
@@ -21,7 +21,6 @@ h1 {
 }
 
 .navigation_menu {
-  color: white;
   background-color: #003fd1;
 }
 
@@ -38,19 +37,20 @@ li {
 }
 
 a {
+  color: #003fd1;
+}
+
+ul a {
   text-decoration: none; /* There are line breaks between the li that HTML treats as significant. Don't underline that whitespace. */
 }
 
 a li {
   text-decoration: underline; /* Do underline text within li items since they're links. */
+  color: #eeeeee;
 }
 
 li:hover {
   background-color: #001a57;
-}
-
-.link_list {
-  color: white;
 }
 
 .content {
