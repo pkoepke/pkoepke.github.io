@@ -85,6 +85,7 @@ input:focus,
 select:focus {
   border: 1px solid lightgray;
   background-color: #2d2d2d;
+  outline: 0;
 }
 
 /* Firefox - prevent number buttons/spinners */
