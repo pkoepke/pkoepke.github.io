@@ -1,4 +1,5 @@
 function convertAll() {
+  document.getElementById('output').innerHTML = '';
   try {
     let url = new URL(document.getElementById('url').value);
     let domains = ['www.twitter.com', 'nitter.1d4.us', 'nitter.net', 'nitter.lacontrevoie.fr']
@@ -9,9 +10,8 @@ function convertAll() {
     for (result of results) {
       document.getElementById('output').innerHTML += '<p>' + result + '</p>';
     }
-  } catch (error) { // If the URL is invalid, do nothing except clearing the output.
+  } catch (error) { // If the URL is invalid, do nothing except clearing the output (which already happened above)
   }
-  document.getElementById('output').innerHTML = '';
   
 }
 
