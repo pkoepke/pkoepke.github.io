@@ -16,7 +16,10 @@ function paste() {
   navigator.clipboard
   .readText()
   .then((clipText) => (document.getElementById('url').value = clipText))
-  .then(convertAll);
+  //.then(convertAll);
 }
 
-function clear() { document.getElementById('url').value = '';}
+function clear() { 
+  document.getElementById('url').value = '';
+  document.getElementById('output').innerHTML = '';
+}
