@@ -19,35 +19,41 @@
   <body>
     <main>
       <h1 id="h1">Weight to plates calculator</h1>
-      <p>
-        <label>1RM: </label
-        ><input id="1RM" type="number" oninput="calculateWeight()" />
-      </p>
-      <p>
-        <label>%: </label
-        ><input id="percent" type="number" oninput="calculateWeight()" />
-      </p>
-      <p>
-        <label>Desired weight: </label
-        ><input id="desiredWeight" type="number" oninput="calculatePlates()" />
-      </p>
-      <p>
-        <label>Bar weight: </label
-        ><input
-          id="barWeight"
-          type="number"
-          value="45"
-          oninput="calculatePlates()"
-        />
-      </p>
-      <p>
-        <label>Include 15-lbs plates?</label
-        ><input
-          id="fifteensYesNo"
-          type="checkbox"
-          onchange="calculatePlates()"
-        />
-      </p>
+      <form>
+        <p>
+          <label>1RM: </label
+          ><input id="1RM" type="number" oninput="calculateWeight()" />
+        </p>
+        <p>
+          <label>%: </label
+          ><input id="percent" type="number" oninput="calculateWeight()" />
+        </p>
+        <p>
+          <label>Desired weight: </label
+          ><input
+            id="desiredWeight"
+            type="number"
+            oninput="calculatePlates()"
+          />
+        </p>
+        <p>
+          <label>Bar weight: </label
+          ><input
+            id="barWeight"
+            type="number"
+            value="45"
+            oninput="calculatePlates()"
+          />
+        </p>
+        <p>
+          <label>Include 15-lbs plates?</label
+          ><input
+            id="fifteensYesNo"
+            type="checkbox"
+            onchange="calculatePlates()"
+          />
+        </p>
+      </form>
       <p id="output"></p>
     </main>
   </body>
