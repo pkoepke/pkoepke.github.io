@@ -10,3 +10,11 @@ function convertAll() {
     document.getElementById('output').innerHTML += '<p>' + result + '</p>';
   }
 }
+
+function paste() {
+  navigator.clipboard
+  .readText()
+  .then((clipText) => (document.getElementById("url").value = clipText));
+}
+
+function clear() { document.getElementById("url").value = '';}
