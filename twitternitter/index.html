@@ -7,10 +7,9 @@
 	<meta name="author" content="Paul Koepke">
 	<meta name="description" content="Twitter Nitter converter">
 	<title>Twitter Nitter converter</title>
-	<link id="styles" rel="stylesheet" type="text/css" href="styles.css">
+	<link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">
 	<link rel="icon" type="image/png" href="favicon.png">
 	<script src="twitternitter.js"></script>
-	<!--<script src="js/detectMobileBrowsers.js"></script>-->
 </head>
 
 <body>
@@ -18,7 +17,10 @@
 		<h1 id="h1">Twitter Nitter converter</h1>
 		<div class="content">
 			<p>
-			<div><label>Twitter or Nitter URL: </label><input id="url" type="text" oninput="convertAll()"></div>
+			<div>
+				<label>Twitter or Nitter URL: </label><input id="url" type="text" oninput="convertAll()">
+				<input type="button" value=" 📋 "><input type="button" value=" X ">
+			</div>
 			<p id="output" />
 			</p>
 		</div>
