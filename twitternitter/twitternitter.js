@@ -14,7 +14,8 @@ function convertAll() {
 function paste() {
   navigator.clipboard
   .readText()
-  .then((clipText) => (document.getElementById("url").value = clipText));
+  .then((clipText) => (document.getElementById("url").value = clipText))
+  .then(convertAll);
 }
 
 function clear() { document.getElementById("url").value = '';}
