@@ -13,20 +13,22 @@
 </head>
 
 <body>
-	<div class="contentDiv">
-		<h1 id="h1">Weight to plates calculator</h1>
-		<div class="content">
-			<p>
-			<div><label>1RM: </label><input id="1RM" type="number" oninput="calculateWeight()"></div>
-			<div><label>%: </label><input id="percent" type="number" oninput="calculateWeight()"></div>
-			<div><label>Desired weight: </label><input id="desiredWeight" type="number" oninput="calculatePlates()"></div>
-			<div><label>Bar weight: </label><input id="barWeight" type="number" value="45" oninput="calculatePlates()"></div>
-			<div><label>Include 15-lbs plates?</label><input id="fifteensYesNo" type="checkbox" onchange="calculatePlates()">
+	<main>
+		<div class="contentDiv">
+			<h1 id="h1">Weight to plates calculator</h1>
+			<div class="content">
+				<p>
+				<div><label>1RM: </label><input id="1RM" type="number" oninput="calculateWeight()"></div>
+				<div><label>%: </label><input id="percent" type="number" oninput="calculateWeight()"></div>
+				<div><label>Desired weight: </label><input id="desiredWeight" type="number" oninput="calculatePlates()"></div>
+				<div><label>Bar weight: </label><input id="barWeight" type="number" value="45" oninput="calculatePlates()"></div>
+				<div><label>Include 15-lbs plates?</label><input id="fifteensYesNo" type="checkbox" onchange="calculatePlates()">
+				</div>
+				</p>
+				<p id="output" />
 			</div>
-			</p>
-			<p id="output" />
 		</div>
-	</div>
+	</main>
 </body>
 
 </html>
