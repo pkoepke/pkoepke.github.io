@@ -19,16 +19,16 @@
 		<h1 id="h1">Reddit search generator</h1>
 		<div class="content">
 			<p class="flexbox">
-				<span><label>query: </label><input id="query" type="text" oninput="generate()"></span>
-				<span><label>subreddit: </label><input id="subreddit" type="text" oninput="generate()"></span>
-				<span><label>Sort type: </label>
+				<div><label>query: </label><input id="query" type="text" oninput="generate()"></div>
+				<div><label>subreddit: </label><input id="subreddit" type="text" oninput="generate()"></div>
+				<div><label>Sort type: </label>
 					<select id="sort" oninput="generate()">
 						<option value="top">top</option>
 						<option value="relevance">relevance</option>
 						<option value="new">new</option>
 						<option value="comments">comments</option>
-					</select></span>
-				<span><label>Time: </label>
+					</select></div>
+				<div><label>Time: </label>
 					<select id="time" oninput="generate()">
 						<option value="hour">past hour</option>
 						<option value="day">past 24 hours</option>
@@ -36,12 +36,12 @@
 						<option value="month">past month</option>
 						<option value="year">past year</option>
 						<option value="all" selected="selected">all time</option>
-					</select></span>
-				<span><label>Site:</label><input name="oldOrNewReddit" id="oldReddit" type="radio" value="old" checked="checked" oninput="generate()">old.reddit.com</input><input name="oldOrNewReddit" id="newREddit" type="radio" value="new"
+					</select></div>
+				<div><label>Site:</label><input name="oldOrNewReddit" id="oldReddit" type="radio" value="old" checked="checked" oninput="generate()">old.reddit.com</input><input name="oldOrNewReddit" id="newREddit" type="radio" value="new"
 						oninput="generate()">www.reddit.com
 					(new
-					site)</input></span>
-				<span><label>Include NSFW?</label><input id="nsfw" type="checkbox" oninput="generate()"></span>
+					site)</input></div>
+				<div><label>Include NSFW?</label><input id="nsfw" type="checkbox" oninput="generate()"></div>
 			</p>
 			<p id="output" />
 		</div>
