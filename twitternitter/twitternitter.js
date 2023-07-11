@@ -19,7 +19,7 @@ function paste() {
   .then(convertAll);
 }
 
-function clear() { 
+function clearAll() { 
   document.getElementById('url').value = '';
   document.getElementById('output').innerHTML = '';
 }
