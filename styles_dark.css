@@ -78,7 +78,13 @@ img {
 input,
 select {
   width: auto;
-  border: 1px solid white;
-  background-color: #363636;
+  border: 1px solid gray;
+  background-color: #1d1d1d;
   color: white;
+}
+
+input:focus,
+select:focus {
+  border: 1px solid lightgray;
+  background-color: darkgray;
 }
