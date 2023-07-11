@@ -71,6 +71,6 @@ img {
 input, select {
 	width: auto;
 	border: 1px solid white;
-  background-color: dimgray;
+  background-color: #363636;
   color: white;
 }
