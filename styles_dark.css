@@ -70,7 +70,6 @@ img {
 
 input, select {
 	width: auto;
-	/*border: 2px solid white;*/
-  border: 2px solid #003fd1;
-  background-color: lightgray;
+	border: 1px solid white;
+  background-color: darkgray;
 }
