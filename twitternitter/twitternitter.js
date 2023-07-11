@@ -1,4 +1,5 @@
 function convertAll() {
+  setTimeout(() => {
   document.getElementById('output').innerHTML = '';
   let url = new URL(document.getElementById('url').value);
   let domains = ['www.twitter.com', 'nitter.1d4.us', 'nitter.net', 'nitter.lacontrevoie.fr']
@@ -8,14 +9,14 @@ function convertAll() {
   }
   for (result of results) {
     document.getElementById('output').innerHTML += '<p>' + result + '</p>';
-  }
+  }}, 0)
 }
 
 function paste() {
   navigator.clipboard
   .readText()
-  .then((clipText) => (document.getElementById("url").value = clipText))
+  .then((clipText) => (document.getElementById('url').value = clipText))
   .then(convertAll);
 }
 
-function clear() { document.getElementById("url").value = '';}
+function clear() { document.getElementById('url').value = '';}
