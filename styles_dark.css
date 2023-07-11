@@ -86,5 +86,5 @@ select {
 input:focus,
 select:focus {
   border: 1px solid lightgray;
-  background-color: darkgray;
+  background-color: #2d2d2d;
 }
