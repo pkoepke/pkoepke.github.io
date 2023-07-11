@@ -106,7 +106,7 @@ label {
 input[type="button"] {
   height: 1.5em;
   /*margin: 0em 1em 0.192em 0em;*/
-  margin: 0em 1em 0em 0em;
+  margin: 0.1em 0.5em 0.1em 0.5em;
   padding: 0em 1em 0em 1em;
   vertical-align: top;
 }
