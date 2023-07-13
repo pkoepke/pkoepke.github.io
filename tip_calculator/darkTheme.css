@@ -28,4 +28,5 @@ button:focus, input[type="button"]:focus {
 
 input[type=number]:focus, input[type=text]:focus {
   border-bottom: 1px solid #FFFFFF;
+  outline: 0;
 }
