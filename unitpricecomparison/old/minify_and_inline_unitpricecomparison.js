@@ -5,12 +5,12 @@ var fs = require('fs');
 // Minify HTML, store in var minifiedHtml.
 var unminifiedHtml = fs.readFileSync('./index_unminified.html', 'utf8');
 var htmlManifestTagCommentedOut = '<!--<html manifest="cache.manifest">-->';
-unminifiedHtml = unminifiedHtml.replace(htmlManifestTagCommentedOut,'<html manifest="cache.manifest">'); // Uncomment appcache line
-unminifiedHtml = unminifiedHtml.replace('<html>',''); // Remove extra <html> tag
+unminifiedHtml = unminifiedHtml.replace(htmlManifestTagCommentedOut, '<html manifest="cache.manifest">'); // Uncomment appcache line
+unminifiedHtml = unminifiedHtml.replace('<html>', ''); // Remove extra <html> tag
 var stylesheetLinkLine = '<link id="styles" rel="stylesheet" type="text/css" href="styles_unminified.css">';
-unminifiedHtml = unminifiedHtml.replace('<link id="styles" rel="stylesheet" type="text/css" href="styles_unminified.css">',''); // Remove css since it will be inlined
+unminifiedHtml = unminifiedHtml.replace('<link id="styles" rel="stylesheet" type="text/css" href="styles_unminified.css">', ''); // Remove css since it will be inlined
 var javascriptLinkLine = '<script type="text/javascript" src="./script_unminified.js"></script>';
-unminifiedHtml = unminifiedHtml.replace(javascriptLinkLine,''); // Remove script file since it will be inlined
+unminifiedHtml = unminifiedHtml.replace(javascriptLinkLine, ''); // Remove script file since it will be inlined
 var minify = require('../node_modules/html-minifier').minify;
 var minifiedHtml = minify(unminifiedHtml, {
   removeComments: true,
@@ -20,10 +20,10 @@ var minifiedHtml = minify(unminifiedHtml, {
   removeAttributeQuotes: true,
   removeEmptyAttributes: true
 });
-minifiedHtml = minifiedHtml.replace('</body>','')
-minifiedHtml = minifiedHtml.replace('</html>','');
+minifiedHtml = minifiedHtml.replace('</body>', '')
+minifiedHtml = minifiedHtml.replace('</html>', '');
 var indexOfHead = minifiedHtml.indexOf('</head>');
-var minifiedHeader = minifiedHtml.substr(0,indexOfHead);
+var minifiedHeader = minifiedHtml.substr(0, indexOfHead);
 var minifiedBody = minifiedHtml.substr(indexOfHead);
 
 // Minify CSS, store in var minifiedCss.
@@ -41,27 +41,24 @@ var minifiedIosCss = new CleanCSS().minify(unminifiedIosCss).styles;
 var unminifiedDesktopCss = fs.readFileSync('desktopStyles_unminified.css', 'utf8');
 var minifiedDesktopCss = new CleanCSS().minify(unminifiedDesktopCss).styles;
 // Remove <link> elements to CSS in addStyles(), add inlined CSS directly to JS in addStyles(). addStyles() will add the new CSS to the bottom of the <style id="stylesTag"> element and override the orignal CSS which will be higher in that element.
-unminifiedJs = unminifiedJs.replace('document.head.innerHTML += \'<link rel="stylesheet" type="text/css" href="./iosStyles_unminified.css">\'; // for use with multiple files instead of inlining styles and JS. Minify and inline script replaces this with the minified version.',''); // remove the <link> element.
-unminifiedJs = unminifiedJs.replace('// For use in minified version with <style id="stylesTag">: ',''); // remove the comment at the start of the line. This is followed by 'document.getElementById('stylesTag').innerHTML += minifiedIosCss;' which is now uncommented, and the next line will fill in the minified CSS.
+unminifiedJs = unminifiedJs.replace('document.head.innerHTML += \'<link rel="stylesheet" type="text/css" href="./iosStyles_unminified.css">\'; // for use with multiple files instead of inlining styles and JS. Minify and inline script replaces this with the minified version.', ''); // remove the <link> element.
+unminifiedJs = unminifiedJs.replace('// For use in minified version with <style id="stylesTag">: ', ''); // remove the comment at the start of the line. This is followed by 'document.getElementById('stylesTag').innerHTML += minifiedIosCss;' which is now uncommented, and the next line will fill in the minified CSS.
 unminifiedJs = unminifiedJs.replace('minifiedIosCss', '\'' + minifiedIosCss + '\''); // replace 'minifiedIosCss' with the actual minified CSS.
-unminifiedJs = unminifiedJs.replace('document.head.innerHTML += \'<link rel="stylesheet" type="text/css" href="./desktopStyles_unminified.css">\'; // for use with multiple files instead of inlining styles and JS. Minify and inline script replaces this with the minified version.',''); // remove the <link> element.
-unminifiedJs = unminifiedJs.replace('// For use in minified version with <style id="stylesTag">: ',''); // remove the comment at the start of the line. This is followed by 'document.getElementById('stylesTag').innerHTML += minifiedDesktopCss;' which is now uncommented, and the next line will fill in the minified CSS.
+unminifiedJs = unminifiedJs.replace('document.head.innerHTML += \'<link rel="stylesheet" type="text/css" href="./desktopStyles_unminified.css">\'; // for use with multiple files instead of inlining styles and JS. Minify and inline script replaces this with the minified version.', ''); // remove the <link> element.
+unminifiedJs = unminifiedJs.replace('// For use in minified version with <style id="stylesTag">: ', ''); // remove the comment at the start of the line. This is followed by 'document.getElementById('stylesTag').innerHTML += minifiedDesktopCss;' which is now uncommented, and the next line will fill in the minified CSS.
 unminifiedJs = unminifiedJs.replace('minifiedDesktopCss', '\'' + minifiedDesktopCss + '\''); // replace 'minifiedDesktopCss' with the actual minified CSS.
 // Write a temporary file with the unminified JS so UglifyJS can read it - UglifyJS doesn't accept a string as input as far as I can tell.
-fs.writeFileSync('./temp_unminified_Js.js',unminifiedJs); // Write the temp file.
+fs.writeFileSync('./temp_unminified_Js.js', unminifiedJs); // Write the temp file.
 var minifiedJs = UglifyJS.minify('./temp_unminified_Js.js'); // Read JS from temp file. Reading from file is built in to UglifyJS, no need for fs.
 fs.unlinkSync('./temp_unminified_Js.js'); // Delete the temp file.
 minifiedJs = minifiedJs.code; // convert UglifyJS object to string with just the minified code.
 
-// add Google Analytics <script> tag to the very end.
-var googleAnalyticsScriptTag = fs.readFileSync('../Google Analytics script/google_analytics_script_tag.txt', 'utf8');
-
 // String that will eventually be written to disk as index.html. Will include all HTML, CSS, and JS once it's all minified.
-var htmlCssJSComined = minifiedHeader + '<style id="stylesTag">' + minifiedCss + '</style>' + minifiedBody + '<script>' + minifiedJs + '</script>' + googleAnalyticsScriptTag + '</body></html>';
-fs.writeFileSync('./index.html',htmlCssJSComined);
+var htmlCssJSComined = minifiedHeader + '<style id="stylesTag">' + minifiedCss + '</style>' + minifiedBody + '<script>' + minifiedJs + '</script>' + '</body></html>';
+fs.writeFileSync('./index.html', htmlCssJSComined);
 
 // Automate updating appcache with current date and time.
-var appcacheText = fs.readFileSync('./cache.manifest','utf8');
+var appcacheText = fs.readFileSync('./cache.manifest', 'utf8');
 var appcacheLines = appcacheText.split('\n'); // Split into an array where each line is its own element.
 // for loop method.
 /*for(var index = 0; index < appcacheLines.length; index++) { // split returned an array-like object, and couldn't convert it to an array for easy iterating. Might come back and use for..of later.
@@ -72,8 +69,8 @@ var appcacheLines = appcacheText.split('\n'); // Split into an array where each 
 }*/
 
 // forEach method. For some reason it was telling me that appcacheLines.forEach() was not a function, so I did the for of methods below, but now this is magically working. I probably a typo when it wasn't working.
-appcacheLines.forEach(function(currentLine, index) {
-  if(currentLine.includes('# last updated:')) {
+appcacheLines.forEach(function (currentLine, index) {
+  if (currentLine.includes('# last updated:')) {
     appcacheLines.splice(index, 1, '# last updated: ' + new Date());
   }
 });
@@ -93,4 +90,4 @@ appcacheLines.forEach(function(currentLine, index) {
   }
 }*/
 appcacheText = appcacheLines.join('\n');
-fs.writeFileSync('./cache.manifest',appcacheText);
+fs.writeFileSync('./cache.manifest', appcacheText);
