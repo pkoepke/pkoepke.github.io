@@ -1,0 +1,23 @@
+{
+  "background_color": "#000000",
+  "description": "Simple tip calculator that rounds to the nearest dollar. No ads or private data.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Rounding Tip Calculator",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Rounding Tip Calculator",
+  "start_url": "/",
+  "theme_color": "#012169",
+  "categories": [],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "tipCalculatorIcon_128x128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    }
+  ],
+  "shortcuts": [],
+  "id": "roundingtipcalculator"
+}
