@@ -8,14 +8,19 @@
   "scope": "/",
   "short_name": "Rounding Tip Calculator",
   "start_url": "/",
-  "theme_color": "#012169",
-  "categories": [],
+  "theme_color": "#003FD1",
+  "categories": ['finance'],
   "screenshots": [],
   "icons": [
     {
-      "src": "tipCalculatorIcon_128x128.png",
+      "src": "./tipCalculatorIcon_128x128.png",
       "type": "image/png",
       "sizes": "128x128"
+    }
+    {
+      "src": "./tipCalculatorIcon_512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "shortcuts": [],
