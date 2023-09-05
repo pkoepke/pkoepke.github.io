@@ -66,7 +66,8 @@ input[type="number"] {
   appearance: textfield;
 }
 
-/* Webkit */
+/* Webkit 
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+*/
