@@ -43,6 +43,7 @@ input {
 
 label {
   height: 1.4em;
+  text-align: right;
 }
 
 input[type="button"] {

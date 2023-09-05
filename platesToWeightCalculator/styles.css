@@ -43,7 +43,6 @@ input {
 
 label {
   height: 1.4em;
-  text-align: right;
 }
 
 input[type="button"] {
@@ -51,15 +50,6 @@ input[type="button"] {
   margin: 0em 1em 0.192em 0em;
   padding: 0em 1em 0em 1em;
   vertical-align: top;
-}
-
-.table {
-  table-layout: fixed;
-  width: max-content;
-}
-
-.table tr > td:first-child {
-  text-align: right;
 }
 
 /* Firefox */

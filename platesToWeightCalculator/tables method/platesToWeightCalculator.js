@@ -39,16 +39,3 @@ function addSubtractPlate(plate, action) {
   }
   calculate()
 }
-
-function alignInputs() {
-  const labels = [...document.getElementsByTagName('label')];
-  labels.shift();
-  const width = labels.slice(-1)[0].offsetWidth;
-  for (const currentLabel of labels) {
-    currentLabel.style.display = 'inline-block'
-    currentLabel.style.width = width + 'px';
-  }
-}
-
-alignInputs()
-window.addEventListener("resize", alignInputs);
