@@ -6,13 +6,12 @@ body {
   margin-right: auto;
 }
 
-h3 {
+h1 {
   font-size: 1.3rem;
   padding: 0.4rem;
   margin: 0px;
-  background-color: #012169; /* Duke blue */
-  /*background-color: #003FD1; /*medium blue*/
-  color: #ffffff; /*white text*/
+  background-color: #012169;
+  color: #ffffff;
   font-weight: normal;
 }
 

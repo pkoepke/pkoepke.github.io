@@ -1,6 +1,6 @@
 body {
   background-color: #000000;
-  opacity: .9;
+  opacity: 0.9;
 }
 
 .card {
@@ -9,24 +9,28 @@ body {
   color: white;
 }
 
-button, input[type="button"] {
+button,
+input[type="button"] {
   color: white;
   background-color: #424242;
   border-color: #616161;
   box-shadow: 0px 0px 5px #000000;
 }
 
-input[type=number], input[type=text] {
+input[type="number"],
+input[type="text"] {
   color: white;
   background-color: #000000;
   border-color: #303030;
 }
 
-button:focus, input[type="button"]:focus {
-  outline: 1px solid #CCCCCC;
+button:focus,
+input[type="button"]:focus {
+  outline: 1px solid #cccccc;
 }
 
-input[type=number]:focus, input[type=text]:focus {
-  border-bottom: 1px solid #FFFFFF;
+input[type="number"]:focus,
+input[type="text"]:focus {
+  border-bottom: 1px solid #ffffff;
   outline: 0;
 }

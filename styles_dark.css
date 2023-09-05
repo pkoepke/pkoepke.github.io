@@ -3,18 +3,9 @@ body {
   color: white;
   margin: 0;
   background-color: #000000;
-}
-
-main {
+  max-width: 70rem;
   margin-left: auto;
   margin-right: auto;
-  max-width: 50rem;
-  /* was 70rem */
-  background-color: #000000;
-}
-
-.mainPageMain {
-  max-width: 70rem;
 }
 
 h1 {
@@ -98,7 +89,6 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-
 label {
   height: 1.4em;
 }
@@ -117,7 +107,7 @@ input[type="button"] {
   width: max-content;
 }
 
-.table tr>td:first-child {
+.table tr > td:first-child {
   text-align: right;
 }
 
