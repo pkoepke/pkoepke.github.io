@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
-<head>
+  
+  <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Paul Koepke" />
@@ -19,6 +19,10 @@
       Enter the total number of plates including both sides. So if there's a
       single 45 on each side that's 2 total.
     </p>
+    <div>
+      <label class="label" for="barWeight">Bar weight: </label>
+      <input id="barWeight" type="number" class="numberInput" value="45" oninput="calculate()" />
+    </div>
     <div>
       <label class="label" for="45s">45s:</label>
       <input id="45s" type="number" class="numberInput" oninput="calculate()" />
@@ -61,8 +65,6 @@
       <input type="button" id="2.5sPlus" value=" + " onclick="addSubtractPlate('2.5s','+')" />
       <input type="button" id="2.5sMinus" value=" - " onclick="addSubtractPlate('2.5s','-')" />
     </div>
-    <label class="label" for="barWeight">Bar weight: </label>
-    <input id="barWeight" type="number" class="numberInput" value="45" oninput="calculate()" />
     <div id="output"></div>
   </main>
 </body>

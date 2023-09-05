@@ -41,11 +41,14 @@ function addSubtractPlate(plate, action) {
 }
 
 function alignInputs() {
-  const labels = document.getElementsByTagName('label');
-  const width = labels[0].offsetWidth;
+  const labels = [...document.getElementsByTagName('label')];
+  labels.shift();
+  const width = labels.slice(-1)[0].offsetWidth;
   for (const currentLabel of labels) {
-    currentLabel.offsetWidth = width;
+    currentLabel.style.display = 'inline-block'
+    currentLabel.style.width = width + 'px';
   }
 }
 
 alignInputs()
+window.addEventListener("resize", alignInputs);
