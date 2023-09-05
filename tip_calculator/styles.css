@@ -10,16 +10,16 @@ h3 {
   font-size: 1.3rem;
   padding: 0.4rem;
   margin: 0px;
-  /*background-color: #012169; /* Duke blue */
-  background-color: #003FD1; /*medium blue*/
-  color: #FFFFFF; /*white text*/
+  background-color: #012169; /* Duke blue */
+  /*background-color: #003FD1; /*medium blue*/
+  color: #ffffff; /*white text*/
   font-weight: normal;
 }
 
 #headerText {
-  position:relative;
-  top:2px;
-  margin: 0rem .5rem 0rem 0rem;
+  position: relative;
+  top: 2px;
+  margin: 0rem 0.5rem 0rem 0rem;
 }
 
 .tipCalculatorIcon {
@@ -44,7 +44,7 @@ p {
 
 #dollarSignSpan {
   position: relative;
-  left:0.7em;
+  left: 0.7em;
 }
 
 #billAmount {
@@ -56,7 +56,7 @@ p {
 }
 
 #tipPercentAfter {
-  font-size:0.9em
+  font-size: 0.9em;
 }
 
 .noWhiteSpaceWrap {
@@ -64,19 +64,22 @@ p {
   margin-right: 0.4rem;
 }
 
-input[type=number], input[type=text] {
+input[type="number"],
+input[type="text"] {
   margin-bottom: 0.4em;
   font-size: 1em;
-  width:5.2em;
+  width: 5.2em;
   border: 1px solid;
   outline-width: 0px;
 }
 
-input[type=number]:focus, input[type=text]:focus {
+input[type="number"]:focus,
+input[type="text"]:focus {
   outline-width: 0px;
 }
 
-button, input[type="button"] {
+button,
+input[type="button"] {
   -webkit-appearance: none; /* Tell Safari to use my custom styles */
   padding: 0.7rem;
   margin: 0 0 0 0;
