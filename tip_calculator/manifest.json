@@ -5,9 +5,9 @@
   "display": "standalone",
   "name": "Rounding Tip Calculator",
   "orientation": "any",
-  "scope": "/",
+  "scope": "/tip_calculator/",
   "short_name": "Rounding Tip Calculator",
-  "start_url": "/",
+  "start_url": "/tip_calculator/",
   "theme_color": "#012169",
   "categories": ["shopping"],
   "screenshots": [
