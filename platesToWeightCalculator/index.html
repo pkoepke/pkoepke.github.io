@@ -3,13 +3,18 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('sw.js')
+    }
+  </script>
   <meta name="author" content="Paul Koepke" />
   <meta name="description" content="Weight to plates calculator" />
   <title>Plates to Weight calculator</title>
   <link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css" />
   <link id="styles" rel="stylesheet" type="text/css" href="./styles.css" />
-  <link rel="icon" type="image/png" href="barbell.svg" />
+  <link rel="icon" type="image/svg+xml" href="barbell.svg" />
   <script src="platesToWeightCalculator.js"></script>
 </head>
 
