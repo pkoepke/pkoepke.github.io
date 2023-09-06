@@ -75,7 +75,7 @@ li:hover {
 
 img {
   height: 0.8em;
-  filter: invert(1);
+  /*filter: invert(1);*/
   position: relative;
   top: 0.1em;
   left: 0.2em;
@@ -87,6 +87,7 @@ select {
   border: 1px solid gray;
   background-color: #1d1d1d;
   color: white;
+  height: 1.2rem;
 }
 
 input:focus,
@@ -109,14 +110,3 @@ input[type="number"]::-webkit-inner-spin-button {
 label {
   height: 1.4em;
 }
-
-/* Begin button styling for Plates to Weight calculator */
-input[type="button"] {
-  height: 1.5em;
-  /*margin: 0em 1em 0.192em 0em;*/
-  margin: 0.1em 0.5em 0.1em 0.5em;
-  padding: 0em 1em 0em 1em;
-  vertical-align: top;
-}
-
-/* End button styling for Plates to Weight calculator */

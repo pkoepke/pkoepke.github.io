@@ -48,6 +48,7 @@ function alignInputs() {
     currentLabel.style.display = 'inline-block'
     currentLabel.style.width = width + 'px';
   }
+
 }
 
 document.addEventListener("DOMContentLoaded", alignInputs);
