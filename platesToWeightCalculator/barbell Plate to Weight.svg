@@ -14,7 +14,7 @@
    enable-background="new 0 0 50 50"
    xml:space="preserve"
    id="svg893"
-   sodipodi:docname="barbell.svg"
+   sodipodi:docname="barbell Plate to Weight.svg"
    width="50"
    height="50"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
@@ -39,7 +39,7 @@
      showgrid="false"
      inkscape:zoom="11.313709"
      inkscape:cx="42.206564"
-     inkscape:cy="30.300473"
+     inkscape:cy="19.693872"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -48,7 +48,8 @@
      borderlayer="false"
      inkscape:showpageshadow="false"
      inkscape:pagecheckerboard="false" /><g
-     id="g887"><path
+     id="g887"
+     transform="translate(0,-0.1)"><path
        d="m 0.7,25.5 c 0,1 0.8,1.8 1.8,1.8 H 4.4 V 23.7 H 2.5 c -1,0 -1.8,0.8 -1.8,1.8 z"
        id="path873"
        style="opacity:1;fill:#ffffff;fill-opacity:1" /><rect
@@ -76,4 +77,14 @@
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="Background"
-     style="display:inline" /></svg>
+     style="display:inline"><text
+       xml:space="preserve"
+       style="font-size:12px;line-height:1.25;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans'"
+       x="9.8359375"
+       y="13.447145"
+       id="text845"><tspan
+         sodipodi:role="line"
+         id="tspan843"
+         x="9.8359375"
+         y="13.447145"
+         style="fill:#ffffff">P➔W</tspan></text></g></svg>

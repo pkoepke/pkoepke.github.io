@@ -12,6 +12,18 @@
   "categories": ["shopping"],
   "icons": [
     {
+      "src": "barbell plate to weight 512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "barbell Plate to Weight.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
       "src": "barbell 512x512.png",
       "type": "image/png",
       "sizes": "512x512",
