@@ -24,6 +24,18 @@
       "purpose": "any"
     },
     {
+      "src": "barbell plate to weight maskable icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "barbell plate to weight monochrome icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "monochrome"
+    },
+    {
       "src": "barbell 512x512.png",
       "type": "image/png",
       "sizes": "512x512",
