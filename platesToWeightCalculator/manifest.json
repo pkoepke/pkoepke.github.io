@@ -450,11 +450,7 @@
     {
       "src": "generated icons/ios/256.png",
       "sizes": "256x256"
-<<<<<<< HEAD
     },
-=======
-    },0
->>>>>>> 4c1586b3404429a7c387d6d415312ba0b8c85e1a
     {
       "src": "generated icons/ios/512.png",
       "sizes": "512x512"
