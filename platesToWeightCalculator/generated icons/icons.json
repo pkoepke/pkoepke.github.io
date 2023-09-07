@@ -1,15 +1,4 @@
 {
-  "background_color": "#000000",
-  "description": "Calculates weight on the bar from plates. No ads or private data.",
-  "dir": "ltr",
-  "display": "standalone",
-  "name": "Plates to Weight calculator",
-  "orientation": "any",
-  "scope": "/platesToWeightCalculator/",
-  "short_name": "Plates to Weight calculator",
-  "start_url": "/platesToWeightCalculator/",
-  "theme_color": "#012169",
-  "categories": ["shopping"],
   "icons": [
     {
       "src": "generated icons/windows11/SmallTile.scale-100.png",
@@ -459,8 +448,5 @@
       "src": "generated icons/ios/1024.png",
       "sizes": "1024x1024"
     }
-  ],
-  "shortcuts": [],
-  "id": "platesToWeightCalculator",
-  "display_override": ["window-controls-overlay"]
+  ]
 }
