@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.paulkoepke.platestoweightcalculator",
+        "sha256_cert_fingerprints": ["06:CD:73:B4:DC:6E:F1:42:43:E4:85:35:BC:38:0B:EA:02:58:41:A7:DD:CD:07:2E:CD:B7:C8:D6:74:10:0D:92"]
+      }
+    }]
