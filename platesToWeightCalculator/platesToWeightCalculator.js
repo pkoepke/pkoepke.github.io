@@ -51,5 +51,6 @@ function alignInputs() {
 
 }
 
+document.addEventListener("DOMContentLoaded", calculate);
 document.addEventListener("DOMContentLoaded", alignInputs);
 window.addEventListener("resize", alignInputs);
