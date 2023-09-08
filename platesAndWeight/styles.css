@@ -1,0 +1,47 @@
+main {
+  max-width: 19rem;
+}
+
+summary {
+  text-align: center;
+}
+
+.instructions {
+  max-width: 55rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.9rem;
+}
+
+div {
+  margin-bottom: 0.5em;
+}
+
+input {
+  padding: 0rem 0.2rem 0rem 0.2rem;
+  height: 1.68rem;
+  font-size: 1.2rem;
+}
+
+input[type="number"] {
+  width: 6rem;
+}
+
+input[type="button"] {
+  height: 1.8rem;
+  margin: 0rem 0rem 0rem 0.7rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#output {
+  max-width: 8rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}
+
+.labelForWeight {
+  text-align: right;
+  margin-right: 0.25rem;
+}

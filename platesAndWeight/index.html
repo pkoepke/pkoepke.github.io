@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('sw.js')
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#012169">
+  <meta name="author" content="Paul Koepke" />
+  <meta name="description" content="plates and weight calculator" />
+  <title>Plates and Weight calculator</title>
+  <link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css" />
+  <link id="styles" rel="stylesheet" type="text/css" href="./styles.css" />
+  <link rel="icon" type="image/svg+xml" href="barbell 512x512.png" />
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <h1>Plates and Weight calculator</h1>
+  <details>
+    <summary><span class="summary">Instructions</span></summary>
+    <p class="instructions">To calculate weight from plates: enter the total number of plates including both sides. So if there's a single 45 on each side that's 2 total.</p>
+    <p class="instructions">To calculate plates from weight: enter the weight. Optionally, you can enter your 1 rep max and desired percent, and it will calculate the weight for you.</p>
+  </details>
+
+  <main>
+    <div>
+      <label for="barWeight">Bar weight: </label>
+      <input id="barWeight" type="number" value="45" oninput="calculateWeightFromPlates()" />
+    </div>
+    <div>
+      <label class="labelForPlates" for="45s">45s:</label>
+      <input id="45s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
+      <input type="button" id="45sPlus" value=" + " onclick="addSubtractPlate('45s','+')" />
+      <input type="button" id="45sMinus" value=" - " onclick="addSubtractPlate('45s','-')" />
+    </div>
+    <div>
+      <label class="labelForPlates" for="35s">35s:</label>
+      <input id="35s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
+      <input type="button" id="35sPlus" value=" + " onclick="addSubtractPlate('35s','+')" />
+      <input type="button" id="35sMinus" value=" - " onclick="addSubtractPlate('35s','-')" />
+    </div>
+    <div>
+      <label class="labelForPlates" for="25s">25s:</label>
+      <input id="25s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
+      <input type="button" id="25sPlus" value=" + " onclick="addSubtractPlate('25s','+')" />
+      <input type="button" id="25sMinus" value=" - " onclick="addSubtractPlate('25s','-')" />
+    </div>
+    <div>
+      <label class="labelForPlates" for="15s">15s:</label>
+      <input id="15s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
+      <input type="button" id="15sPlus" value=" + " onclick="addSubtractPlate('15s','+')" />
+      <input type="button" id="15sMinus" value=" - " onclick="addSubtractPlate('15s','-')" />
+    </div>
+    <div>
+      <label class="labelForPlates" for="10s">10s:</label>
+      <input id="10s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
+      <input type="button" id="10sPlus" value=" + " onclick="addSubtractPlate('10s','+')" />
+      <input type="button" id="10sMinus" value=" - " onclick="addSubtractPlate('10s','-')" />
+    </div>
+    <div>
+      <label class="labelForPlates" for="5s">5s:</label>
+      <input id="5s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
+      <input type="button" id="5sPlus" value=" + " onclick="addSubtractPlate('5s','+')" />
+      <input type="button" id="5sMinus" value=" - " onclick="addSubtractPlate('5s','-')" />
+    </div>
+    <div>
+      <label class="labelForPlates" for="2.5s">2.5s:</label>
+      <input id="2.5s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
+      <input type="button" id="2.5sPlus" value=" + " onclick="addSubtractPlate('2.5s','+')" />
+      <input type="button" id="2.5sMinus" value=" - " onclick="addSubtractPlate('2.5s','-')" />
+    </div>
+    <div id="output"></div>
+    <form>
+      <div> <label class="labelForWeight">1RM: </label><input id="1RM" type="number" oninput="calculateDesiredWeight()" />
+      </div>
+      <div> <label class="labelForWeight">%: </label><input id="percent" type="number" oninput="calculateDesiredWeight()" />
+      </div>
+      <div> <label class="labelForWeight" for="desiredWeight">Desired weight: </label><input id="desiredWeight" type="number" oninput="calculatePlates()" />
+      </div>
+      <div> <label class="labelForWeight">Bar weight: </label><input id="barWeight" type="number" value="45" oninput="calculatePlates()" />
+      </div>
+      <div> <label>Include 15-lbs plates?</label><input id="fifteensYesNo" type="checkbox" onchange="calculatePlates()" />
+      </div>
+    </form>
+    <p id="output"></p>
+  </main>
+</body>
+
+</html>
