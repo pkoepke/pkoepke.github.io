@@ -45,3 +45,13 @@ input[type="button"] {
   text-align: right;
   margin-right: 0.25rem;
 }
+
+label[for="fifteensYesNo"] {
+  margin: 0rem 0.3rem 0rem 0rem;
+}
+
+input[type="checkbox"] {
+  vertical-align: bottom;
+  position: relative;
+  top: 0.4rem;
+}

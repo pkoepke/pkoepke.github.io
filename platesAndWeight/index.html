@@ -79,18 +79,11 @@
     </div>
     <div id="output"></div>
     <form>
-      <div> <label class="labelForWeight">1RM: </label><input id="1RM" type="number" oninput="calculateDesiredWeight()" />
-      </div>
-      <div> <label class="labelForWeight">%: </label><input id="percent" type="number" oninput="calculateDesiredWeight()" />
-      </div>
-      <div> <label class="labelForWeight" for="desiredWeight">Desired weight: </label><input id="desiredWeight" type="number" oninput="calculatePlates()" />
-      </div>
-      <div> <label class="labelForWeight">Bar weight: </label><input id="barWeight" type="number" value="45" oninput="calculatePlates()" />
-      </div>
-      <div> <label>Include 15-lbs plates?</label><input id="fifteensYesNo" type="checkbox" onchange="calculatePlates()" />
-      </div>
+      <div> <label class="labelForWeight">1RM: </label><input id="1RM" type="number" oninput="calculateDesiredWeight()" /> </div>
+      <div> <label class="labelForWeight">%: </label><input id="percent" type="number" oninput="calculateDesiredWeight()" /> </div>
+      <div> <label class="labelForWeight" for="desiredWeight">Desired weight: </label><input id="desiredWeight" type="number" oninput="calculatePlates()" /> </div>
+      <div> <label for="fifteensYesNo">Include 15-lbs plates?</label><input id="fifteensYesNo" type="checkbox" onchange="calculatePlates()" /> </div>
     </form>
-    <p id="output"></p>
   </main>
 </body>
 
