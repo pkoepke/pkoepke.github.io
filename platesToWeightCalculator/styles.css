@@ -28,3 +28,10 @@ input[type="button"] {
   padding-left: 1rem;
   padding-right: 1rem;
 }
+
+#output {
+  font-size: 1.5rem;
+  max-width: 6rem;
+  margin-left: auto;
+  margin-right: auto;
+}
