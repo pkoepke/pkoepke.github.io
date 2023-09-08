@@ -107,6 +107,7 @@ const calculatePlates = () => {
     } else { document.getElementById('2.5s').value = 0; }
     //if (remainingWeight) output += 'Remaining weight: ' + remainingWeight + ' lbs.'
     document.getElementById('output').innerHTML = output;
+    document.getElementById('percent').value = Math.round(100 * (document.getElementById('desiredWeight').value) / parseInt(document.getElementById('1RM').value));// Recalculate % of 1RM.
   }
 }
 
