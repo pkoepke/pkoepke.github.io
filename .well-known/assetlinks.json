@@ -6,7 +6,17 @@
       "package_name": "com.paulkoepke.platestoweightcalculator",
       "sha256_cert_fingerprints": [
         "06:CD:73:B4:DC:6E:F1:42:43:E4:85:35:BC:38:0B:EA:02:58:41:A7:DD:CD:07:2E:CD:B7:C8:D6:74:10:0D:92",
-        "4F:F6:8F:4E:75:3E:19:1F:2A:48:E7:84:B0:F9:18:CC:CB:02:58:98:CD:60:32:31:20:36:ED:6E:E6:CC:1C:05",
+        "4F:F6:8F:4E:75:3E:19:1F:2A:48:E7:84:B0:F9:18:CC:CB:02:58:98:CD:60:32:31:20:36:ED:6E:E6:CC:1C:05"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.paulkoepke.platesAndWeight",
+      "sha256_cert_fingerprints": [
+        "D4:35:BF:C2:28:CA:6F:2E:5C:B5:36:F7:73:04:D3:8D:1E:31:52:0A:74:F0:EA:13:96:35:2D:06:23:58:99:4F",
         "11:39:4E:58:73:DA:15:02:EE:13:92:42:DB:AF:E9:B3:6E:CE:1B:EB:E1:6B:CF:E5:56:67:20:50:45:F8:71:76"
       ]
     }
