@@ -55,7 +55,7 @@ const calculatePlates = () => {
     for (const input of plateInputs) {
       input.value = 0;
     }
-    document.getElementById('percent').value = "";
+    //document.getElementById('percent').value = ""; // Removed because it breaks the user editing the % field - when the user enters a single number the desired weight is below the bar weight, so the percent field gets wiped out.
     return; // Can't do anything with this, just exit the function after clearing fields.
   } else {
     let remainingWeight = desiredWeight - barWeight;
