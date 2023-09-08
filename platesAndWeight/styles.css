@@ -19,7 +19,8 @@ div {
 
 input {
   padding: 0rem 0.2rem 0rem 0.2rem;
-  height: 1.68rem;
+  /*height: 1.68rem;*/
+  height: 1.4rem;
   font-size: 1.2rem;
 }
 
@@ -28,7 +29,8 @@ input[type="number"] {
 }
 
 input[type="button"] {
-  height: 1.8rem;
+  /*height: 1.8rem;*/
+  height: 1.6rem;
   margin: 0rem 0rem 0rem 0.7rem;
   padding-left: 1rem;
   padding-right: 1rem;

@@ -55,7 +55,8 @@ const calculatePlates = () => {
     for (const input of plateInputs) {
       input.value = 0;
     }
-    return; // Can't do anything with this, just exit the function.
+    document.getElementById('percent').value = "";
+    return; // Can't do anything with this, just exit the function after clearing fields.
   } else {
     let remainingWeight = desiredWeight - barWeight;
     const a45s = parseInt(remainingWeight / 90) * 2;
