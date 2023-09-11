@@ -1,5 +1,8 @@
 main {
-  max-width: 19rem;
+  max-width: 20rem;
+  background-color: #181818;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 summary {
@@ -15,6 +18,13 @@ summary {
 
 div {
   margin-bottom: 0.5em;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
 }
 
 input {
@@ -55,5 +65,5 @@ label[for="fifteensYesNo"] {
 input[type="checkbox"] {
   vertical-align: bottom;
   position: relative;
-  top: 0.4rem;
+  top: 0.2rem;
 }

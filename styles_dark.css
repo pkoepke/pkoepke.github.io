@@ -85,7 +85,7 @@ img {
 input,
 select {
   width: auto;
-  border: 1px solid gray;
+  border: 1px solid #696969;
   background-color: #1d1d1d;
   color: white;
   height: 1.2rem;
