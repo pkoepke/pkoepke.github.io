@@ -21,10 +21,10 @@
      id="defs2" />
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#0000ff"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="15.839192"
      inkscape:cx="16.797268"
@@ -72,8 +72,9 @@
        height="8.4666662"
        x="0"
        y="0"
-       inkscape:export-xdpi="2.71"
-       inkscape:export-ydpi="2.71" />
+       inkscape:export-xdpi="552.75592"
+       inkscape:export-ydpi="552.75592"
+       inkscape:export-filename="C:\Users\paulk\Programming\JavaScript, HTML, and CSS\pkoepke.github.io\unitpricecomparison\icons\Icon-192 .png" />
   </g>
   <g
      inkscape:groupmode="layer"
