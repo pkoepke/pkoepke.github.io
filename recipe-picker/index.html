@@ -11,31 +11,31 @@
   <meta name="keywords" content="Recipe">
   <meta name="author" content="Paul Koepke">
   <title>Recipe Picker</title>
-  <!--<link id="css" rel="stylesheet" type="text/css" href="styles.css">
-  <link id="colorCss" rel="stylesheet" type="text/css" href="darkTheme.css">-->
+  <link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">
 </head>
 
 <body>
-  <main>
-    <h3>Recipe picker</h3>
-    <input type="button" value="Pick a recipe" onclick="pickRecipe()">
-    <p id=output></p>
-  </main>
+  <h1>Recipe picker</h1>
+  <span class="content"></span>
+  <input type="button" value="Pick a recipe" onclick="pickRecipe()">
+  <p id=output></p>
 </body>
 
 <script type="text/javascript" src="script.js"></script>
 
 <style>
-  body {
-    font-family: Helvetica, Arial, sans-serif;
-  }
-
   li {
     margin: .2rem;
+    display: list-item;
+    padding: 0;
+  }
+
+  li:hover {
+    background-color: black;
   }
 
   .selected {
-    outline: 1px solid black;
+    outline: 1px solid white;
   }
 </style>
 

@@ -1,5 +1,5 @@
 body {
-  font-family: "open sans", Verdana, arial, sans-serif;
+  font-family: "Noto Sans", "open sans", Helvetica, Aptos, arial, sans-serif;
   color: #444;
   margin: 0;
   background-color: #f6f6f6;
@@ -14,7 +14,6 @@ main {
 
 h1 {
   font-size: 2.2rem;
-  font-family: "open sans", sans-serif;
   margin-top: 0;
   margin-left: 2px;
   margin: 0 10px 0 10px;

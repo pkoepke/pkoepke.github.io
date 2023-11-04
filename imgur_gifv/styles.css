@@ -1,7 +1,0 @@
-* {
-  /* Hack to disable Chrome font boosting. Causes Chrome to enlarge the output unnecessarily. */
-  max-height:1000000px;
-  font-size: 2rem;
-  margin: 0.2rem;
-  font-family: "open sans", Verdana, arial, sans-serif;
-}

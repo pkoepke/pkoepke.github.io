@@ -1,5 +1,5 @@
 body {
-  font-family: "open sans", Verdana, arial, sans-serif;
+  font-family: "Noto Sans", "open sans", Helvetica, Aptos, arial, sans-serif;
   color: white;
   margin: 0;
   background-color: #000000;
@@ -18,14 +18,6 @@ h1 {
   font-weight: normal;
   text-align: center;
 }
-
-/*h1 {
-  font-size: 2.2rem;
-  font-family: "open sans", sans-serif;
-  margin-top: 0;
-  margin-left: 2px;
-  margin: 0 10px 0 10px;
-}*/
 
 main {
   padding: 0.2rem;
