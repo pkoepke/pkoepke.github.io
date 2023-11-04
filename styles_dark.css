@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Noto Sans";
+  src: url("/noto_sans/NotoSans-Regular.ttf");
+}
+
 body {
   font-family: "Noto Sans", "open sans", Helvetica, Aptos, arial, sans-serif;
   color: white;
