@@ -1,7 +1,9 @@
 const applyStyles = (fontName) => {
-  document.body.style.fontFamily = 'Libre Barcode 39';
-  document.body.style.fontFamily = 'wingdings';
+  document.body.style.fontFamily = 'Wavefont';
+  //document.body.style.fontFamily = 'wingdings';
+
+  document.body.style.fontFamily = document.getElementById('fontSelect').value + ',\'Wavefont\'';
 }
 
 document.addEventListener('DOMContentLoaded', applyStyles);
-document.getElementById('fontSelect').addEventListener('change', applyStyles);
+document.addEventListener('DOMContentLoaded', () => { document.getElementById('fontSelect').addEventListener('change', applyStyles); })
