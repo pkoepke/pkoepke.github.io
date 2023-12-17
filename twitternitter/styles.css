@@ -1,0 +1,14 @@
+body input {
+  font-size: 1.5rem;
+}
+
+input {
+  height: 2.7rem;
+  vertical-align: middle;
+}
+
+input[type="button"] {
+  height: 3rem;
+  width: 4rem;
+  vertical-align: top;
+}
