@@ -2,7 +2,7 @@ function convertAll() {
   document.getElementById('output').innerHTML = '';
   try {
     let url = new URL(document.getElementById('url').value);
-    let domains = ['www.twitter.com', 'twiiit.com', 'nitter.1d4.us', 'nitter.net', 'nitter.lacontrevoie.fr']
+    let domains = ['www.twitter.com', 'twiiit.com']
     let results = []
     for (domain of domains) {
       results.push('<a href="https://' + domain + url.pathname + '">' + domain + url.pathname + '</a>')
@@ -12,17 +12,17 @@ function convertAll() {
     }
   } catch (error) { // If the URL is invalid, do nothing except clearing the output (which already happened above)
   }
-  
+
 }
 
 function paste() {
   navigator.clipboard
-  .readText()
-  .then((clipText) => (document.getElementById('url').value = clipText))
-  .then(convertAll);
+    .readText()
+    .then((clipText) => (document.getElementById('url').value = clipText))
+    .then(convertAll);
 }
 
-function clearAll() { 
+function clearAll() {
   document.getElementById('url').value = '';
   document.getElementById('output').innerHTML = '';
 }
