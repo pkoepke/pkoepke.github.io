@@ -3,6 +3,11 @@
 
 <head>
 	<meta charset="UTF-8">
+	<script>
+		if (typeof navigator.serviceWorker !== 'undefined') {
+			navigator.serviceWorker.register('/sw.js')
+		}
+	</script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="Paul Koepke">
 	<meta name="description" content="Betting Odds Translator">
@@ -21,16 +26,13 @@
 				<div><label>Favored team: </label><input id="favoredTeamName" type="text" oninput="calculateMoneyline()"></div>
 				<div>
 					<label>Odds:
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- </label><input
-						id="favoredTeamOdds" type="number" oninput="calculateMoneyline()">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- </label><input id="favoredTeamOdds" type="number" oninput="calculateMoneyline()">
 				</div>
 				<p></p>
-				<div><label>Underdog: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input id="otherTeamName" type="text"
-						oninput="calculateMoneyline()"></div>
+				<div><label>Underdog: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input id="otherTeamName" type="text" oninput="calculateMoneyline()"></div>
 				<div>
 					<label>Odds:
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+</label><input id="15s"
-						type="number" oninput="calculateMoneyline()">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+</label><input id="15s" type="number" oninput="calculateMoneyline()">
 				</div>
 			</form>
 			</p>
