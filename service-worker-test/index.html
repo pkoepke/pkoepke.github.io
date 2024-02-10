@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('sw.js')
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#012169">
+  <meta name="author" content="Paul Koepke" />
+  <meta name="description" content="Service Worker test" />
+  <title>Service Worker test</title>
+  <link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <h1>Service Worker test</h1>
+  <main>
+    <p>Testing out Service Workers with Workbox.</p>
+  </main>
+</body>
+
+</html>
