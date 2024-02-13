@@ -75,4 +75,5 @@ input[type="checkbox"] {
   max-height: 18px;
   position: absolute;
   margin-left: 0.5rem;
+  vertical-align: bottom;
 }

@@ -2,6 +2,7 @@
 
 function calculateWeightFromPlates() {
   document.getElementById('desiredWeightLabel').innerHTML = 'Weight:' // If the user is entering plates, change the label to Weight to make it clearer we're going from plates to weight.
+  clearRemainingWeight();
   let weight = 0, newWeight = 0; // newWeight is the weight to add at each step. It's needed to check for NaN results.
   const platesLabels = [...document.getElementsByClassName('labelForPlates')]
   for (const label of platesLabels) {
@@ -50,10 +51,12 @@ const calculatePlates = () => {
 
   if (isNaN(desiredWeight)) { // Can't do anything with this, just exit the function.
     document.getElementById('output').innerHTML = "";
+    clearRemainingWeight();
     return;
   }
   if (desiredWeight < barWeight) { // Can't have a desired weight less than the bar, so just make all the # of plates zero then exit the function.
     document.getElementById('output').innerHTML = "";
+    clearRemainingWeight();
     const plateInputs = [...document.getElementsByClassName('plateInput')];
     for (const input of plateInputs) {
       input.value = 0;
@@ -83,8 +86,7 @@ const calculatePlates = () => {
       document.getElementById('remainingWeight').style.display = 'inline-block';
       document.getElementById('remainingWeight').innerHTML = (Math.round(remainingWeight * 100) / 100) + ' lbs remaining';
     } else {
-      document.getElementById('remainingWeight').innerHTML = '';
-      document.getElementById('remainingWeight').style.display = 'none';
+      clearRemainingWeight();
     }
 
     let output = barWeight + 'lbs bar<br>'
@@ -147,6 +149,12 @@ function alignInputs() { // Getting everything right in CSS is finnicky. It's ea
     currentLabel.style.display = 'inline-block'
     currentLabel.style.width = weightWidth + 'px';
   }
+
+}
+
+function clearRemainingWeight() {
+  document.getElementById('remainingWeight').innerHTML = '';
+  document.getElementById('remainingWeight').style.display = 'none';
 
 }
 
