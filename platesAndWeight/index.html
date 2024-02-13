@@ -80,7 +80,9 @@
     <div id="output"></div>
     <div> <label class="labelForWeight">1RM: </label><input id="1RM" type="number" oninput="calculateDesiredWeight()" /> </div>
     <div> <label class="labelForWeight">%: </label><input id="percent" type="number" oninput="calculateDesiredWeight()" /> </div>
-    <div> <label class="labelForWeight" for="desiredWeight">Desired weight: </label><input id="desiredWeight" type="number" oninput="calculatePlates()" /> </div>
+    <div> <label class="labelForWeight" for="desiredWeight" id="desiredWeightLabel">Desired weight: </label><input id="desiredWeight" type="number" oninput="calculatePlates()" />
+      <span id="remainingWeight" class="remainingWeight"></span>
+    </div>
     <div> <label for="fifteensYesNo">Include 15-lbs plates?</label><input id="fifteensYesNo" type="checkbox" onchange="calculatePlates()" /> </div>
   </main>
 </body>

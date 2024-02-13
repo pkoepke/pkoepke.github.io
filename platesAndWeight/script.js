@@ -1,6 +1,7 @@
 // Weight from plates functions.
 
 function calculateWeightFromPlates() {
+  document.getElementById('desiredWeightLabel').innerHTML = 'Weight:' // If the user is entering plates, change the label to Weight to make it clearer we're going from plates to weight.
   let weight = 0, newWeight = 0; // newWeight is the weight to add at each step. It's needed to check for NaN results.
   const platesLabels = [...document.getElementsByClassName('labelForPlates')]
   for (const label of platesLabels) {
@@ -12,7 +13,7 @@ function calculateWeightFromPlates() {
   }
   newWeight = parseInt(document.getElementById('barWeight').value);
   if (!isNaN(newWeight)) weight += newWeight;
-  document.getElementById('output').innerHTML = weight + " lbs";
+  document.getElementById('output').innerHTML = weight + ' lbs';
   document.getElementById('desiredWeight').value = weight;
   document.getElementById('percent').value = Math.round(100 * (document.getElementById('desiredWeight').value) / parseInt(document.getElementById('1RM').value));// Recalculate % of 1RM.
 }
@@ -41,22 +42,23 @@ function addSubtractPlate(plate, action) {
 // Plates from weight functions
 
 const calculatePlates = () => {
-  const desiredWeight = parseInt(document.getElementById('desiredWeight').value);
-  const barWeight = parseInt(document.getElementById('barWeight').value);
+  document.getElementById('desiredWeightLabel').innerHTML = 'Desired weight:' // If the user is entering a weight, change the label to Desired Weight to make it clear we're going from weight to plates.
+
+  const desiredWeight = parseFloat(document.getElementById('desiredWeight').value);
+  const barWeight = parseFloat(document.getElementById('barWeight').value);
   const fifteensYesNo = document.getElementById('fifteensYesNo').checked;
 
-  if (isNaN(desiredWeight)) {
+  if (isNaN(desiredWeight)) { // Can't do anything with this, just exit the function.
     document.getElementById('output').innerHTML = "";
-    return; // Can't do anything with this, just exit the function.
+    return;
   }
-  if (desiredWeight < barWeight) {
+  if (desiredWeight < barWeight) { // Can't have a desired weight less than the bar, so just make all the # of plates zero then exit the function.
     document.getElementById('output').innerHTML = "";
     const plateInputs = [...document.getElementsByClassName('plateInput')];
     for (const input of plateInputs) {
       input.value = 0;
     }
-    //document.getElementById('percent').value = ""; // Removed because it breaks the user editing the % field - when the user enters a single number the desired weight is below the bar weight, so the percent field gets wiped out.
-    return; // Can't do anything with this, just exit the function after clearing fields.
+    return;
   } else {
     let remainingWeight = desiredWeight - barWeight;
     const a45s = parseInt(remainingWeight / 90) * 2;
@@ -75,7 +77,15 @@ const calculatePlates = () => {
     const a5s = parseInt(remainingWeight / 10) * 2;
     remainingWeight = remainingWeight - (a5s * 5);
     const a2halfs = parseInt(remainingWeight / 5) * 2;
-    remainingWeight = remainingWeight - (a2halfs * 2.5)
+    remainingWeight = remainingWeight - (a2halfs * 2.5);
+
+    if (remainingWeight > 0) {
+      document.getElementById('remainingWeight').style.display = 'inline-block';
+      document.getElementById('remainingWeight').innerHTML = (Math.round(remainingWeight * 100) / 100) + ' lbs remaining';
+    } else {
+      document.getElementById('remainingWeight').innerHTML = '';
+      document.getElementById('remainingWeight').style.display = 'none';
+    }
 
     let output = barWeight + 'lbs bar<br>'
     if (a45s) {
@@ -142,3 +152,4 @@ function alignInputs() { // Getting everything right in CSS is finnicky. It's ea
 
 document.addEventListener("DOMContentLoaded", alignInputs); // Run alignment when page loads.
 window.addEventListener("resize", alignInputs); // Rerun alignment when the window is resized.
+document.addEventListener("DOMContentLoaded", (event) => { document.getElementById('remainingWeight').style.display = 'none' }); // Hide remaining weights field at start
