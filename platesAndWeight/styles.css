@@ -72,8 +72,6 @@ input[type="checkbox"] {
   display: inline-block;
   font-size: 0.6rem;
   max-width: 3rem;
-  max-height: 18px;
   position: absolute;
   margin-left: 0.5rem;
-  vertical-align: bottom;
 }

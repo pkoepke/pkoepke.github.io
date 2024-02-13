@@ -147,7 +147,7 @@ function alignInputs() { // Getting everything right in CSS is finnicky. It's ea
   const weightWidth = document.querySelector('label[for="desiredWeight"]').offsetWidth;
   for (const currentLabel of labelsForWeight) {
     currentLabel.style.display = 'inline-block'
-    currentLabel.style.width = weightWidth + 'px';
+    currentLabel.style.width = (weightWidth + 5) + 'px';
   }
 
 }
