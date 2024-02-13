@@ -8,9 +8,9 @@
 	<meta name="description" content="Reddit search generator">
 	<title>Reddit search generator</title>
 	<link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">
-	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="icon" type="image/png" href="/favicon old black on white.png">
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 	<script src="redditSearch.js"></script>
-	<!--<script src="js/detectMobileBrowsers.js"></script>-->
 </head>
 
 <body>
@@ -38,9 +38,7 @@
 					<option value="all" selected="selected">all time</option>
 				</select>
 			</p>
-			<p><label>Site:</label><input name="oldOrNewReddit" id="oldReddit" type="radio" value="old" checked="checked"
-					oninput="generate()">old.reddit.com<input name="oldOrNewReddit" id="newREddit" type="radio" value="new"
-					oninput="generate()">www.reddit.com
+			<p><label>Site:</label><input name="oldOrNewReddit" id="oldReddit" type="radio" value="old" checked="checked" oninput="generate()">old.reddit.com<input name="oldOrNewReddit" id="newREddit" type="radio" value="new" oninput="generate()">www.reddit.com
 				(new
 				site)</p>
 			<p><label>Include NSFW?</label><input id="nsfw" type="checkbox" oninput="generate()"></p>

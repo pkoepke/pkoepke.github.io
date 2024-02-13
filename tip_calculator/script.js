@@ -142,24 +142,6 @@ function isAllowedKey(event) { // combining several answers from http://stackove
   } else { return false; }
 }*/
 
-// If the OS is iOS, move the dollar sign span to make it line up better, and make the text on the buttons slightly larger.
-function applyIosStyles() {
-  if (isOsIos()) {
-    document.getElementById('dollarSignSpan').style.left = '0.7em';
-    // ES6 way that uglify-js can't handle.
-    /* let r allButtons = document.querySelectorAll('input[type=button]');
-    for (currentButton of allButtons) {
-      currentButton.style.fontSize = '1rem';
-    }*/
-    // Older way that uglify-js can handle.
-    var allButtons = document.querySelectorAll('input[type=button]'); // create NodeList object of all input input[type=button].
-    allButtons = convertNodeListToArray(allButtons);
-    allButtons.forEach(function(currentButton, index) {
-      currentButton.style.fontSize = '1rem';
-    });
-  }
-}
-
 function convertNodeListToArray(nodeListToConvert) {
   return nodeListToConvert = Array.prototype.slice.call(nodeListToConvert); // convert NodeList to an Array for easier functional iterating - NodeList doesn't have forEach but arrays do. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
 }

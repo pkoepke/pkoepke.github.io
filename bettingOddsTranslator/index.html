@@ -13,7 +13,7 @@
 	<meta name="description" content="Betting Odds Translator">
 	<title>Betting Odds Translator</title>
 	<link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">
-	<link rel="icon" type="image/png" href="favicon.png">
+	<link rel="icon" type="image/png" href="/favicon.png">
 	<script src="bettingOddsTranslator.js"></script>
 </head>
 
@@ -23,16 +23,15 @@
 		<div class="content">
 			<p>Moneyline
 			<form>
-				<div><label>Favored team: </label><input id="favoredTeamName" type="text" oninput="calculateMoneyline()"></div>
-				<div>
-					<label>Odds:
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- </label><input id="favoredTeamOdds" type="number" oninput="calculateMoneyline()">
+				<div class="row"><label>Favored team: </label><span class="shiftRight"> <input id="favoredTeamName" type="text" oninput="calculateMoneyline()"></spanspan>
+				</div>
+				<div class="row">
+					<label>Odds:</label><span class="shiftRight">-<input id="favoredTeamOdds" type="number" oninput="calculateMoneyline()"></span>
 				</div>
 				<p></p>
-				<div><label>Underdog: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input id="otherTeamName" type="text" oninput="calculateMoneyline()"></div>
-				<div>
-					<label>Odds:
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+</label><input id="15s" type="number" oninput="calculateMoneyline()">
+				<div class="row"><label>Underdog:</label><span class="shiftRight"> <input id="otherTeamName" type="text" oninput="calculateMoneyline()"></span></div>
+				<div class="row">
+					<label>Odds:</label><span class="shiftRight"><span>+</span><input id="15s" type="number" oninput="calculateMoneyline()"></span>
 				</div>
 			</form>
 			</p>
@@ -42,5 +41,24 @@
 		</div>
 	</main>
 </body>
+
+<style>
+	.content {
+		max-width: 20rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	label {}
+
+	.row {
+		width: 18rem;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	input {}
+</style>
 
 </html>
