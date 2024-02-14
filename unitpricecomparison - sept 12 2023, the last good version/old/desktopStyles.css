@@ -1,0 +1,41 @@
+body {
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+button {
+  height: 2rem;
+  min-width: 3rem;
+  position:relative;
+  top: -0.4rem;
+}
+
+.expandCollapseArrow {
+  font-size: 2rem;
+  position: relative;
+  top: -0.8rem;
+  left: -0.1rem;
+  transform-origin: center 140% 0
+}
+
+.multiplicationSign {
+  font-size: 2rem;
+  position: relative;
+  top: -0.65rem;
+}
+
+.addRowCharSpan, .removeRowCharSpan {
+  font-size: 2.4rem;
+  position: relative;
+  top: -0.5rem;
+}
+
+
+.itemLabel, .price, .units, .itemPricePerUnits, .itemName, .quantity, .unitsName {
+  font-size: 1.5rem;
+}

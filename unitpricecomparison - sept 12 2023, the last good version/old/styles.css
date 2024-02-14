@@ -1,0 +1,119 @@
+/*html * {
+  transition: 0.5s;
+}*/
+
+.transition {
+  /*transition: height 0.25s, opacity 0.25s;*/
+  transition: opacity 0.25s;
+}
+
+body {
+  font-family: "open sans", Verdana, arial, sans-serif;
+  margin: 0px auto auto auto;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+h3 {
+  display: flex;
+  font-size: 1.3rem;
+  padding: 0.4rem;
+  margin: 0px;
+  font-weight: normal;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.headerSpan {
+  margin: auto;
+}
+
+.unitPriceComparisonIcon {
+  height: 1.9rem;
+  margin: auto 0px auto 0px;
+}
+
+button, input[type="button"] {
+  -webkit-appearance: none; /* Tell Safari to use my custom styles */
+  height: 1.5rem;
+  min-width: 1rem;
+  vertical-align: middle;
+  position:relative;
+  top: 1px;
+}
+
+.buttonsSpan {
+  float:right;
+}
+
+.multiplicationSign, .expandCollapseArrow, .addCardCharSpan, .removeCardCharSpan {
+  height: 1rem;
+  padding: 1px;
+}
+
+.expandCollapseArrow {
+  position: relative;
+  top: -0.3rem;
+  transform: rotate(180deg);
+  transform-origin: 50% 70%;
+  display: inline-block;
+}
+
+.multiplicationSign {
+  position: relative;
+  top: -0.2rem;
+}
+
+.addCardCharSpan, .removeCardCharSpan {
+  font-size: x-large;
+  position: relative;
+  top: -0.3rem;
+}
+
+.removeCardButton {
+  margin-right: 1rem;
+}
+
+.itemCard {
+  margin: 0.6rem;
+  padding: 0.1rem;
+}
+
+.itemFirstRowDiv, .itemSecondRowDiv {
+  text-align: center;
+}
+
+:placeholder-shown, input, button, .itemPricePerUnits {
+  font-size: 1rem;
+  text-align: center;
+}
+
+input[type=number], input[type=text], .itemPricePerUnits, .itemLabel {
+  width: 20%;
+  margin: 0.3rem;
+}
+
+.itemLabel {
+  font-size: 1rem;
+}
+
+input {
+  border-width: 0px;
+  border-bottom: 2px solid;
+}
+
+.itemPricePerUnits {
+  display: inline-block;
+}
+
+.highlightedPricePerUnits {
+  background-color: #1ECF7A;
+}
+
+.itemName, .quantity, .unitsName {
+  width: 29%;
+}
+
+.hidden {
+	height: 0px;
+}
