@@ -16,13 +16,16 @@
 <body>
   <h1 id="h1">Twitter Nitter converter</h1>
   <main>
-    <p>
-      <label>Twitter or Nitter URL: </label>
-      <input id="url" type="text" oninput="convertAll()" />
-      <input type="button" value=" 📋 " onclick="paste()" />
-      <input type="button" value=" X " onclick="clearAll()" />
-    </p>
-    <p id="output"></p>
+    <span class="column">
+      <p class="row">
+        <label>Twitter or Nitter URL: </label>
+        <input id="url" type="text" oninput="convertAll()" />
+        <input type="button" value=" 📋 " onclick="paste()" />
+        <input type="button" value=" X " onclick="clearAll()" />
+      </p>
+      <p class="row"><label>Domain to prepend: </label><input id="prependDomain" type="text" oninput="convertAll()" /></p>
+      <p id="output"></p>
+    </span>
   </main>
 </body>
 
