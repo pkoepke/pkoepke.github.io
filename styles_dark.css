@@ -1,6 +1,14 @@
 @font-face {
   font-family: "Noto Sans";
-  src: url("/noto_sans/NotoSans-Regular.ttf");
+  src: local("Noto Sans"),
+    url("/noto_sans/NotoSans-VariableFont_wdth\,wght.ttf");
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans"),
+    url("/noto_sans/NotoSans-Italic-VariableFont_wdth\,wght.ttf");
+  font-style: italic;
 }
 
 body {

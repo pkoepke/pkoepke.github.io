@@ -1,3 +1,16 @@
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans"),
+    url("/noto_sans/NotoSans-VariableFont_wdth\,wght.ttf");
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  src: local("Noto Sans"),
+    url("/noto_sans/NotoSans-Italic-VariableFont_wdth\,wght.ttf");
+  font-style: italic;
+}
+
 body {
   font-family: "Noto Sans", "open sans", Helvetica, Aptos, arial, sans-serif;
   color: #444;

@@ -14,7 +14,8 @@ self.addEventListener("install", (event) => {
       '/', // Begin main page
       '/index.html',
       '/styles_dark.css',
-      '/noto_sans/NotoSans-Regular.ttf',
+      '/noto_sans/NotoSans-VariableFont_wdth,wght.ttf',
+      '/noto_sans/NotoSans-Italic-VariableFont_wdth,wght.ttf',
       '/favicon.svg',
       '/tip_calculator/', // Begin Tip Calculator
       '/tip_calculator/index.html',
