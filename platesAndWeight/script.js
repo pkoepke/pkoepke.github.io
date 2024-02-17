@@ -14,7 +14,6 @@ function calculateWeightFromPlates() {
   }
   newWeight = parseInt(document.getElementById('barWeight').value);
   if (!isNaN(newWeight)) weight += newWeight;
-  document.getElementById('output').innerHTML = weight + ' lbs';
   document.getElementById('desiredWeight').value = weight;
   document.getElementById('percent').value = Math.round(100 * (document.getElementById('desiredWeight').value) / parseInt(document.getElementById('1RM').value));// Recalculate % of 1RM.
 }
@@ -50,12 +49,10 @@ const calculatePlates = () => {
   const fifteensYesNo = document.getElementById('fifteensYesNo').checked;
 
   if (isNaN(desiredWeight)) { // Can't do anything with this, just exit the function.
-    document.getElementById('output').innerHTML = "";
     clearRemainingWeight();
     return;
   }
   if (desiredWeight < barWeight) { // Can't have a desired weight less than the bar, so just make all the # of plates zero then exit the function.
-    document.getElementById('output').innerHTML = "";
     clearRemainingWeight();
     const plateInputs = [...document.getElementsByClassName('plateInput')];
     for (const input of plateInputs) {
@@ -117,8 +114,6 @@ const calculatePlates = () => {
       output += a2halfs + ' 2.5s, ' + a2halfs / 2 + ' per side<br>';
       document.getElementById('2.5s').value = a2halfs;
     } else { document.getElementById('2.5s').value = 0; }
-    //if (remainingWeight) output += 'Remaining weight: ' + remainingWeight + ' lbs.'
-    document.getElementById('output').innerHTML = output;
     document.getElementById('percent').value = Math.round(100 * (document.getElementById('desiredWeight').value) / parseInt(document.getElementById('1RM').value));// Recalculate % of 1RM.
   }
 }
@@ -130,29 +125,6 @@ const calculateDesiredWeight = () => { // Calculates the desired weight when 1RM
   calculatePlates();
 }
 
-// Formatting and page launch functions
-
-function alignInputs() { // Getting everything right in CSS is finnicky. It's easier and more reliable to let the browser lay things out nearly right, then make small adjustments in JavaScript. The app doesn't work without JS anyway.
-  const labelsForPlates = [...document.getElementsByClassName('labelForPlates')];
-  const platesWidth = document.querySelector('label[for="2.5s"]').offsetWidth;
-  for (const currentLabel of labelsForPlates) {
-    currentLabel.style.display = 'inline-block'
-    currentLabel.style.width = (platesWidth + 5) + 'px';
-  }
-
-  const labelsForWeight = [...document.getElementsByClassName('labelForWeight')];
-  const weightWidth = document.querySelector('label[for="desiredWeight"]').offsetWidth;
-  for (const currentLabel of labelsForWeight) {
-    currentLabel.style.display = 'inline-block'
-    currentLabel.style.width = (weightWidth + 5) + 'px';
-  }
-
-}
-
 function clearRemainingWeight() {
   document.getElementById('remainingWeight').innerHTML = '';
 }
-
-//document.addEventListener("DOMContentLoaded", alignInputs); // Run alignment when page loads.
-//window.addEventListener("resize", alignInputs); // Rerun alignment when the window is resized.
-//document.addEventListener("DOMContentLoaded", (event) => { document.getElementById('remainingWeight').style.display = 'none' }); // Hide remaining weights field at start
