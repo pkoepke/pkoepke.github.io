@@ -83,7 +83,6 @@ const calculatePlates = () => {
     remainingWeight = remainingWeight - (a2halfs * 2.5);
 
     if (remainingWeight > 0) {
-      document.getElementById('remainingWeight').style.display = 'inline-block';
       document.getElementById('remainingWeight').innerHTML = (Math.round(remainingWeight * 100) / 100) + ' lbs remaining';
     } else {
       clearRemainingWeight();
@@ -152,10 +151,8 @@ function alignInputs() { // Getting everything right in CSS is finnicky. It's ea
 
 function clearRemainingWeight() {
   document.getElementById('remainingWeight').innerHTML = '';
-  document.getElementById('remainingWeight').style.display = 'none';
-
 }
 
-document.addEventListener("DOMContentLoaded", alignInputs); // Run alignment when page loads.
-window.addEventListener("resize", alignInputs); // Rerun alignment when the window is resized.
-document.addEventListener("DOMContentLoaded", (event) => { document.getElementById('remainingWeight').style.display = 'none' }); // Hide remaining weights field at start
+//document.addEventListener("DOMContentLoaded", alignInputs); // Run alignment when page loads.
+//window.addEventListener("resize", alignInputs); // Rerun alignment when the window is resized.
+//document.addEventListener("DOMContentLoaded", (event) => { document.getElementById('remainingWeight').style.display = 'none' }); // Hide remaining weights field at start

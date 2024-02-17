@@ -35,7 +35,7 @@ input {
 }
 
 input[type="number"] {
-  width: 6rem;
+  width: 5rem;
 }
 
 input[type="button"] {
@@ -69,13 +69,40 @@ input[type="checkbox"] {
 }
 
 .remainingWeight {
-  display: inline-block;
   font-size: 0.6rem;
-  max-width: 3rem;
-  position: absolute;
+  /*margin-left: 0.5rem;
+  max-width: 3rem;  */
+}
+
+.labelSpan {
+  width: 2.5rem;
+  text-align: right;
+  margin-right: 0.3rem;
+}
+
+.bottomLeftSpacerSpan {
+  display: inline-block;
+  /*width: 29%;*/
+  width: 8rem;
+  text-align: right;
+}
+
+.bottomRightSpacerSpan {
+  display: inline-block;
+  width: 20%;
   margin-left: 0.5rem;
 }
 
-.centererSpan {
-  width: 20rem;
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.bottomFlexRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
 }
