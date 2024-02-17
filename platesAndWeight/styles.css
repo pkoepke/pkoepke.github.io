@@ -75,3 +75,7 @@ input[type="checkbox"] {
   position: absolute;
   margin-left: 0.5rem;
 }
+
+.centererSpan {
+  width: 20rem;
+}

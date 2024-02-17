@@ -135,15 +135,13 @@ const calculateDesiredWeight = () => { // Calculates the desired weight when 1RM
 
 function alignInputs() { // Getting everything right in CSS is finnicky. It's easier and more reliable to let the browser lay things out nearly right, then make small adjustments in JavaScript. The app doesn't work without JS anyway.
   const labelsForPlates = [...document.getElementsByClassName('labelForPlates')];
-  //labelsForPlates.shift();
   const platesWidth = document.querySelector('label[for="2.5s"]').offsetWidth;
   for (const currentLabel of labelsForPlates) {
     currentLabel.style.display = 'inline-block'
-    currentLabel.style.width = platesWidth + 'px';
+    currentLabel.style.width = (platesWidth + 5) + 'px';
   }
 
   const labelsForWeight = [...document.getElementsByClassName('labelForWeight')];
-  //labelsForPlates.shift();
   const weightWidth = document.querySelector('label[for="desiredWeight"]').offsetWidth;
   for (const currentLabel of labelsForWeight) {
     currentLabel.style.display = 'inline-block'
