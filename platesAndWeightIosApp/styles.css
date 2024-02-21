@@ -1,0 +1,116 @@
+main {
+  max-width: 80rem;
+  background-color: #181818;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+summary {
+  text-align: center;
+}
+
+.instructions {
+  max-width: 55rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.9rem;
+}
+
+div {
+  margin-bottom: 0.5em;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+input {
+  padding: 0rem 0.2rem 0rem 0.2rem;
+  /*height: 1.68rem;*/
+  height: 1.4rem;
+  font-size: 1.2rem;
+}
+
+input[type="number"] {
+  width: 5rem;
+}
+
+input[type="button"] {
+  /*height: 1.8rem;*/
+  height: 1.6rem;
+  margin: 0rem 0rem 0rem 0.7rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#output {
+  max-width: 8rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}
+
+.labelForWeight {
+  text-align: right;
+  margin-right: 0.25rem;
+}
+
+label[for="fifteensYesNo"] {
+  margin: 0rem 0.3rem 0rem 0rem;
+}
+
+input[type="checkbox"] {
+  vertical-align: bottom;
+  position: relative;
+  top: 0.2rem;
+}
+
+.remainingWeight {
+  font-size: 0.6rem;
+  /*margin-left: 0.5rem;
+  max-width: 3rem;  */
+}
+
+.labelSpan {
+  width: 2.5rem;
+  text-align: right;
+  margin-right: 0.3rem;
+}
+
+.bottomLeftSpacerSpan {
+  display: inline-block;
+  width: 8rem;
+  text-align: right;
+}
+
+.bottomRightSpacerSpan {
+  display: inline-block;
+  width: 8rem;
+  margin-left: 0.5rem;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.bottomFlexRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.outputRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  border: 1px solid white;
+  padding: 1px 0 1px 0;
+}
