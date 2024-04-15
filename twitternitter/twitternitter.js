@@ -2,7 +2,7 @@ function convertAll() {
   document.getElementById('output').innerHTML = '';
   try {
     let url = new URL(document.getElementById('url').value);
-    let domains = ['www.twitter.com', 'twiiit.com', document.getElementById('prependDomain').value]
+    let domains = ['www.twitter.com', 'fxtwitter.com', 'g.fxtwitter.com', 'twiiit.com', 'nitter.privacydev.net', document.getElementById('prependDomain').value]
     let results = []
     for (domain of domains) {
       results.push('<a href="https://' + domain + url.pathname + '">' + domain + url.pathname + '</a>')
