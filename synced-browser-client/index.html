@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="manifest" href="manifest.json" />
+  <script>
+    if (typeof navigator.serviceWorker !== "undefined") {
+      navigator.serviceWorker.register("sw.js");
+    }
+    (async () => {
+      const swRegistration = await navigator.serviceWorker.ready;
+      swRegistration.sync.register("send-message");
+      console.log("swRegistration ran")
+    })
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#012169" />
+  <meta name="author" content="Paul Koepke" />
+  <meta name="description" content="Synced Browser" />
+  <title>Synced Browser</title>
+  <link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css" />
+  <link id="styles" rel="stylesheet" type="text/css" href="./styles.css" />
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <h1>Synced Browser</h1>
+  <main>
+    <div class="flexRow">
+      <label for="urlInput">URL: </label>
+      <input id="urlInput" type="url" /><!--<input id="urlInput" type="url" value="https://example.com" />-->
+    </div>
+    <div class="flexRow"><label for="keyInput">key: </label>
+      <input id="keyInput" type="text" value="" />
+    </div>
+    <div class="flexRow">
+      <input id="getMostRecentURL" type="button" value="Get most recent URL" />
+    </div>
+    <div class="flexRow">
+      <input id="navigate" type="button" value="navigate" />
+    </div>
+    <div class="flexRow">
+      <input id="postUrl" type="button" value="POST URL" />
+    </div>
+    <div class="flexRow">
+      <input id="backgroundSyncPostUrl" type="button" value="POST URL with background sync" />
+    </div>
+  </main>
+</body>
+
+</html>

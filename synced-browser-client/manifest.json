@@ -1,0 +1,16 @@
+{
+  "background_color": "#000000",
+  "description": "Browser that syncs across devices.",
+  "dir": "ltr",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay"],
+  "name": "Synced Browser",
+  "orientation": "any",
+  "scope": "/synced-browser-client/",
+  "short_name": "Synced Browser",
+  "start_url": "/synced-browser-client/",
+  "theme_color": "#012169",
+  "categories": ["fitness"],
+  "shortcuts": [],
+  "id": "syncedBrowser"
+}
