@@ -1,28 +1,13 @@
-/*const getMostRecentURL = () => {
+const getMostRecentURL = () => {
   fetch("https://url-server.glitch.me/", {
     method: 'get',
   }).then(
     (response) => { return response.json() }
   ).then(
     (responseJson) => {
-      //console.log(responseJson);
-      //console.log(responseJson[0].url);
-      document.getElementById("urlInput").value = responseJson[0].url;
-      return responseJson[0].url;
-    }
-  );
-}*/
-
-const getMostRecentURL = async () => {
-  fetch("https://url-server.glitch.me/", {
-    method: 'get',
-  }).then(
-    (response) => {
-      let responseJson = await response.json(); 
       console.log(responseJson);
       console.log(responseJson[0].url);
       document.getElementById("urlInput").value = responseJson[0].url;
-      return responseJson[0].url;
     }
   );
 }
@@ -66,12 +51,9 @@ const setKey = () => {
 // When the page is launched, try to grab the most recent URL from the server, and if it's found navigate there automatically.
 // Must have the secret key stored for this to work.
 const navigateAtLaunch = () => {
-  // Get most recent URL
-  console.log(getMostRecentURL());
-  getMostRecentURL().then((response) => {let newUrl = response;
-    console.log(newUrl);
-  })
-  // If successful, navigate there.
+  getMostRecentURL(); // Get most recent URL and put in URL field
+  if (document.getElementById("urlInput").value) navigate(); // If successful, navigate there.
+
 }
 
 const onDOMContentLoaded = () => { // Set listeners, get stored key, anything else that needs to wait for the page to load.
