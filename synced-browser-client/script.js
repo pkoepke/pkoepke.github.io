@@ -1,4 +1,5 @@
 const getMostRecentURL = () => {
+  return new Promise(function(resolve, reject) {
   fetch("https://url-server.glitch.me/", {
     method: 'get',
   }).then(
@@ -10,6 +11,9 @@ const getMostRecentURL = () => {
       document.getElementById("urlInput").value = responseJson[0].url;
     }
   );
+  resolve('Resolved getMostRecentURL()\'s Promise.');
+});
+
 }
 
 const navigate = () => {
@@ -51,9 +55,8 @@ const setKey = () => {
 // When the page is launched, try to grab the most recent URL from the server, and if it's found navigate there automatically.
 // Must have the secret key stored for this to work.
 const navigateAtLaunch = () => {
-  getMostRecentURL(); // Get most recent URL and put in URL field
+  getMostRecentURL().then(returnValue => console.log(returnValue)); // Get most recent URL and put in URL field
   if (document.getElementById("urlInput").value) navigate(); // If successful, navigate there.
-
 }
 
 const onDOMContentLoaded = () => { // Set listeners, get stored key, anything else that needs to wait for the page to load.
