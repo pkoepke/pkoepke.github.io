@@ -5,9 +5,10 @@ const getMostRecentURL = () => {
     (response) => { return response.json() }
   ).then(
     (responseJson) => {
-      console.log(responseJson);
-      console.log(responseJson[0].url);
+      //console.log(responseJson);
+      //console.log(responseJson[0].url);
       document.getElementById("urlInput").value = responseJson[0].url;
+      return responseJson[0].url;
     }
   );
 }
