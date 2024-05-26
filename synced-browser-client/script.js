@@ -51,8 +51,12 @@ const setKey = () => {
 // When the page is launched, try to grab the most recent URL from the server, and if it's found navigate there automatically.
 // Must have the secret key stored for this to work.
 const navigateAtLaunch = () => {
+  
   // Get most recent URL
-   console.log(getMostRecentURL()[0]);
+  console.log(getMostRecentURL());
+  getMostRecentURL().then((response) => {let newUrl = response;
+    console.log(newUrl);
+  })
   // If successful, navigate there.
 }
 
