@@ -52,7 +52,7 @@ const setKey = () => {
 // Must have the secret key stored for this to work.
 const navigateAtLaunch = () => {
   // Get most recent URL
-   console.log(getMostRecentURL());
+   console.log(getMostRecentURL()[0]);
   // If successful, navigate there.
 }
 
