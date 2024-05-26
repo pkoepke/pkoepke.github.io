@@ -57,6 +57,7 @@ const navigateAtLaunch = () => {
 }
 
 const onDOMContentLoaded = () => { // Set listeners, get stored key, anything else that needs to wait for the page to load.
+  navigateAtLaunch();
   document.getElementById("getMostRecentURL").addEventListener("click", getMostRecentURL);
   document.getElementById("navigate").addEventListener("click", navigate);
   document.getElementById("postUrl").addEventListener("click", postUrl);
