@@ -1,4 +1,4 @@
-const getMostRecentURL = () => {
+/*const getMostRecentURL = () => {
   fetch("https://url-server.glitch.me/", {
     method: 'get',
   }).then(
@@ -7,6 +7,20 @@ const getMostRecentURL = () => {
     (responseJson) => {
       //console.log(responseJson);
       //console.log(responseJson[0].url);
+      document.getElementById("urlInput").value = responseJson[0].url;
+      return responseJson[0].url;
+    }
+  );
+}*/
+
+const getMostRecentURL = async () => {
+  fetch("https://url-server.glitch.me/", {
+    method: 'get',
+  }).then(
+    (response) => {
+      let responseJson = await response.json(); 
+      console.log(responseJson);
+      console.log(responseJson[0].url);
       document.getElementById("urlInput").value = responseJson[0].url;
       return responseJson[0].url;
     }
@@ -52,7 +66,6 @@ const setKey = () => {
 // When the page is launched, try to grab the most recent URL from the server, and if it's found navigate there automatically.
 // Must have the secret key stored for this to work.
 const navigateAtLaunch = () => {
-  
   // Get most recent URL
   console.log(getMostRecentURL());
   getMostRecentURL().then((response) => {let newUrl = response;
