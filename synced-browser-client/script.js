@@ -57,8 +57,11 @@ const setKey = () => {
 const navigateAtLaunch = () => {
   getMostRecentURL().then(returnValue => {
     console.log(returnValue);
-    if (document.getElementById("urlInput").value) navigate(); // If successful, navigate there.
-  }); // Get most recent URL and put in URL field
+    console.log(document.getElementById("urlInput").value);
+    if (document.getElementById("urlInput").value) {
+      navigate();
+    };
+  });
 
 }
 
