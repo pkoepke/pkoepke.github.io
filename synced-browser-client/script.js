@@ -37,7 +37,7 @@ const postUrl = async (response) => {
   )
 }
 
-const backgroundSyncPostUrl = () => {
+const backgroundSyncPostUrl = () => { // TODO implement background sync in case initital POST doesn't work.
 
 }
 
@@ -46,6 +46,14 @@ const setKey = () => {
   if (key) {
     localStorage.setItem("key", key);
   }
+}
+
+// When the page is launched, try to grab the most recent URL from the server, and if it's found navigate there automatically.
+// Must have the secret key stored for this to work.
+const navigateAtLaunch = () => {
+  // Get most recent URL
+   console.log(getMostRecentURL());
+  // If successful, navigate there.
 }
 
 const onDOMContentLoaded = () => { // Set listeners, get stored key, anything else that needs to wait for the page to load.
