@@ -13,7 +13,6 @@ const getMostRecentURL = () => {
     );
     resolve('Resolved getMostRecentURL()\'s Promise.');
   });
-
 }
 
 const navigate = () => {
@@ -56,13 +55,14 @@ const setKey = () => {
 // Must have the secret key stored for this to work.
 const navigateAtLaunch = () => {
   getMostRecentURL().then(returnValue => {
-    console.log(returnValue);
-    console.log(document.getElementById("urlInput").value);
-    if (document.getElementById("urlInput").value) {
-      navigate();
-    };
+    console.log('returnValue: ' + returnValue);
+    console.log('document.getElementById("urlInput").value: ' + document.getElementById("urlInput").value);
+    setTimeout(() => { // Had problems getting this to run after the 
+      if (document.getElementById("urlInput").value) {
+        navigate();
+      };
+    });
   });
-
 }
 
 const onDOMContentLoaded = () => { // Set listeners, get stored key, anything else that needs to wait for the page to load.
