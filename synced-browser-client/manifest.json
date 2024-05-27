@@ -12,5 +12,24 @@
   "theme_color": "#012169",
   "categories": ["fitness"],
   "shortcuts": [],
-  "id": "syncedBrowser"
+  "id": "syncedBrowser",
+  "icons": [
+    {
+      "src": "/icons/favicon 128x128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/icons/favicon 512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/favicon maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ]
 }
