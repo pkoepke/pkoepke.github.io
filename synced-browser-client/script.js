@@ -61,7 +61,7 @@ const navigateAtLaunch = () => {
       if (document.getElementById("urlInput").value) {
         navigate();
       };
-    });
+    }, 1000);
   });
 }
 
