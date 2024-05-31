@@ -104,7 +104,21 @@ input[type="checkbox"] {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: right;
+}
+
+.plateStatusFlex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
+}
+
+.plateStatusSpan {
+  display: inline-block;
+  width: 24%; /* Guarantees 4 entries per row regardless of width. */
+  justify-content: center;
+  text-align: center;
 }
 
 .displayNone {
