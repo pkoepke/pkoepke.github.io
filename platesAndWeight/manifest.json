@@ -38,5 +38,23 @@
   ],
   "shortcuts": [],
   "id": "platesAndWeight",
-  "display_override": ["window-controls-overlay"]
+  "display_override": ["window-controls-overlay"],
+  "screenshots": [
+    {
+      "src": "plates and weights calculator mobile 1.png",
+      "type": "image/jpg"
+    },
+    {
+      "src": "plates and weights calculator mobile 2.png",
+      "type": "image/jpg"
+    },
+    {
+      "src": "plates and weights calculator mobile 1 for Windows store.png",
+      "type": "image/jpg"
+    },
+    {
+      "src": "plates and weight screenshot desktop and large tablet.png",
+      "type": "image/jpg"
+    }
+  ]
 }
