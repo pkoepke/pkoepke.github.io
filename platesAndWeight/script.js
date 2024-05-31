@@ -1,144 +1,209 @@
-// Weight from plates functions.
+// the source of truth for whether certain plates should be shown and used for calculations or hidden and skipped in calculations is the checkboxes in the HTML. That's why this always starts by grabbing the value of the checkboxes instead of storing on/off in JavaScript.
 
+const plateLabels = ["55s", "45s", "35s", "25s", "15s", "10s", "5s", "2.5s"]; // In order for cases where that helps.
 
 const isInteger = (event) => {
-  if (!Number.isInteger((parseFloat(event.data)))) {
+  console.log(event);
+  if (!Number.isInteger(parseFloat(event.data))) {
     event.preventDefault();
+    return false;
   }
-}
+};
 
+const savePlatesStatus = () => {
+  // "true" = show, "false" = hide. Localstorage can only store strings.
+  let allPlatesMap = getAllPlatesStatus();
+  for (let plate of allPlatesMap) {
+    localStorage.setItem(plate[0], plate[1]);
+  }
+};
+
+const loadPlatesStatusOnLoad = () => {
+  // when the page loads, check localstorage  for saved statuses.
+  if (localStorage.getItem("55s")) {
+    // If there's data in localstorage, use it to override checkboxes. Otherwise leave defaults.
+    let allPlatesMap = getAllPlatesStatus();
+    for (let plate of allPlatesMap) {
+      let label = plate[0];
+      let status = localStorage.getItem(label);
+      if (status == "false") {
+        document.getElementById(label + "Status").checked = false;
+      } else {
+        document.getElementById(label + "Status").checked = true;
+      }
+    }
+  }
+  savePlatesStatus(); // Ensure that plate status is stored in localstorage as soon as the page loads, even on first load, because localstorage is the source of truth and calculations depend on it.
+  showHidePlates();
+  /*for (let checkbox of [...document.getElementsByClassName('plateStatus')]) { // To avoid recursion when we load the page, don't attach the listenier to the checkboxes until we've set their initial state.
+    checkbox.addEventListener(onchange, calculatePlatesFromWeight);
+    checkbox.addEventListener(onchange, showHidePlates);
+  }*/
+};
+
+const getAllPlatesStatus = () => {
+  // returns a Map of all plates and whether they're on or off.
+  let allPlatesCollection = document.getElementsByClassName("plateStatus");
+  let allPlatesMap = new Map();
+  for (let plate of allPlatesCollection) {
+    allPlatesMap.set(plate.id.replace("Status", ""), plate.checked);
+  }
+  return allPlatesMap;
+};
+
+const showHidePlates = () => {
+  // hides or shows rows of plates.
+  let allPlatesMap = getAllPlatesStatus();
+  for (let plate of allPlatesMap) {
+    let row = document.getElementById(plate[0] + "Row");
+    if (plate[1]) {
+      // If show=true, remove the class that hides the row
+      row.classList.remove("displayNone");
+    } else {
+      row.classList.add("displayNone");
+    }
+  }
+  savePlatesStatus();
+  calculatePlatesFromWeight();
+};
+
+const barOrPlatesChanged = () => { // Call other functions in order.
+  calculateWeightFromPlates();
+}
 
 function calculateWeightFromPlates() {
-  document.getElementById('desiredWeightLabel').innerHTML = 'Weight:' // If the user is entering plates, change the label to Weight to make it clearer we're going from plates to weight.
+  document.getElementById("desiredWeightLabel").innerHTML = "Weight:"; // If the user is entering plates, change the label to Weight to make it clearer we're going from plates to weight.
   clearRemainingWeight();
-  let weight = 0, newWeight = 0; // newWeight is the weight to add at each step. It's needed to check for NaN results.
-  const platesLabels = [...document.getElementsByClassName('labelForPlates')]
-  for (const label of platesLabels) {
-    let labelNum = parseInt(label.innerText);
-    if (label.innerText == '2.5s:') labelNum = 2.5; // 2.5 is a float and needs special handling
-    const numPlates = document.getElementById(labelNum + 's').value;
-    newWeight = numPlates * labelNum;
-    if (!isNaN(newWeight)) weight += newWeight;
+  let weight = 0,
+    newWeight = 0; // newWeight is the weight to add at each step. It's needed to check for NaN results.
+  for (const plateLabel of plateLabels) {
+    if (localStorage.getItem(plateLabel) === "true") { // Check localstorage to see if the plate should be included in the calculation. === needed because Localstorage only stores strings
+      const plateWeight = parseFloat(plateLabel),
+        numPlates = parseFloat(document.getElementById(plateLabel).value);
+      newWeight = numPlates * plateWeight;
+      if (!isNaN(newWeight)) weight += newWeight;
+    }
   }
-  newWeight = parseInt(document.getElementById('barWeight').value);
+  newWeight = parseInt(document.getElementById("barWeight").value);
   if (!isNaN(newWeight)) weight += newWeight;
-  document.getElementById('desiredWeight').value = weight;
-  document.getElementById('percent').value = Math.round(100 * (document.getElementById('desiredWeight').value) / parseInt(document.getElementById('1RM').value));// Recalculate % of 1RM.
+  document.getElementById("desiredWeight").value = weight;
+  document.getElementById("percent").value = Math.round(
+    (100 * document.getElementById("desiredWeight").value) /
+    parseInt(document.getElementById("1RM").value)
+  ); // Recalculate % of 1RM.
 }
 
-function addSubtractPlate(plate, action) {
-  elem = (document.getElementById(plate));
-  value = parseInt(elem.value);
-  if (action === '+') {
+//function addSubtractPlate(plate, action) { // Removing awkward parameters, will use the event instead
+const addSubtractPlate = (event) => {
+  const button = event.target;
+  const plateInput = button.parentElement.getElementsByClassName("plateInput")[0];
+  const value = parseInt(plateInput.value);
+  if ([...button.classList].includes("plusButton")) {
     result = value + 1;
     if (isNaN(result)) {
-      elem.value = 1;
+      plateInput.value = 1;
     } else {
-      elem.value = result
+      plateInput.value = result;
     }
-  } else if (action === '-') {
+  } else {
     result = value - 1;
     if (isNaN(result) || result < 0) {
-      elem.value = 0;
+      plateInput.value = 0;
     } else {
-      elem.value = result
+      plateInput.value = result;
     }
   }
-  calculateWeightFromPlates()
+  calculateWeightFromPlates();
 }
 
 // Plates from weight functions
+const calculatePlatesFromWeight = () => {
+  document.getElementById("desiredWeightLabel").innerHTML = "Desired weight:"; // If the user is entering a weight, change the label to Desired Weight to make it clear we're going from weight to plates.
 
-const calculatePlates = () => {
-  document.getElementById('desiredWeightLabel').innerHTML = 'Desired weight:' // If the user is entering a weight, change the label to Desired Weight to make it clear we're going from weight to plates.
+  const desiredWeight = parseFloat(
+    document.getElementById("desiredWeight").value
+  );
+  const barWeight = parseFloat(document.getElementById("barWeight").value);
 
-  const desiredWeight = parseFloat(document.getElementById('desiredWeight').value);
-  const barWeight = parseFloat(document.getElementById('barWeight').value);
-  const fifteensYesNo = document.getElementById('fifteensYesNo').checked;
-
-  if (isNaN(desiredWeight)) { // Can't do anything with this, just exit the function.
+  if (isNaN(desiredWeight)) {
+    // Can't do anything with this, just exit the function.
     clearRemainingWeight();
     return;
   }
-  if (desiredWeight < barWeight) { // Can't have a desired weight less than the bar, so just make all the # of plates zero then exit the function.
+  if (desiredWeight < barWeight) {
+    // Can't have a desired weight less than the bar, so just make all the # of plates zero then exit the function.
     clearRemainingWeight();
-    const plateInputs = [...document.getElementsByClassName('plateInput')];
+    const plateInputs = [...document.getElementsByClassName("plateInput")];
     for (const input of plateInputs) {
       input.value = 0;
     }
     return;
   } else {
     let remainingWeight = desiredWeight - barWeight;
-    const a45s = parseInt(remainingWeight / 90) * 2;
-    remainingWeight = remainingWeight - (a45s * 45);
-    const a35s = parseInt(remainingWeight / 70) * 2;
-    remainingWeight = remainingWeight - (a35s * 35);
-    const a25s = parseInt(remainingWeight / 50) * 2;
-    remainingWeight = remainingWeight - (a25s * 25);
-    let a15s = 0
-    if (fifteensYesNo) {
-      a15s = parseInt(remainingWeight / 30) * 2;
-      remainingWeight = remainingWeight - (a15s * 15);
+    const plateNumbers = {}; // Object to hold plates and how many of each plate is needed
+    for (const plateLabel of plateLabels) {
+      if (localStorage.getItem(plateLabel) === "true") { // Check localstorage to see if the plate should be included in the calculation. === needed because Localstorage only stores strings
+        let plateWeight = parseFloat(plateLabel);
+        plateNumbers[plateLabel] = parseInt(remainingWeight / (plateWeight * 2)) * 2;
+        remainingWeight = remainingWeight - plateNumbers[plateLabel] * plateWeight;
+      } else {
+        plateNumbers[plateLabel] = 0; // If these plates are hidden, set their number to zero by default.
+      }
     }
-    const a10s = parseInt(remainingWeight / 20) * 2;
-    remainingWeight = remainingWeight - (a10s * 10);
-    const a5s = parseInt(remainingWeight / 10) * 2;
-    remainingWeight = remainingWeight - (a5s * 5);
-    const a2halfs = parseInt(remainingWeight / 5) * 2;
-    remainingWeight = remainingWeight - (a2halfs * 2.5);
 
     if (remainingWeight > 0) {
-      document.getElementById('remainingWeight').innerHTML = (Math.round(remainingWeight * 100) / 100) + ' lbs remaining';
+      document.getElementById("remainingWeight").innerHTML =
+        Math.round(remainingWeight * 100) / 100 + " lbs remaining";
     } else {
       clearRemainingWeight();
     }
 
-    let output = barWeight + 'lbs bar<br>'
-    if (a45s) {
-      output += a45s + ' 45s, ' + a45s / 2 + ' per side<br>';
-      document.getElementById('45s').value = a45s;
-    } else { document.getElementById('45s').value = 0; }
-    if (a35s) {
-      output += a35s + ' 35s, ' + a35s / 2 + ' per side<br>';
-      document.getElementById('35s').value = a35s;
-    } else { document.getElementById('35s').value = 0; }
-    if (a25s) {
-      output += a25s + ' 25s, ' + a25s / 2 + ' per side<br>';
-      document.getElementById('25s').value = a25s;
-    } else { document.getElementById('25s').value = 0; }
-    if (a15s) {
-      output += a15s + ' 15s, ' + a15s / 2 + ' per side<br>';
-      document.getElementById('15s').value = a15s;
-    } else { document.getElementById('15s').value = 0; }
-    if (a10s) {
-      output += a10s + ' 10s, ' + a10s / 2 + ' per side<br>';
-      document.getElementById('10s').value = a10s;
-    } else { document.getElementById('10s').value = 0; }
-    if (a5s) {
-      output += a5s + ' 5s, ' + a5s / 2 + ' per side<br>';
-      document.getElementById('5s').value = a5s;
-    } else { document.getElementById('5s').value = 0; }
-    if (a2halfs) {
-      output += a2halfs + ' 2.5s, ' + a2halfs / 2 + ' per side<br>';
-      document.getElementById('2.5s').value = a2halfs;
-    } else { document.getElementById('2.5s').value = 0; }
-    document.getElementById('percent').value = Math.round(100 * (document.getElementById('desiredWeight').value) / parseInt(document.getElementById('1RM').value));// Recalculate % of 1RM.
-  }
-}
+    for (const plateLabel of plateLabels) {
+      document.getElementById(plateLabel).value = plateNumbers[plateLabel];
+    }
 
-const calculateDesiredWeight = () => { // Calculates the desired weight when 1RM and % are entered
-  const max = parseInt(document.getElementById('1RM').value);
-  const percent = parseInt(document.getElementById('percent').value);
-  document.getElementById('desiredWeight').value = max * percent / 100;
-  calculatePlates();
-}
+    document.getElementById("percent").value = Math.round(
+      (100 * document.getElementById("desiredWeight").value) /
+      parseInt(document.getElementById("1RM").value)
+    ); // Recalculate % of 1RM.
+  }
+};
+
+const calculateDesiredWeight = (event) => {
+  // Calculates the desired weight when 1RM and % are entered
+  const max = parseInt(document.getElementById("1RM").value);
+  const percent = parseInt(document.getElementById("percent").value);
+  document.getElementById("desiredWeight").value = (max * percent) / 100;
+  //if (doCalculatePlates) calculatePlatesFromWeight();
+  calculatePlatesFromWeight(); // Unsure if that IF is still needed
+};
 
 function clearRemainingWeight() {
-  document.getElementById('remainingWeight').innerHTML = '';
+  document.getElementById("remainingWeight").innerHTML = "";
 }
 
-/*document.addEventListener("DOMContentLoaded", () => {
-  for (element of document.querySelectorAll("input[type=number]")) {
+const addEventListeners = () => { // Adds all needed event listeners to remove them from the HTML.
+  for (const input of document.getElementsByClassName("plateInput")) {
+    input.addEventListener("input", barOrPlatesChanged);
+  }
+  for (const plusButton of document.getElementsByClassName("plusButton")) {
+    plusButton.addEventListener("click", addSubtractPlate);
+  }
+  for (const minusButton of document.getElementsByClassName("minusButton")) {
+    minusButton.addEventListener("click", addSubtractPlate);
+  }
+  document.getElementById("1RM").addEventListener("input", calculateDesiredWeight);
+  document.getElementById("percent").addEventListener("input", calculateDesiredWeight);
+  document.getElementById("desiredWeight").addEventListener("input", calculatePlatesFromWeight);
+  for (const checkBox of document.getElementsByClassName("plateStatus")) {
+    checkBox.addEventListener("change", showHidePlates);
+  }
+};
+
+document.addEventListener("DOMContentLoaded", loadPlatesStatusOnLoad);
+document.addEventListener("DOMContentLoaded", addEventListeners);
+/*document.addEventListener("DOMContentLoaded", () => { // isInteger prevents non-integer values, but needs some work to allow deleting numbers.
+  for (let element of document.querySelectorAll("input[type=number]")) {
     element.addEventListener("beforeinput", isInteger);
   }
 });*/

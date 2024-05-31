@@ -106,3 +106,7 @@ input[type="checkbox"] {
   flex-wrap: nowrap;
   justify-content: center;
 }
+
+.displayNone {
+  display: none;
+}

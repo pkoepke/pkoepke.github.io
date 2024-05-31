@@ -28,78 +28,95 @@
     <summary><span class="summary">Instructions</span></summary>
     <p class="instructions">To calculate weight from plates: enter the total number of plates including both sides. So if there's a single 45 on each side that's 2 total.</p>
     <p class="instructions">To calculate plates from weight: enter the weight. Optionally, you can enter your 1 rep max and desired percent, and it will calculate the weight for you.</p>
+    <p class="instructions">If you add or remove plates while you have data entered, the app remembers the weight/desired weight and recalculates the plates needed to reach that weight.</p>
   </details>
 
   <main>
     <div class="flexRow">
       <label for="barWeight">Bar weight: </label>
-      <input id="barWeight" type="number" value="45" oninput="calculateWeightFromPlates()" />
+      <input id="barWeight" type="number" value="45" />
     </div>
-    <div class="flexRow">
+    <div class="flexRow displayNone" id="55sRow">
+      <span class="labelSpan"><label class="labelForPlates" for="55s">55s:</label></span>
+      <input id="55s" type="number" value="0" class="plateInput" />
+      <input type="button" class="plusButton" id="55sPlus" value=" + " />
+      <input type="button" class="minusButton" id="55sMinus" value=" - " />
+    </div>
+    <div class="flexRow" id="45sRow">
       <span class="labelSpan"><label class="labelForPlates" for="45s">45s:</label></span>
-      <input id="45s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
-      <input type="button" id="45sPlus" value=" + " onclick="addSubtractPlate('45s','+')" />
-      <input type="button" id="45sMinus" value=" - " onclick="addSubtractPlate('45s','-')" />
+      <input id="45s" type="number" value="0" class="plateInput" />
+      <input type="button" class="plusButton" id="45sPlus" value=" + " />
+      <input type="button" class="minusButton" id="45sMinus" value=" - " />
     </div>
-    <div class="flexRow">
+    <div class="flexRow" id="35sRow">
       <span class="labelSpan"><label class="labelForPlates" for="35s">35s:</label></span>
-      <input id="35s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
-      <input type="button" id="35sPlus" value=" + " onclick="addSubtractPlate('35s','+')" />
-      <input type="button" id="35sMinus" value=" - " onclick="addSubtractPlate('35s','-')" />
+      <input id="35s" type="number" value="0" class="plateInput" />
+      <input type="button" class="plusButton" id="35sPlus" value=" + " />
+      <input type="button" class="minusButton" id="35sMinus" value=" - " />
     </div>
-    <div class="flexRow">
+    <div class="flexRow" id="25sRow">
       <span class="labelSpan"><label class="labelForPlates" for="25s">25s:</label></span>
-      <input id="25s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
-      <input type="button" id="25sPlus" value=" + " onclick="addSubtractPlate('25s','+')" />
-      <input type="button" id="25sMinus" value=" - " onclick="addSubtractPlate('25s','-')" />
+      <input id="25s" type="number" value="0" class="plateInput" />
+      <input type="button" class="plusButton" id="25sPlus" value=" + " />
+      <input type="button" class="minusButton" id="25sMinus" value=" - " />
     </div>
-    <div class="flexRow">
+    <div class="flexRow" id="15sRow">
       <span class="labelSpan"><label class="labelForPlates" for="15s">15s:</label></span>
-      <input id="15s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
-      <input type="button" id="15sPlus" value=" + " onclick="addSubtractPlate('15s','+')" />
-      <input type="button" id="15sMinus" value=" - " onclick="addSubtractPlate('15s','-')" />
+      <input id="15s" type="number" value="0" class="plateInput" />
+      <input type="button" class="plusButton" id="15sPlus" value=" + " />
+      <input type="button" class="minusButton" id="15sMinus" value=" - " />
     </div>
-    <div class="flexRow">
+    <div class="flexRow" id="10sRow">
       <span class="labelSpan"><label class="labelForPlates" for="10s">10s:</label></span>
-      <input id="10s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
-      <input type="button" id="10sPlus" value=" + " onclick="addSubtractPlate('10s','+')" />
-      <input type="button" id="10sMinus" value=" - " onclick="addSubtractPlate('10s','-')" />
+      <input id="10s" type="number" value="0" class="plateInput" />
+      <input type="button" class="plusButton" id="10sPlus" value=" + " />
+      <input type="button" class="minusButton" id="10sMinus" value=" - " />
     </div>
-    <div class="flexRow">
+    <div class="flexRow" id="5sRow">
       <span class="labelSpan"><label class="labelForPlates" for="5s">5s:</label></span>
-      <input id="5s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
-      <input type="button" id="5sPlus" value=" + " onclick="addSubtractPlate('5s','+')" />
-      <input type="button" id="5sMinus" value=" - " onclick="addSubtractPlate('5s','-')" />
+      <input id="5s" type="number" value="0" class="plateInput" />
+      <input type="button" class="plusButton" id="5sPlus" value=" + " />
+      <input type="button" class="minusButton" id="5sMinus" value=" - " />
     </div>
-    <div class="flexRow">
+    <div class="flexRow" id="2.5sRow">
       <span class="labelSpan"><label class="labelForPlates" for="2.5s">2.5s:</span></label>
-      <input id="2.5s" type="number" value="0" class="plateInput" oninput="calculateWeightFromPlates()" />
-      <input type="button" id="2.5sPlus" value=" + " onclick="addSubtractPlate('2.5s','+')" />
-      <input type="button" id="2.5sMinus" value=" - " onclick="addSubtractPlate('2.5s','-')" />
+      <input id="2.5s" type="number" value="0" class="plateInput" />
+      <input type="button" class="plusButton" id="2.5sPlus" value=" + " />
+      <input type="button" class="minusButton" id="2.5sMinus" value=" - " />
     </div>
     <div class="bottomFlexRow">
       <span class="bottomLeftSpacerSpan">
         <label class="labelForWeight">1RM: </label>
       </span>
-      <input id="1RM" type="number" oninput="calculateDesiredWeight()" />
+      <input id="1RM" type="number" />
       <span class="bottomRightSpacerSpan"></span>
     </div>
     <div class="bottomFlexRow">
       <span class="bottomLeftSpacerSpan">
         <label class="labelForWeight">%: </label>
       </span>
-      <input id="percent" type="number" oninput="calculateDesiredWeight()" />
+      <input id="percent" type="number" />
       <span class="bottomRightSpacerSpan"></span>
     </div>
     <div class="bottomFlexRow">
       <span class="bottomLeftSpacerSpan">
         <label class="labelForWeight" for="desiredWeight" id="desiredWeightLabel">Desired weight: </label>
       </span>
-      <input id="desiredWeight" type="number" oninput="calculatePlates()" />
+      <input id="desiredWeight" type="number" />
       <span id="remainingWeight" class="bottomRightSpacerSpan remainingWeight"></span>
       </span>
     </div>
-    <div class="flexRow"> <label for="fifteensYesNo">Include 15-lbs plates?</label><input id="fifteensYesNo" type="checkbox" onchange="calculatePlates()" /> </div>
+    <!--<details>-->
+    <summary><span class="summary">Plates to include</span></summary>
+    <label>55s</label><input class="plateStatus" id="55sStatus" type="checkbox" />
+    <label>45s</label><input class="plateStatus" id="45sStatus" type="checkbox" checked />
+    <label>35s</label><input class="plateStatus" id="35sStatus" type="checkbox" checked />
+    <label>25s</label><input class="plateStatus" id="25sStatus" type="checkbox" checked />
+    <label>15s</label><input class="plateStatus" id="15sStatus" type="checkbox" />
+    <label>10s</label><input class="plateStatus" id="10sStatus" type="checkbox" checked />
+    <label>5s</label><input class="plateStatus" id="5sStatus" type="checkbox" checked />
+    <label>2.5s</label><input class="plateStatus" id="2.5sStatus" type="checkbox" checked />
+    <!--</details>-->
   </main>
 </body>
 
