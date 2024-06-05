@@ -13,9 +13,8 @@ const isInteger = (event) => {
 const savePlatesStatus = () => {
   // "true" = show, "false" = hide. Localstorage can only store strings.
   let allPlatesMap = getAllPlatesStatus();
-  for (let plate of allPlatesMap) {
-    localStorage.setItem(plate[0], plate[1]);
-  }
+  //for (let plate of allPlatesMap) { localStorage.setItem(plate[0], plate[1]);} Trying .map() for this instead.
+  allPlatesMap.map((plate) => localStorage.setItem(plate[0], plate[1]));
 };
 
 const loadPlatesStatusOnLoad = () => {
