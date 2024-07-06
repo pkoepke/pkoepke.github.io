@@ -7,6 +7,25 @@ const run = () => {
   document.getElementById('output').textContent = filename;
 }
 
+const paste = () => {
+  navigator.clipboard
+    .readText()
+    .then((clipText) => document.getElementById('input').value = clipText).then(run());
+}
+
+const clear = () => {
+  document.getElementById('input').value = '';
+  document.getElementById('output').textContent = '';
+}
+
+const copy = () => {
+  navigator.clipboard.writeText(document.getElementById('output').textContent);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('input').addEventListener('input', run);
+  document.getElementById('input').addEventListener('paste', run);
+  document.getElementById('paste').addEventListener('click', paste);
+  document.getElementById('clear').addEventListener('click', clear);
+  document.getElementById('copy').addEventListener('click', copy);
 });

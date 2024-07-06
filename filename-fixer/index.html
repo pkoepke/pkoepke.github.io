@@ -23,7 +23,10 @@
 		<div class="content">
 			<p>Removes illegal characters from filenames.</p>
 			<p><textarea id="input"></textarea></p>
-			<p id="output" />
+			<input type="button" id="paste" value="Paste 📋" />
+			<input type="button" id="clear" value="Clear X" />
+			<p id="output"></p>
+			<input type="button" id="copy" value="Copy 🗐" />
 		</div>
 	</main>
 </body>
@@ -37,8 +40,15 @@
 	}
 
 	textarea {
-		width: 40rem;
+		max-width: 40rem;
+		min-width: 20rem;
 		height: 6rem;
+	}
+
+	input[type="button"] {
+		height: 3rem;
+		width: 4rem;
+		vertical-align: top;
 	}
 </style>
 
