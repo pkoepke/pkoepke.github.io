@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 /*@font-face {
   font-family: "Noto Sans";
@@ -18,7 +18,8 @@
 */
 
 body {
-  font-family: Inter, "Noto Sans", "open sans", Helvetica, Aptos, arial, sans-serif;
+  font-family: Inter, "Noto Sans", "open sans", Helvetica, Aptos, arial,
+    sans-serif;
   color: white;
   margin: 0;
   background-color: #000000;
@@ -94,12 +95,17 @@ img {
 }
 
 input,
-select {
+select,
+textarea {
   width: auto;
   border: 1px solid #696969;
   background-color: #1d1d1d;
   color: white;
   height: 1.2rem;
+}
+
+textarea {
+  height: auto;
 }
 
 input:focus,

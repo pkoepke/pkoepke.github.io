@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<script>
+		if (typeof navigator.serviceWorker !== 'undefined') {
+			navigator.serviceWorker.register('/sw.js')
+		}
+	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Paul Koepke">
+	<meta name="description" content="Filename Fixer">
+	<title>Filename Fixer</title>
+	<link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">
+	<link rel="icon" type="image/png" href="/favicon.png">
+	<script src="script.js"></script>
+</head>
+
+<body>
+	<h1 id="h1">Filename fixer</h1>
+	<main>
+		<div class="content">
+			<p>Removes illegal characters from filenames.</p>
+			<p><textarea id="input"></textarea></p>
+			<p id="output" />
+		</div>
+	</main>
+</body>
+
+<style>
+	.content {
+		max-width: 60rem;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+
+	textarea {
+		width: 40rem;
+		height: 6rem;
+	}
+</style>
+
+</html>
