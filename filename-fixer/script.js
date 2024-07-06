@@ -10,7 +10,8 @@ const run = () => {
 const paste = () => {
   navigator.clipboard
     .readText()
-    .then((clipText) => document.getElementById('input').value = clipText).then(run());
+    .then((clipText) => document.getElementById('input').value = clipText)
+    .then((e) => run());
 }
 
 const clear = () => {
