@@ -12,7 +12,6 @@ Notes:
 // Add event listeners to the windows to run code when the page loads.
 window.addEventListener('load', displayOriginalOutput, false);
 window.addEventListener('load', giveBillAmountFocus, false);
-window.addEventListener('load', applyIosStyles, false);
 
 function giveBillAmountFocus(event) {
   document.getElementById('billAmount').focus();
