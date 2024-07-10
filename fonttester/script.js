@@ -14,7 +14,7 @@ const applyStyles = (e, font = 'Inter') => {
   if (e) {
     font = e.target.value
   }
-  if (document.getElementById('linkrel')) document.getElementById('linkrel').remove();
+  /*if (document.getElementById('linkrel')) document.getElementById('linkrel').remove();
   if (fontList[font] != '') {
     console.log()
     document.getElementById('output').innerText = '';
@@ -24,7 +24,11 @@ const applyStyles = (e, font = 'Inter') => {
     link.type = 'stylesheet';
     link.href = fontList[font];
     document.head.appendChild(link);
-  } else { document.getElementById('output').innerText = `URL wasn't available, may or may not be showing the correct font.`; }
+  } else { document.getElementById('output').innerText = `URL wasn't available, may or may not be showing the correct font.`; }*/
+  if (fontList[font] == '') {
+    document.getElementById('output').innerText = `URL wasn't available, may or may not be showing the correct font.`;
+  } else { document.getElementById('output').innerText = ''; }
+
   document.body.style.fontFamily = font;
 }
 
