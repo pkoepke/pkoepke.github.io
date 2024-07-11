@@ -48,36 +48,22 @@ main {
 
 .navigation_menu {
   background-color: #003fd1;
-}
-
-ul {
-  /* remove formatting from unformatted lists so my links can be put into a navigation bar */
-  list-style-type: none;
+  margin: 1rem 0 1rem 0;
   padding: 0;
   text-align: center;
 }
 
-li {
+.link_list {
   display: inline-block;
   padding: 0.5rem 0.3rem 0.5rem 0.3rem;
+  color: white;
 }
 
 a {
   color: #0085f3;
 }
 
-ul a {
-  text-decoration: none;
-  /* There are line breaks between the li that HTML treats as significant. Don't underline that whitespace. */
-}
-
-a li {
-  text-decoration: underline;
-  /* Do underline text within li items since they're links. */
-  color: white;
-}
-
-li:hover {
+.link_list:hover {
   background-color: #001a57;
 }
 
