@@ -17,32 +17,35 @@
 	<h1 id="h1">Reddit search generator</h1>
 	<main>
 		<form>
-			<p class="flexbox">
-			<p><label for="query">query: </label><input id="query" type="text" oninput="generate()"></p>
-			<p><label for="subreddit">subreddit: </label><input id="subreddit" type="text" oninput="generate()"></p>
-			<p><label for="sort">Sort type: </label>
-				<select id="sort" oninput="generate()">
-					<option value="top">top</option>
-					<option value="relevance">relevance</option>
-					<option value="new">new</option>
-					<option value="comments">comments</option>
-				</select>
-			</p>
-			<p><label for="time">Time: </label>
-				<select id="time" oninput="generate()">
-					<option value="hour">past hour</option>
-					<option value="day">past 24 hours</option>
-					<option value="week">past week</option>
-					<option value="month">past month</option>
-					<option value="year">past year</option>
-					<option value="all" selected="selected">all time</option>
-				</select>
-			</p>
-			<p><label for="oldReddit">Site:</label><input name="oldOrNewReddit" id="oldReddit" type="radio" value="old" checked="checked" oninput="generate()">old.reddit.com<input name="oldOrNewReddit" id="newREddit" type="radio" value="new" oninput="generate()">www.reddit.com
-				(new
-				site)</p>
-			<p><label for="nsfw">Include NSFW?</label><input id="nsfw" type="checkbox" oninput="generate()"></p>
-			</p>
+			<div class="flexbox">
+				<p><label for="query">query: </label><input id="query" type="text" oninput="generate()"></p>
+				<p><label for="subreddit">subreddit: </label><input id="subreddit" type="text" oninput="generate()"></p>
+				<p><label for="sort">Sort type: </label>
+					<select id="sort" oninput="generate()">
+						<option value="top">top</option>
+						<option value="relevance">relevance</option>
+						<option value="new">new</option>
+						<option value="comments">comments</option>
+					</select>
+				</p>
+				<p><label for="time">Time: </label>
+					<select id="time" oninput="generate()">
+						<option value="hour">past hour</option>
+						<option value="day">past 24 hours</option>
+						<option value="week">past week</option>
+						<option value="month">past month</option>
+						<option value="year">past year</option>
+						<option value="all" selected="selected">all time</option>
+					</select>
+				</p>
+				<p>Site:
+					<input name="oldOrNewReddit" id="oldReddit" type="radio" value="old" checked="checked" oninput="generate()"><label for="oldReddit">old.reddit.com</label>
+					<input name="oldOrNewReddit" id="newReddit" type="radio" value="new" oninput="generate()"><label for="newReddit">www.reddit.com (new site)</label>
+				</p>
+				<p>
+					<label for="nsfw">Include NSFW?</label><input id="nsfw" type="checkbox" oninput="generate()">
+				</p>
+			</div>
 			<p id="output"></p>
 		</form>
 	</main>

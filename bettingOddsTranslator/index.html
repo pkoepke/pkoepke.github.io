@@ -23,19 +23,19 @@
 		<div class="content">
 			<p>Moneyline
 			<form>
-				<div class="row"><label>Favored:</label><span class="shiftRight"> <input id="favoredTeamName" type="text" oninput="calculateMoneyline()"></spanspan>
+				<div class="row"><label for="favoredTeamName">Favored:</label><span class="shiftRight"> <input id="favoredTeamName" type="text" oninput="calculateMoneyline()"></spanspan>
 				</div>
 				<div class="row">
-					<label>Odds:</label><span class="shiftRight">-<input id="favoredTeamOdds" type="number" oninput="calculateMoneyline()"></span>
+					<label for="favoredTeamOdds">Odds:</label><span class="shiftRight">-<input id="favoredTeamOdds" type="number" oninput="calculateMoneyline()"></span>
 				</div>
 				<p></p>
-				<div class="row"><label>Underdog:</label><span class="shiftRight"> <input id="otherTeamName" type="text" oninput="calculateMoneyline()"></span></div>
+				<div class="row"><label for="otherTeamName">Underdog:</label><span class="shiftRight"> <input id="otherTeamName" type="text" oninput="calculateMoneyline()"></span></div>
 				<div class="row">
-					<label>Odds:</label><span class="shiftRight"><span>+</span><input id="15s" type="number" oninput="calculateMoneyline()"></span>
+					<label for="otherTeamOdds">Odds:</label><span class="shiftRight"><span>+</span><input id="otherTeamOdds" type="number" oninput="calculateMoneyline()"></span>
 				</div>
 			</form>
 			</p>
-			<p id="moneylineOutput" />
+			<p id="moneylineOutput"></p>
 			<p>Spread: negative means favorite, positive means underdog.
 			</p>
 		</div>
