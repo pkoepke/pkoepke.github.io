@@ -2,7 +2,7 @@ const run = () => {
   const illegalChars = ['\\', '/', ':', '*', '?', '"', '<', '>', '\n', '\r', '&'];
   let filename = document.getElementById('input').value;
   for (const char of illegalChars) {
-    filename = filename.replaceAll(char, (char == '\n' || char == '\r') ? ' ' : '-');
+    filename = filename.replaceAll(char, (char == '\n' || char == '\r') ? ' ' : char == '\\' ? '_' : ''); // replce \n and \r with a space, \ with _, and just remove everything else.
   }
   filename = filename.substring(0, 255);
   document.getElementById('output').textContent = filename;
