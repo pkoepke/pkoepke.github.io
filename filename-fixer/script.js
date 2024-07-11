@@ -4,6 +4,7 @@ const run = () => {
   for (const char of illegalChars) {
     filename = filename.replaceAll(char, (char == '\n' || char == '\r') ? ' ' : '-');
   }
+  filename = filename.substring(0, 255);
   document.getElementById('output').textContent = filename;
 }
 
