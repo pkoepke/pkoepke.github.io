@@ -1,5 +1,5 @@
 const run = () => {
-  const illegalChars = ['\\', '/', ':', '*', '?', '"', '<', '>', '\n', '\r'];
+  const illegalChars = ['\\', '/', ':', '*', '?', '"', '<', '>', '\n', '\r', '&'];
   let filename = document.getElementById('input').value;
   for (const char of illegalChars) {
     filename = filename.replaceAll(char, (char == '\n' || char == '\r') ? ' ' : '-');
