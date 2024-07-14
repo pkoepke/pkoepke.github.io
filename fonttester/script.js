@@ -17,19 +17,22 @@ const applyStyles = (e, font = 'Inter') => {
   /*if (document.getElementById('linkrel')) document.getElementById('linkrel').remove();
   if (fontList[font] != '') {
     console.log()
-    document.getElementById('output').innerText = '';
+    document.getElementById('warning').innerText = '';
     const link = document.createElement('link');
     link.id = 'linkrel';
     link.rel = 'preload';
     link.type = 'stylesheet';
     link.href = fontList[font];
     document.head.appendChild(link);
-  } else { document.getElementById('output').innerText = `URL wasn't available, may or may not be showing the correct font.`; }*/
+  } else { document.getElementById('warning').innerText = `URL wasn't available, may or may not be showing the correct font.`; }*/
   if (fontList[font] == '') {
-    document.getElementById('output').innerText = `URL wasn't available, may or may not be showing the correct font.`;
-  } else { document.getElementById('output').innerText = ''; }
-
+    document.getElementById('warning').innerText = `URL wasn't available, may or may not be showing the correct font.`;
+  } else { document.getElementById('warning').innerText = ''; }
   document.body.style.fontFamily = font;
+}
+
+const changeText = (event) => {
+  document.getElementById('output').innerText = event.target.value;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,4 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => { document.getElementById('fontSelect').addEventListener('change', applyStyles); })
+document.addEventListener('DOMContentLoaded', () => { document.getElementById('input').addEventListener('input', changeText); })
+document.addEventListener('DOMContentLoaded', () => { document.getElementById('input').addEventListener('paste', changeText); })
 document.addEventListener('load', applyStyles);
