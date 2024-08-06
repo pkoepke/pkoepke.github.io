@@ -41,7 +41,7 @@ const calculateTimeAndRate = (size, startTime, endTime) => { // Return the time 
     '10 megabits.zip': 10000,
     '10 megabytes.bin': 80000
   }
-  let rate = (sizeMap[size] / seconds).toLocaleString('en-us').toFixed(3);
+  let rate = (sizeMap[size] / seconds).toLocaleString('en-us');
   return { 'seconds': seconds, 'rate': rate }
 }
 
