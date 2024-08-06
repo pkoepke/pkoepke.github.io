@@ -12,7 +12,7 @@ self.addEventListener(`message`, (event) => {
 
 workbox.routing.registerRoute(
   //new RegExp(`/*`),
-  `./index.html`,
+  `index.html`,
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: CACHE
   })

@@ -36,11 +36,12 @@ const runTests = async () => {
     let outputElement = document.createElement(`div`);
     outputElement.textContent = `Trying ${path.split(`.`, 1)[0]}...`;
     document.getElementById(`output`).appendChild(outputElement);
+    const startTime = new Date();
     try {
       const response = await fetch(path, { cache: "no-store" })
-      const text = await response.text();
       if (response.ok) {
-        outputElement.textContent = `${path.split(`.`, 1)[0]} succeeded.`;
+        const endTime = new Date();
+        outputElement.textContent = `${path.split(`.`, 1)[0]} succeeded in ${(endTime - startTime) / 1000} seconds.`;
       } else {
         outputElement.textContent = `${path.split(`.`, 1)[0]} failed.`;
       }
