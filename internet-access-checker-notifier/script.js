@@ -1,9 +1,5 @@
 navigator.serviceWorker.register('./sw.js');
 const askNotificationPermission = () => {
-  Notification.requestPermission().then((permission) => {
-    console.log(permission);
-  })
-  console.log(Notification.permission)
   if (!("Notification" in window)) {
     console.log("This browser does not support notifications.");
     return;
@@ -37,12 +33,16 @@ const runTests = async () => {
   document.getElementById(`output`).appendChild(outputElement);
   const filesToCheck = [`1 kilobit.zip`, `1 kilobyte.bin`, `10 kilobits.zip`, `10 kilobytes.bin`, `100 kilobits.zip`, `100 kilobytes.bin`, `1 megabit.zip`, `1 megabyte.bin`, `10 megabits.zip`, `10 megabytes.bin`]
   for (const path of filesToCheck) {
-    const response = await fetch(path, { cache: "no-store" })
-    const text = await response.text();
     let outputElement = document.createElement(`div`);
-    if (response.ok) {
-      outputElement.textContent = `${path.split(`.`, 1)[0]} succeeded.`;
-    } else {
+    try {
+      const response = await fetch(path, { cache: "no-store" })
+      const text = await response.text();
+      if (response.ok) {
+        outputElement.textContent = `${path.split(`.`, 1)[0]} succeeded.`;
+      } else {
+        outputElement.textContent = `${path.split(`.`, 1)[0]} failed.`;
+      }
+    } catch (e) {
       outputElement.textContent = `${path.split(`.`, 1)[0]} failed.`;
     }
     document.getElementById(`output`).appendChild(outputElement);
