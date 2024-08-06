@@ -1,4 +1,5 @@
 navigator.serviceWorker.register('./sw.js');
+
 const askNotificationPermission = () => {
   if (!("Notification" in window)) {
     console.log("This browser does not support notifications.");
@@ -28,7 +29,7 @@ const notify = (title, body) => {
 
 const runTests = async () => {
   let shouldNotify = document.getElementById(`notify`).checked;
-  if (shouldNotify) askNotificationPermission();
+  if (shouldNotify) await askNotificationPermission();
   let outputElement = document.createElement(`div`);
   outputElement.textContent = 'runTests ran.';
   let outputText = ``;
