@@ -1,0 +1,36 @@
+{
+  "background_color": "#000000",
+  "description": "Checks Internet access by downloading small to medium files. No ads or private data.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Internet Access Checker",
+  "orientation": "any",
+  "scope": "/internet-access-checker-notifier/",
+  "short_name": "Internet Access Checker",
+  "start_url": "/internet-access-checker-notifier/",
+  "theme_color": "#012169",
+  "categories": ["utilities"],
+  "icons": [
+    {
+      "src": "noun-signal-3671638.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "noun-signal-3671638.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "noun-signal-3671638.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "monochrome"
+    }
+  ],
+  "shortcuts": [],
+  "id": "internet-access-checker",
+  "display_override": ["window-controls-overlay"]
+}

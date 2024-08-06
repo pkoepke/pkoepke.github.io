@@ -20,8 +20,8 @@ const notify = (title, body) => {
   navigator.serviceWorker.ready.then(function (registration) {
     registration.showNotification(title, {
       body: body,
-      icon: `https://cdn.glitch.global/dadb644e-3b98-4740-8e10-b7a927f78326/signal-status.png?v=1722801357616`,
-      badge: `https://cdn.glitch.global/dadb644e-3b98-4740-8e10-b7a927f78326/signal-status.png?v=1722801357616`
+      icon: `noun-signal-3671638.svg`,
+      badge: `noun-signal-3671638.svg`
     });
   });
 }
