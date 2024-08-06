@@ -67,4 +67,5 @@ const deleteAllCaches = () => {
 
 document.addEventListener(`DOMContentLoaded`, () => {
   document.getElementById(`button`).addEventListener(`click`, runTests);
+  document.getElementById(`clearCache`).addEventListener(`click`, deleteAllCaches);
 });
