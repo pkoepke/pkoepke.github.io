@@ -4,6 +4,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#012169">
+  <meta name="author" content="Paul Koepke" />
   <link rel="icon" href="./signal-status.png" /> <!-- attribution https://www.flaticon.com/free-icon/signal-status_11439777 <a href="https://www.flaticon.com/free-icons/signal-status" title="signal status icons" style="visibility: hidden;">Signal status icons created by Abdul-Aziz - Flaticon</a> -->
   <title>Internet Access Checker and Notifier</title>
   <link rel="stylesheet" href="/styles_dark.css" />
@@ -11,9 +15,12 @@
 </head>
 
 <body>
-  <label for="button">Run tests and notify me: </label>
-  <input type="button" id="button" value="Run tests">
-  <div id="output"></div>
+  <h1>Internet Access Checker and Notifier</h1>
+  <main>
+    <label for="button">Run tests and notify me: </label>
+    <input type="button" id="button" value="Run tests">
+    <div id="output"></div>
+  </main>
 </body>
 
 </html>
