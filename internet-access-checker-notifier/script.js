@@ -1,5 +1,8 @@
-navigator.serviceWorker.register('sw.js');
+navigator.serviceWorker.register('./sw.js');
 const askNotificationPermission = () => {
+  Notification.requestPermission().then((permission) => {
+    console.log(permission);
+  })
   console.log(Notification.permission)
   if (!("Notification" in window)) {
     console.log("This browser does not support notifications.");
