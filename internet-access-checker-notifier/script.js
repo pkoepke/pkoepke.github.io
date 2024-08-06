@@ -20,8 +20,8 @@ const notify = (title, body) => {
   navigator.serviceWorker.ready.then(function (registration) {
     registration.showNotification(title, {
       body: body,
-      icon: `noun-signal-3671638.svg`,
-      badge: `noun-signal-3671638.svg`
+      icon: `signal-font-awesome 512x512.png`,
+      badge: `signal-font-awesome 512x512.png`
     });
   });
 }
