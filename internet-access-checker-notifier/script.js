@@ -27,7 +27,7 @@ const notify = (title, body) => {
 }
 
 const runTests = async () => {
-  let shouldNotify = document.getElementById(`notify`).value == `checked`;
+  let shouldNotify = document.getElementById(`notify`).checked;
   if (shouldNotify) askNotificationPermission();
   let outputElement = document.createElement(`div`);
   outputElement.textContent = 'runTests ran.';
