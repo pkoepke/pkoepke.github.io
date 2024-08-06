@@ -17,3 +17,11 @@ workbox.routing.registerRoute(
     cacheName: CACHE
   })
 );
+
+workbox.routing.registerRoute(({ url, request, event }) => {
+  console.log(`workbox URL: ${url}`)
+},
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: CACHE
+  })
+);
