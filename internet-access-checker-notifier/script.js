@@ -39,6 +39,8 @@ const runTests = async () => {
   for (const path of filesToCheck) {
     const response = await fetch(path, { cache: "no-store" })
     console.log(response);
+    const text = await response.text();
+    console.log(text);
   }
   notify(`Title text`, `body text`);
 }
