@@ -27,6 +27,24 @@ const notify = (title, body) => {
   });
 }
 
+const calculateTimeAndRate = (size, startTime, endTime) => { // Return the time elapsed and bps rate.
+  let seconds = (endTime - startTime) / 1000;
+  let sizeMap = {
+    '1 kilobit.zip': 1000,
+    '1 kilobyte.bin': 8000,
+    '10 kilobits.zip': 10000,
+    '10 kilobytes.bin': 80000,
+    '100 kilobits.zip': 100000,
+    '100 kilobytes.bin': 800000,
+    '1 megabit.zip': 1000000,
+    '1 megabyte.bin': 8000000,
+    '10 megabits.zip': 10000000,
+    '10 megabytes.bin': 80000000
+  }
+  let rate = sizeMap[size] / seconds
+  return { 'seconds': seconds, 'rate': rate }
+}
+
 const runTests = async () => {
   let shouldNotify = document.getElementById(`notify`).checked;
   if (shouldNotify) await askNotificationPermission();
@@ -34,7 +52,7 @@ const runTests = async () => {
   outputElement.textContent = 'runTests ran.';
   let outputText = ``;
   document.getElementById(`output`).appendChild(outputElement);
-  const filesToCheck = [`1 kilobit.zip`, `1 kilobyte.bin`, `10 kilobits.zip`, `10 kilobytes.bin`, `100 kilobits.zip`, `100 kilobytes.bin`, `1 megabit.zip`, `1 megabyte.bin`, `10 megabits.zip`, `10 megabytes.bin`]
+  const filesToCheck = [`1 kilobit.zip`, `1 kilobyte.bin`, `10 kilobits.zip`, `10 kilobytes.bin`, `100 kilobits.zip`, `100 kilobytes.bin`, `1 megabit.zip`, `1 megabyte.bin`, `10 megabits.zip`, `10 megabytes.bin`];
   for (const path of filesToCheck) {
     let outputElement = document.createElement(`div`);
     outputElement.textContent = `Trying ${path.split(`.`, 1)[0]}...`;
@@ -45,8 +63,9 @@ const runTests = async () => {
       await response.text(); // Necessary so the script waits until the entire response has been received, not just started.
       if (response.ok) {
         const endTime = new Date();
-        outputText = `${path.split(`.`, 1)[0]} succeeded in ${(endTime - startTime) / 1000} seconds.`;
-
+        const timeAndRate = calculateTimeAndRate(path, startTime, endTime);
+        //outputText = `${path.split(`.`, 1)[0]} succeeded in ${(endTime - startTime) / 1000} seconds.`;
+        outputText = `${path.split(`.`, 1)[0]} succeeded in ${timeAndRate['time']} seconds for an effective rate of ${timeAndRate['rate']} bps.`;
       } else {
         outputText = `${path.split(`.`, 1)[0]} failed.`;
       }
