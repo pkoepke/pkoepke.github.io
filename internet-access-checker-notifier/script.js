@@ -31,6 +31,7 @@ const notify = (title, body) => {
 }
 
 const runTests = async () => {
+  askNotificationPermission();
   let outputElement = document.createElement(`div`);
   outputElement.textContent = 'runTests ran.';
   document.getElementById(`output`).appendChild(outputElement);
@@ -43,6 +44,5 @@ const runTests = async () => {
 }
 
 document.addEventListener(`DOMContentLoaded`, () => {
-  askNotificationPermission();
   document.getElementById(`button`).addEventListener(`click`, runTests);
 });
