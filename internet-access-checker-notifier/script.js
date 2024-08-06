@@ -27,9 +27,11 @@ const notify = (title, body) => {
 }
 
 const runTests = async () => {
-  askNotificationPermission();
+  let shouldNotify = document.getElementById(`notify`).value == `checked`;
+  if (shouldNotify) askNotificationPermission();
   let outputElement = document.createElement(`div`);
   outputElement.textContent = 'runTests ran.';
+  let outputText = ``;
   document.getElementById(`output`).appendChild(outputElement);
   const filesToCheck = [`1 kilobit.zip`, `1 kilobyte.bin`, `10 kilobits.zip`, `10 kilobytes.bin`, `100 kilobits.zip`, `100 kilobytes.bin`, `1 megabit.zip`, `1 megabyte.bin`, `10 megabits.zip`, `10 megabytes.bin`]
   for (const path of filesToCheck) {
@@ -42,15 +44,18 @@ const runTests = async () => {
       await response.text(); // Necessary so the script waits until the entire response has been received, not just started.
       if (response.ok) {
         const endTime = new Date();
-        outputElement.textContent = `${path.split(`.`, 1)[0]} succeeded in ${(endTime - startTime) / 1000} seconds.`;
+        outputText = `${path.split(`.`, 1)[0]} succeeded in ${(endTime - startTime) / 1000} seconds.`;
+
       } else {
-        outputElement.textContent = `${path.split(`.`, 1)[0]} failed.`;
+        outputText = `${path.split(`.`, 1)[0]} failed.`;
       }
     } catch (e) {
-      outputElement.textContent = `${path.split(`.`, 1)[0]} failed.`;
+      outputText = `${path.split(`.`, 1)[0]} failed.`;
     }
+    outputElement.textContent = outputText;
+    if (shouldNotify) notify(outputText);
   }
-  notify(`Internet access check finished.`, ``);
+  if (shouldNotify) notify(`Internet access check finished.`, ``);
 }
 
 const deleteAllCaches = () => {
