@@ -19,7 +19,10 @@ workbox.routing.registerRoute(
 );
 
 workbox.routing.registerRoute(({ url, request, event }) => {
-  console.log(`workbox URL: ${url}`)
+  console.log(`workbox URL: ${url}`);
+  if (url.includes(`index.html`) || url.includes(`script.js`) || url.includes(`styles.css`)) {
+    return true
+  } else return false
 },
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: CACHE

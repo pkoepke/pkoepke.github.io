@@ -42,8 +42,12 @@ self.addEventListener("install", (event) => {
   },),);
 });
 
-workbox.routing.registerRoute(
-  new RegExp('/*'),
+workbox.routing.registerRoute(({ url, request, event }) => {
+  console.log(`workbox URL: ${url}`);
+  if (url.includes(`internet-access-checker-notifier`)) {
+    return false // Exclude all IACN files, the few that should be cached will be handled by their own service worker.
+  } else return true // Cache everything else.
+},
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: CACHE
   })

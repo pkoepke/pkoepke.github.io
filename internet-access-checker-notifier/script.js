@@ -39,6 +39,7 @@ const runTests = async () => {
     const startTime = new Date();
     try {
       const response = await fetch(path, { cache: "no-store" })
+      await response.text(); // Necessary so the script waits until the entire response has been received, not just started.
       if (response.ok) {
         const endTime = new Date();
         outputElement.textContent = `${path.split(`.`, 1)[0]} succeeded in ${(endTime - startTime) / 1000} seconds.`;
@@ -50,6 +51,13 @@ const runTests = async () => {
     }
   }
   notify(`Internet access check finished.`, ``);
+}
+
+const deleteAllCaches = () => {
+  caches.keys().then(function (names) {
+    for (let name of names)
+      caches.delete(name);
+  });
 }
 
 document.addEventListener(`DOMContentLoaded`, () => {
