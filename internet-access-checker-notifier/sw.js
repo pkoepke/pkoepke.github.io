@@ -10,17 +10,9 @@ self.addEventListener(`message`, (event) => {
   }
 });
 
-workbox.routing.registerRoute(
-  //new RegExp(`/*`),
-  `index.html`,
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: CACHE
-  })
-);
-
 workbox.routing.registerRoute(({ url, request, event }) => {
   console.log(`workbox URL: ${url}`);
-  if (url.includes(`index.html`) || url.includes(`script.js`) || url.includes(`styles.css`)) {
+  if (url.includes(`index.html`) || url.includes(`script.js`) || url.includes(`styles.css`) || url.includes(`signal-font-awesome`)) {
     return true
   } else return false
 },
