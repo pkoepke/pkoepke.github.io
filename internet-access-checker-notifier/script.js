@@ -35,14 +35,19 @@ const runTests = async () => {
   let outputElement = document.createElement(`div`);
   outputElement.textContent = 'runTests ran.';
   document.getElementById(`output`).appendChild(outputElement);
-  const filesToCheck = [`./1 kilobit.zip`, `./1 kilobyte.bin`, `./10 kilobits.zip`, `./10 kilobytes.bin`, `./100 kilobits.zip`, `./100 kilobytes.bin`, `./1 megabit.zip`, `./1 megabyte.bin`, `./10 megabits.zip`, `./10 megabytes.bin`]
+  const filesToCheck = [`1 kilobit.zip`, `1 kilobyte.bin`, `10 kilobits.zip`, `10 kilobytes.bin`, `100 kilobits.zip`, `100 kilobytes.bin`, `1 megabit.zip`, `1 megabyte.bin`, `10 megabits.zip`, `10 megabytes.bin`]
   for (const path of filesToCheck) {
     const response = await fetch(path, { cache: "no-store" })
-    console.log(response);
     const text = await response.text();
-    console.log(text);
+    let outputElement = document.createElement(`div`);
+    if (response.ok) {
+      outputElement.textContent = `${path.split(`.`, 1)[0]} succeeded.`;
+    } else {
+      outputElement.textContent = `${path.split(`.`, 1)[0]} failed.`;
+    }
+    document.getElementById(`output`).appendChild(outputElement);
   }
-  notify(`Title text`, `body text`);
+  notify(`Internet access check finished.`, ``);
 }
 
 document.addEventListener(`DOMContentLoaded`, () => {
