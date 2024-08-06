@@ -41,7 +41,12 @@ const calculateTimeAndRate = (size, startTime, endTime) => { // Return the time 
     '10 megabits.zip': 10000,
     '10 megabytes.bin': 80000
   }
-  let rate = (sizeMap[size] / seconds).toLocaleString('en-us');
+  let rate = (sizeMap[size] / seconds);
+  if (rate > 1000) {
+    rate = (rate / 1000).toLocaleString('en-us') + ` mbps`;
+  } else {
+    rate = rate.toLocaleString('en-us') + ` kbps`;
+  }
   return { 'seconds': seconds, 'rate': rate }
 }
 
@@ -64,7 +69,7 @@ const runTests = async () => {
       if (response.ok) {
         const endTime = new Date();
         const timeAndRate = calculateTimeAndRate(path, startTime, endTime);
-        outputText = `${path.split(`.`, 1)[0]} succeeded in ${timeAndRate['seconds']} seconds for an effective rate of ${timeAndRate['rate']} kbps.`;
+        outputText = `${path.split(`.`, 1)[0]} succeeded in ${timeAndRate['seconds']} seconds for an effective rate of ${timeAndRate['rate']}.`;
       } else {
         outputText = `${path.split(`.`, 1)[0]} failed.`;
       }
