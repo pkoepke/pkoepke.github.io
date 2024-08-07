@@ -8,6 +8,7 @@ main {
 .flexRow {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: flex-start;
+  margin-bottom: 0.5rem;
 }

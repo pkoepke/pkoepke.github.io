@@ -72,14 +72,17 @@ const runTests = async () => {
         wrapperSpan.classList.add(`flexRow`);
         const firstSpan = document.createElement(`span`);
         firstSpan.textContent = `${path.split(`.`, 1)[0]}`;
-        firstSpan.style.width = `18%`;
+        //firstSpan.style.width = `18%`;
+        firstSpan.style.width = `6.5rem`;
         const secondSpan = document.createElement(`span`);
         secondSpan.textContent = `succeeded in ${timeAndRate['seconds']} seconds`;
-        secondSpan.style.width = `34%`;
+        //secondSpan.style.width = `34%`;
+        secondSpan.style.width = `13rem`;
         const thirdSpan = document.createElement(`span`);
         thirdSpan.textContent = `for an effective rate of ${timeAndRate['rate']}.`
-        thirdSpan.style.width = `47%`;
-        thirdSpan.style.textAlign = `right`;
+        //thirdSpan.style.width = `47%`;
+        thirdSpan.style.width = `17rem`;
+        //thirdSpan.style.textAlign = `right`;
         wrapperSpan.appendChild(firstSpan);
         wrapperSpan.appendChild(secondSpan);
         wrapperSpan.appendChild(thirdSpan);
