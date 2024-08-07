@@ -79,9 +79,9 @@ const runTests = async () => {
         //secondSpan.style.width = `34%`;
         secondSpan.style.width = `13rem`;
         const thirdSpan = document.createElement(`span`);
-        thirdSpan.textContent = `for an effective rate of ${timeAndRate['rate']}.`
+        thirdSpan.textContent = `at ${timeAndRate['rate']}.`
         //thirdSpan.style.width = `47%`;
-        thirdSpan.style.width = `17rem`;
+        thirdSpan.style.width = `8rem`;
         //thirdSpan.style.textAlign = `right`;
         wrapperSpan.appendChild(firstSpan);
         wrapperSpan.appendChild(secondSpan);
