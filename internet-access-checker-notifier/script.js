@@ -30,16 +30,16 @@ const notify = (title, body) => {
 const calculateTimeAndRate = (size, startTime, endTime) => { // Return the time elapsed and bps rate.
   let seconds = (endTime - startTime) / 1000;
   let sizeMap = {
-    '1 kilobit.zip': 1,
-    '1 kilobyte.bin': 8,
-    '10 kilobits.zip': 10,
-    '10 kilobytes.bin': 80,
-    '100 kilobits.zip': 100,
-    '100 kilobytes.bin': 800,
-    '1 megabit.zip': 1000,
-    '1 megabyte.bin': 8000,
-    '10 megabits.zip': 10000,
-    '10 megabytes.bin': 80000
+    '1 kbit.zip': 1,
+    '1 kbyte.bin': 8,
+    '10 kbits.zip': 10,
+    '10 kbytes.bin': 80,
+    '100 kbits.zip': 100,
+    '100 kbytes.bin': 800,
+    '1 mbit.zip': 1000,
+    '1 mbyte.bin': 8000,
+    '10 mbits.zip': 10000,
+    '10 mbytes.bin': 80000
   }
   let rate = (sizeMap[size] / seconds);
   if (rate > 1000) {
@@ -55,7 +55,7 @@ const runTests = async () => {
   if (shouldNotify) await askNotificationPermission();
   console.log('runTests() ran.');
   let outputText = ``;
-  const filesToCheck = [`1 kilobit.zip`, `1 kilobyte.bin`, `10 kilobits.zip`, `10 kilobytes.bin`, `100 kilobits.zip`, `100 kilobytes.bin`, `1 megabit.zip`, `1 megabyte.bin`, `10 megabits.zip`, `10 megabytes.bin`];
+  const filesToCheck = [`1 kbit.zip`, `1 kbyte.bin`, `10 kbits.zip`, `10 kbytes.bin`, `100 kbits.zip`, `100 kbytes.bin`, `1 mbit.zip`, `1 mbyte.bin`, `10 mbits.zip`, `10 mbytes.bin`];
   for (const path of filesToCheck) {
     let outputElement = document.createElement(`div`);
     outputElement.textContent = `Trying ${path.split(`.`, 1)[0]}...`;
@@ -73,16 +73,17 @@ const runTests = async () => {
         const firstSpan = document.createElement(`span`);
         firstSpan.textContent = `${path.split(`.`, 1)[0]}`;
         //firstSpan.style.width = `18%`;
-        firstSpan.style.width = `6.5rem`;
+        firstSpan.style.width = `5.5em`;
+        firstSpan.style.textAlign = `left`;
         const secondSpan = document.createElement(`span`);
-        secondSpan.textContent = `succeeded in ${timeAndRate['seconds']} seconds`;
+        secondSpan.textContent = `finished in ${timeAndRate['seconds']} secs`;
         //secondSpan.style.width = `34%`;
-        secondSpan.style.width = `13rem`;
+        secondSpan.style.width = `11em`;
         const thirdSpan = document.createElement(`span`);
         thirdSpan.textContent = `at ${timeAndRate['rate']}.`
         //thirdSpan.style.width = `47%`;
-        thirdSpan.style.width = `8rem`;
-        //thirdSpan.style.textAlign = `right`;
+        thirdSpan.style.width = `9em`;
+        thirdSpan.style.textAlign = `right`;
         wrapperSpan.appendChild(firstSpan);
         wrapperSpan.appendChild(secondSpan);
         wrapperSpan.appendChild(thirdSpan);
