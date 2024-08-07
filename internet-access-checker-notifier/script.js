@@ -69,7 +69,23 @@ const runTests = async () => {
       if (response.ok) {
         const endTime = new Date();
         const timeAndRate = calculateTimeAndRate(path, startTime, endTime);
-        outputText = `${path.split(`.`, 1)[0]} succeeded in ${timeAndRate['seconds']} seconds for an effective rate of ${timeAndRate['rate']}.`;
+        //outputText = `${path.split(`.`, 1)[0]} succeeded in ${timeAndRate['seconds']} seconds for an effective rate of ${timeAndRate['rate']}.`;
+        const wrapperSpan = document.createElement(`span`);
+        wrapperSpan.classList.add(`flexRow`);
+        const firstSpan = document.createElement(`span`);
+        firstSpan.textContent = `${path.split(`.`, 1)[0]}`;
+        firstSpan.style.width = `18%`;
+        const secondSpan = document.createElement(`span`);
+        secondSpan.textContent = `succeeded in ${timeAndRate['seconds']} seconds`;
+        secondSpan.style.width = `34%`;
+        const thirdSpan = document.createElement(`span`);
+        thirdSpan.textContent = `for an effective rate of ${timeAndRate['rate']}.`
+        thirdSpan.style.width = `47%`;
+        thirdSpan.style.textAlign = `right`;
+        wrapperSpan.appendChild(firstSpan);
+        wrapperSpan.appendChild(secondSpan);
+        wrapperSpan.appendChild(thirdSpan);
+        document.getElementById(`output`).appendChild(wrapperSpan);
       } else {
         outputText = `${path.split(`.`, 1)[0]} failed.`;
       }

@@ -1,0 +1,13 @@
+main {
+  font-size: 0.9rem;
+  max-width: 40rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
