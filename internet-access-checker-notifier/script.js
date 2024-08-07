@@ -53,10 +53,8 @@ const calculateTimeAndRate = (size, startTime, endTime) => { // Return the time 
 const runTests = async () => {
   let shouldNotify = document.getElementById(`notify`).checked;
   if (shouldNotify) await askNotificationPermission();
-  let outputElement = document.createElement(`div`);
-  outputElement.textContent = 'runTests ran.';
+  console.log('runTests() ran.');
   let outputText = ``;
-  document.getElementById(`output`).appendChild(outputElement);
   const filesToCheck = [`1 kilobit.zip`, `1 kilobyte.bin`, `10 kilobits.zip`, `10 kilobytes.bin`, `100 kilobits.zip`, `100 kilobytes.bin`, `1 megabit.zip`, `1 megabyte.bin`, `10 megabits.zip`, `10 megabytes.bin`];
   for (const path of filesToCheck) {
     let outputElement = document.createElement(`div`);
