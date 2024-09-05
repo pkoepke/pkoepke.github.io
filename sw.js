@@ -33,11 +33,17 @@ self.addEventListener("install", (event) => {
       '/bettingOddsTranslator/', // Begin betting odds
       '/bettingOddsTranslator/index.html',
       '/bettingOddsTranslator/bettingOddsTranslator.js',
-      'platesAndWeight/', // Begin plates and weights
-      'platesAndWeight/index.html',
-      'platesAndWeight/styles.css',
-      'platesAndWeight/script.js',
-      'platesAndWeight/barbell%20512x512.png'
+      '/platesAndWeight/', // Begin plates and weights
+      '/platesAndWeight/index.html',
+      '/platesAndWeight/styles.css',
+      '/platesAndWeight/script.js',
+      '/platesAndWeight/barbell%20512x512.png',
+      '/filename-fixer/index.html', // Begin filename fixer
+      '/filename-fixer/script.js',
+      '/internet-access-checker-notifier/', // Begin Internet Access Checker
+      '/internet-access-checker-notifier/styles.css',
+      '/internet-access-checker-notifier/script.js',
+      '/internet-access-checker-notifier/ph--cell-signal-full-bold.svg'
     ]);
   },),);
 });
