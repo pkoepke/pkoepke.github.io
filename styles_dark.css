@@ -82,7 +82,8 @@ img {
 
 input,
 select,
-textarea {
+textarea,
+button {
   width: auto;
   border: 1px solid #696969;
   background-color: #1d1d1d;

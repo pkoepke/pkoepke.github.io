@@ -26,7 +26,7 @@
 			<input type="button" id="paste" value="Paste 📋" />
 			<input type="button" id="clear" value="Clear X" />
 			<p id="output" style="overflow-wrap: break-word;"></p>
-			<input type="button" id="copy" value="Copy 🗐" />
+			<button id="copy">Copy<img class="copyImage" src="./content_copy_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"></button>
 		</div>
 	</main>
 </body>
@@ -45,10 +45,15 @@
 		height: 6rem;
 	}
 
-	input[type="button"] {
+	input[type="button"],
+	button {
 		height: 3rem;
 		width: 4rem;
 		vertical-align: top;
+	}
+
+	.copyImage {
+		height: 0.99rem;
 	}
 </style>
 
