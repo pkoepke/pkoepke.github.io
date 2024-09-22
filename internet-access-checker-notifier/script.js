@@ -73,20 +73,26 @@ const runTests = async () => {
         const firstSpan = document.createElement(`span`);
         firstSpan.textContent = `${path.split(`.`, 1)[0]}`;
         //firstSpan.style.width = `18%`;
-        firstSpan.style.width = `5.5em`;
+        firstSpan.style.width = `4.5em`;
         firstSpan.style.textAlign = `left`;
         const secondSpan = document.createElement(`span`);
-        secondSpan.textContent = `finished in ${timeAndRate['seconds']} secs`;
+        secondSpan.textContent = `${timeAndRate['seconds']} secs`;
         //secondSpan.style.width = `34%`;
-        secondSpan.style.width = `11em`;
+        secondSpan.style.width = `5em`;
+        secondSpan.style.textAlign = `right`;
         const thirdSpan = document.createElement(`span`);
-        thirdSpan.textContent = `at ${timeAndRate['rate']}.`
-        //thirdSpan.style.width = `47%`;
-        thirdSpan.style.width = `9em`;
+        thirdSpan.textContent = `@`;
+        thirdSpan.style.width = `2em`;
         thirdSpan.style.textAlign = `right`;
+        const fourthSpan = document.createElement(`span`);
+        fourthSpan.textContent = `${timeAndRate['rate']}.`
+        //fourthSpan.style.width = `47%`;
+        fourthSpan.style.width = `7em`;
+        fourthSpan.style.textAlign = `right`;
         wrapperSpan.appendChild(firstSpan);
         wrapperSpan.appendChild(secondSpan);
         wrapperSpan.appendChild(thirdSpan);
+        wrapperSpan.appendChild(fourthSpan);
         document.getElementById(`output`).appendChild(wrapperSpan);
       } else {
         outputText = `${path.split(`.`, 1)[0]} failed.`;

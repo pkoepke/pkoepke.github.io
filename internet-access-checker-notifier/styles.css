@@ -1,5 +1,7 @@
 main {
-  font-size: 0.8rem;
+  font-family: "Roboto Mono,", "Roboto Condensed", Inter, "Noto Sans",
+    "Open Sans", Helvetica, Aptos, "Liberation Sans", Roboto, Arial, sans-serif;
+  font-size: 1rem;
   max-width: 95%;
   padding-left: 1rem;
   padding-right: 1rem;
