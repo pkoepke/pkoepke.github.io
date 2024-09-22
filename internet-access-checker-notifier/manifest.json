@@ -12,19 +12,19 @@
   "categories": ["utilities"],
   "icons": [
     {
-      "src": "signal-font-awesome.svg",
+      "src": "material-symbols--signal-cellular-alt.svg",
       "type": "image/svg+xml",
       "sizes": "512x512",
       "purpose": "any"
     },
     {
-      "src": "signal-font-awesome.svg",
+      "src": "material-symbols--signal-cellular-alt.svg",
       "type": "image/svg+xml",
       "sizes": "512x512",
       "purpose": "maskable"
     },
     {
-      "src": "signal-font-awesome.svg",
+      "src": "material-symbols--signal-cellular-alt.svg",
       "type": "image/svg+xml",
       "sizes": "512x512",
       "purpose": "monochrome"
