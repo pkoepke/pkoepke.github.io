@@ -113,5 +113,5 @@ const changeFont = () => {
 
 document.addEventListener(`DOMContentLoaded`, () => {
   document.getElementById(`button`).addEventListener(`click`, runTests);
-  document.getElementById(`font`).addEventListener(`click`, changeFont);
+  document.getElementById(`font`).addEventListener(`change`, changeFont);
 });
