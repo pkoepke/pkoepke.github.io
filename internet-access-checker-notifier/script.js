@@ -1,4 +1,4 @@
-navigator.serviceWorker.register('./sw.js');
+try { navigator.serviceWorker.register('./sw.js'); } catch (e) { console.log(`Error registering Service Worker.`); }
 
 const askNotificationPermission = () => {
   if (!("Notification" in window)) {
@@ -73,21 +73,21 @@ const runTests = async () => {
         const firstSpan = document.createElement(`span`);
         firstSpan.textContent = `${path.split(`.`, 1)[0]}`;
         //firstSpan.style.width = `18%`;
-        firstSpan.style.width = `4.5em`;
+        firstSpan.style.width = `5.5rem`;
         firstSpan.style.textAlign = `left`;
         const secondSpan = document.createElement(`span`);
         secondSpan.textContent = `${timeAndRate['seconds']} secs`;
         //secondSpan.style.width = `34%`;
-        secondSpan.style.width = `5em`;
+        secondSpan.style.width = `6rem`;
         secondSpan.style.textAlign = `right`;
         const thirdSpan = document.createElement(`span`);
         thirdSpan.textContent = `@`;
-        thirdSpan.style.width = `2em`;
-        thirdSpan.style.textAlign = `right`;
+        thirdSpan.style.width = `2rem`;
+        thirdSpan.style.textAlign = `center`;
         const fourthSpan = document.createElement(`span`);
-        fourthSpan.textContent = `${timeAndRate['rate']}.`
+        fourthSpan.textContent = `${timeAndRate['rate']}`
         //fourthSpan.style.width = `47%`;
-        fourthSpan.style.width = `7em`;
+        fourthSpan.style.width = `7rem`;
         fourthSpan.style.textAlign = `right`;
         wrapperSpan.appendChild(firstSpan);
         wrapperSpan.appendChild(secondSpan);
@@ -106,6 +106,12 @@ const runTests = async () => {
   if (shouldNotify) notify(`Internet access check finished.`, ``);
 }
 
+const changeFont = () => {
+  let newFont = document.getElementById(`font`).value;
+  document.getElementsByTagName(`main`)[0].style.fontFamily = newFont;
+}
+
 document.addEventListener(`DOMContentLoaded`, () => {
   document.getElementById(`button`).addEventListener(`click`, runTests);
+  document.getElementById(`font`).addEventListener(`click`, changeFont);
 });

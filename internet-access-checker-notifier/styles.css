@@ -1,7 +1,7 @@
 main {
-  font-family: "Roboto Mono,", "Roboto Condensed", Inter, "Noto Sans",
+  font-family: "Roboto Mono", "Roboto Condensed", Inter, "Noto Sans",
     "Open Sans", Helvetica, Aptos, "Liberation Sans", Roboto, Arial, sans-serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
   max-width: 95%;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -14,4 +14,9 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 0.5rem;
+}
+
+input[type="checkbox"] {
+  vertical-align: middle;
+  margin-bottom: 0.4rem;
 }
