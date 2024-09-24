@@ -111,7 +111,14 @@ const changeFont = () => {
   document.getElementsByTagName(`main`)[0].style.fontFamily = newFont;
 }
 
+const changeFontSize = () => {
+  let newFontSize = document.getElementById(`fontSize`).value;
+  document.getElementsByTagName(`main`)[0].style.fontSize = newFontSize + `rem`;
+}
+
 document.addEventListener(`DOMContentLoaded`, () => {
   document.getElementById(`button`).addEventListener(`click`, runTests);
   document.getElementById(`font`).addEventListener(`change`, changeFont);
+  document.getElementById(`fontSize`).addEventListener(`change`, changeFontSize);
+
 });

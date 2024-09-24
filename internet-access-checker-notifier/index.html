@@ -25,6 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Noto+Sans+Mono:wght@100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -41,8 +42,11 @@
     <p>
       <label for="notify">Notify?</label><input type="checkbox" id="notify">
       <label for="font">Font: </label><select id="font">
-        <option value="Roboto Mono">Roboto Mono</option>
+        <option value="Inconsolata">Inconsolata</option>
         <option value="Roboto Condensed">Roboto Condensed</option>
+        <option value="Roboto Mono">Roboto Mono</option>
+        <option value="Noto Sans Mono">Noto Sans Mono</option>
+        <option value="Source Code Pro">Source Code Pro</option>
         <option value="Inter">Inter</option>
         <option value="Noto Sans">Noto Sans</option>
         <option value="Open Sans">Open Sans</option>
@@ -53,8 +57,8 @@
         <option value="Arial">Arial</option>
         <option value="sans-serif">sans-serif</option>
       </select>
+      <label for="fontSize">Font size: </label><input type="number" id="fontSize" value="0.9"> rem
     </p>
-    <p></p>
     <div id="output"></div>
   </main>
 </body>
