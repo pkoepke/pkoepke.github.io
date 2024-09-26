@@ -114,23 +114,27 @@ self.addEventListener("install", (event) => {
 
 // Handle fetch events
 const putInCache = async (request, response) => {
-  console.log(request.url);
   if (request.url.includes('internet-access-checker-notifier/test-files') // Don't cache Internet Access Checker test files.
   ) {
-    console.log(`iac test file, do not add to cache.`);
     return;
   } else {
-    console.log(`Adding to cache: ${request.url}`)
     const cache = await caches.open(cacheName);
     await cache.put(request, response);
   }
 };
 
 const cacheFirst = async (request) => {
-  const responseFromCache = await caches.match(request);
+  let url = request.url;
+  if (url[url.length - 1] == `/`) {
+    console.log(`Looking for index.html instead.`);
+    url += `index.html`; // if the URL ends in /, assume its looking for index.html.
+  }
+  const responseFromCache = await caches.match(url);
   if (responseFromCache) {
+    console.log(`Cache hit for ${url}`);
     return responseFromCache;
   }
+  console.log(`Cache miss for ${request.url}`);
   const responseFromNetwork = await fetch(request);
   putInCache(request, responseFromNetwork.clone());
   return responseFromNetwork;
