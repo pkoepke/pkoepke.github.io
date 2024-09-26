@@ -35,7 +35,7 @@ const addResourcesToCache = async (resources) => {
 self.addEventListener("install", (event) => {
   event.waitUntil(
     addResourcesToCache([
-      '/bettingOddsTranslator/bettingOddsTranslator.j',
+      '/bettingOddsTranslator/bettingOddsTranslator.js',
       '/bettingOddsTranslator/index.html',
       '/favicon 512x512.png',
       '/favicon old black on white.png',
