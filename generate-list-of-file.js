@@ -58,6 +58,12 @@ walk('./', function (err, results) {
       path.includes(`10 mbytes.bin`) ||
       path.includes(`100 kbits.zip`) ||
       path.includes(`100 kbytes.bin`) ||
+      path.includes(`sw.js`) ||
+      path.includes(`sw-old.js`) ||
+      path.includes(`minified`) ||
+      path.includes(`minify`) ||
+      path.includes(`cache.manifest`) ||
+      path.includes(`README.md`) ||
       path.includes(`/pkoepke.github.io/unitpricecomparison`)
     )
   })

@@ -30,18 +30,7 @@ const addResourcesToCache = async (resources) => {
 };
 
 self.addEventListener("install", (event) => {
-  event.waitUntil( // hamdwritten list of files
-    addResourcesToCache([
-      '/bettingOddsTranslator/',
-      '/filename-fixer/',
-      '/internet-access-checker-notifier/',
-      '/platesAndWeight/',
-      '/redditSearch/',
-      '/tip_calculator/',
-      '/twitternitter/'
-    ]),
-  );
-  event.waitUntil( // auto-generated list of files
+  event.waitUntil(
     addResourcesToCache([
       '/bettingOddsTranslator/bettingOddsTranslator.js',
       '/bettingOddsTranslator/index.html',
@@ -56,8 +45,6 @@ self.addEventListener("install", (event) => {
       '/icons/favicon 512x512.png',
       '/icons/favicon maskable.png',
       '/index.html',
-      '/internet-access-checker-notifier/LICENSE',
-      '/internet-access-checker-notifier/README.md',
       '/internet-access-checker-notifier/index.html',
       '/internet-access-checker-notifier/manifest.json',
       '/internet-access-checker-notifier/material-symbols--signal-cellular-alt.png',
@@ -79,22 +66,16 @@ self.addEventListener("install", (event) => {
       '/platesAndWeight/plates and weights calculator mobile 2.png',
       '/platesAndWeight/script.js',
       '/platesAndWeight/styles.css',
-      '/platesAndWeight/sw.js',
       '/redditSearch/index.html',
       '/redditSearch/redditSearch.js',
       '/styles_dark.css',
-      '/tip_calculator/cache.manifest',
       '/tip_calculator/darkTheme.css',
       '/tip_calculator/index.html',
-      '/tip_calculator/index_unminified_images_inlined.html',
-      '/tip_calculator/index_unminified_images_linked.html',
       '/tip_calculator/lightTheme.css',
       '/tip_calculator/manifest.json',
-      '/tip_calculator/minify_and_inline_tipcalculator.js',
       '/tip_calculator/screenshots/Pixel 3 XL dark mode.png',
       '/tip_calculator/script.js',
       '/tip_calculator/styles.css',
-      '/tip_calculator/sw.js',
       '/tip_calculator/tip calculator icon 512x512 maskable.png',
       '/tip_calculator/tipCalculatorIcon.xcf',
       '/tip_calculator/tipCalculatorIcon_128x128.png',
@@ -102,7 +83,6 @@ self.addEventListener("install", (event) => {
       '/tip_calculator/tipCalculatorIcon_512x512.png',
       '/tip_calculator/tipCalculatorIcon_512x512.svg',
       '/tip_calculator/tipCalculatorIcon_64x64.png',
-      '/tip_calculator/tip_calculator.appcache',
       '/tip_calculator/tip_calculator.html',
       '/twitternitter/index.html',
       '/twitternitter/styles.css',
