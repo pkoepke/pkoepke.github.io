@@ -30,7 +30,18 @@ const addResourcesToCache = async (resources) => {
 };
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(
+  event.waitUntil( // hamdwritten list of files
+    addResourcesToCache([
+      '/bettingOddsTranslator/',
+      '/filename-fixer/',
+      '/internet-access-checker-notifier/',
+      '/platesAndWeight/',
+      '/redditSearch/',
+      '/tip_calculator/',
+      '/twitternitter/'
+    ]),
+  );
+  event.waitUntil( // auto-generated list of files
     addResourcesToCache([
       '/bettingOddsTranslator/bettingOddsTranslator.js',
       '/bettingOddsTranslator/index.html',
@@ -53,7 +64,6 @@ self.addEventListener("install", (event) => {
       '/internet-access-checker-notifier/material-symbols--signal-cellular-alt.svg',
       '/internet-access-checker-notifier/script.js',
       '/internet-access-checker-notifier/styles.css',
-      '/internet-access-checker-notifier/sw.js',
       '/manifest.json',
       '/noto_sans/NotoSans-Italic-VariableFont_wdth,wght.ttf',
       '/noto_sans/NotoSans-VariableFont_wdth,wght.ttf',
@@ -99,12 +109,21 @@ self.addEventListener("install", (event) => {
       '/twitternitter/twitternitter.js'
     ]),
   );
+
 });
 
 // Handle fetch events
 const putInCache = async (request, response) => {
-  const cache = await caches.open(cacheName);
-  await cache.put(request, response);
+  console.log(request.url);
+  if (request.url.includes('internet-access-checker-notifier/test-files') // Don't cache Internet Access Checker test files.
+  ) {
+    console.log(`iac test file, do not add to cache.`);
+    return;
+  } else {
+    console.log(`Adding to cache: ${request.url}`)
+    const cache = await caches.open(cacheName);
+    await cache.put(request, response);
+  }
 };
 
 const cacheFirst = async (request) => {

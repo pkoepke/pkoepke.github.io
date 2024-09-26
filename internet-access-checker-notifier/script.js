@@ -1,4 +1,4 @@
-try { navigator.serviceWorker.register('./sw.js'); } catch (e) { console.log(`Error registering Service Worker.`); }
+// try { navigator.serviceWorker.register('./sw.js'); } catch (e) { console.log(`Error registering Service Worker.`); }
 
 const askNotificationPermission = () => {
   if (!("Notification" in window)) {
@@ -62,7 +62,7 @@ const runTests = async () => {
     document.getElementById(`output`).appendChild(outputElement);
     const startTime = new Date();
     try {
-      const response = await fetch(path, { cache: "no-store" })
+      const response = await fetch(`test-files/${path}`, { cache: "no-store" })
       await response.text(); // Necessary so the script waits until the entire response has been received, not just started.
       if (response.ok) {
         const endTime = new Date();
