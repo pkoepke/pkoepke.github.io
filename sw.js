@@ -28,7 +28,7 @@ const addResourcesToCache = async (resources) => {
   const cache = await caches.open(cacheName);
   // await cache.addAll(resources);
   for (const resource of resources) {
-    try { await cache.add(resources); } catch (e) { console.error(e) } // when using cache.addAll, a single 404 will stop the whole proces. Doing it one by one and catching errors avoids this.
+    try { await cache.add(resource); } catch (e) { console.error(e) } // when using cache.addAll, a single 404 will stop the whole proces. Doing it one by one and catching errors avoids this.
   }
 };
 
