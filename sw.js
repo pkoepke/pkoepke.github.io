@@ -26,13 +26,16 @@ registerServiceWorker();
 
 const addResourcesToCache = async (resources) => {
   const cache = await caches.open(cacheName);
-  await cache.addAll(resources);
+  // await cache.addAll(resources);
+  for (const resource of resources) {
+    try { await cache.add(resources); } catch (e) { console.error(e) } // when using cache.addAll, a single 404 will stop the whole proces. Doing it one by one and catching errors avoids this.
+  }
 };
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
     addResourcesToCache([
-      '/bettingOddsTranslator/bettingOddsTranslator.js',
+      '/bettingOddsTranslator/bettingOddsTranslator.j',
       '/bettingOddsTranslator/index.html',
       '/favicon 512x512.png',
       '/favicon old black on white.png',
@@ -89,7 +92,6 @@ self.addEventListener("install", (event) => {
       '/twitternitter/twitternitter.js'
     ]),
   );
-
 });
 
 // Handle fetch events
