@@ -26,9 +26,8 @@ registerServiceWorker();
 
 const addResourcesToCache = async (resources) => {
   const cache = await caches.open(cacheName);
-  // await cache.addAll(resources);
   for (const resource of resources) {
-    try { await cache.add(resource); } catch (e) { console.error(e) } // when using cache.addAll, a single 404 will stop the whole proces. Doing it one by one and catching errors avoids this.
+    try { await cache.add(resource); } catch (e) { console.error(e) } // when using cache.addAll, a single 404 will stop the whole proces. Doing it one by one and catching errors allows the browser to cache anything that succeeds even if there are failures.
   }
 };
 
@@ -123,34 +122,41 @@ self.addEventListener("install", (event) => {
       '/unitpricecomparison/sw.js',
       '/unitpricecomparison/version.json',
       '/unitpricecomparison - sept 12 2023, the last good version/favicon.png',
-      '/unitpricecomparison-wasm/favicon.png'
+      '/unitpricecomparison-wasm/favicon.png',
+      '/',
+      '/bettingOddsTranslator/',
+      '/filename-fixer/',
+      '/pkoepke.github.io/icons/',
+      '/internet-access-checker-notifier/',
+      '/noto_sans/',
+      '/platesAndWeight/',
+      '/redditSearch/',
+      '/tip_calculator/',
+      '/twitternitter/',
+      '/unitpricecomparison/'
     ]),
   );
 });
 
-// Handle fetch events
 const putInCache = async (request, response) => {
   if (request.url.includes('internet-access-checker-notifier/test-files') // Don't cache Internet Access Checker test files.
   ) {
     return;
   } else {
     const cache = await caches.open(cacheName);
-    await cache.put(request, response);
+    cache.put(request, response);
   }
 };
 
 const cacheFirst = async (request) => {
-  let url = request.url;
-  if (url[url.length - 1] == `/`) {
-    console.log(`Looking for index.html instead.`);
-    url += `index.html`; // if the URL ends in /, assume its looking for index.html.
-  }
-  const responseFromCache = await caches.match(url);
+  const responseFromCache = await caches.match(request);
   if (responseFromCache) {
-    console.log(`Cache hit for ${url}`);
+    setTimeout(async () => { // Check for updates and add them to the cache, but don't wait for the response - serve the cached version.
+      const responseFromNetwork = await fetch(request, { cache: "reload" });
+      await putInCache(request, responseFromNetwork.clone());
+    });
     return responseFromCache;
   }
-  console.log(`Cache miss for ${request.url}`);
   const responseFromNetwork = await fetch(request);
   putInCache(request, responseFromNetwork.clone());
   return responseFromNetwork;

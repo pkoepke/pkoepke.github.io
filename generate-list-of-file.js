@@ -29,12 +29,12 @@ walk('./', function (err, results) {
   results = results.filter((path) => { // Files to include
     return (
       path.includes(`/pkoepke.github.io/index.html`) ||
-      path.includes(`/styles_dark.css`) ||
+      path.includes(`/pkoepke.github.io/manifest.json`) ||
+      path.includes(`/pkoepke.github.io/styles_dark.css`) ||
       path.includes(`/bettingOddsTranslator/`) ||
       path.includes(`/filename-fixer/`) ||
       path.includes(`/pkoepke.github.io/icons/`) ||
       path.includes(`/internet-access-checker-notifier/`) ||
-      path.includes(`/pkoepke.github.io/manifest.json`) ||
       path.includes(`/noto_sans/`) ||
       path.includes(`/platesAndWeight/`) ||
       path.includes(`/redditSearch/`) ||
@@ -70,5 +70,17 @@ walk('./', function (err, results) {
   results = results.map((path) => {
     return path.replace('/Users/paulk/Programming/pkoepke.github.io', '')
   })
+  results.push(
+    `/`,
+    `/bettingOddsTranslator/`,
+    `/filename-fixer/`,
+    `/pkoepke.github.io/icons/`,
+    `/internet-access-checker-notifier/`,
+    `/noto_sans/`,
+    `/platesAndWeight/`,
+    `/redditSearch/`,
+    `/tip_calculator/`,
+    `/twitternitter/`,
+    `/unitpricecomparison/`,)
   console.log(results);
 });
