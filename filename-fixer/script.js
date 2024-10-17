@@ -24,10 +24,18 @@ const copy = () => {
   navigator.clipboard.writeText(document.getElementById('output').textContent);
 }
 
+const toLowercase = () => {
+  document.getElementById('input').value = document.getElementById('output').textContent.toLowerCase();
+  document.getElementById('input').dispatchEvent(new Event('input'));
+
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('input').addEventListener('input', run);
   document.getElementById('input').addEventListener('paste', run);
   document.getElementById('paste').addEventListener('click', paste);
   document.getElementById('clear').addEventListener('click', clear);
   document.getElementById('copy').addEventListener('click', copy);
+  document.getElementById('toLowercase').addEventListener('click', toLowercase);
+
 });
