@@ -35,7 +35,6 @@ walk('./', function (err, results) {
       path.includes(`/filename-fixer/`) ||
       path.includes(`/pkoepke.github.io/icons/`) ||
       path.includes(`/internet-access-checker-notifier/`) ||
-      path.includes(`/noto_sans/`) ||
       path.includes(`/platesAndWeight/`) ||
       path.includes(`/redditSearch/`) ||
       path.includes(`/tip_calculator/`) ||
@@ -63,7 +62,8 @@ walk('./', function (err, results) {
       path.includes(`minified`) ||
       path.includes(`minify`) ||
       path.includes(`cache.manifest`) ||
-      path.includes(`README.md`) /*||
+      path.includes(`README.md`) ||
+      path.includes(`.DS_Store`)/*||
       path.includes(`/pkoepke.github.io/unitpricecomparison`)*/
     )
   })
