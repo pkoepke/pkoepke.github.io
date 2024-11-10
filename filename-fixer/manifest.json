@@ -1,0 +1,46 @@
+{
+  "background_color": "#000000",
+  "description": "Shortens filenames and removes illegal characters. No ads or private data.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Filename Fixer",
+  "orientation": "any",
+  "scope": "/filename-fixer/",
+  "short_name": "Filename Fixer",
+  "start_url": "/filename-fixer/",
+  "theme_color": "#012169",
+  "categories": ["utilities"],
+  "icons": [
+    {
+      "src": "abc_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "abc_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "abc_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "monochrome"
+    }
+  ],
+  "shortcuts": [],
+  "id": "filename-fixer",
+  "display_override": ["window-controls-overlay"],
+  "share_target": {
+    "action": "./",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}
