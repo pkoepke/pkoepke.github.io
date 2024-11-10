@@ -43,5 +43,5 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('clear').addEventListener('click', clear);
   document.getElementById('copy').addEventListener('click', copy);
   document.getElementById('toLowercase').addEventListener('click', toLowercase);
-
+  run();
 });
