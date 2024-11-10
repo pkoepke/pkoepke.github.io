@@ -30,9 +30,13 @@ const toLowercase = () => {
 
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+const handleShareQuerystring = () => {
   const parsedUrl = new URL(window.location);
-  document.getElementById('input').value += parsedUrl.searchParams.get('text');
+  document.getElementById('input').value += parsedUrl.searchParams.get('text') ? parsedUrl.searchParams.get('text') : '';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  handleShareQuerystring();
   document.getElementById('input').addEventListener('input', run);
   document.getElementById('input').addEventListener('paste', run);
   document.getElementById('paste').addEventListener('click', paste);
