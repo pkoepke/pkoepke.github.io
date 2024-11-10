@@ -31,6 +31,8 @@ const toLowercase = () => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  const parsedUrl = new URL(window.location);
+  document.getElementById('input').value += parsedUrl.searchParams.get('text');
   document.getElementById('input').addEventListener('input', run);
   document.getElementById('input').addEventListener('paste', run);
   document.getElementById('paste').addEventListener('click', paste);
@@ -38,15 +40,4 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('copy').addEventListener('click', copy);
   document.getElementById('toLowercase').addEventListener('click', toLowercase);
 
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-  const parsedUrl = new URL(window.location);
-  // searchParams.get() will properly handle decoding the values.
-  /*console.log('Title shared: ' + parsedUrl.searchParams.get('title'));
-  console.log('Text shared: ' + parsedUrl.searchParams.get('text'));
-  console.log('URL shared: ' + parsedUrl.searchParams.get('url'));*/
-  document.getElementById('output').innerText += 'Title shared: ' + parsedUrl.searchParams.get('title');
-  document.getElementById('output').innerText += 'Text shared: ' + parsedUrl.searchParams.get('text');
-  document.getElementById('output').innerText += 'URL shared: ' + parsedUrl.searchParams.get('url');
 });
