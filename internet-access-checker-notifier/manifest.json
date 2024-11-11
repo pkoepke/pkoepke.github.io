@@ -12,14 +12,14 @@
   "categories": ["utilities"],
   "icons": [
     {
-      "src": "material-symbols--signal-cellular-alt.svg",
-      "type": "image/svg+xml",
+      "src": "cell signal white foreground blue background.png",
+      "type": "image/png",
       "sizes": "512x512",
       "purpose": "any"
     },
     {
-      "src": "material-symbols--signal-cellular-alt.svg",
-      "type": "image/svg+xml",
+      "src": "cell signal white foreground blue background.png",
+      "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
     },
