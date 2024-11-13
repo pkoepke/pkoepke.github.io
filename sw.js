@@ -39,7 +39,6 @@ self.addEventListener("install", (event) => {
       '/favicon 512x512.png',
       '/favicon old black on white.png',
       '/favicon.png',
-      '/favicon.svg',
       '/filename-fixer/content_copy_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg',
       '/filename-fixer/index.html',
       '/filename-fixer/script.js',

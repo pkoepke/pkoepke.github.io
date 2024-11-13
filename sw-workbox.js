@@ -18,7 +18,6 @@ self.addEventListener("install", (event) => {
       '/styles_dark.css',
       '/noto_sans/NotoSans-VariableFont_wdth,wght.ttf',
       '/noto_sans/NotoSans-Italic-VariableFont_wdth,wght.ttf',
-      '/favicon.svg',
       '/tip_calculator/', // Begin Tip Calculator
       '/tip_calculator/index.html',
       '/tip_calculator/styles.css',
