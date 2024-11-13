@@ -14,14 +14,14 @@
    id="svg8"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="favicon.svg"
-   inkscape:export-filename="C:\Users\paulk\Programming\JavaScript, HTML, and CSS\pkoepke.github.io\favicon.png"
+   inkscape:export-filename="C:\Users\paulk\Programming\JavaScript, HTML, and CSS\pkoepke.github.io\favicon 512x512.png"
    inkscape:export-xdpi="1536"
    inkscape:export-ydpi="1536">
   <defs
      id="defs2" />
   <sodipodi:namedview
      id="base"
-     pagecolor="#012169"
+     pagecolor="#0000ff"
      bordercolor="#666666"
      borderopacity="1.0"
      inkscape:pageopacity="1"
@@ -55,8 +55,7 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1"
-     style="display:inline">
+     id="layer1">
     <rect
        style="fill:#0000ff;fill-rule:evenodd;stroke-width:0.0129738"
        id="rect26"
@@ -67,7 +66,7 @@
        inkscape:export-xdpi="2.71"
        inkscape:export-ydpi="2.71" />
     <rect
-       style="fill:#012169;fill-rule:evenodd;stroke-width:0.0129738;fill-opacity:1"
+       style="fill:#0000ff;fill-rule:evenodd;stroke-width:0.0129738"
        id="rect837"
        width="8.4666662"
        height="8.4666662"
@@ -80,8 +79,7 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Layer 2"
-     style="display:inline">
+     inkscape:label="Layer 2">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:132.292px;line-height:1.25;font-family:'Liberation Serif';-inkscape-font-specification:'Liberation Serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;inline-size:116.699;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
