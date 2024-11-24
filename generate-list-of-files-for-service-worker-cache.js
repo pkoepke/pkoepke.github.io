@@ -63,6 +63,7 @@ walk('./', function (err, results) {
       path.includes(`minify`) ||
       path.includes(`cache.manifest`) ||
       path.includes(`README.md`) ||
+      path.includes(`/pkoepke.github.io/icons/`) || // Want everything under this path but not this exact path.      
       path.includes(`.DS_Store`)/*||
       path.includes(`/pkoepke.github.io/unitpricecomparison`)*/
     )
@@ -76,7 +77,6 @@ walk('./', function (err, results) {
     `/filename-fixer/`,
     `/pkoepke.github.io/icons/`,
     `/internet-access-checker-notifier/`,
-    `/noto_sans/`,
     `/platesAndWeight/`,
     `/redditSearch/`,
     `/tip_calculator/`,

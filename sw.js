@@ -36,7 +36,6 @@ self.addEventListener("install", (event) => {
     addResourcesToCache([
       '/bettingOddsTranslator/bettingOddsTranslator.js',
       '/bettingOddsTranslator/index.html',
-      '/favicon 512x512.png',
       '/favicon old black on white.png',
       '/favicon.png',
       '/filename-fixer/content_copy_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg',
@@ -122,7 +121,6 @@ self.addEventListener("install", (event) => {
       '/',
       '/bettingOddsTranslator/',
       '/filename-fixer/',
-      '/pkoepke.github.io/icons/',
       '/internet-access-checker-notifier/',
       '/noto_sans/',
       '/platesAndWeight/',
