@@ -133,14 +133,6 @@ function isAllowedKey(event) { // combining several answers from http://stackove
   } // if the key wasn't caught by any of the conditions above, it isn't an allowed key. Return false.
 }
 
-// Determine if the operating system is iOS.
-/*function isOsIos() {
-  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-  if( userAgent.indexOf('iPad') > -1 || userAgent.indexOf('iPhone') > -1 || userAgent.indexOf('iPod') > -1 ) {
-    return true;
-  } else { return false; }
-}*/
-
 function convertNodeListToArray(nodeListToConvert) {
   return nodeListToConvert = Array.prototype.slice.call(nodeListToConvert); // convert NodeList to an Array for easier functional iterating - NodeList doesn't have forEach but arrays do. From https://developer.mozilla.org/en-US/docs/Web/API/NodeList
 }
@@ -202,4 +194,14 @@ function setThemeOnLoad() {
   }
 }
 
+const inputCheck = (input) => {
+  console.log(`New input: ${input.data}`);
+  console.log(`Previous data: ${input.target.value}`);
+  console.log(`Previous and new concatenated: ${input.target.value.toString() + input.data}`);
+  console.log(`Is it a number? ${!isNaN(parseFloat(input.target.value.toString() + input.data))}`);
+}
+
+window.addEventListener("load", () => {
+  document.getElementById('billAmount').addEventListener('beforeinput', inputCheck)
+});
 window.addEventListener("load", setThemeOnLoad, false); // Run when the page loads
