@@ -30,11 +30,15 @@ const copy = () => {
 const toLowercase = () => {
   document.getElementById('input').value = document.getElementById('output').textContent.toLowerCase();
   document.getElementById('input').dispatchEvent(new Event('input'));
-
 }
 
 const removePunctuation = (e) => {
   run(e, true);
+}
+
+const decodeUri = (e) => {
+  document.getElementById('input').value = decodeURIComponent(document.getElementById('output').textContent);
+  document.getElementById('input').dispatchEvent(new Event('input'));
 }
 
 const handleShareQuerystring = () => {
@@ -51,5 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('copy').addEventListener('click', copy);
   document.getElementById('toLowercase').addEventListener('click', toLowercase);
   document.getElementById('removePunctuation').addEventListener('click', removePunctuation);
+  document.getElementById('decodeUri').addEventListener('click', decodeUri);
   run();
 });
