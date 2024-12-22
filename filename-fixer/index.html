@@ -29,6 +29,7 @@
 			<p id="output" style="overflow-wrap: break-word;"></p>
 			<button id="copy">Copy<img class="copyImage" src="./content_copy_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"></button>
 			<input type="button" id="toLowercase" value="Lowercase⬇">
+			<input type="button" id="removePunctuation" value="Remove punctuation">
 		</div>
 	</main>
 </body>
@@ -52,6 +53,8 @@
 		height: 3rem;
 		width: 6rem;
 		vertical-align: top;
+		white-space: normal;
+		word-wrap: break-word;
 	}
 
 	.copyImage {

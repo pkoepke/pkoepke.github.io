@@ -1,5 +1,8 @@
-const run = () => {
-  const illegalChars = ['\\', '/', ':', '*', '?', '"', '<', '>', '\n', '\r', '&', ','];
+const run = (e, shouldRemovePunctuation) => {
+  let illegalChars = ['\\', '/', ':', '*', '?', '"', '<', '>', '\n', '\r', '&', ','];
+  if (shouldRemovePunctuation) {
+    illegalChars = illegalChars.concat(['!', '#', '$', '%', '(', ')', '+', ',', '.', ';', '@', '[', ']', '^', '`', '{', '|', '}', '~'])
+  }
   let filename = document.getElementById('input').value;
   for (const char of illegalChars) {
     filename = filename.replaceAll(char, (char == '\n' || char == '\r') ? ' ' : char == '\\' ? '_' : ''); // replce \n and \r with a space, \ with _, and just remove everything else.
@@ -30,6 +33,10 @@ const toLowercase = () => {
 
 }
 
+const removePunctuation = (e) => {
+  run(e, true);
+}
+
 const handleShareQuerystring = () => {
   const parsedUrl = new URL(window.location);
   document.getElementById('input').value += parsedUrl.searchParams.get('text') ? parsedUrl.searchParams.get('text') : '';
@@ -43,5 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('clear').addEventListener('click', clear);
   document.getElementById('copy').addEventListener('click', copy);
   document.getElementById('toLowercase').addEventListener('click', toLowercase);
+  document.getElementById('removePunctuation').addEventListener('click', removePunctuation);
   run();
 });
