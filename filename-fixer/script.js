@@ -1,9 +1,15 @@
-const run = (e, shouldRemovePunctuation) => {
+const run = (e) => {
+  let filename = document.getElementById('input').value;
   let illegalChars = ['\\', '/', ':', '*', '?', '"', '<', '>', '\n', '\r', '&', ','];
-  if (shouldRemovePunctuation) {
+  if (document.getElementById('toLowercase').checked) {
+    filename = filename.toLowerCase();
+  }
+  if (document.getElementById('removePunctuation').checked) {
     illegalChars = illegalChars.concat(['!', '#', '$', '%', '(', ')', '+', ',', '.', ';', '@', '[', ']', '^', '`', '{', '|', '}', '~'])
   }
-  let filename = document.getElementById('input').value;
+  if (document.getElementById('decodeUri').checked) {
+    filename = decodeURIComponent(filename);
+  }
   for (const char of illegalChars) {
     filename = filename.replaceAll(char, (char == '\n' || char == '\r') ? ' ' : char == '\\' ? '_' : ''); // replce \n and \r with a space, \ with _, and just remove everything else.
   }
@@ -53,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('paste').addEventListener('click', paste);
   document.getElementById('clear').addEventListener('click', clear);
   document.getElementById('copy').addEventListener('click', copy);
-  document.getElementById('toLowercase').addEventListener('click', toLowercase);
-  document.getElementById('removePunctuation').addEventListener('click', removePunctuation);
-  document.getElementById('decodeUri').addEventListener('click', decodeUri);
+  document.getElementById('toLowercase').addEventListener('click', run);
+  document.getElementById('removePunctuation').addEventListener('click', run);
+  document.getElementById('decodeUri').addEventListener('click', run);
   run();
 });

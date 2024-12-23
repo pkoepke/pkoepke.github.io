@@ -28,9 +28,9 @@
 			<input type="button" id="clear" value="Clear X" />
 			<p id="output" style="overflow-wrap: break-word;"></p>
 			<button id="copy">Copy<img class="copyImage" src="./content_copy_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg"></button>
-			<input type="button" id="toLowercase" value="Lowercase⬇">
-			<input type="button" id="removePunctuation" value="Remove punctuation">
-			<input type="button" id="decodeUri" value="Decode URI">
+			<p class="checkboxContainer"><input type="checkbox" id="toLowercase" value="Lowercase"><label for="toLowercase">Lowercase</label></p>
+			<p class="checkboxContainer"><input type="checkbox" id="removePunctuation" value="Remove punctuation"><label for="removePunctuation">Remove punctuation</label></p>
+			<p class="checkboxContainer"><input type="checkbox" id="decodeUri" value="Decode URI"><label for="decodeUri">Decode URI</label></p>
 		</div>
 	</main>
 </body>
@@ -62,6 +62,12 @@
 
 	.copyImage {
 		height: 0.99rem;
+	}
+
+	.checkboxContainer {
+		width: 20rem;
+		margin: auto auto;
+		text-align: center;
 	}
 </style>
 <!-- Icons from Google Fonts material icons: https://fonts.google.com/icons?selected=Material+Symbols+Outlined:abc:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=alphabet&icon.size=24&icon.color=%23e8eaed -->
