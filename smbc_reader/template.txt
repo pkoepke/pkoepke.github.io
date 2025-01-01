@@ -8,7 +8,7 @@
 	<body>
 		<div class="site_header_background"></div>
 		<div class="site_structure">
-				<h1 id="h1">SMBC Reader</h1>
+				<h1 id="h1"><a href="/">SMBC Reader</a></h1>
 			<div class="navigation_bar" id="navigation_bar">
 				<span class="menu_icon_span" id="menu_icon_span"><img class="menu_icon" src="threelines.png" onclick="change_navigation_display()"></span>
 				<ul class="navigation_menu" id="navigation_menu">

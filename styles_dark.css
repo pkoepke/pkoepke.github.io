@@ -46,6 +46,15 @@ h1 {
   text-align: center;
 }
 
+h1 > a {
+  color: white;
+  text-decoration: none;
+}
+
+h1 > a:hover {
+  text-decoration: underline;
+}
+
 main {
   padding: 0.2rem;
   max-width: 69rem;
