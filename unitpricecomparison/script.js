@@ -2,18 +2,24 @@ import { languageToCurrency } from './language-to-currency.js';
 
 const currencySymbol = Intl.NumberFormat(navigator.language, { style: `currency`, currency: languageToCurrency[navigator.language] }).formatToParts(`1`)[0][`value`];
 
+let shouldshow = false; // Ran into race conditions if the user hid the second row and immediately added another card, so added a global variable that only changes when the show/hide button is pushed.
+
 const clearServiceWorkerCache = () => {
   // The cache for the Flutter app is huge, approximately 50 MB when fonts are included. If it exists, clear it.
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(registration => {
-      // Open the cache with the specified name
-      caches.open('your-cache-name')
+      caches.open('flutter-app-cache')
         .then(cache => {
-          // Get all keys in the cache
           cache.keys()
             .then(keys => {
-              // Log the keys or do something with them
-              console.log('Cache keys:', keys);
+              for (const key of keys) {
+                if (key.url.includes(`main.dart.js`)) { // If there's a file from the old Flutter version, delete the whole cache so we don't miss anything.
+                  caches.keys().then(function (names) {
+                    for (let name of names)
+                      caches.delete(name);
+                  });
+                }
+              }
             });
         });
     });
@@ -67,7 +73,19 @@ const buildRow = (number) => {
   const row2 = document.createElement(`div`);
   row2.classList.add(`flexRow`);
   row2.classList.add(`row2`);
-  row2.classList.add(`hidden`)
+  // See if there are already cards and follow their lead on showing/hiding the second row.
+  const rows = [...document.getElementsByClassName(`row2`)]
+  if (rows[0]) {
+    if (shouldshow) {
+      row2.classList.remove(`hidden`);
+      row2.classList.add(`opaque`);
+    } else {
+      row2.classList.remove(`opaque`);
+      row2.classList.add(`hidden`);
+    }
+  } else {
+    row2.classList.add(`hidden`);
+  }
   row2.appendChild(quantity);
   row2.appendChild(itemName);
   row2.appendChild(unitName);
@@ -98,7 +116,6 @@ const runCalculations = () => {
       result = NaN;
     } else {
       result = price / (unit * quantity);
-      console.log(result)
     }
     if (isNaN(result) || !isFinite(result)) {
       resultValues[i] = NaN;
@@ -121,7 +138,6 @@ const runCalculations = () => {
 
 const clear = () => {
   const inputs = document.getElementsByTagName(`input`);
-  console.log(inputs);
   for (const input of inputs) {
     input.value = ``;
   }
@@ -142,7 +158,7 @@ const addCard = () => {
 
 const showHideRow = () => {
   const rows = [...document.getElementsByClassName(`row2`)]
-  const shouldshow = rows[0].classList.contains(`hidden`);
+  shouldshow = rows[0].classList.contains(`hidden`);
   for (const row of rows) {
     if (shouldshow) {
       row.classList.remove(`hidden`);

@@ -30,29 +30,38 @@
 
 <body>
 	<h1 id="h1">
-		<span style="display: flex; justify-content: space-between;">
-			<img src="./upc icon.png">
-			<a href="/" class="headerText">Unit Price Comparison</a>
-			<span style="padding-top: .3rem;">
-				<button class="topButton" id="clear">
-					<span class="material-icons">clear</span>
-				</button>
-				<button class="topButton" id="removeCard">
-					<span class="material-icons">remove</span>
-				</button>
-				<button class="topButton" id="addCard">
-					<span class="material-icons">add</span>
-				</button>
-				<button class="topButton" id="showHideRow">
-					<span class="material-icons">unfold_more</span>
-				</button>
-			</span>
+		<img src="./upc icon.png">
+		<a href="/" class="headerText nowrap">Unit Price</a>
+		<span class="nowrap" style="padding-top: .3rem;">
+			<button class="topButton nowrap" id="clear">
+				<span class="material-icons">clear</span>
+			</button>
+			<button class="topButton nowrap" id="removeCard">
+				<span class="material-icons">remove</span>
+			</button>
+			<button class="topButton nowrap" id="addCard">
+				<span class="material-icons">add</span>
+			</button>
+			<button class="topButton nowrap" id="showHideRow">
+				<span class="material-icons">unfold_more</span>
+			</button>
 	</h1>
 	<main class="roboto">
 	</main>
 </body>
 
 <style>
+	h1 {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: nowrap;
+		font-size: 0.8rem;
+	}
+
+	.nowrap {
+		white-space: nowrap;
+	}
+
 	img {
 		position: inherit;
 		height: 2rem;
@@ -64,6 +73,7 @@
 		background-color: #012169;
 		border: 0px;
 		cursor: pointer;
+		padding: 0px;
 	}
 
 	main {
@@ -71,7 +81,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		font-size: 1.2rem;
+		font-size: 1.1rem;
 	}
 
 	.flexRow {
@@ -93,8 +103,7 @@
 		flex-direction: column;
 		/* In my Flutter code this was cardColor: Colors.grey[900], */
 		background-color: #282424;
-		padding: .5rem;
-		width: 70%;
+		padding: .5rem 0rem;
 		margin: .3rem 0rem;
 	}
 
