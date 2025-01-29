@@ -1,35 +1,42 @@
 {
-    "name": "unit_price_comparison",
-    "short_name": "unit_price_comparison",
-    "start_url": ".",
-    "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
-    "orientation": "portrait-primary",
-    "prefer_related_applications": false,
-    "icons": [
-        {
-            "src": "icons/Icon-192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "icons/Icon-512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        },
-        {
-            "src": "icons/Icon-maskable-192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "maskable"
-        },
-        {
-            "src": "icons/Icon-maskable-512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "maskable"
-        }
-    ]
+  "background_color": "#000000",
+  "description": "Compares the price per unit for items. No ads or private data.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Unit Price Comparison",
+  "orientation": "any",
+  "scope": "/unitpricecomparison/",
+  "short_name": "Unit Price Comparison",
+  "start_url": "/unitpricecomparison/",
+  "theme_color": "#012169",
+  "categories": ["shopping"],
+  "icons": [
+    {
+      "src": "upc icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "Unit Price Comparison gradient Inkscape SVG 2020.11.24.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "upc icon maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "upc icon monochrome.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "monochrome"
+    }
+  ],
+  "shortcuts": [],
+  "id": "platesAndWeight",
+  "display_override": ["window-controls-overlay"]
 }

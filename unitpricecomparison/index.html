@@ -1,107 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
 
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="/unitpricecomparison/">
-
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
-
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="unit_price_comparison">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png" />
-
-  <title>unit_price_comparison</title>
-  <link rel="manifest" href="manifest.json">
+	<meta charset="UTF-8">
+	<link rel="manifest" href="manifest.json">
+	<script>
+		if (typeof navigator.serviceWorker !== 'undefined') {
+			navigator.serviceWorker.register('/sw.js')
+		}
+	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="theme-color" content="#012169">
+	<meta name="author" content="Paul Koepke" />
+	<meta name="description" content="Unit Price Comparison">
+	<title>Unit Price Comparison</title>
+	<link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">
+	<script async src="/addGoogleFonts.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="icon" type="image/png" href="/favicon.ico">
+	<meta property="og:title" content="Unit Price Comparison" />
+	<meta property="og:description" content="Unit Price Comparison app." />
+	<meta property="og:image" content="./upc icon.png" />
+	<meta property="og:url" content="./index.html" />
+	<script type="module" src="./script.js"></script>
+	<script type="module" src="./language-to-currency.js"></script>
 </head>
 
 <body>
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
-  <script>
-    const serviceWorkerVersion = "602131725";
-    var scriptLoaded = false;
-    function loadMainDartJs() {
-      if (scriptLoaded) {
-        return;
-      }
-      scriptLoaded = true;
-      var scriptTag = document.createElement('script');
-      scriptTag.src = 'main.dart.js';
-      scriptTag.type = 'application/javascript';
-      document.body.append(scriptTag);
-    }
-
-    if ('serviceWorker' in navigator) {
-      // Service workers are supported. Use them.
-      window.addEventListener('load', function () {
-        // Wait for registration to finish before dropping the <script> tag.
-        // Otherwise, the browser will load the script multiple times,
-        // potentially different versions.
-        var serviceWorkerUrl = 'flutter_service_worker.js?v=' + serviceWorkerVersion;
-        navigator.serviceWorker.register(serviceWorkerUrl)
-          .then((reg) => {
-            function waitForActivation(serviceWorker) {
-              serviceWorker.addEventListener('statechange', () => {
-                if (serviceWorker.state == 'activated') {
-                  console.log('Installed new service worker.');
-                  loadMainDartJs();
-                }
-              });
-            }
-            if (!reg.active && (reg.installing || reg.waiting)) {
-              // No active web worker and we have installed or are installing
-              // one for the first time. Simply wait for it to activate.
-              waitForActivation(reg.installing || reg.waiting);
-            } else if (!reg.active.scriptURL.endsWith(serviceWorkerVersion)) {
-              // When the app updates the serviceWorkerVersion changes, so we
-              // need to ask the service worker to update.
-              console.log('New service worker available.');
-              reg.update();
-              waitForActivation(reg.installing);
-            } else {
-              // Existing service worker is still good.
-              console.log('Loading app from service worker.');
-              loadMainDartJs();
-            }
-          });
-
-        // If service worker doesn't succeed in a reasonable amount of time,
-        // fallback to plaint <script> tag.
-        setTimeout(() => {
-          if (!scriptLoaded) {
-            console.warn(
-              'Failed to load app from service worker. Falling back to plain <script> tag.',
-            );
-            loadMainDartJs();
-          }
-        }, 4000);
-      });
-    } else {
-      // Service workers not supported. Just drop the <script> tag.
-      loadMainDartJs();
-    }
-  </script>
+	<h1 id="h1">
+		<span style="display: flex; justify-content: space-between;">
+			<img src="./upc icon.png">
+			<a href="/" class="headerText">Unit Price Comparison</a>
+			<span style="padding-top: .3rem;">
+				<button class="topButton" id="clear">
+					<span class="material-icons">clear</span>
+				</button>
+				<button class="topButton" id="removeCard">
+					<span class="material-icons">remove</span>
+				</button>
+				<button class="topButton" id="addCard">
+					<span class="material-icons">add</span>
+				</button>
+				<button class="topButton" id="showHideRow">
+					<span class="material-icons">unfold_more</span>
+				</button>
+			</span>
+	</h1>
+	<main class="roboto">
+	</main>
 </body>
+
+<style>
+	img {
+		position: inherit;
+		height: 2rem;
+		margin-top: 0.1rem;
+	}
+
+	.topButton {
+		height: 1.7rem;
+		background-color: #012169;
+		border: 0px;
+		cursor: pointer;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		font-size: 1.2rem;
+	}
+
+	.flexRow {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-around;
+		align-items: stretch;
+		margin: .3rem .3rem;
+	}
+
+	.row2 {
+		transition: opacity 0.4s linear;
+		opacity: 0;
+	}
+
+	.card {
+		display: flex;
+		flex-direction: column;
+		/* In my Flutter code this was cardColor: Colors.grey[900], */
+		background-color: #282424;
+		padding: .5rem;
+		width: 70%;
+		margin: .3rem 0rem;
+	}
+
+	.label {
+		width: 15%;
+		text-align: center;
+	}
+
+	input {
+		border-width: 0px 0px 1px 0px;
+		font-family: inherit;
+		background-color: #282424;
+		text-align: center;
+		width: 30%;
+		font-size: inherit;
+		margin: 0rem .3rem;
+	}
+
+	input:focus {
+		border-color: #012169;
+		border-width: 0px 0px 1px 0px;
+		background-color: #282424;
+	}
+
+	.result {
+		width: 25%;
+		text-align: center;
+	}
+
+	.nowrap {
+		text-wrap: nowrap;
+	}
+
+	.bestValue {
+		background-color: #17B468;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.opaque {
+		opacity: 1;
+	}
+</style>
 
 </html>

@@ -36,7 +36,8 @@ body {
   font-family: Inter, Roboto, "Noto Sans", "Open Sans", sans-serif;
 }
 
-h1 {
+h1,
+.headerText {
   font-size: 1.3rem;
   padding: 0.4rem;
   margin: 0px;
@@ -46,7 +47,8 @@ h1 {
   text-align: center;
 }
 
-h1 > a {
+h1 > a,
+.headerText {
   color: white;
   text-decoration: none;
 }

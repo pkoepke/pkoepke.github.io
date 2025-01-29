@@ -194,7 +194,10 @@ function setThemeOnLoad() {
   }
 }
 
+let oldInput = ''; // Placeholder for previous inputs so we can prevent entry of invalid inputs in Firefox and Safari, which do not properly handle input pattern matching.
+
 const inputCheck = (input) => {
+  oldInput = input.target.value;
   console.log(`New input: ${input.data}`);
   console.log(`Previous data: ${input.target.value}`);
   console.log(`Previous and new concatenated: ${input.target.value.toString() + input.data}`);
