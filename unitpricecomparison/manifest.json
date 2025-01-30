@@ -36,7 +36,13 @@
       "purpose": "monochrome"
     }
   ],
-  "shortcuts": [],
-  "id": "platesAndWeight",
+  
+  "screenshots": [
+    {
+      "src": "unitpricecomparison/upc screenshot 1.png",
+      "type": "image/png"
+    }
+  ],
+  "id": "com.paulkoepke.unitpricecomparison",
   "display_override": ["window-controls-overlay"]
 }
