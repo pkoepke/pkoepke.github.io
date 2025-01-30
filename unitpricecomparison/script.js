@@ -26,8 +26,6 @@ const clearServiceWorkerCache = () => {
   }
 }
 
-clearServiceWorkerCache();
-
 const buildRow = (number) => {
   // Build the first row of the card.
   const label = document.createElement(`span`);
@@ -60,6 +58,7 @@ const buildRow = (number) => {
   // Build the second row of the card
   const quantity = document.createElement(`input`);
   quantity.classList.add(`quantity`);
+  unitInput.type = `number`;
   quantity.placeholder = `Qty`;
 
   const itemName = document.createElement(`input`);
@@ -183,3 +182,4 @@ const attachListeners = () => {
 
 for (let i = 1; i < 5; i++) { document.addEventListener(`DOMContentLoaded`, () => { buildRow(i) }); }
 document.addEventListener(`DOMContentLoaded`, attachListeners);
+document.addEventListener(`DOMContentLoaded`, clearServiceWorkerCache);
