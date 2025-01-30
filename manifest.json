@@ -34,7 +34,28 @@
       "purpose": "maskable"
     }
   ],
-  "shortcuts": [],
+  "shortcuts": [
+    {
+      "name": "Tip Calculator",
+      "url": "tip_calculator"
+    },
+    {
+      "name": "Unit Price Comparison",
+      "url": "/unitpricecomparison/"
+    },
+    {
+      "name": "Internet Access Checker",
+      "url": "internet-access-checker-notifier"
+    },
+    {
+      "name": "Betting Odds Translator",
+      "url": "bettingOddsTranslator"
+    },
+    {
+      "name": "Plates and Weight",
+      "url": "platesAndWeight"
+    }
+  ],
   "id": "paulkoepke.com",
   "display_override": ["window-controls-overlay"]
 }
