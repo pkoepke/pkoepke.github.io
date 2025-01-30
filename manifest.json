@@ -37,23 +37,56 @@
   "shortcuts": [
     {
       "name": "Tip Calculator",
-      "url": "tip_calculator"
+      "url": "tip_calculator",
+      "icons": [
+        {
+          "src": "/tip_calculator/tipCalculatorIcon_512x512.png",
+          "sizes": "512x512"
+        }
+      ]
     },
     {
       "name": "Unit Price Comparison",
-      "url": "/unitpricecomparison/"
+      "short_name": "Unit Price",
+      "url": "/unitpricecomparison/",
+      "icons": [
+        {
+          "src": "/unitpricecomparison/upc icon.png",
+          "sizes": "512x512"
+        }
+      ]
     },
     {
       "name": "Internet Access Checker",
-      "url": "internet-access-checker-notifier"
+      "short_name": "Internet Access",
+      "url": "internet-access-checker-notifier",
+      "icons": [
+        {
+          "src": "/internet-access-checker-notifier/cell signal white foreground blue background.png",
+          "sizes": "512x512"
+        }
+      ]
     },
     {
       "name": "Betting Odds Translator",
-      "url": "bettingOddsTranslator"
+      "short_name": "Betting Odds",
+      "url": "bettingOddsTranslator",
+      "icons": [
+        {
+          "src": "/favicon.ico",
+          "sizes": "512x512"
+        }
+      ]
     },
     {
       "name": "Plates and Weight",
-      "url": "platesAndWeight"
+      "url": "platesAndWeight",
+      "icons": [
+        {
+          "src": "/platesAndWeight/barbell 512x512.png",
+          "sizes": "512x512"
+        }
+      ]
     }
   ],
   "id": "paulkoepke.com",
