@@ -36,10 +36,10 @@
       "purpose": "monochrome"
     }
   ],
-  
+
   "screenshots": [
     {
-      "src": "unitpricecomparison/upc screenshot 1.png",
+      "src": "./unitpricecomparison/upc screenshot 1.png",
       "type": "image/png"
     }
   ],
