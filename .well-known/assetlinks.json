@@ -21,7 +21,7 @@
       ]
     }
   },
-    {
+  {
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
@@ -30,4 +30,5 @@
         "3D:B9:FE:5F:1C:F5:99:18:1F:E0:D1:32:DA:97:46:D5:E9:43:C4:E4:BA:81:93:82:F1:A0:27:9B:60:7D:B2:CB"
       ]
     }
+  }
 ]
