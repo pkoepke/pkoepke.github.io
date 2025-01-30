@@ -20,5 +20,14 @@
         "11:39:4E:58:73:DA:15:02:EE:13:92:42:DB:AF:E9:B3:6E:CE:1B:EB:E1:6B:CF:E5:56:67:20:50:45:F8:71:76"
       ]
     }
-  }
+  },
+    {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.paulkoepke.unitpricecomparison",
+      "sha256_cert_fingerprints": [
+        "3D:B9:FE:5F:1C:F5:99:18:1F:E0:D1:32:DA:97:46:D5:E9:43:C4:E4:BA:81:93:82:F1:A0:27:9B:60:7D:B2:CB"
+      ]
+    }
 ]
