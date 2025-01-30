@@ -58,7 +58,7 @@ const buildRow = (number) => {
   // Build the second row of the card
   const quantity = document.createElement(`input`);
   quantity.classList.add(`quantity`);
-  unitInput.type = `number`;
+  quantity.type = `number`;
   quantity.placeholder = `Qty`;
 
   const itemName = document.createElement(`input`);
