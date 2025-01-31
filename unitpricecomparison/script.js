@@ -35,11 +35,13 @@ const buildRow = (number) => {
 
   const priceInput = document.createElement(`input`);
   priceInput.type = `number`;
+  priceInput.inputMode = `decimal`;
   priceInput.classList.add(`price`);
   priceInput.placeholder = `Price ${currencySymbol}`;
 
   const unitInput = document.createElement(`input`);
   unitInput.type = `number`;
+  unitInput.inputMode = `decimal`;
   unitInput.classList.add(`units`);
   unitInput.placeholder = `Units`;
 
@@ -59,6 +61,7 @@ const buildRow = (number) => {
   const quantity = document.createElement(`input`);
   quantity.classList.add(`quantity`);
   quantity.type = `number`;
+  quantity.inputMode = `decimal`;
   quantity.placeholder = `Qty`;
 
   const itemName = document.createElement(`input`);
