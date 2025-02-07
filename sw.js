@@ -42,7 +42,7 @@ const getResourcesToCache = async () => {
 }
 
 self.addEventListener("install", async (event) => {
-  /*event.waitUntil(addResourcesToCache([ // Old way with a manually copy-and-pasted list.
+  /*event.waitUntil(addResourcesToCache([ // Old way with a manually copy-and-pasted list. 
     '/bettingOddsTranslator/bettingOddsTranslator.js',
     '/bettingOddsTranslator/index.html',
     '/favicon old black on white.png',
