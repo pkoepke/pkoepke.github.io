@@ -88,11 +88,12 @@ walk('./', function (err, results) {
     `/unitpricecomparison/`,)
   //console.log(results);
   //process.stdout.write(JSON.stringify(results) + `\n`);
-  fs.writeFile(`sw-files-to-cache.json`, JSON.stringify(results) + `\n`, (err) => {
-    if (err) {
-      console.error('Error writing file:', err);
-    } else {
-      console.log('JSON data written to file successfully.');
-    }
-  });
+  fs.writeFile(`sw-files-to-cache.json`, JSON.stringify(results, null, ` `) + `\n`, // Blanks space in JSON.strigify adds line breaks to make it easier to read.
+    (err) => {
+      if (err) {
+        console.error('Error writing file:', err);
+      } else {
+        console.log('JSON data written to file successfully.');
+      }
+    });
 });
