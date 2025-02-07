@@ -10,10 +10,15 @@ const run = (e) => {
   if (document.getElementById('decodeUri').checked) {
     filename = decodeURIComponent(filename);
   }
-  for (const char of illegalChars) {
-    filename = filename.replaceAll(char, (char == '\n' || char == '\r') ? ' ' : char == '\\' ? '_' : ''); // replce \n and \r with a space, \ with _, and just remove everything else.
+  if (document.getElementById('removeIllegalChars').checked) {
+    for (const char of illegalChars) {
+      filename = filename.replaceAll(char, (char == '\n' || char == '\r') ? ' ' : char == '\\' ? '_' : ''); // replce \n and \r with a space, \ with _, and just remove everything else.
+    }
   }
-  filename = filename.substring(0, 253);
+  let numberOfChars = document.getElementById(`characterLimit`).value;
+  if (!(numberOfChars == `` || isNaN(numberOfChars))) {
+    filename = filename.substring(0, numberOfChars);
+  }
   document.getElementById('output').textContent = filename;
 }
 
@@ -56,11 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
   handleShareQuerystring();
   document.getElementById('input').addEventListener('input', run);
   document.getElementById('input').addEventListener('paste', run);
+  document.getElementById('characterLimit').addEventListener('paste', run);
+  document.getElementById('characterLimit').addEventListener('input', run);
   document.getElementById('paste').addEventListener('click', paste);
   document.getElementById('clear').addEventListener('click', clear);
   document.getElementById('copy').addEventListener('click', copy);
   document.getElementById('toLowercase').addEventListener('click', run);
   document.getElementById('removePunctuation').addEventListener('click', run);
   document.getElementById('decodeUri').addEventListener('click', run);
+  document.getElementById('removeIllegalChars').addEventListener('click', run);
   run();
 });
