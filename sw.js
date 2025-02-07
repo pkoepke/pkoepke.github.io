@@ -32,6 +32,11 @@ const addResourcesToCache = async (resources) => {
     } catch (e) {
       console.error(e)
     } // when using cache.addAll, a single 404 will stop the whole proces. Doing it one by one and catching errors allows the browser to cache anything that succeeds even if there are failures.
+    try {
+      await cache.add(resource);
+    } catch (e) {
+      console.error(e)
+    } // when using cache.addAll, a single 404 will stop the whole proces. Doing it one by one and catching errors allows the browser to cache anything that succeeds even if there are failures.
   }
 };
 
