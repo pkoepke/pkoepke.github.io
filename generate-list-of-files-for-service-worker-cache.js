@@ -26,6 +26,12 @@ var walk = function (dir, done) {
 
 walk('./', function (err, results) {
   if (err) throw err;
+  results = results.map((currentPath) => {
+    const workingDirectory = process.cwd();
+    currentPath = currentPath.replace(workingDirectory, ''); // Make each path relative.
+    currentPath = currentPath.replaceAll(path.sep, path.posix.sep); // If running on Windows, replace Windows directory separators with POSIX separators.
+    return currentPath;
+  })
   results = results.filter((path) => { // Files to include
     return (
       path.includes(`/pkoepke.github.io/index.html`) ||
@@ -69,14 +75,11 @@ walk('./', function (err, results) {
       path.includes(`/pkoepke.github.io/unitpricecomparison`)*/
     )
   })
-  results = results.map((path) => {
-    return path.replace('/Users/paulk/Programming/pkoepke.github.io', '')
-  })
+
   results.push(
     `/`,
     `/bettingOddsTranslator/`,
     `/filename-fixer/`,
-    `/pkoepke.github.io/icons/`,
     `/internet-access-checker-notifier/`,
     `/platesAndWeight/`,
     `/redditSearch/`,
@@ -84,7 +87,7 @@ walk('./', function (err, results) {
     `/twitternitter/`,
     `/unitpricecomparison/`,)
   //console.log(results);
-  process.stdout.write(JSON.stringify(results) + `\n`);
+  //process.stdout.write(JSON.stringify(results) + `\n`);
   fs.writeFile(`sw-files-to-cache.json`, JSON.stringify(results) + `\n`, (err) => {
     if (err) {
       console.error('Error writing file:', err);
