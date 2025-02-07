@@ -33,6 +33,7 @@ walk('./', function (err, results) {
       path.includes(`/pkoepke.github.io/styles_dark.css`) ||
       path.includes(`/bettingOddsTranslator/`) ||
       path.includes(`/filename-fixer/`) ||
+      path.includes(`/fonts/`) ||
       path.includes(`/pkoepke.github.io/icons/`) ||
       path.includes(`/internet-access-checker-notifier/`) ||
       path.includes(`/platesAndWeight/`) ||
@@ -82,5 +83,13 @@ walk('./', function (err, results) {
     `/tip_calculator/`,
     `/twitternitter/`,
     `/unitpricecomparison/`,)
-  console.log(results);
+  //console.log(results);
+  process.stdout.write(JSON.stringify(results) + `\n`);
+  fs.writeFile(`sw-files-to-cache.json`, JSON.stringify(results) + `\n`, (err) => {
+    if (err) {
+      console.error('Error writing file:', err);
+    } else {
+      console.log('JSON data written to file successfully.');
+    }
+  });
 });

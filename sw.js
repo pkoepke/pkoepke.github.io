@@ -25,15 +25,23 @@ const registerServiceWorker = async () => {
 registerServiceWorker();
 
 const addResourcesToCache = async (resources) => {
+  console.log(`resources: ${resources}`);
   const cache = await caches.open(cacheName);
   for (const resource of resources) {
     try { await cache.add(resource); } catch (e) { console.error(e) } // when using cache.addAll, a single 404 will stop the whole proces. Doing it one by one and catching errors allows the browser to cache anything that succeeds even if there are failures.
   }
 };
 
-self.addEventListener("install", (event) => {
+const getResourcesToCache = async () => {
+  const response = await fetch(`/sw-files-to-cache.json`);
+  const body = await response.json();
+  //console.log(body);
+  return body;
+}
+
+self.addEventListener("install", async (event) => {
   event.waitUntil(
-    addResourcesToCache([
+    /*addResourcesToCache([ // Old way with a manually copy-and-pasted list.
       '/bettingOddsTranslator/bettingOddsTranslator.js',
       '/bettingOddsTranslator/index.html',
       '/favicon old black on white.png',
@@ -128,7 +136,8 @@ self.addEventListener("install", (event) => {
       '/tip_calculator/',
       '/twitternitter/',
       '/unitpricecomparison/'
-    ]),
+    ]),*/
+    addResourcesToCache(await getResourcesToCache())
   );
 });
 
