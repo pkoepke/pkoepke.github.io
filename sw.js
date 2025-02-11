@@ -24,6 +24,7 @@ const registerServiceWorker = async () => {
 
 registerServiceWorker();
 
+// Gets an array of URLs to cache, and adds them one-by-one to the cache. Used when first populating the cache after the SW 'install' event.
 const addResourcesToCache = async (resources) => {
   const cache = await caches.open(cacheName);
   for (const resource of resources) {
@@ -35,112 +36,16 @@ const addResourcesToCache = async (resources) => {
   }
 };
 
+// Get the JSON list of all resources that should be cached so the whole site is cached as soon as the SW is installed. Otherwise, only pages that the users had visited would be cached, but we want the whole site to work offline as soon as the SW is instlled.
 const getResourcesToCache = async () => {
   const response = await fetch(`/sw-files-to-cache.json`);
   const body = await response.json();
   return body;
 }
 
-self.addEventListener("install", async (event) => {
-  /*event.waitUntil(addResourcesToCache([ // Old way with a manually copy-and-pasted list. 
-    '/bettingOddsTranslator/bettingOddsTranslator.js',
-    '/bettingOddsTranslator/index.html',
-    '/favicon old black on white.png',
-    '/favicon.png',
-    '/filename-fixer/content_copy_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg',
-    '/filename-fixer/index.html',
-    '/filename-fixer/script.js',
-    '/icons/favicon 128x128.png',
-    '/icons/favicon 512x512.png',
-    '/icons/favicon maskable.png',
-    '/index.html',
-    '/internet-access-checker-notifier/index.html',
-    '/internet-access-checker-notifier/manifest.json',
-    '/internet-access-checker-notifier/material-symbols--signal-cellular-alt.png',
-    '/internet-access-checker-notifier/material-symbols--signal-cellular-alt.svg',
-    '/internet-access-checker-notifier/script.js',
-    '/internet-access-checker-notifier/styles.css',
-    '/manifest.json',
-    '/platesAndWeight/barbell 512x512.png',
-    '/platesAndWeight/barbell maskable icon.png',
-    '/platesAndWeight/barbell monochrome icon.png',
-    '/platesAndWeight/barbell.svg',
-    '/platesAndWeight/index.html',
-    '/platesAndWeight/manifest.json',
-    '/platesAndWeight/plates and weight screenshot desktop and large tablet view.png',
-    '/platesAndWeight/plates and weights calculator mobile 1 for Windows store.png',
-    '/platesAndWeight/plates and weights calculator mobile 1.png',
-    '/platesAndWeight/plates and weights calculator mobile 2.png',
-    '/platesAndWeight/script.js',
-    '/platesAndWeight/styles.css',
-    '/platesAndWeight/sw.js',
-    '/redditSearch/index.html',
-    '/redditSearch/redditSearch.js',
-    '/styles_dark.css',
-    '/tip_calculator/darkTheme.css',
-    '/tip_calculator/index.html',
-    '/tip_calculator/lightTheme.css',
-    '/tip_calculator/manifest.json',
-    '/tip_calculator/screenshots/Pixel 3 XL dark mode.png',
-    '/tip_calculator/script.js',
-    '/tip_calculator/styles.css',
-    '/tip_calculator/sw.js',
-    '/tip_calculator/tip calculator icon 512x512 maskable.png',
-    '/tip_calculator/tipCalculatorIcon.xcf',
-    '/tip_calculator/tipCalculatorIcon_128x128.png',
-    '/tip_calculator/tipCalculatorIcon_32X32.png',
-    '/tip_calculator/tipCalculatorIcon_512x512.png',
-    '/tip_calculator/tipCalculatorIcon_512x512.svg',
-    '/tip_calculator/tipCalculatorIcon_64x64.png',
-    '/tip_calculator/tip_calculator.html',
-    '/twitternitter/index.html',
-    '/twitternitter/styles.css',
-    '/twitternitter/twitternitter.js',
-    '/unitpricecomparison/.last_build_id',
-    '/unitpricecomparison/assets/AssetManifest.bin',
-    '/unitpricecomparison/assets/AssetManifest.bin.json',
-    '/unitpricecomparison/assets/AssetManifest.json',
-    '/unitpricecomparison/assets/FontManifest.json',
-    '/unitpricecomparison/assets/NOTICES',
-    '/unitpricecomparison/assets/fonts/MaterialIcons-Regular.otf',
-    '/unitpricecomparison/assets/fonts/NotoSans-Italic-VariableFont_wdth,wght.ttf',
-    '/unitpricecomparison/assets/fonts/NotoSans-VariableFont_wdth,wght.ttf',
-    '/unitpricecomparison/assets/shaders/ink_sparkle.frag',
-    '/unitpricecomparison/canvaskit/canvaskit.js',
-    '/unitpricecomparison/canvaskit/canvaskit.wasm',
-    '/unitpricecomparison/canvaskit/chromium/canvaskit.js',
-    '/unitpricecomparison/canvaskit/chromium/canvaskit.wasm',
-    '/unitpricecomparison/canvaskit/skwasm.js',
-    '/unitpricecomparison/canvaskit/skwasm.wasm',
-    '/unitpricecomparison/canvaskit/skwasm.worker.js',
-    '/unitpricecomparison/favicon.png',
-    '/unitpricecomparison/flutter.js',
-    '/unitpricecomparison/flutter_service_worker.js',
-    '/unitpricecomparison/icons/Icon-192.png',
-    '/unitpricecomparison/icons/Icon-512.png',
-    '/unitpricecomparison/icons/Icon-maskable-192.png',
-    '/unitpricecomparison/icons/Icon-maskable-512.png',
-    '/unitpricecomparison/index.html',
-    '/unitpricecomparison/main.dart.js',
-    '/unitpricecomparison/manifest.json',
-    '/unitpricecomparison/sw.js',
-    '/unitpricecomparison/version.json',
-    '/unitpricecomparison - sept 12 2023, the last good version/favicon.png',
-    '/unitpricecomparison-wasm/favicon.png',
-    '/',
-    '/bettingOddsTranslator/',
-    '/filename-fixer/',
-    '/internet-access-checker-notifier/',
-    '/noto_sans/',
-    '/platesAndWeight/',
-    '/redditSearch/',
-    '/tip_calculator/',
-    '/twitternitter/',
-    '/unitpricecomparison/'
-  ]))*/
-  addResourcesToCache(await getResourcesToCache())
-});
-
+// Used in cacheFirst() to save resources to cache as the user navigates the site.
+// Slightly different from addResourcesToCache() - in this case, we already have a response with the resource so we
+// don't need to use cache.add() to get the resource, we can save the already-received resource.
 const putInCache = async (request, response) => {
   if (request.url.includes('internet-access-checker-notifier/test-files') // Don't cache Internet Access Checker test files.
   ) {
@@ -151,11 +56,13 @@ const putInCache = async (request, response) => {
   }
 };
 
+// Try to serve all reqests from cache, but also check for updates every time so the user gets the updated version the next time they visit the page.
 const cacheFirst = async (request) => {
   const responseFromCache = await caches.match(request);
   if (responseFromCache) {
-    setTimeout(async () => { // Check for updates and add them to the cache, but don't wait for the response - serve the cached version.
-      const responseFromNetwork = await fetch(request, { cache: "reload" });
+    setTimeout(async () => { // Check for updates and add them to the cache, but don't wait for the response - serve the cached version right away.
+      // const responseFromNetwork = await fetch(request, { cache: "reload" }); // Originally this downloaded the resource every single time, whether it was updated or not. That works find but results in unnecessary downloads every time you visit a page.
+      const responseFromNetwork = await fetch(request, { cache: "no-cache" }); // no-cache: if the resource is in the browser cache (whether fresh or stale), the browser makes a conditional request to see if it has been updated. If it has been updated, the browser will download it to the cache. If it has not been updated it will use the cached value.
       await putInCache(request, responseFromNetwork.clone());
     });
     return responseFromCache;
@@ -165,6 +72,15 @@ const cacheFirst = async (request) => {
   return responseFromNetwork;
 };
 
+// When the SW is installed, immediately get the JSON list of resources to cache and cache them all so the whole site immediatelyn works offline.
+self.addEventListener("install", async (event) => {
+  /*event.waitUntil(addResourcesToCache([ // Old way with a manually copy-and-pasted list. removed a bunch of copy and pasted lines from here, just keeping as an example.
+  '/bettingOddsTranslator/bettingOddsTranslator.js', '/bettingOddsTranslator/index.html','/favicon old black on white.png','/favicon.png','/','/bettingOddsTranslator/','/filename-fixer/','/internet-access-checker-notifier/','/noto_sans/','/platesAndWeight/','/redditSearch/','/tip_calculator/','/twitternitter/','/unitpricecomparison/'
+  ]))*/
+  addResourcesToCache(await getResourcesToCache())
+});
+
+// Intercept all fetch events and try to server from cache.
 self.addEventListener("fetch", (event) => {
   event.respondWith(cacheFirst(event.request));
 });
