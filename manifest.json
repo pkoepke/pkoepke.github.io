@@ -36,6 +36,37 @@
   ],
   "shortcuts": [
     {
+      "name": "Internet Access Checker",
+      "short_name": "Internet Access",
+      "url": "internet-access-checker-notifier",
+      "icons": [
+        {
+          "src": "/internet-access-checker-notifier/cell signal white foreground blue background.png",
+          "sizes": "512x512"
+        }
+      ]
+    },
+    {
+      "name": "Plates and Weight",
+      "url": "platesAndWeight",
+      "icons": [
+        {
+          "src": "/platesAndWeight/barbell 512x512.png",
+          "sizes": "512x512"
+        }
+      ]
+    },
+    {
+      "name": "Filename Fixer",
+      "url": "filename-fixer",
+      "icons": [
+        {
+          "src": "/filename-fixer/ABC white foreground Duke navy blue background.png",
+          "sizes": "512x512"
+        }
+      ]
+    },
+    {
       "name": "Tip Calculator",
       "url": "tip_calculator",
       "icons": [
@@ -57,33 +88,12 @@
       ]
     },
     {
-      "name": "Internet Access Checker",
-      "short_name": "Internet Access",
-      "url": "internet-access-checker-notifier",
-      "icons": [
-        {
-          "src": "/internet-access-checker-notifier/cell signal white foreground blue background.png",
-          "sizes": "512x512"
-        }
-      ]
-    },
-    {
       "name": "Betting Odds Translator",
       "short_name": "Betting Odds",
       "url": "bettingOddsTranslator",
       "icons": [
         {
           "src": "/favicon.ico",
-          "sizes": "512x512"
-        }
-      ]
-    },
-    {
-      "name": "Plates and Weight",
-      "url": "platesAndWeight",
-      "icons": [
-        {
-          "src": "/platesAndWeight/barbell 512x512.png",
           "sizes": "512x512"
         }
       ]
