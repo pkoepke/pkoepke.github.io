@@ -46,6 +46,8 @@ walk('./', function (err, results) {
       path.includes(`/tip_calculator/`) ||
       path.includes(`/twitternitter/`) ||
       path.includes(`/unitpricecomparison/`) ||
+      path.includes(`/fonts/material-icons.css`) ||
+      path.includes(`/fonts/material-icons.woff2`) ||
       path.includes(`favicon`)
     )
   })
