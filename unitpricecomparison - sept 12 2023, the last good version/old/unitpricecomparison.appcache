@@ -1,1 +1,0 @@
-This file is no longer used. Sadly, deleting it and repointing the HTML file to another appcache file doesn't trigger clients to update their cache. So this file has to remain so clients will update their caches.
