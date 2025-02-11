@@ -77,6 +77,12 @@ self.addEventListener("install", async (event) => {
   /*event.waitUntil(addResourcesToCache([ // Old way with a manually copy-and-pasted list. removed a bunch of copy and pasted lines from here, just keeping as an example.
   '/bettingOddsTranslator/bettingOddsTranslator.js', '/bettingOddsTranslator/index.html','/favicon old black on white.png','/favicon.png','/','/bettingOddsTranslator/','/filename-fixer/','/internet-access-checker-notifier/','/noto_sans/','/platesAndWeight/','/redditSearch/','/tip_calculator/','/twitternitter/','/unitpricecomparison/'
   ]))*/
+
+  // If the SW is being installed or reinstalled, assume the cache is no longer good. Delete all caches and start over.
+  caches.keys().then(function (names) {
+    for (let name of names)
+      caches.delete(name);
+  });
   addResourcesToCache(await getResourcesToCache())
 });
 
