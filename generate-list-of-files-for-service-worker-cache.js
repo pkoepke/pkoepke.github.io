@@ -39,7 +39,6 @@ walk('./', function (err, results) {
       path.includes(`/pkoepke.github.io/styles_dark.css`) ||
       path.includes(`/bettingOddsTranslator/`) ||
       path.includes(`/filename-fixer/`) ||
-      path.includes(`/fonts/`) ||
       path.includes(`/pkoepke.github.io/icons/`) ||
       path.includes(`/internet-access-checker-notifier/`) ||
       path.includes(`/platesAndWeight/`) ||
@@ -53,8 +52,6 @@ walk('./', function (err, results) {
   results = results.filter((path) => { // Files to exclude
     return !(
       path.includes(`index.html and main page files`) ||
-      path.includes(`/noto_sans/OFL.txt`) ||
-      path.includes(`/noto_sans/README.txt`) ||
       path.includes(`1 kbit.zip`) ||
       path.includes(`1 kbyte.bin`) ||
       path.includes(`1 mbit.zip`) ||
@@ -71,7 +68,8 @@ walk('./', function (err, results) {
       path.includes(`cache.manifest`) ||
       path.includes(`README.md`) ||
       path.includes(`/pkoepke.github.io/icons/`) || // Want everything under this path but not this exact path.      
-      path.includes(`.DS_Store`)/*||
+      path.includes(`.DS_Store`)
+      /*||
       path.includes(`/pkoepke.github.io/unitpricecomparison`)*/
     )
   })
