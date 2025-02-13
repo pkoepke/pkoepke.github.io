@@ -38,12 +38,14 @@ const buildRow = (number) => {
   priceInput.inputMode = `decimal`;
   priceInput.classList.add(`price`);
   priceInput.placeholder = `Price ${currencySymbol}`;
+  priceInput.addEventListener('input', runCalculations);
 
   const unitInput = document.createElement(`input`);
   unitInput.type = `number`;
   unitInput.inputMode = `decimal`;
   unitInput.classList.add(`units`);
   unitInput.placeholder = `Units`;
+  unitInput.addEventListener('input', runCalculations);
 
   const result = document.createElement(`span`);
   result.classList.add(`nowrap`);
@@ -63,14 +65,17 @@ const buildRow = (number) => {
   quantity.type = `number`;
   quantity.inputMode = `decimal`;
   quantity.placeholder = `Qty`;
+  quantity.addEventListener('input', runCalculations);
 
   const itemName = document.createElement(`input`);
   itemName.classList.add(`itemName`);
   itemName.placeholder = `Item name`;
+  itemName.addEventListener('input', runCalculations);
 
   const unitName = document.createElement(`input`);
   unitName.classList.add(`unitName`);
   unitName.placeholder = `Unit name`;
+  unitName.addEventListener('input', runCalculations);
 
   const row2 = document.createElement(`div`);
   row2.classList.add(`flexRow`);
@@ -104,12 +109,22 @@ const runCalculations = () => {
   const units = [...document.getElementsByClassName(`units`)];
   const prices = [...document.getElementsByClassName(`price`)];
   const quantities = [...document.getElementsByClassName(`quantity`)];
+  const itemNames = [...document.getElementsByClassName(`itemName`)];
+  const unitNames = [...document.getElementsByClassName(`unitName`)];
   const results = [...document.getElementsByClassName(`result`)];
+  let pageurl = window.location.href;
+  //let queryString = `?`; // Build a queryString for easy sharing and saving. i iterates from 1 but the items are numbered starting at 1 so we add 1 to i each time to match the UI.
+  let queryString = new URLSearchParams();
   let resultValues = []; // Store results here for finding the best price per unit.
   for (let i = 0; i < units.length; i++) {
     const unit = units[i].value;
+    if (unit) queryString.set(`u${i + 1}`, `${unit}`)
     const price = prices[i].value;
+    if (price) queryString.set(`p${i + 1}`, `${price}`);
     let quantity = quantities[i].value;
+    if (quantity) queryString.set(`q${i + 1}`, `${quantity}`);
+    if (itemNames[i].value) queryString.set(`in${i + 1}`, `${itemNames[i].value}`);
+    if (unitNames[i].value) queryString.set(`in${i + 1}`, `${unitNames[i].value}`);
     if (isNaN(quantity) || (quantity == 0)) {
       quantity = 1;
     }
@@ -136,6 +151,7 @@ const runCalculations = () => {
       result.classList.remove(`bestValue`);
     }
   }
+  history.replaceState({ foo: "bar" }, null, `${window.location.origin}${window.location.pathname}?${queryString}`);
 }
 
 const clear = () => {
@@ -151,11 +167,13 @@ const removeCard = () => {
   if (cards.length > 2) {
     cards.at(-1).remove();
   }
+  runCalculations();
 }
 
 const addCard = () => {
   const cards = [...document.getElementsByClassName(`card`)];
   buildRow(cards.length + 1);
+  runCalculations();
 }
 
 const showHideRow = () => {
@@ -172,17 +190,69 @@ const showHideRow = () => {
   }
 }
 
-const attachListeners = () => {
-  const inputs = [...document.getElementsByClassName(`units`)].concat([...document.getElementsByClassName(`price`)], [...document.getElementsByClassName(`quantity`)]);
-  for (const input of inputs) {
-    input.addEventListener(`input`, runCalculations);
+const share = async () => {
+  const shareData = {
+    title: `Unit Price Comparison`,
+    text: `Comparing unit prices`,
+    url: window.location.href
   }
+  try {
+    await navigator.share(shareData);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+const determineNumRows = () => {
+  const queryParams = new URLSearchParams(window.location.search);
+  const allKeys = [...queryParams.keys()];
+  if (allKeys.length < 1) {
+    return 4; // Default number of rows is 4.
+  }
+  const rowNums = [];
+  for (const key in allKeys) {
+    rowNums.push([...allKeys[key]].filter((char) => { return !isNaN(parseInt(char)) }).join(''));
+  }
+  return Math.max(...rowNums);
+}
+
+const handleQueryParams = () => {
+  const queryParams = new URLSearchParams(window.location.search);
+
+  const nameMap = {
+    units: `u`,
+    prices: `p`,
+    quantities: `q`,
+    itemNames: `in`,
+    unitNames: `un`
+  }
+
+  const allInputs = {
+    units: [...document.getElementsByClassName(`units`)],
+    prices: [...document.getElementsByClassName(`price`)],
+    quantities: [...document.getElementsByClassName(`quantity`)],
+    itemNames: [...document.getElementsByClassName(`itemName`)],
+    unitNames: [...document.getElementsByClassName(`unitName`)]
+  }
+
+  for (const key in allInputs) {
+    for (let i = 1; i <= allInputs[key].length; i++) {
+      allInputs[key][i - 1].value = queryParams.get(nameMap[key] + i);
+    }
+  }
+
+  runCalculations()
+}
+
+const attachListeners = () => {
   document.getElementById(`clear`).addEventListener(`click`, clear);
   document.getElementById(`removeCard`).addEventListener(`click`, removeCard);
   document.getElementById(`addCard`).addEventListener(`click`, addCard);
   document.getElementById(`showHideRow`).addEventListener(`click`, showHideRow);
+  document.getElementById(`share`).addEventListener(`click`, share);
 }
 
-for (let i = 1; i < 5; i++) { document.addEventListener(`DOMContentLoaded`, () => { buildRow(i) }); }
+for (let i = 1; i < determineNumRows() + 1; i++) { document.addEventListener(`DOMContentLoaded`, () => { buildRow(i) }); }
+document.addEventListener(`DOMContentLoaded`, handleQueryParams); // So if the user loads the page using the query string, the calculations run.
 document.addEventListener(`DOMContentLoaded`, attachListeners);
 document.addEventListener(`DOMContentLoaded`, clearServiceWorkerCache);
