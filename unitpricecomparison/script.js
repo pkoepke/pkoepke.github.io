@@ -2,8 +2,6 @@ import { languageToCurrency } from './language-to-currency.js';
 
 const currencySymbol = Intl.NumberFormat(navigator.language, { style: `currency`, currency: languageToCurrency[navigator.language] }).formatToParts(`1`)[0][`value`];
 
-let shouldshow = false; // Ran into race conditions if the user hid the second row and immediately added another card, so added a global variable that only changes when the show/hide button is pushed.
-
 const clearServiceWorkerCache = () => {
   // The cache for the Flutter app is huge, approximately 50 MB when fonts are included. If it exists, clear it.
   if ('serviceWorker' in navigator) {
@@ -25,6 +23,8 @@ const clearServiceWorkerCache = () => {
     });
   }
 }
+
+let shouldShow = false; // Ran into race conditions if the user hid the second row and immediately added another card, so added a global variable that only changes when the show/hide button is pushed.
 
 const buildRow = (number) => {
   // Build the first row of the card.
@@ -80,19 +80,15 @@ const buildRow = (number) => {
   const row2 = document.createElement(`div`);
   row2.classList.add(`flexRow`);
   row2.classList.add(`row2`);
-  // See if there are already cards and follow their lead on showing/hiding the second row.
-  const rows = [...document.getElementsByClassName(`row2`)]
-  if (rows[0]) {
-    if (shouldshow) {
-      row2.classList.remove(`hidden`);
-      row2.classList.add(`opaque`);
-    } else {
-      row2.classList.remove(`opaque`);
-      row2.classList.add(`hidden`);
-    }
+
+  if (shouldShow) {
+    row2.classList.remove(`hidden`);
+    row2.classList.add(`opaque`);
   } else {
+    row2.classList.remove(`opaque`);
     row2.classList.add(`hidden`);
   }
+
   row2.appendChild(quantity);
   row2.appendChild(itemName);
   row2.appendChild(unitName);
@@ -178,9 +174,9 @@ const addCard = () => {
 
 const showHideRow = () => {
   const rows = [...document.getElementsByClassName(`row2`)]
-  shouldshow = rows[0].classList.contains(`hidden`);
+  shouldShow = rows[0].classList.contains(`hidden`);
   for (const row of rows) {
-    if (shouldshow) {
+    if (shouldShow) {
       row.classList.remove(`hidden`);
       setTimeout(() => row.classList.add(`opaque`), 0);
     } else {
@@ -213,6 +209,10 @@ const determineNumRows = () => {
   for (const key in allKeys) {
     rowNums.push([...allKeys[key]].filter((char) => { return !isNaN(parseInt(char)) }).join(''));
   }
+  const numRows = Math.max(...rowNums);
+  if (numRows < 2) { // Silly to have a comparison app with only 1 item.
+    return 2;
+  }
   return Math.max(...rowNums);
 }
 
@@ -244,6 +244,20 @@ const handleQueryParams = () => {
   runCalculations()
 }
 
+const shouldShowSecondRowAtLaunch = () => {
+  const queryParams = new URLSearchParams(window.location.search);
+  let allKeys = [...queryParams.keys()];
+  const keyStrings = [];
+  for (const key in allKeys) {
+    keyStrings.push([...allKeys[key]].filter((char) => { return isNaN(parseInt(char)) }).join(''));
+  }
+  if (keyStrings.includes(`q`) || keyStrings.includes(`in`) || keyStrings.includes(`un`)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 const attachListeners = () => {
   document.getElementById(`clear`).addEventListener(`click`, clear);
   document.getElementById(`removeCard`).addEventListener(`click`, removeCard);
@@ -252,7 +266,8 @@ const attachListeners = () => {
   document.getElementById(`share`).addEventListener(`click`, share);
 }
 
-for (let i = 1; i < determineNumRows() + 1; i++) { document.addEventListener(`DOMContentLoaded`, () => { buildRow(i) }); }
+document.addEventListener(`DOMContentLoaded`, () => { shouldShow = shouldShowSecondRowAtLaunch() }); // So if the user loads the page using the query string, the calculations run.
+document.addEventListener(`DOMContentLoaded`, () => { for (let i = 1; i < determineNumRows() + 1; i++) buildRow(i) });
 document.addEventListener(`DOMContentLoaded`, handleQueryParams); // So if the user loads the page using the query string, the calculations run.
 document.addEventListener(`DOMContentLoaded`, attachListeners);
 document.addEventListener(`DOMContentLoaded`, clearServiceWorkerCache);
