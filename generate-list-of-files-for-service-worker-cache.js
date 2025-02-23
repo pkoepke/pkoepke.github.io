@@ -48,7 +48,8 @@ walk('./', function (err, results) {
       path.includes(`/unitpricecomparison/`) ||
       path.includes(`/fonts/material-icons.css`) ||
       path.includes(`/fonts/material-icons.woff2`) ||
-      path.includes(`favicon`)
+      path.includes(`favicon`) ||
+      path.includes(`styles_dark.css`)
     )
   })
   results = results.filter((path) => { // Files to exclude
