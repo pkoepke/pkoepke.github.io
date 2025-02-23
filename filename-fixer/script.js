@@ -19,7 +19,6 @@ const run = (e) => {
   if (!(numberOfChars == `` || isNaN(numberOfChars))) {
     filename = filename.substring(0, numberOfChars);
   }
-  console.log(filename);
   document.getElementById('output').textContent = filename;
 }
 
