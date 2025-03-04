@@ -6,14 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">
   <style>
+    p {
+      width: 21rem;
+      margin: 1rem auto;
+    }
+
     img {
-      width: 10rem;
+      width: 21rem;
       height: auto;
+      margin: 1rem 0;
+      object-fit: contain;
     }
 
     video {
-      width: 10rem;
+      width: 21rem;
       height: auto;
+      margin: 2rem 2rem;
+    }
+
+    main {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
     }
   </style>
   <link rel="icon" type="image/png" href="/favicon.ico">
@@ -42,14 +58,12 @@
             ciphertext
           );
 
-
-
           if (filePath.includes('.jpg')) {
             const blob = new Blob([decryptedBuffer], { type: 'image/jpeg' });
             const url = URL.createObjectURL(blob);
             const decryptedImage = document.createElement('img');
             decryptedImage.src = url;
-            document.body.appendChild(decryptedImage);
+            document.getElementsByTagName('main')[0].appendChild(decryptedImage);
           } else if (filePath.includes('.mp4')) {
             const blob = new Blob([decryptedBuffer], { type: 'video/mp4' });
             const url = URL.createObjectURL(blob);
@@ -58,8 +72,7 @@
             const videoContainer = document.createElement('video');
             videoContainer.setAttribute('controls', '');
             videoContainer.appendChild(decryptedVideo);
-            document.body.appendChild(videoContainer);
-
+            document.getElementsByTagName('main')[0].appendChild(videoContainer);
           }
         } catch (error) {
           console.error('Decryption failed:', error);
@@ -115,9 +128,11 @@
 </head>
 
 <body>
-  <p><label for="password">Password:</label> <input id="password" type="password">
-    <button id="decrypt">Decrypt</button>
-  </p>
+  <main>
+    <p><label for="password">Password:</label> <input id="password" type="password">
+      <button id="decrypt">Decrypt</button>
+    </p>
+  </main>
 </body>
 
 </html>
