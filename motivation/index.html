@@ -39,15 +39,11 @@
       const response = await fetch(`./files.json`);
       let body = await response.json();
       body.sort((a, b) => {
-        a = [...a];
-        b = [...b];
-        a = a.filter((char) => { return !isNaN(char) });
-        b = b.filter((char) => { return !isNaN(char) });
-        a = a.join('')
-        b = b.join('')
-        a = parseInt(a);
-        b = parseInt(b);
-        return a - b;
+        a = a.substr(0, a.lastIndexOf('.')) // Remove file extensions because the 4 in .mp4 was breaking sorting.
+        b = b.substr(0, b.lastIndexOf('.'))
+        a = parseInt([...a].filter((char) => { return !isNaN(char) }).join('')); // Turn string into an array for filtering, filter out any character that isn't a number, then join the filtered array back into a string. e.g. /41.jpg becomes just 41.
+        b = parseInt([...b].filter((char) => { return !isNaN(char) }).join(''));
+        return a - b; // If a is smaller than b, return a negative number so a is sorted first.
       })
       for (const filePath of body) {
         file = await fetch(`/motivation/${filePath}`);
