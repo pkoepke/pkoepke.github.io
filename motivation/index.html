@@ -37,13 +37,20 @@
     document.addEventListener('DOMContentLoaded', () => document.getElementById('decrypt').addEventListener('click', doEverythingAsync));
     const doEverythingAsync = async () => {
       const response = await fetch(`./files.json`);
-      const body = await response.json();
-      console.log(body);
+      let body = await response.json();
+      body.sort((a, b) => {
+        a = [...a];
+        b = [...b];
+        a = a.filter((char) => { return !isNaN(char) });
+        b = b.filter((char) => { return !isNaN(char) });
+        a = a.join('')
+        b = b.join('')
+        a = parseInt(a);
+        b = parseInt(b);
+        return a - b;
+      })
       for (const filePath of body) {
-        console.log(filePath);
         file = await fetch(`/motivation/${filePath}`);
-        //file = response.blob();
-        console.log(file);
 
         // From Gemini
         const key = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(document.getElementById('password').value));
@@ -58,12 +65,14 @@
             ciphertext
           );
 
+          const containerSpan = document.createElement('span');
           if (filePath.includes('.jpg')) {
             const blob = new Blob([decryptedBuffer], { type: 'image/jpeg' });
             const url = URL.createObjectURL(blob);
             const decryptedImage = document.createElement('img');
             decryptedImage.src = url;
-            document.getElementsByTagName('main')[0].appendChild(decryptedImage);
+            containerSpan.appendChild(decryptedImage)
+            document.getElementsByTagName('main')[0].appendChild(containerSpan);
           } else if (filePath.includes('.mp4')) {
             const blob = new Blob([decryptedBuffer], { type: 'video/mp4' });
             const url = URL.createObjectURL(blob);
@@ -72,7 +81,8 @@
             const videoContainer = document.createElement('video');
             videoContainer.setAttribute('controls', '');
             videoContainer.appendChild(decryptedVideo);
-            document.getElementsByTagName('main')[0].appendChild(videoContainer);
+            containerSpan.appendChild(videoContainer);
+            document.getElementsByTagName('main')[0].appendChild(containerSpan);
           }
         } catch (error) {
           console.error('Decryption failed:', error);
