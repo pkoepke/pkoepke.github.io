@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">
+  <style>
+    img {
+      width: 10rem;
+      height: auto;
+    }
+
+    video {
+      width: 10rem;
+      height: auto;
+    }
+  </style>
+  <link rel="icon" type="image/png" href="/favicon.ico">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => document.getElementById('decrypt').addEventListener('click', doEverythingAsync));
+    const doEverythingAsync = async () => {
+      const response = await fetch(`./files.json`);
+      const body = await response.json();
+      console.log(body);
+      for (const filePath of body) {
+        console.log(filePath);
+        file = await fetch(`/motivation/${filePath}`);
+        //file = response.blob();
+        console.log(file);
+
+        // From Gemini
+        const key = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(document.getElementById('password').value));
+        const encryptedData = await file.arrayBuffer();
+        const iv = new Uint8Array(encryptedData.slice(0, 16));
+        const ciphertext = encryptedData.slice(16);
+
+        try {
+          const decryptedBuffer = await crypto.subtle.decrypt(
+            { name: 'AES-CBC', iv: iv },
+            await crypto.subtle.importKey('raw', key, { name: 'AES-CBC' }, false, ['decrypt']),
+            ciphertext
+          );
+
+
+
+          if (filePath.includes('.jpg')) {
+            const blob = new Blob([decryptedBuffer], { type: 'image/jpeg' });
+            const url = URL.createObjectURL(blob);
+            const decryptedImage = document.createElement('img');
+            decryptedImage.src = url;
+            document.body.appendChild(decryptedImage);
+          } else if (filePath.includes('.mp4')) {
+            const blob = new Blob([decryptedBuffer], { type: 'video/mp4' });
+            const url = URL.createObjectURL(blob);
+            const decryptedVideo = document.createElement('source');
+            decryptedVideo.src = url;
+            const videoContainer = document.createElement('video');
+            videoContainer.setAttribute('controls', '');
+            videoContainer.appendChild(decryptedVideo);
+            document.body.appendChild(videoContainer);
+
+          }
+        } catch (error) {
+          console.error('Decryption failed:', error);
+        }
+      }
+    }
+
+
+
+    const crypto = window.crypto;
+    async function decryptJPGLikeNode(inputFilePath, outputFilePath, password) {
+      try {
+        const algorithm = 'aes-256-cbc';
+        const key = crypto.createHash('sha256').update(password).digest();
+
+        const input = fs.createReadStream(inputFilePath);
+        const output = fs.createWriteStream(outputFilePath);
+
+        let iv = null;
+        let cipher;
+
+        input.on('readable', () => {
+          if (!iv) {
+            iv = input.read(16); // Read the IV from the beginning of the file
+            if (!iv) {
+              return; // Wait for the IV to be available
+            }
+            cipher = crypto.createDecipheriv(algorithm, key, iv);
+            input.pipe(cipher).pipe(output);
+          }
+        });
+
+        return new Promise((resolve, reject) => {
+          output.on('finish', () => {
+            console.log('Decryption complete.');
+            resolve();
+          });
+
+          output.on('error', (err) => {
+            console.error('Decryption error:', err);
+            reject(err);
+          });
+        });
+
+      } catch (error) {
+        console.error('Decryption failed:', error);
+        throw error;
+      }
+    }
+
+
+  </script>
+</head>
+
+<body>
+  <p><label for="password">Password:</label> <input id="password" type="password">
+    <button id="decrypt">Decrypt</button>
+  </p>
+</body>
+
+</html>
