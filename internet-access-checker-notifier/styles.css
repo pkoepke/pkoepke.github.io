@@ -1,7 +1,6 @@
 main {
   font-family: Roboto, Inconsolata, "Roboto Condensed", Inter, "Noto Sans",
     "Open Sans", Helvetica, Aptos, "Liberation Sans", Arial, sans-serif;
-  font-size: 1.2rem;
   max-width: 95%;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -19,12 +18,12 @@ main {
 input[type="checkbox"] {
   vertical-align: middle;
   margin-bottom: 0.4rem;
-  height: auto;
-  width: 2rem;
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
 input[type="number"] {
-  width: 1.5rem;
+  width: 2rem;
 }
 
 input[type="button"] {
