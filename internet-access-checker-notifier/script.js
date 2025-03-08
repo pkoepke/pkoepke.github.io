@@ -119,5 +119,4 @@ document.addEventListener(`DOMContentLoaded`, () => {
   document.getElementById(`button`).addEventListener(`click`, runTests);
   document.getElementById(`font`).addEventListener(`change`, changeFont);
   document.getElementById(`fontSize`).addEventListener(`change`, changeFontSize);
-
 });
