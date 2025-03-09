@@ -1,14 +1,3 @@
-/*  Flow:
-1. Bill Amount or Tip Percent fields change. This could be user input to either field or pressing a % button. % buttons call tipPercentButtonsWithRounding().
-2. Field change kicks off calculatePercentWithRounding().
-3. checkInputsDisplayErrorsReturn() checks if the fields are numbers, displays error messages, and returns True (are numbers, continue calculations) or False (are not numbers, stop calculations and display the original output placeholder).
-4. calculatePercentWithRounding() finishes the calculations and displays the outputs.
-
-Notes:
-1. Gratuitous comments in HTML, CSS, and JS don't matter because the production files are minified.
-2. Inlining the favicon and the H3 icon actually saves 0.2 KB transferred. gzip prevents the duplicate inlined images from being transferred twice. Unsure how that results in a smaller payload, but maybe there's overhead for grabbing the extra PNG file.
-*/
-
 // Add event listeners to the windows to run code when the page loads.
 window.addEventListener('load', displayOriginalOutput, false);
 window.addEventListener('load', giveBillAmountFocus, false);
@@ -99,7 +88,7 @@ function isANumber(numberToCheck) {
 }
 
 function displayOriginalOutput() {
-  document.getElementById('output').innerHTML = 'Tip and total amounts:';
+  document.getElementById('output').textContent = 'Tip and total amounts:';
 }
 
 function isAllowedKey(event) { // combining several answers from http://stackoverflow.com/questions/2808184/restricting-input-to-textbox-allowing-only-numbers-and-decimal-point
@@ -198,10 +187,10 @@ let oldInput = ''; // Placeholder for previous inputs so we can prevent entry of
 
 const inputCheck = (input) => {
   oldInput = input.target.value;
-  console.log(`New input: ${input.data}`);
+  /*console.log(`New input: ${input.data}`);
   console.log(`Previous data: ${input.target.value}`);
   console.log(`Previous and new concatenated: ${input.target.value.toString() + input.data}`);
-  console.log(`Is it a number? ${!isNaN(parseFloat(input.target.value.toString() + input.data))}`);
+  console.log(`Is it a number? ${!isNaN(parseFloat(input.target.value.toString() + input.data))}`);*/
 }
 
 window.addEventListener("load", () => {
