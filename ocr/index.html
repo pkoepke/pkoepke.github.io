@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('/sw.js')
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#012169">
+  <meta name="author" content="Paul Koepke">
+  <link rel="icon" type="image/png" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <title>OCR in the browser</title>
+  <link rel="stylesheet" href="/styles_dark.css">
+  <styles>
+
+  </styles>
+  <script src='./tesseract.min.js'></script>
+  <script type="module">
+    import { createWorker } from './tesseract.js';
+
+    (async () => {
+      const worker = await createWorker('eng');
+      const ret = await worker.recognize('https://tesseract.projectnaptha.com/img/eng_bw.png');
+      console.log(ret.data.text);
+      await worker.terminate();
+    })();
+  </script>
+</head>
+
+<body>
+  <h1>OCR in the browser</h1>
+  <main>
+    <p>
+      Using <a href="https://github.com/naptha/tesseract.js">tesseract.js</a>.
+    </p>
+    <div id="output"></div>
+  </main>
+</body>
+
+</html>
