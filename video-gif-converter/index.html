@@ -1,0 +1,200 @@
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <!--<link rel="manifest" href="manifest.json">-->
+  <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('/sw.js')
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#012169">
+  <meta name="author" content="Paul Koepke">
+  <meta name="description" content="Converts videos and GIFs in your browser, no upload needed.">
+  <meta property="og:title" content="Video and GIF converter" />
+  <meta property="og:description" content="Converts videos and GIFs in your browser, no upload needed." />
+  <meta property="og:image" content="./favicon.ico" />
+  <meta property="og:url" content="/" />
+  <script src="./index.8cfc62b9.js" defer=""></script>
+  <link rel="icon" type="image/png" href="./favicon.7155ca86.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <title>Video and gif converter</title>
+  <!--<style id="styles_dark">
+  body {
+  font-family: Roboto, Inter, "Noto Sans", "Open Sans", Helvetica, Aptos, "Liberation Sans", Arial, sans-serif;
+  color: white;
+  margin: 0;
+  background-color: #000000;
+  max-width: 70rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.05rem;
+  }
+
+  .roboto {
+  font-family: Roboto, Inter, "Noto Sans", "Open Sans", sans-serif;
+  }
+
+  .inter {
+  font-family: Inter, Roboto, "Noto Sans", "Open Sans", sans-serif;
+  }
+
+  h1,
+  .headerText {
+  font-size: 1.3rem;
+  padding: 0.4rem;
+  margin: 0px;
+  background-color: #012169;
+  color: #ffffff;
+  font-weight: normal;
+  text-align: center;
+  }
+
+  h1>a,
+  .headerText {
+  color: white;
+  text-decoration: none;
+  }
+
+  h1>a:hover {
+  text-decoration: underline;
+  }
+
+  main {
+  padding: 0.2rem;
+  max-width: 69rem;
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+  .navigation_menu {
+  background-color: #003fd1;
+  margin: 1rem 0 1rem 0;
+  padding: 0;
+  text-align: center;
+  }
+
+  .link_list {
+  display: inline-block;
+  padding: 0.5rem 0.3rem 0.5rem 0.3rem;
+  color: white;
+  }
+
+  a {
+  color: #0085f3;
+  }
+
+  .link_list:hover {
+  background-color: #001a57;
+  }
+
+  .content {
+  clear: both;
+  margin: 0 10px 0 10px;
+  }
+
+  img {
+  height: 0.8em;
+  /*filter: invert(1);*/
+  position: relative;
+  top: 0.1em;
+  left: 0.2em;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+  width: auto;
+  border: 1px solid #696969;
+  background-color: #1d1d1d;
+  color: white;
+  height: 1.2rem;
+  }
+
+  textarea {
+  height: auto;
+  }
+
+  input:focus,
+  select:focus {
+  border: 1px solid lightgray;
+  background-color: #2d2d2d;
+  outline: 0;
+  }
+
+  /* Firefox - prevent number buttons/spinners */
+  input[type="number"] {
+  appearance: textfield;
+  }
+
+  /* Webkit - prevent number buttons/spinners */
+  input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  }
+
+  label {
+  height: 1.4em;
+  }
+  </style>-->
+  <link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">
+  <style>
+    body {
+      font-size: 1.5rem;
+    }
+
+    details {
+      font-size: 1rem;
+    }
+
+    button {
+      height: 3rem;
+      font-size: 1.5rem;
+    }
+
+    input,
+    select {
+      min-width: 3rem;
+      height: 3rem;
+      font-size: 1.5rem;
+    }
+
+    .outputImg {
+      width: auto;
+      max-width: 90%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="h1">
+    <img src="./animated_images_24dp.e85be87f.png">
+    <a href="/" class="headerText nowrap">Video and gif converter</a>
+  </h1>
+  <main class="roboto">
+    <details>
+      <summary>Tap for details</summary>
+      <p>This app will convert videos and images to other formats (e.g., video to GIF) on your device. It does not upload your data anywhere. Since it uses your device's processor, it may take a long time for large videos (i.e., long videos or videos in high resolutions) depending on your device's computing power.</p>
+    </details>
+    <div id="input">
+      <p><input type="file" id="fileInput"></p>
+      <p><label for="outputType">Choose an output type:</label>
+        <select id="outputType">
+          <option value="gif" selected="selected">gif</option>
+          <option value="mp4">mp4</option>
+        </select>
+      </p>
+      <button id="startTranscode">Start transcode</button>
+    </div>
+    <div id="progress"></div>
+    <div id="output">
+    </div>
+  </main>
+</body>
+
+</html>
