@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <!-- build with `npx parcel watch index.html --public-url /video-gif-converter/` -->
@@ -26,166 +27,178 @@
   <link rel="shortcut icon" href="/video-gif-converter/favicon.ico">
   <title>Video and gif converter</title>
   <!--<link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">-->
-  <style id="styles_dark">body {
-  color: #fff;
-  background-color: #000;
-  max-width: 70rem;
-  margin: 0 auto;
-  font-family: Roboto, Inter, Noto Sans, Open Sans, Helvetica, Aptos, Liberation Sans, Arial, sans-serif;
-  font-size: 1.05rem;
-}
+  <style id="styles_dark">
+    body {
+      color: #fff;
+      background-color: #000;
+      max-width: 70rem;
+      margin: 0 auto;
+      font-family: Roboto, Inter, Noto Sans, Open Sans, Helvetica, Aptos, Liberation Sans, Arial, sans-serif;
+      font-size: 1.05rem;
+    }
 
-.roboto {
-  font-family: Roboto, Inter, Noto Sans, Open Sans, sans-serif;
-}
+    .roboto {
+      font-family: Roboto, Inter, Noto Sans, Open Sans, sans-serif;
+    }
 
-.inter {
-  font-family: Inter, Roboto, Noto Sans, Open Sans, sans-serif;
-}
+    .inter {
+      font-family: Inter, Roboto, Noto Sans, Open Sans, sans-serif;
+    }
 
-h1, .headerText {
-  color: #fff;
-  text-align: center;
-  background-color: #012169;
-  margin: 0;
-  padding: .4rem;
-  font-size: 1.3rem;
-  font-weight: normal;
-}
+    h1,
+    .headerText {
+      color: #fff;
+      text-align: center;
+      background-color: #012169;
+      margin: 0;
+      padding: .4rem;
+      font-size: 1.3rem;
+      font-weight: normal;
+    }
 
-h1 > a, .headerText {
-  color: #fff;
-  text-decoration: none;
-}
+    h1>a,
+    .headerText {
+      color: #fff;
+      text-decoration: none;
+    }
 
-h1 > a:hover {
-  text-decoration: underline;
-}
+    h1>a:hover {
+      text-decoration: underline;
+    }
 
-main {
-  max-width: 69rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: .2rem;
-}
+    main {
+      max-width: 69rem;
+      margin-left: auto;
+      margin-right: auto;
+      padding: .2rem;
+    }
 
-.navigation_menu {
-  text-align: center;
-  background-color: #003fd1;
-  margin: 1rem 0;
-  padding: 0;
-}
+    .navigation_menu {
+      text-align: center;
+      background-color: #003fd1;
+      margin: 1rem 0;
+      padding: 0;
+    }
 
-.link_list {
-  color: #fff;
-  padding: .5rem .3rem;
-  display: inline-block;
-}
+    .link_list {
+      color: #fff;
+      padding: .5rem .3rem;
+      display: inline-block;
+    }
 
-a {
-  color: #0085f3;
-}
+    a {
+      color: #0085f3;
+    }
 
-.link_list:hover {
-  background-color: #001a57;
-}
+    .link_list:hover {
+      background-color: #001a57;
+    }
 
-.content {
-  clear: both;
-  margin: 0 10px;
-}
+    .content {
+      clear: both;
+      margin: 0 10px;
+    }
 
-img {
-  height: .8em;
-  position: relative;
-  top: .1em;
-  left: .2em;
-}
+    img {
+      height: .8em;
+      position: relative;
+      top: .1em;
+      left: .2em;
+    }
 
-input, select, textarea, button {
-  color: #fff;
-  background-color: #1d1d1d;
-  border: 1px solid #696969;
-  width: auto;
-  height: 1.2rem;
-}
+    input,
+    select,
+    textarea,
+    button {
+      color: #fff;
+      background-color: #1d1d1d;
+      border: 1px solid #696969;
+      width: auto;
+      height: 1.2rem;
+    }
 
-textarea {
-  height: auto;
-}
+    textarea {
+      height: auto;
+    }
 
-input:focus, select:focus {
-  background-color: #2d2d2d;
-  border: 1px solid #d3d3d3;
-  outline: 0;
-}
+    input:focus,
+    select:focus {
+      background-color: #2d2d2d;
+      border: 1px solid #d3d3d3;
+      outline: 0;
+    }
 
-input[type="number"] {
-  appearance: textfield;
-}
+    input[type="number"] {
+      appearance: textfield;
+    }
 
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
 
-label {
-  height: 1.4em;
-}
-</style>
-  <style>body {
-  font-size: 1.2rem;
-}
+    label {
+      height: 1.4em;
+    }
+  </style>
+  <style>
+    body {
+      font-size: 1.2rem;
+    }
 
-main {
-  max-width: 80rem;
-  padding: 1rem 2rem;
-}
+    main {
+      max-width: 80rem;
+      padding: 1rem 2rem;
+    }
 
-.flexbox-column {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  display: flex;
-}
+    .flexbox-column {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      display: flex;
+    }
 
-details {
-  margin: 1rem 0;
-  font-size: 1rem;
-}
+    details {
+      margin: 1rem 0;
+      font-size: 1rem;
+    }
 
-#inputs {
-  width: 100%;
-}
+    #inputs {
+      width: 100%;
+    }
 
-button {
-  height: 2rem;
-  padding: 0 .6rem;
-  font-size: 1.2rem;
-}
+    button {
+      height: 2rem;
+      padding: 0 .6rem;
+      font-size: 1.2rem;
+    }
 
-input, select {
-  min-width: 3rem;
-  height: 2rem;
-  padding: 0 0 0 .2rem;
-  font-size: 1.2rem;
-}
+    input,
+    select {
+      min-width: 3rem;
+      height: 2rem;
+      padding: 0 0 0 .2rem;
+      font-size: 1.2rem;
+    }
 
-.inputImg, .outputImg, .inputVideo, .outputVideo {
-  width: auto;
-  max-width: 90%;
-  height: auto;
-}
+    .inputImg,
+    .outputImg,
+    .inputVideo,
+    .outputVideo {
+      width: auto;
+      max-width: 90%;
+      height: auto;
+    }
 
-#fileInput {
-  display: none;
-}
+    #fileInput {
+      display: none;
+    }
 
-.centered {
-  text-align: center;
-  margin: auto;
-}
-</style>
+    .centered {
+      text-align: center;
+      margin: auto;
+    }
+  </style>
 </head>
 
 <body>
