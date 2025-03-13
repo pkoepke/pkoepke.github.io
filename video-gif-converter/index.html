@@ -1,198 +1,223 @@
 <html>
 
+<!-- build with `npx parcel watch index.html --public-url /video-gif-converter/` -->
+
 <head>
 
   <meta charset="utf-8">
   <!--<link rel="manifest" href="manifest.json">-->
-  <script>
+  <!--<script>
     if (typeof navigator.serviceWorker !== 'undefined') {
       navigator.serviceWorker.register('/sw.js')
     }
-  </script>
+  </script>-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="theme-color" content="#012169">
   <meta name="author" content="Paul Koepke">
   <meta name="description" content="Converts videos and GIFs in your browser, no upload needed.">
-  <meta property="og:title" content="Video and GIF converter" />
-  <meta property="og:description" content="Converts videos and GIFs in your browser, no upload needed." />
-  <meta property="og:image" content="./favicon.ico" />
-  <meta property="og:url" content="/" />
-  <script src="./index.8cfc62b9.js" defer=""></script>
-  <link rel="icon" type="image/png" href="./favicon.7155ca86.ico">
-  <link rel="shortcut icon" href="/favicon.ico">
+  <meta property="og:title" content="Video and GIF converter">
+  <meta property="og:description" content="Converts videos and GIFs in your browser, no upload needed.">
+  <meta property="og:image" content="/video-gif-converter/favicon.ico">
+  <meta property="og:url" content="/">
+  <script src="/video-gif-converter/index.8987b93d.js" defer=""></script>
+  <link rel="icon" type="image/png" href="/video-gif-converter/favicon.ico">
+  <link rel="shortcut icon" href="/video-gif-converter/favicon.ico">
   <title>Video and gif converter</title>
-  <!--<style id="styles_dark">
-  body {
-  font-family: Roboto, Inter, "Noto Sans", "Open Sans", Helvetica, Aptos, "Liberation Sans", Arial, sans-serif;
-  color: white;
-  margin: 0;
-  background-color: #000000;
+  <!--<link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">-->
+  <style id="styles_dark">body {
+  color: #fff;
+  background-color: #000;
   max-width: 70rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+  font-family: Roboto, Inter, Noto Sans, Open Sans, Helvetica, Aptos, Liberation Sans, Arial, sans-serif;
   font-size: 1.05rem;
-  }
+}
 
-  .roboto {
-  font-family: Roboto, Inter, "Noto Sans", "Open Sans", sans-serif;
-  }
+.roboto {
+  font-family: Roboto, Inter, Noto Sans, Open Sans, sans-serif;
+}
 
-  .inter {
-  font-family: Inter, Roboto, "Noto Sans", "Open Sans", sans-serif;
-  }
+.inter {
+  font-family: Inter, Roboto, Noto Sans, Open Sans, sans-serif;
+}
 
-  h1,
-  .headerText {
-  font-size: 1.3rem;
-  padding: 0.4rem;
-  margin: 0px;
-  background-color: #012169;
-  color: #ffffff;
-  font-weight: normal;
+h1, .headerText {
+  color: #fff;
   text-align: center;
-  }
+  background-color: #012169;
+  margin: 0;
+  padding: .4rem;
+  font-size: 1.3rem;
+  font-weight: normal;
+}
 
-  h1>a,
-  .headerText {
-  color: white;
+h1 > a, .headerText {
+  color: #fff;
   text-decoration: none;
-  }
+}
 
-  h1>a:hover {
+h1 > a:hover {
   text-decoration: underline;
-  }
+}
 
-  main {
-  padding: 0.2rem;
+main {
   max-width: 69rem;
   margin-left: auto;
   margin-right: auto;
-  }
+  padding: .2rem;
+}
 
-  .navigation_menu {
-  background-color: #003fd1;
-  margin: 1rem 0 1rem 0;
-  padding: 0;
+.navigation_menu {
   text-align: center;
-  }
+  background-color: #003fd1;
+  margin: 1rem 0;
+  padding: 0;
+}
 
-  .link_list {
+.link_list {
+  color: #fff;
+  padding: .5rem .3rem;
   display: inline-block;
-  padding: 0.5rem 0.3rem 0.5rem 0.3rem;
-  color: white;
-  }
+}
 
-  a {
+a {
   color: #0085f3;
-  }
+}
 
-  .link_list:hover {
+.link_list:hover {
   background-color: #001a57;
-  }
+}
 
-  .content {
+.content {
   clear: both;
-  margin: 0 10px 0 10px;
-  }
+  margin: 0 10px;
+}
 
-  img {
-  height: 0.8em;
-  /*filter: invert(1);*/
+img {
+  height: .8em;
   position: relative;
-  top: 0.1em;
-  left: 0.2em;
-  }
+  top: .1em;
+  left: .2em;
+}
 
-  input,
-  select,
-  textarea,
-  button {
-  width: auto;
-  border: 1px solid #696969;
+input, select, textarea, button {
+  color: #fff;
   background-color: #1d1d1d;
-  color: white;
+  border: 1px solid #696969;
+  width: auto;
   height: 1.2rem;
-  }
+}
 
-  textarea {
+textarea {
   height: auto;
-  }
+}
 
-  input:focus,
-  select:focus {
-  border: 1px solid lightgray;
+input:focus, select:focus {
   background-color: #2d2d2d;
+  border: 1px solid #d3d3d3;
   outline: 0;
-  }
+}
 
-  /* Firefox - prevent number buttons/spinners */
-  input[type="number"] {
+input[type="number"] {
   appearance: textfield;
-  }
+}
 
-  /* Webkit - prevent number buttons/spinners */
-  input[type="number"]::-webkit-inner-spin-button {
+input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  }
+}
 
-  label {
+label {
   height: 1.4em;
-  }
-  </style>-->
-  <link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">
-  <style>
-    body {
-      font-size: 1.5rem;
-    }
+}
+</style>
+  <style>body {
+  font-size: 1.2rem;
+}
 
-    details {
-      font-size: 1rem;
-    }
+main {
+  max-width: 80rem;
+  padding: 1rem 2rem;
+}
 
-    button {
-      height: 3rem;
-      font-size: 1.5rem;
-    }
+.flexbox-column {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  display: flex;
+}
 
-    input,
-    select {
-      min-width: 3rem;
-      height: 3rem;
-      font-size: 1.5rem;
-    }
+details {
+  margin: 1rem 0;
+  font-size: 1rem;
+}
 
-    .outputImg {
-      width: auto;
-      max-width: 90%;
-      height: auto;
-    }
-  </style>
+#inputs {
+  width: 100%;
+}
+
+button {
+  height: 2rem;
+  padding: 0 .6rem;
+  font-size: 1.2rem;
+}
+
+input, select {
+  min-width: 3rem;
+  height: 2rem;
+  padding: 0 0 0 .2rem;
+  font-size: 1.2rem;
+}
+
+.inputImg, .outputImg, .inputVideo, .outputVideo {
+  width: auto;
+  max-width: 90%;
+  height: auto;
+}
+
+#fileInput {
+  display: none;
+}
+
+.centered {
+  text-align: center;
+  margin: auto;
+}
+</style>
 </head>
 
 <body>
   <h1 id="h1">
-    <img src="./animated_images_24dp.e85be87f.png">
+    <img src="/video-gif-converter/animated_images_24dp.6c23fb39.png">
     <a href="/" class="headerText nowrap">Video and gif converter</a>
   </h1>
-  <main class="roboto">
-    <details>
-      <summary>Tap for details</summary>
-      <p>This app will convert videos and images to other formats (e.g., video to GIF) on your device. It does not upload your data anywhere. Since it uses your device's processor, it may take a long time for large videos (i.e., long videos or videos in high resolutions) depending on your device's computing power.</p>
-    </details>
-    <div id="input">
-      <p><input type="file" id="fileInput"></p>
-      <p><label for="outputType">Choose an output type:</label>
+  <main class="roboto flexbox-column">
+    <div id="inputs" class="flexbox-column">
+
+      <details class="centered">
+        <summary>Tap for details</summary>
+        <p>This app will convert videos and images to other formats (e.g., video to GIF) on your device. It does not upload your data anywhere. Since it uses your device's processor, it may take a long time for large videos (i.e., long videos or videos in high resolutions) depending on your device's computing power.</p>
+        <p>The embeds ffmpeg in your browser using <a href="https://github.com/ffmpegwasm/ffmpeg.wasm">ffmpeg.wasm</a>. ffmpeg has too many options to show all of them in a simple UI, so I've tried to select only the most useful options. Feedback on other options to add is welcome, but since I'm a hobbyist doing this for free I can't guarantee I'll get around to every request.</p>
+      </details>
+
+      <p class="centered">
+        <input type="file" id="fileInput">
+        <button id="chooseFile">Choose a file to convert</button>
+      </p>
+      <p class="centered"><label for="outputType">Choose an output type:</label>
         <select id="outputType">
           <option value="gif" selected="selected">gif</option>
           <option value="mp4">mp4</option>
+          <option value="webm">webm</option>
         </select>
       </p>
-      <button id="startTranscode">Start transcode</button>
+      <p class="centered"><button id="startTranscode">Begin conversion</button> <span id="progress"></span></p>
     </div>
-    <div id="progress"></div>
-    <div id="output">
+    <div id="outputs" class="flexbox-column">
+      <p id="originalFile" class="centered"><span></span></p>
+      <p id="output" class="centered"><span></span></p>
     </div>
   </main>
 </body>
