@@ -63,7 +63,9 @@ const getResourcesToCache = async () => {
 };*/
 
 const putInCache = async (request, response) => {
-  if (request.url.includes('internet-access-checker-notifier/test-files') // Don't cache Internet Access Checker test files.
+  if (
+    request.url.includes('internet-access-checker-notifier/test-files') // Don't cache Internet Access Checker test files.
+    || request.url.includes('internet-access-checker-notifier/test-files')
   ) {
     return;
   } else {
