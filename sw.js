@@ -63,9 +63,10 @@ const getResourcesToCache = async () => {
 };*/
 
 const putInCache = async (request, response) => {
-  if (
-    request.url.includes('internet-access-checker-notifier/test-files') // Don't cache Internet Access Checker test files.
-    || request.url.includes('internet-access-checker-notifier/test-files')
+  if ( // Don't cache Internet Access Checker test files, or video conversion test files. 
+    request.url.includes('internet-access-checker-notifier/test-files') ||
+    request.url.includes('lindsay-ellis-thanks-i-hate-it.mp4') ||
+    request.url.includes('work-hard-party-hard-tape-flip.gif')
   ) {
     return;
   } else {

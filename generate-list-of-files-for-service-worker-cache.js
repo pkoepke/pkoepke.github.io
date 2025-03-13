@@ -71,9 +71,10 @@ walk('./', function (err, results) {
       path.includes(`cache.manifest`) ||
       path.includes(`README.md`) ||
       path.includes(`/pkoepke.github.io/icons/`) || // Want everything under this path but not this exact path.      
-      path.includes(`.DS_Store`)
-      /*||
-      path.includes(`/pkoepke.github.io/unitpricecomparison`)*/
+      path.includes(`.DS_Store`) ||
+      path.includes('lindsay-ellis-thanks-i-hate-it.mp4') || // Don't cache VGC test files
+      path.includes('work-hard-party-hard-tape-flip.gif')
+
     )
   })
 
