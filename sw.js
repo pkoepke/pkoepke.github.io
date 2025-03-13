@@ -46,10 +46,24 @@ const getResourcesToCache = async () => {
 // Used in cacheFirst() to save resources to cache as the user navigates the site.
 // Slightly different from addResourcesToCache() - in this case, we already have a response with the resource so we
 // don't need to use cache.add() to get the resource, we can save the already-received resource.
+/*const putInCache = async (request, response) => {
+  try {
+    if (request.url.includes('internet-access-checker-notifier/test-files') || // Don't cache Internet Access Checker test files.
+      request.url.includess(`Lindsay Ellis thanks I hate it.mp4`) ||
+      request.url.includess(`work hard party hard tape.gif`)
+    ) {
+      return;
+    } else {
+      const cache = await caches.open(cacheName);
+      cache.put(request, response);
+    }
+  } catch (e) {
+    console.log(`error caching ${request.url}`)
+  }
+};*/
+
 const putInCache = async (request, response) => {
-  if (request.url.includes('internet-access-checker-notifier/test-files') ||// Don't cache Internet Access Checker test files.
-    request.url.includess(`Lindsay Ellis thanks I hate it.mp4`) ||
-    request.url.includess(`work hard party hard tape.gif`)
+  if (request.url.includes('internet-access-checker-notifier/test-files') // Don't cache Internet Access Checker test files.
   ) {
     return;
   } else {
