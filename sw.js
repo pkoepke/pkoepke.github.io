@@ -47,7 +47,9 @@ const getResourcesToCache = async () => {
 // Slightly different from addResourcesToCache() - in this case, we already have a response with the resource so we
 // don't need to use cache.add() to get the resource, we can save the already-received resource.
 const putInCache = async (request, response) => {
-  if (request.url.includes('internet-access-checker-notifier/test-files') // Don't cache Internet Access Checker test files.
+  if (request.url.includes('internet-access-checker-notifier/test-files') ||// Don't cache Internet Access Checker test files.
+    request.url.includess(`Lindsay Ellis thanks I hate it.mp4`) ||
+    request.url.includess(`work hard party hard tape.gif`)
   ) {
     return;
   } else {
