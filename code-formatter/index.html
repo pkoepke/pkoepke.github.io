@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('/sw.js')
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Paul Koepke">
+  <meta name="description" content="Format code so it looks good in light or dark mode.">
+  <title>Code formatter</title>
+  <link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">
+  <link rel="icon" type="image/png" href="/favicon.ico">
+  <meta property="og:title" content="Code formatter" />
+  <meta property="og:description" content="Format code so it looks good in light or dark mode." />
+  <meta property="og:image" content="/favicon.png" />
+  <meta property="og:url" content="/" />
+  <style>
+    main {
+      color: #ffe600;
+      background-color: black;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    #input {
+      width: 90%;
+      margin: 1rem auto;
+      height: 40rem;
+    }
+
+    #output {
+      white-space: pre;
+      width: 90%;
+      margin: 1rem auto;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('input').addEventListener('change', copyText);
+      document.getElementById('input').addEventListener('input', copyText);
+    })
+
+    const copyText = () => {
+      document.getElementById('output').textContent = document.getElementById('input').value;
+    }
+  </script>
+</head>
+
+<body>
+  <h1 id="h1"><a href="/">Code formatter</a></h1>
+
+  <main>
+    <div class="centered"><textarea id="input"></textarea></div>
+    <p id="output"></p>
+  </main>
+</body>
+
+</html>
