@@ -618,6 +618,7 @@ let mediainfo = '';
             coreURL: await (0, _util.toBlobURL)(`${baseURL}ffmpeg-core.js`, 'text/javascript'),
             wasmURL: await (0, _util.toBlobURL)(`${baseURL}ffmpeg-core.wasm`, 'application/wasm')
         });
+        console.log(`ffmpeg: ${ffmpeg}`);
         //const mediainfo = await mediaInfoFactory();
         mediainfo = await (0, _mediainfoJsDefault.default)({
             locateFile: function(path, scriptDirectory) {
@@ -627,18 +628,18 @@ let mediainfo = '';
         });
     } catch (e) {
         console.log(`Error loading ffmpeg: ${e}`);
-        const baseURL = 'https://unpkg.com/@ffmpeg/core/dist/umd';
-        await ffmpeg.load({
-            coreURL: await (0, _util.toBlobURL)(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-            wasmURL: await (0, _util.toBlobURL)(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm')
-        });
-        mediainfo = await (0, _mediainfoJsDefault.default)({
-            locateFile: function(path, scriptDirectory) {
-                // Customize the path here.
-                return "./MediaInfoModule.wasm"; // Replace with your actual path.
-            }
-        });
-    }
+    /*const baseURL = 'https://unpkg.com/@ffmpeg/core/dist/umd'
+    await ffmpeg.load({
+      coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+      wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+    });
+
+    mediainfo = await mediaInfoFactory(({
+      locateFile: function (path, scriptDirectory) {
+        // Customize the path here.
+        return "./MediaInfoModule.wasm"; // Replace with your actual path.
+      }
+    }));*/ }
 })();
 const transcode = async ()=>{
     const file = await document.getElementById("fileInput").files[0] ? await document.getElementById("fileInput").files[0] : await processFetchedFile(); // With a default file for easy testing.
