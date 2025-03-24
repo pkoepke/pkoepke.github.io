@@ -117,6 +117,6 @@ const changeFontSize = () => {
 
 document.addEventListener(`DOMContentLoaded`, () => {
   document.getElementById(`button`).addEventListener(`click`, runTests);
-  document.getElementById(`font`).addEventListener(`change`, changeFont);
-  document.getElementById(`fontSize`).addEventListener(`change`, changeFontSize);
+  try { document.getElementById(`font`).addEventListener(`change`, changeFont); } catch (e) { } // Not using this currently but may bring it back in the future.
+  try { document.getElementById(`fontSize`).addEventListener(`change`, changeFontSize); } catch (e) { } // Not using this currently but may bring it back in the future.
 });
