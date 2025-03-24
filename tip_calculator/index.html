@@ -28,7 +28,7 @@
     }
   </style>
   <script src="./tesseract.min.js"></script>
-  <script type="module">
+  <script>
     const handleFile = async (file) => {
       const worker = await Tesseract.createWorker('eng');
       const ret = await worker.recognize(file);
