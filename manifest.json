@@ -13,11 +13,11 @@
   "screenshots": [
     {
       "src": "/screenshots/paulkoepke.com screenshot.png",
-      "sizes": "512x512"
+      "sizes": "1344x861"
     },
     {
       "src": "/screenshots/paulkoepke.com screenshot.png",
-      "sizes": "512x512",
+      "sizes": "1344x861",
       "form_factor": "wide"
     }
   ],
