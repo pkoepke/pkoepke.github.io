@@ -1,6 +1,30 @@
+const formatDoubleQuotes = (str) => { // Change double quotes to opening and closing quotes since some OSes and apps don't allow plain double quotes in filenames.
+  if (typeof str !== 'string') {
+    return "Input must be a string.";
+  }
+
+  let result = "";
+  let openQuote = true; // Start with the assumption that the next quote is an opening one
+
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === '"') {
+      if (openQuote) {
+        result += '\u201C'; // Left double quotation mark (opening)
+      } else {
+        result += '\u201D'; // Right double quotation mark (closing)
+      }
+      openQuote = !openQuote; // Toggle the state for the next quote
+    } else {
+      result += str[i];
+    }
+  }
+
+  return result;
+}
+
 const run = (e) => {
   let filename = document.getElementById('input').value;
-  let illegalChars = ['\\', '/', ':', '*', '?', '"', '<', '>', '\n', '\r', '&', ','];
+  let illegalChars = ['\\', '/', ':', '*', '?', '<', '>', '\n', '\r', '&', ','];
   if (document.getElementById('toLowercase').checked) {
     filename = filename.toLowerCase();
   }
@@ -15,12 +39,16 @@ const run = (e) => {
       filename = filename.replaceAll(char, (char == '\n' || char == '\r') ? ' ' : char == '\\' ? '_' : ''); // replce \n and \r with a space, \ with _, and just remove everything else.
     }
   }
+
+  filename = formatDoubleQuotes(filename);
+
   let numberOfChars = document.getElementById(`characterLimit`).value;
   if (!(numberOfChars == `` || isNaN(numberOfChars))) {
     filename = filename.substring(0, numberOfChars);
   }
   document.getElementById('output').textContent = filename;
 }
+
 
 const paste = () => {
   navigator.clipboard
