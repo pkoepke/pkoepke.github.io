@@ -29,7 +29,7 @@ const run = (e) => {
     filename = filename.toLowerCase();
   }
   if (document.getElementById('removePunctuation').checked) {
-    illegalChars = illegalChars.concat(['!', '#', '$', '%', '(', ')', '+', ',', '.', ';', '@', '[', ']', '^', '`', '{', '|', '}', '~'])
+    illegalChars = illegalChars.concat(['!', '#', '$', '%', '(', ')', '+', ',', '.', ';', '@', '[', ']', '^', '`', '{', '|', '}', '~', '“', '”', '∕']); // Add punctuation to the list of illegal characters.
   }
   if (document.getElementById('decodeUri').checked) {
     filename = decodeURIComponent(filename);
@@ -40,6 +40,7 @@ const run = (e) => {
     }
   }
 
+  filename = filename.replaceAll('/', '∕') // Replace slashes with division symbol.
   filename = formatDoubleQuotes(filename);
 
   let numberOfChars = document.getElementById(`characterLimit`).value;
