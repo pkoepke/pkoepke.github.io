@@ -24,7 +24,7 @@ const formatDoubleQuotes = (str) => { // Change double quotes to opening and clo
 
 const run = (e) => {
   let filename = document.getElementById('input').value;
-  let illegalChars = ['\\', '/', ':', '*', '?', '<', '>', '\n', '\r', '&', ','];
+  let illegalChars = ['\\', ':', '*', '?', '<', '>', '\n', '\r', '&', ','];
   if (document.getElementById('toLowercase').checked) {
     filename = filename.toLowerCase();
   }
