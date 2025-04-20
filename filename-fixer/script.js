@@ -41,7 +41,9 @@ const run = (e) => {
     }
   }
 
-  filename = filename.replaceAll('  ', ' ')// Remove double spaces
+  while (filename.includes('  ')) { // Remove double spaces
+    filename = filename.replaceAll('  ', ' ')
+  }
 
   filename = filename.replaceAll('/', '∕') // Replace slashes with division symbol.
 
