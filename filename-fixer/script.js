@@ -29,19 +29,21 @@ const run = (e) => {
     filename = filename.toLowerCase();
   }
   if (document.getElementById('removePunctuation').checked) {
-    illegalChars = illegalChars.concat(['!', '#', '$', '%', '(', ')', '+', ',', '.', ';', '@', '[', ']', '^', '`', '{', '|', '}', '~', '“', '”', '∕']); // Add punctuation to the list of illegal characters.
+    illegalChars = illegalChars.concat(['!', '#', '$', '%', '(', ')', '+', ',', '.', ';', '@', '[', ']', '^', '`', '{', '|', '}', '~', '“', '”', '∕', '“', '”']); // Add punctuation to the list of illegal characters.
   }
   if (document.getElementById('decodeUri').checked) {
     filename = decodeURIComponent(filename);
   }
+  filename = formatDoubleQuotes(filename);
   if (document.getElementById('removeIllegalChars').checked) {
     for (const char of illegalChars) {
       filename = filename.replaceAll(char, (char == '\n' || char == '\r') ? ' ' : char == '\\' ? '_' : ''); // replce \n and \r with a space, \ with _, and just remove everything else.
     }
   }
 
+  filename = filename.replaceAll('  ', ' ')// Remove double spaces
+
   filename = filename.replaceAll('/', '∕') // Replace slashes with division symbol.
-  filename = formatDoubleQuotes(filename);
 
   let numberOfChars = document.getElementById(`characterLimit`).value;
   if (!(numberOfChars == `` || isNaN(numberOfChars))) {
