@@ -47,5 +47,9 @@
   "launch_handler": {
     "client_mode": ["focus-existing", "auto"]
   },
-  "lang": "en-us"
+  "lang": "en-us",
+  "scope_extensions": [
+    { "type": "origin", "origin": "https://paulkoepke.com" },
+    { "type": "origin", "origin": "https://www.paulkoepke.com" }
+  ]
 }
