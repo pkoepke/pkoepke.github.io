@@ -53,5 +53,6 @@
     { "type": "origin", "origin": "https://www.paulkoepke.com" }
   ],
   "iarc_rating_id": "63acb05c-6b70-4285-ab7f-2be2afe451d1",
-  "prefer_related_applications": false
+  "prefer_related_applications": false,
+  "related_applications": []
 }
