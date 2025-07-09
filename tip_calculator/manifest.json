@@ -35,6 +35,17 @@
     }
   ],
   "shortcuts": [],
-  "id": "roundingtipcalculator",
-  "display_override": ["window-controls-overlay"]
+  "id": "com.paulkoepke.roundingtipcalculator",
+  "display_override": ["window-controls-overlay"]],
+  "launch_handler": {
+    "client_mode": ["focus-existing", "auto"]
+  },
+  "lang": "en-us",
+  "scope_extensions": [
+    { "type": "origin", "origin": "https://paulkoepke.com" },
+    { "type": "origin", "origin": "https://www.paulkoepke.com" }
+  ],
+  "iarc_rating_id": "3de9767e-41df-4c87-9a8d-3f3c61f4c747",
+  "prefer_related_applications": false,
+  "related_applications": []
 }
