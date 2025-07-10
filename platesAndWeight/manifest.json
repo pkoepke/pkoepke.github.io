@@ -56,5 +56,19 @@
       "src": "plates and weight screenshot desktop and large tablet view.png",
       "type": "image/jpg"
     }
-  ]
+  ],
+  "shortcuts": [],
+  "id": "com.paulkoepke.platesAndWeight",
+  "display_override": ["window-controls-overlay"],
+  "launch_handler": {
+    "client_mode": ["focus-existing", "auto"]
+  },
+  "lang": "en-us",
+  "scope_extensions": [
+    { "type": "origin", "origin": "https://paulkoepke.com" },
+    { "type": "origin", "origin": "https://www.paulkoepke.com" }
+  ],
+  "iarc_rating_id": "4c4387f1-c2c5-4069-98dc-391a60ee74fd",
+  "prefer_related_applications": false,
+  "related_applications": []
 }
