@@ -30,5 +30,15 @@
         "3D:B9:FE:5F:1C:F5:99:18:1F:E0:D1:32:DA:97:46:D5:E9:43:C4:E4:BA:81:93:82:F1:A0:27:9B:60:7D:B2:CB"
       ]
     }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.paulkoepke.tipcalculator",
+      "sha256_cert_fingerprints": [
+        "2B:12:86:DB:AD:A1:22:CC:8D:D8:B9:0E:C7:8E:03:2F:53:92:1D:D9:49:A9:89:C1:27:54:DD:10:63:90:41:DE"
+      ]
+    }
   }
 ]
