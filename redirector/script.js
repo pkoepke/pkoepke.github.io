@@ -19,6 +19,7 @@ const calculateNewUrl = (currentComic, direction) => {
 const redirect = () => {
   let newUrl = new URL(new URLSearchParams(window.location.search).get('redirectUrl'));
 
+  // Don't redirect to arbitrary domains, only the the domains in this list.
   if (newUrl.hostname == 'extrafabulouscomics.com' || newUrl.hostname == 'www.extrafabulouscomics.com') {
     const direction = new URLSearchParams(window.location.search).get('direction');
     console.log('newUrl: ' + newUrl + ' direction: ' + direction)
