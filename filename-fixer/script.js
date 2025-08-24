@@ -45,6 +45,14 @@ const run = (e) => {
     filename = filename.replaceAll('  ', ' ')
   }
 
+  while (filename[0] === ' ') {
+    filename = filename.substring(1, filename.length);
+  }
+
+  while (filename[filename.length - 1] === ' ') {
+    filename = filename.substring(0, filename.length - 1);
+  }
+
   filename = filename.replaceAll('/', '∕') // Replace slashes with division symbol.
 
   let numberOfChars = document.getElementById(`characterLimit`).value;
