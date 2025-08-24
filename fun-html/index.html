@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="manifest" href="manifest.json">
+	<script>
+		if (typeof navigator.serviceWorker !== 'undefined') {
+			navigator.serviceWorker.register('/sw.js')
+		}
+	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Paul Koepke">
+	<meta name="description" content="Fun with silly HTML tags">
+	<title>Fun with silly HTML tags</title>
+	<link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">
+	<style>
+		.content {
+			margin: 0rem 20rem;
+		}
+	</style>
+	<link rel="icon" type="image/png" href="/favicon.ico">
+	<meta property="og:title" content="HTML fun" />
+	<meta property="og:description" content="Fun with silly HTML tags" />
+	<meta property="og:image" content="/favicon.png" />
+	<meta property="og:url" content="/" />
+</head>
+
+<body>
+	<header>
+		<h1 id="h1"><a href="/">Fun with silly HTML tags</a></h1>
+	</header>
+	<main>
+		<p class="content">
+		<p>Just some silly HTML tags. Many taken from here: <a href="https://metatalk.metafilter.com/9380/Valid-HTML">https://metatalk.metafilter.com/9380/Valid-HTML</a></p>
+		<p>
+			<marquee direction="up" bgcolor="#00B800" height="150" scrolldelay="150">
+				<center>
+					<strong>
+						<big>
+							Marquee direction="up"
+						</big>
+					</strong>
+				</center>
+			</marquee>
+		</p>
+		<p>
+			<marquee>Plain marquee</marquee>
+		</p>
+		<p>Marquee, but it's the fever dream of a madman:<br>
+			<marquee width="350" bgcolor="#aaaaff" direction="right" scrolldelay="40">&gt;&lt;//*&gt;</marquee><br>
+			<marquee width="350" bgcolor="#aaaaff" direction="left" scrollamount="10" scrolldelay="10">&lt;*\\&gt;&lt;</marquee><br>
+			<marquee width="350" bgcolor="#aaaaff" direction="right" scrolldelay="50" scrollamount="5">&gt;&lt;//*&gt;</marquee><br>
+			<marquee width="350" bgcolor="#aaaaff" direction="left" scrollamount="5" scrolldelay="350">&lt;*\\&gt;&lt;</marquee><br>
+			<marquee width="350" direction="right" bgcolor="#aaaaff" scrolldelay="100" scrollamount="1">&gt;&lt;//*&gt;</marquee><br>
+			<marquee width="350" direction="right" bgcolor="#663300" scrolldelay="1000" scrollamount="0">&nbsp;</marquee><br>
+		</p>
+		</p>
+	</main>
+</body>
+
+</html>
