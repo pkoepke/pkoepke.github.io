@@ -75,6 +75,51 @@ const clear = () => {
   document.getElementById('output').textContent = '';
 }
 
+const deleteLine = () => {
+  const input = document.getElementById('input');
+  const text = input.value;
+  const cursorPosition = input.selectionStart;
+  let newCursorPosition = 0;
+
+  const startOfLine = text.lastIndexOf('\n', cursorPosition - 1) + 1; // Get the start of the line, or 0 if this is the first line.
+  if (startOfLine !== 0) { newCursorPosition = startOfLine; }
+
+  console.log(`startOfLine: ${startOfLine}`)
+  const endOfLine = text.indexOf('\n', cursorPosition); // Get the end of the line.
+  console.log(`endOfLine: ${endOfLine}`)
+  console.log(`cursorPosition: ${cursorPosition}`)
+  console.log(`text.length: ${text.length}`)
+
+  let newText;
+
+  if (startOfLine == 1 && endOfLine == 0) {   // Handle a first line that is nothing but a \n
+    newText = text.substring(1, text.length);
+  }
+  else if (endOfLine == -1 && cursorPosition == text.length && startOfLine == text.length) { // Handle a final line that is nothing but a \n
+    newText = text.substring(0, text.length - 1);
+  } else {
+
+    // Determine the line segment to be deleted.
+    // If there is no newline character after the cursor,
+    // we are on the last line, so the end of the line is the end of the text.
+    // The "+ 1" ensures the newline character itself is removed, leaving no empty space.
+    const lineEnd = endOfLine === -1 ? text.length : endOfLine + 1;
+
+    // Create the new text by combining the text before the line and the text after it.
+    newText = text.substring(0, startOfLine) + text.substring(lineEnd);
+  }
+
+  // Update the textarea's value with the new text.
+  input.value = newText;
+
+  // Restore the cursor position to the start of the line that replaced the deleted one.
+  input.selectionStart = cursorPosition;
+  input.selectionEnd = cursorPosition; // Fixes accidentally selecting text
+  input.focus(); // Return focus to the textarea so setting the cursor's position actually does something.
+
+  run();
+}
+
 const copy = () => {
   navigator.clipboard.writeText(document.getElementById('output').textContent);
 }
@@ -107,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('paste').addEventListener('click', paste);
   document.getElementById('clear').addEventListener('click', clear);
   document.getElementById('copy').addEventListener('click', copy);
+  document.getElementById('deleteLine').addEventListener('click', deleteLine);
   document.getElementById('toLowercase').addEventListener('click', run);
   document.getElementById('removePunctuation').addEventListener('click', run);
   document.getElementById('decodeUri').addEventListener('click', run);
