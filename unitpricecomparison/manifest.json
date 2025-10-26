@@ -32,14 +32,20 @@
     {
       "src": "upc icon monochrome.png",
       "type": "image/png",
-      "sizes": "512x512",
+      "sizes": "2560x2560",
       "purpose": "monochrome"
     }
   ],
   "screenshots": [
     {
-      "src": "./unitpricecomparison/upc screenshot 1.png",
-      "type": "image/png"
+      "src": "upc screenshot 1.png",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "upc screenshot wide.png",
+      "type": "image/png",
+      "form_factor": "wide"
     }
   ],
   "id": "com.paulkoepke.unitpricecomparison",
