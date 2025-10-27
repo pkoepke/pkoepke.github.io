@@ -62,7 +62,6 @@ const run = (e) => {
   document.getElementById('output').textContent = filename;
 }
 
-
 const paste = () => {
   navigator.clipboard
     .readText()
@@ -82,21 +81,25 @@ const deleteLine = () => {
   let newCursorPosition = 0;
 
   const startOfLine = text.lastIndexOf('\n', cursorPosition - 1) + 1; // Get the start of the line, or 0 if this is the first line.
-  if (startOfLine !== 0) { newCursorPosition = startOfLine; }
-
+  newCursorPosition = startOfLine;
   console.log(`startOfLine: ${startOfLine}`)
   const endOfLine = text.indexOf('\n', cursorPosition); // Get the end of the line.
   console.log(`endOfLine: ${endOfLine}`)
   console.log(`cursorPosition: ${cursorPosition}`)
   console.log(`text.length: ${text.length}`)
 
+  const lineText = text.substring(startOfLine, endOfLine === -1 ? text.length : endOfLine);
+  console.log(`lineText: "${lineText}"`)
+
   let newText;
 
   if (startOfLine == 1 && endOfLine == 0) {   // Handle a first line that is nothing but a \n
     newText = text.substring(1, text.length);
+    newCursorPosition = 0;
   }
   else if (endOfLine == -1 && cursorPosition == text.length && startOfLine == text.length) { // Handle a final line that is nothing but a \n
     newText = text.substring(0, text.length - 1);
+    newCursorPosition = newText.lastIndexOf('\n') + 1; // Have to recalcuate the new cursor position to be at the end of the new last line.
   } else {
 
     // Determine the line segment to be deleted.
@@ -107,14 +110,20 @@ const deleteLine = () => {
 
     // Create the new text by combining the text before the line and the text after it.
     newText = text.substring(0, startOfLine) + text.substring(lineEnd);
+
+    // If this is the last line, also delete the preceding newline character to avoid leaving an empty line.
+    if (endOfLine === -1 && startOfLine > 0) {
+      newText = text.substring(0, startOfLine - 1);
+      newCursorPosition = newText.length; // Move cursor to the end of the new text.
+    }
   }
 
   // Update the textarea's value with the new text.
   input.value = newText;
 
   // Restore the cursor position to the start of the line that replaced the deleted one.
-  input.selectionStart = cursorPosition;
-  input.selectionEnd = cursorPosition; // Fixes accidentally selecting text
+  input.selectionStart = newCursorPosition;
+  input.selectionEnd = newCursorPosition; // Fixes accidentally selecting text
   input.focus(); // Return focus to the textarea so setting the cursor's position actually does something.
 
   run();
