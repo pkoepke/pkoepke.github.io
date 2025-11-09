@@ -42,7 +42,6 @@ const runTest = async (event) => {
 }
 
 document.addEventListener(`DOMContentLoaded`, () => {
-  //document.getElementById(`button`).addEventListener(`click`, runTests);
   for (const element of document.querySelectorAll('input[type="button"]')) {
     console.log(element);
     element.addEventListener(`click`, runTest);
