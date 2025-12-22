@@ -19,6 +19,7 @@
 	<link id="styles" rel="stylesheet" type="text/css" href="/styles_dark.css">
 	<link href="/fonts/material-icons.css" rel="stylesheet">
 	<link rel="icon" type="image/png" href="/favicon.ico">
+	<link rel="apple-touch-icon" sizes="512x512" href="unitpricecomparison/upc icon.png">
 	<meta property="og:title" content="Unit Price Comparison" />
 	<meta property="og:description" content="Unit Price Comparison app." />
 	<meta property="og:image" content="./upc icon.png" />
@@ -31,7 +32,7 @@
 	<h1 id="h1">
 		<img src="./upc icon.png" alt="Unit Price Comparison app icon">
 		<a href="/" class="headerText nowrap">Unit Price</a>
-		<span class="nowrap" style="padding-top: .3rem;">
+		<span class="buttonSpan nowrap">
 			<button class="topButton nowrap" id="clear">
 				<span class="material-icons">clear</span>
 			</button>
@@ -63,12 +64,17 @@
 
 	.nowrap {
 		white-space: nowrap;
+		text-wrap: nowrap;
 	}
 
 	img {
 		position: inherit;
 		height: 2rem;
 		margin-top: 0.1rem;
+	}
+
+	.buttonSpan {
+		padding-top: .3rem;
 	}
 
 	.topButton {
@@ -137,10 +143,6 @@
 	.result {
 		width: 25%;
 		text-align: center;
-	}
-
-	.nowrap {
-		text-wrap: nowrap;
 	}
 
 	.bestValue {
