@@ -38,6 +38,7 @@ const buildRow = (number) => {
   priceInput.inputMode = `decimal`;
   priceInput.classList.add(`price`);
   priceInput.placeholder = `Price ${currencySymbol}`;
+  priceInput.id = `priceInput${number}`;
   priceInput.addEventListener('input', runCalculations);
 
   const unitInput = document.createElement(`input`);
@@ -45,6 +46,7 @@ const buildRow = (number) => {
   unitInput.inputMode = `decimal`;
   unitInput.classList.add(`units`);
   unitInput.placeholder = `Units`;
+  unitInput.id = `unitInput${number}`;
   unitInput.addEventListener('input', runCalculations);
 
   const result = document.createElement(`span`);
@@ -65,16 +67,19 @@ const buildRow = (number) => {
   quantity.type = `number`;
   quantity.inputMode = `decimal`;
   quantity.placeholder = `Qty`;
+  quantity.id = `quantityInput${number}`;
   quantity.addEventListener('input', runCalculations);
 
   const itemName = document.createElement(`input`);
   itemName.classList.add(`itemName`);
   itemName.placeholder = `Item name`;
+  itemName.id = `itemNameInput${number}`;
   itemName.addEventListener('input', runCalculations);
 
   const unitName = document.createElement(`input`);
   unitName.classList.add(`unitName`);
   unitName.placeholder = `Unit name`;
+  unitName.id = `unitNameInput${number}`;
   unitName.addEventListener('input', runCalculations);
 
   const row2 = document.createElement(`div`);
@@ -101,13 +106,26 @@ const buildRow = (number) => {
   document.getElementsByTagName(`main`)[0].appendChild(card);
 }
 
+const getValues = () => {
+  const valuesObject = {};
+  valuesObject['units'] = [...document.getElementsByClassName(`units`)];
+  valuesObject['prices'] = [...document.getElementsByClassName(`price`)];
+  valuesObject['quantities'] = [...document.getElementsByClassName(`quantity`)];
+  valuesObject['itemNames'] = [...document.getElementsByClassName(`itemName`)];
+  valuesObject['unitNames'] = [...document.getElementsByClassName(`unitName`)];
+  valuesObject['results'] = [...document.getElementsByClassName(`result`)];
+  console.log(valuesObject);
+  return valuesObject;
+}
+
 const runCalculations = () => {
-  const units = [...document.getElementsByClassName(`units`)];
-  const prices = [...document.getElementsByClassName(`price`)];
-  const quantities = [...document.getElementsByClassName(`quantity`)];
-  const itemNames = [...document.getElementsByClassName(`itemName`)];
-  const unitNames = [...document.getElementsByClassName(`unitName`)];
-  const results = [...document.getElementsByClassName(`result`)];
+  const valuesObject = getValues();
+  const units = valuesObject['units'];
+  const prices = valuesObject['prices'];
+  const quantities = valuesObject['quantities'];
+  const itemNames = valuesObject['itemNames'];
+  const unitNames = valuesObject['unitNames'];
+  const results = valuesObject['results'];
   let pageurl = window.location.href;
   //let queryString = `?`; // Build a queryString for easy sharing and saving. i iterates from 1 but the items are numbered starting at 1 so we add 1 to i each time to match the UI.
   let queryString = new URLSearchParams();

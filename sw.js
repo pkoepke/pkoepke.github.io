@@ -3,6 +3,7 @@
 const cacheName = "root-cache";
 
 const registerServiceWorker = async () => {
+  console.log("registerServiceWorker() called");
   if ("serviceWorker" in navigator) {
     try {
       const registration = await navigator.serviceWorker.register("/sw.js", {
@@ -64,7 +65,7 @@ const cacheFirst = async (request) => {
   const responseFromCache = await caches.match(request);
   if (responseFromCache) {
     setTimeout(async () => { // Check for updates and add them to the cache, but don't wait for the response - serve the cached version right away.
-      // const responseFromNetwork = await fetch(request, { cache: "reload" }); // Originally this downloaded the resource every single time, whether it was updated or not. That works find but results in unnecessary downloads every time you visit a page.
+      // const responseFromNetwork = await fetch(request, { cache: "reload" }); // Originally this downloaded the resource every single time, whether it was updated or not. That works fine but results in unnecessary downloads every time you visit a page.
       const responseFromNetwork = await fetch(request, { cache: "no-cache" }); // no-cache: if the resource is in the browser cache (whether fresh or stale), the browser makes a conditional request to see if it has been updated. If it has been updated, the browser will download it to the cache. If it has not been updated it will use the cached value.
       await putInCache(request, responseFromNetwork.clone());
     });
@@ -74,6 +75,16 @@ const cacheFirst = async (request) => {
   putInCache(request, responseFromNetwork.clone());
   return responseFromNetwork;
 };
+
+const networkFirst = async (request) => {
+  const responseFromNetwork = await fetch(request, { cache: "default" }); // Use the browser cache as normal - if the resource is fresh in the browser cache, it will be used. If it is stale, a conditional request will be made to see if it has been updated.
+  if (responseFromNetwork && responseFromNetwork.status === 200) {
+    return responseFromNetwork;
+  } else {
+    const responseFromCache = await caches.match(request);
+    return responseFromCache;
+  }
+}
 
 // When the SW is activated, immediately get the JSON list of resources to cache and cache them all so the whole site immediatelyn works offline.
 self.addEventListener("activate", async (event) => {
@@ -87,5 +98,5 @@ self.addEventListener("activate", async (event) => {
 
 // Intercept all fetch events and try to server from cache.
 self.addEventListener("fetch", (event) => {
-  event.respondWith(cacheFirst(event.request));
+  event.respondWith(networkFirst(event.request));
 });
