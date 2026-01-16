@@ -45,7 +45,7 @@ const run = (e) => {
     filename = filename.replaceAll('  ', ' ')
   }
 
-  while (filename[0] === ' ') {
+  while (filename[0] === ' ') { // Remove leading spaces.
     filename = filename.substring(1, filename.length);
   }
 
