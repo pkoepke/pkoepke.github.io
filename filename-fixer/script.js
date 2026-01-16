@@ -49,7 +49,7 @@ const run = (e) => {
     filename = filename.substring(1, filename.length);
   }
 
-  while (filename[filename.length - 1] === ' ') {
+  while ((filename[filename.length - 1] === ' ') || (filename[filename.length - 1] === '.')) { // Remove trailing spaces and periods.
     filename = filename.substring(0, filename.length - 1);
   }
 
