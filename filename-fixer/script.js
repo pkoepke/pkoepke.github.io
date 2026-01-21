@@ -24,7 +24,7 @@ const formatDoubleQuotes = (str) => { // Change double quotes to opening and clo
 
 const run = (e) => {
   let filename = document.getElementById('input').value;
-  let illegalChars = ['\\', ':', '*', '?', '<', '>', '\n', '\r', '&', ','];
+  let illegalChars = ['\\', ':', '*', '?', '<', '>', '\n', '\r', '&', ',', '...'];
   if (document.getElementById('toLowercase').checked) {
     filename = filename.toLowerCase();
   }
@@ -37,7 +37,7 @@ const run = (e) => {
   filename = formatDoubleQuotes(filename);
   if (document.getElementById('removeIllegalChars').checked) {
     for (const char of illegalChars) {
-      filename = filename.replaceAll(char, (char == '\n' || char == '\r') ? ' ' : char == '\\' ? '_' : ''); // replce \n and \r with a space, \ with _, and just remove everything else.
+      filename = filename.replaceAll(char, (char == '\n' || char == '\r') ? ' ' : char == '\\' ? '_' : ''); // replace \n and \r with a space, replace \ with _, and just remove everything else.
     }
   }
 
