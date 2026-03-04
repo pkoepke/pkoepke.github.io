@@ -98,5 +98,6 @@ self.addEventListener("activate", async (event) => {
 
 // Intercept all fetch events and try to server from cache.
 self.addEventListener("fetch", (event) => {
-  event.respondWith(networkFirst(event.request));
+  event.respondWith(cacheFirst(event.request));
+  // event.respondWith(networkFirst(event.request)); // Returning to cacheFirst.
 });
