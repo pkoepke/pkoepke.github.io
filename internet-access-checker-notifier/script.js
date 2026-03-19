@@ -72,21 +72,21 @@ const runTests = async () => {
         const firstSpan = document.createElement(`span`);
         firstSpan.textContent = `${path.split(`.`, 1)[0]}`;
         //firstSpan.style.width = `18%`;
-        firstSpan.style.width = `5.5rem`;
+        firstSpan.style.width = `5rem`;
         firstSpan.style.textAlign = `left`;
         const secondSpan = document.createElement(`span`);
         secondSpan.textContent = `${timeAndRate['seconds']} secs`;
         //secondSpan.style.width = `34%`;
-        secondSpan.style.width = `6rem`;
+        secondSpan.style.width = `5.5rem`;
         secondSpan.style.textAlign = `right`;
         const thirdSpan = document.createElement(`span`);
         thirdSpan.textContent = `@`;
-        thirdSpan.style.width = `2rem`;
+        thirdSpan.style.width = `1.5rem`;
         thirdSpan.style.textAlign = `center`;
         const fourthSpan = document.createElement(`span`);
         fourthSpan.textContent = `${timeAndRate['rate']}`
         //fourthSpan.style.width = `47%`;
-        fourthSpan.style.width = `7rem`;
+        fourthSpan.style.width = `6.5rem`;
         fourthSpan.style.textAlign = `right`;
         wrapperSpan.appendChild(firstSpan);
         wrapperSpan.appendChild(secondSpan);
