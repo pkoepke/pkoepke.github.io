@@ -81,7 +81,7 @@ const networkFirst = async (request) => {
   if (responseFromNetwork && responseFromNetwork.status === 200) {
     return responseFromNetwork;
   } else {
-    const responseFromCache = await caches.match(request);
+    const responseFromCache = await caches.match(request, { ignoreSearch: true });
     return responseFromCache;
   }
 }
