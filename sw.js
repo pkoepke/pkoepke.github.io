@@ -96,8 +96,66 @@ self.addEventListener("activate", async (event) => {
   addResourcesToCache(await getResourcesToCache())
 });
 
-// Intercept all fetch events and try to server from cache.
+// Helper function to save POST form data to IndexedDB.
+const saveToIndexedDB = (storeName, data) => {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("ShareTargetDB", 1);
+
+    // Create the store if it doesn't exist (runs on first open or version change)
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains(storeName)) {
+        db.createObjectStore(storeName, { keyPath: "id", autoIncrement: true });
+      }
+    };
+
+    request.onsuccess = (event) => {
+      const db = event.target.result;
+      const transaction = db.transaction(storeName, "readwrite");
+      const store = transaction.objectStore(storeName);
+      const addRequest = store.add(data);
+
+      addRequest.onsuccess = () => resolve();
+      addRequest.onerror = () => reject(addRequest.error);
+    };
+
+    request.onerror = () => reject(request.error);
+  });
+};
+
+
+// Intercept all fetch events and try to serve from cache.
 self.addEventListener("fetch", (event) => {
+
+  // Handle POST to /filename-fixer/
+  if (event.request.method === "POST" && url.pathname === "/filename-fixer/") {
+    event.respondWith((async () => {
+      try {
+        const formData = await event.request.formData();
+
+        // Extract fields as defined in your manifest.json
+        const sharedData = {
+          title: formData.get('title'),
+          text: formData.get('text'),
+          url: formData.get('url'),
+          // If sharing files, formData.get('files') or specific names used in manifest
+          receivedAt: Date.now()
+        };
+
+        // Save to IndexedDB before redirecting
+        await saveToIndexedDB("incoming_shares", sharedData);
+
+        // Redirect to a clean GET URL so the UI can then read from IndexedDB
+        return Response.redirect("/filename-fixer/?shared=true", 303);
+      } catch (err) {
+        console.error("Failed to process share:", err);
+        return fetch(event.request); // Fallback
+      }
+    })());
+    return; // Stop further processing for this event
+  }
+
+  // For all cases that don't match the POST handler above
   event.respondWith(cacheFirst(event.request));
   // event.respondWith(networkFirst(event.request)); // Returning to cacheFirst.
 });

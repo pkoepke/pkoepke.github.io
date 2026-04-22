@@ -147,13 +147,17 @@ const decodeUri = (e) => {
   document.getElementById('input').dispatchEvent(new Event('input'));
 }
 
-const handleShareQuerystring = () => {
-  const parsedUrl = new URL(window.location);
-  document.getElementById('input').value += parsedUrl.searchParams.get('text') ? parsedUrl.searchParams.get('text') : '';
+const handleShare = () => {
+  // GET querystring version
+  /* const parsedUrl = new URL(window.location);
+  document.getElementById('input').value += parsedUrl.searchParams.get('text') ? parsedUrl.searchParams.get('text') : '';*/
+
+  // POST form data version
+  
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  handleShareQuerystring();
+  handleShare();
   document.getElementById('input').addEventListener('input', run);
   document.getElementById('input').addEventListener('paste', run);
   document.getElementById('characterLimit').addEventListener('paste', run);
