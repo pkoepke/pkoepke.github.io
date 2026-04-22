@@ -127,10 +127,6 @@ const saveToIndexedDB = (storeName, data) => {
 // Intercept all fetch events and try to serve from cache.
 self.addEventListener("fetch", (event) => {
 
-  console.log(event);
-  console.log(event.request);
-  console.log(event.request.url);
-
   // Handle POST to /filename-fixer/
   if (event.request.method === "POST" && new URL(event.request.url).pathname === "/filename-fixer/") {
     event.respondWith((async () => {
@@ -150,7 +146,7 @@ self.addEventListener("fetch", (event) => {
         await saveToIndexedDB("incoming_shares", sharedData);
 
         // Redirect to a clean GET URL so the UI can then read from IndexedDB
-        return Response.redirect("/filename-fixer/?shared=true", 303);
+        return Response.redirect("/filename-fixer/", 303);
       } catch (err) {
         console.error("Failed to process share:", err);
         return fetch(event.request); // Fallback

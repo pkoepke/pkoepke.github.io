@@ -149,11 +149,17 @@ const decodeUri = (e) => {
 
 const handleShare = () => {
   // GET querystring version
-  /* const parsedUrl = new URL(window.location);
-  document.getElementById('input').value += parsedUrl.searchParams.get('text') ? parsedUrl.searchParams.get('text') : '';*/
+  const parsedUrl = new URL(window.location);
+  document.getElementById('input').value += parsedUrl.searchParams.get('text') ? parsedUrl.searchParams.get('text') : '';
 
   // POST form data version
-  
+  /*const request = window.indexedDB.open("incoming_shares", 1);
+  request.onerror = (event) => {
+    console.error(`Database error: ${event.target.error?.message}`);
+  };
+  request.onsuccess = (event) => {
+    db = event.target.result;
+  };*/
 }
 
 document.addEventListener('DOMContentLoaded', () => {
