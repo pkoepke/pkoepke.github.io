@@ -127,8 +127,12 @@ const saveToIndexedDB = (storeName, data) => {
 // Intercept all fetch events and try to serve from cache.
 self.addEventListener("fetch", (event) => {
 
+  console.log(event);
+  console.log(event.request);
+  console.log(event.request.url);
+
   // Handle POST to /filename-fixer/
-  if (event.request.method === "POST" && url.pathname === "/filename-fixer/") {
+  if (event.request.method === "POST" && new URL(event.request.url).pathname === "/filename-fixer/") {
     event.respondWith((async () => {
       try {
         const formData = await event.request.formData();
