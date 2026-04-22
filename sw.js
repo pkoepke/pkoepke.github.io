@@ -62,6 +62,16 @@ const putInCache = async (request, response) => {
 
 // Try to serve all reqests from cache, but also check for updates every time so the user gets the updated version the next time they visit the page.
 const cacheFirst = async (request) => {
+
+  console.log(request.url);
+
+  const url = new URL(request.url);
+  const cleanUrl = url.origin + url.pathname;
+
+  request.url = cleanUrl;
+
+  console.log(request.url);
+
   const responseFromCache = await caches.match(request, { ignoreSearch: true });
   if (responseFromCache) {
     setTimeout(async () => { // Check for updates and add them to the cache, but don't wait for the response - serve the cached version right away.
