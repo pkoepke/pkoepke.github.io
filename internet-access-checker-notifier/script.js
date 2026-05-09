@@ -57,7 +57,7 @@ const runTests = async () => {
   let outputText = ``;
   const filesToCheck = [`1 kbit.zip`, `1 kbyte.bin`, `10 kbits.zip`, `10 kbytes.bin`, `100 kbits.zip`, `100 kbytes.bin`, `1 mbit.zip`, `1 mbyte.bin`, `10 mbits.zip`, `10 mbytes.bin`];
   for (let path of filesToCheck) {
-    if (document.getElementById(`forceFailure`).checked) { path = `./nonexistentURLfor404`; }
+    //if (document.getElementById(`forceFailure`).checked) { path = `./nonexistentURLfor404`; }
     let outputElement = document.createElement(`div`);
     outputElement.textContent = `Trying ${path.split(`.`, 1)[0]}...`;
     document.getElementById(`output`).appendChild(outputElement);
@@ -94,11 +94,11 @@ const doOneTest = async (path, startTime) => {
 
 const handleFailure = (path, startTime) => {
   outputText = `${path.split(`.`, 1)[0]} failed.`;
-  if (document.getElementById(`retryFailure`).checked) {
+  /*if (document.getElementById(`retryFailure`).checked) {
     setTimeout(60000, async () => {
       await doOneTest(path, startTime);;
     });
-  }
+  }*/
 }
 
 const handleSuccess = (path, startTime) => {
