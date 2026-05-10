@@ -42,10 +42,16 @@ const calculateTimeAndRate = (size, startTime, endTime) => { // Return the time 
     '10 mbytes.bin': 80000
   }
   let rate = (sizeMap[size] / seconds);
-  if (rate > 1000) {
-    rate = (rate / 1000).toLocaleString('en-us') + ` mbps`;
+  if (rate >= 1000) {
+    rate = (rate / 1000).toLocaleString(undefined, { // undefined locale means use the user's locale
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }) + ` Mbps`;
   } else {
-    rate = rate.toLocaleString('en-us') + ` kbps`;
+    rate = rate.toLocaleString(undefined, {// undefined locale means use the user's locale
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }) + ` kbps`;
   }
   return { 'seconds': seconds, 'rate': rate }
 }
