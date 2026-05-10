@@ -57,9 +57,9 @@ const calculateTimeAndRate = (size, startTime, endTime) => { // Return the time 
 }
 
 const runTests = async () => {
-  //const shouldNotifySuccess = document.getElementById(`notifySuccess`).checked;
-  //const shouldNotifyFailure = document.getElementById(`notifyFailure`).checked;
-  //if (shouldNotifySuccess || shouldNotifyFailure) await askNotificationPermission();
+  const shouldNotifySuccess = document.getElementById(`notifySuccess`).checked;
+  const shouldNotifyFailure = document.getElementById(`notifyFailure`).checked;
+  if (shouldNotifySuccess || shouldNotifyFailure) await askNotificationPermission();
   let outputText = ``;
   const filesToCheck = [`1 kbit.zip`, `1 kbyte.bin`, `10 kbits.zip`, `10 kbytes.bin`, `100 kbits.zip`, `100 kbytes.bin`, `1 mbit.zip`, `1 mbyte.bin`, `10 mbits.zip`, `10 mbytes.bin`];
   for (let path of filesToCheck) {
@@ -70,13 +70,13 @@ const runTests = async () => {
     const startTime = new Date();
     await doOneTest(path, startTime);
     outputElement.textContent = outputText;
-    //if (shouldNotifyFailure) notify(outputText); // Any response except response.ok is a failure.
+    if (shouldNotifyFailure) notify(outputText); // Any response except response.ok is a failure.
   }
   const wrapperSpan = document.createElement(`span`);
   wrapperSpan.classList.add(`flexRow`);
   wrapperSpan.textContent += `Tests finished.`;
   document.getElementById(`output`).appendChild(wrapperSpan);
-  //if (shouldNotifySuccess || shouldNotifyFailure) notify(`Internet access check finished.`, ``);
+  if (shouldNotifySuccess || shouldNotifyFailure) notify(`Internet access check finished.`, ``);
 }
 
 const doOneTest = async (path, startTime) => {
