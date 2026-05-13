@@ -38,12 +38,12 @@
   ],
   "screenshots": [
     {
-      "src": "upc screenshot 1.png",
+      "src": "./screenshots/upc screenshot 1.png",
       "type": "image/png",
       "form_factor": "narrow"
     },
     {
-      "src": "upc screenshot wide.png",
+      "src": "./screenshots/upc screenshot wide.png",
       "type": "image/png",
       "form_factor": "wide"
     }

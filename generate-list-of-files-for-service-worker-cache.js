@@ -74,7 +74,10 @@ walk('./', function (err, results) {
       path.includes(`.DS_Store`) ||
       path.includes('lindsay-ellis-thanks-i-hate-it.mp4') || // Don't cache VGC test files
       path.includes('work-hard-party-hard-tape-flip.gif') ||
-      path.includes('tesseract.min.js')
+      path.includes('tesseract.min.js') ||
+      path.includes('screenshots') ||
+      path.includes('receipt-with-calculated-tip-sample-min.jpg') ||
+      path.includes('.xcf')
     )
   })
 

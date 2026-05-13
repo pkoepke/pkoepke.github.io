@@ -41,19 +41,19 @@
   "display_override": ["window-controls-overlay"],
   "screenshots": [
     {
-      "src": "plates and weights calculator mobile 1.png",
+      "src": "./screenshots/plates and weights calculator mobile 1.png",
       "type": "image/jpg"
     },
     {
-      "src": "plates and weights calculator mobile 2.png",
+      "src": "./screenshots/plates and weights calculator mobile 2.png",
       "type": "image/jpg"
     },
     {
-      "src": "plates and weights calculator mobile 1 for Windows store.png",
+      "src": "./screenshots/plates and weights calculator mobile 1 for Windows store.png",
       "type": "image/jpg"
     },
     {
-      "src": "plates and weight screenshot desktop and large tablet view.png",
+      "src": "./screenshots/plates and weight screenshot desktop and large tablet view.png",
       "type": "image/jpg"
     }
   ],
