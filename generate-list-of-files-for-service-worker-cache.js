@@ -73,8 +73,8 @@ walk('./', function (err, results) {
       path.includes(`/pkoepke.github.io/icons/`) || // Want everything under this path but not this exact path.      
       path.includes(`.DS_Store`) ||
       path.includes('lindsay-ellis-thanks-i-hate-it.mp4') || // Don't cache VGC test files
-      path.includes('work-hard-party-hard-tape-flip.gif')
-
+      path.includes('work-hard-party-hard-tape-flip.gif') ||
+      path.includes('tesseract.min.js')
     )
   })
 
