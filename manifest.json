@@ -4,7 +4,6 @@
   "dir": "ltr",
   "display": "standalone",
   "name": "paulkoepke.com",
-  "orientation": "any",
   "scope": "/",
   "short_name": "paulkoepke.com",
   "start_url": "/",

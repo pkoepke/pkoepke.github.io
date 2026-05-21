@@ -4,7 +4,6 @@
   "dir": "ltr",
   "display": "standalone",
   "name": "Internet Access Checker",
-  "orientation": "any",
   "scope": "/internet-access-checker-notifier/",
   "short_name": "Internet Access Checker",
   "start_url": "/internet-access-checker-notifier/",

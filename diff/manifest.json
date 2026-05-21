@@ -1,12 +1,12 @@
 {
   "background_color": "#000000",
-  "description": "Shortens filenames and removes illegal characters. No ads or private data.",
+  "description": "String diff utility. No ads or private data.",
   "dir": "ltr",
   "display": "standalone",
-  "name": "Filename Fixer",
-  "scope": "/filename-fixer/",
-  "short_name": "Filename Fixer",
-  "start_url": "/filename-fixer/",
+  "name": "Diff",
+  "scope": "/diff/",
+  "short_name": "Diff",
+  "start_url": "/diff/",
   "theme_color": "#012169",
   "categories": ["utilities"],
   "icons": [
@@ -30,7 +30,7 @@
     }
   ],
   "shortcuts": [],
-  "id": "filename-fixer",
+  "id": "diff",
   "display_override": ["window-controls-overlay"],
   "share_target": {
     "action": "./",

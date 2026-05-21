@@ -4,7 +4,6 @@
   "dir": "ltr",
   "display": "standalone",
   "name": "Rounding Tip Calculator",
-  "orientation": "any",
   "scope": "/tip_calculator/",
   "short_name": "Rounding Tip Calculator",
   "start_url": "/tip_calculator/",

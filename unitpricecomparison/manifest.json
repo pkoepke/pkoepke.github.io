@@ -4,7 +4,6 @@
   "dir": "ltr",
   "display": "standalone",
   "name": "Unit Price Comparison",
-  "orientation": "any",
   "scope": "/unitpricecomparison/",
   "short_name": "Unit Price Comparison",
   "start_url": "/unitpricecomparison/",

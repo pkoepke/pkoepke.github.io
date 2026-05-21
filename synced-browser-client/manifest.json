@@ -5,7 +5,6 @@
   "display": "standalone",
   "display_override": ["window-controls-overlay"],
   "name": "Synced Browser",
-  "orientation": "any",
   "scope": "/synced-browser-client/",
   "short_name": "Synced Browser",
   "start_url": "/synced-browser-client/",

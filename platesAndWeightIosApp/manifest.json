@@ -4,7 +4,6 @@
   "dir": "ltr",
   "display": "standalone",
   "name": "Plates and Weight calculator",
-  "orientation": "any",
   "scope": "/platesAndWeight/",
   "short_name": "Plates and Weight",
   "start_url": "/platesAndWeight/",

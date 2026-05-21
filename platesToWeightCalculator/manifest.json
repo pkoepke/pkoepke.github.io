@@ -4,7 +4,6 @@
   "dir": "ltr",
   "display": "standalone",
   "name": "Plates to Weight calculator",
-  "orientation": "any",
   "scope": "/platesToWeightCalculator/",
   "short_name": "Plates to Weight calculator",
   "start_url": "/platesToWeightCalculator/",
