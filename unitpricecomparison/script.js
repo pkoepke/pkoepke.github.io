@@ -3,7 +3,9 @@ import { languageToCurrency } from './language-to-currency.js';
 //const currencySymbol = Intl.NumberFormat(navigator.language, { style: `currency`, currency: languageToCurrency[navigator.language] }).formatToParts(`1`)[0][`value`];
 const formatter = new Intl.NumberFormat(navigator.language, {
   style: 'currency',
-  currency: languageToCurrency[navigator.language] || 'USD'
+  currency: languageToCurrency[navigator.language] || 'USD',
+  minimumFractionDigits: 3, // Ensures there are always 3 trailing decimals
+  maximumFractionDigits: 3
 });
 const parts = formatter.formatToParts(0);
 const currencySymbol = parts.find(part => part.type === 'currency')?.value || '$';
@@ -163,8 +165,11 @@ const runCalculations = () => {
     }
   }
   resultValues = resultValues.filter((result) => { return !(isNaN(result) || !isFinite(result)) }); // Remove any NaN or Inifinity which break Math.min.
+  console.log(`resultValues: ${resultValues}`);
   const min = Math.min(...resultValues);
+  console.log(`min: ${min}`);
   for (const result of results) {
+    console.log(`result.textContent: ${result.textContent}`);
     if (Math.round(parseFloat(result.textContent.slice(1)) * 1000) / 1000 == min) {
       result.classList.add(`bestValue`);
     } else {
