@@ -1,6 +1,12 @@
 import { languageToCurrency } from './language-to-currency.js';
 
-const currencySymbol = Intl.NumberFormat(navigator.language, { style: `currency`, currency: languageToCurrency[navigator.language] }).formatToParts(`1`)[0][`value`];
+//const currencySymbol = Intl.NumberFormat(navigator.language, { style: `currency`, currency: languageToCurrency[navigator.language] }).formatToParts(`1`)[0][`value`];
+const formatter = new Intl.NumberFormat(navigator.language, {
+  style: 'currency',
+  currency: languageToCurrency[navigator.language] || 'USD'
+});
+const parts = formatter.formatToParts(0);
+const currencySymbol = parts.find(part => part.type === 'currency')?.value || '$';
 
 const clearServiceWorkerCache = () => {
   // The cache for the Flutter app is huge, approximately 50 MB when fonts are included. If it exists, clear it.
@@ -153,7 +159,7 @@ const runCalculations = () => {
       results[i].textContent = `${currencySymbol}/units`;
     } else {
       resultValues[i] = Math.round(result * 1000) / 1000;
-      results[i].textContent = `${currencySymbol}${resultValues[i].toFixed(3)}`; // Round to 3 decimal places, and always display 3 decimal places.
+      results[i].textContent = `${formatter.format(resultValues[i])}`; // Round to 3 decimal places, and always display 3 decimal places.
     }
   }
   resultValues = resultValues.filter((result) => { return !(isNaN(result) || !isFinite(result)) }); // Remove any NaN or Inifinity which break Math.min.
