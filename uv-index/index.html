@@ -32,8 +32,7 @@
   </h1>
   <main>
     <div id="uvIndexResult" class="uv-bar-chart"></div>
-    <p id="uvIndexPlaceholder" class="uv-placeholder" style="display:none">Use your location or enter a zip code to begin</p>
-    <p class="uv-placeholder"><a href="https://www.epa.gov/sunsafety/uv-index-scale-0">Learn more about the UV index scale</a></p>
+    <p id="uvIndexPlaceholder" class="uv-placeholder">Use your location or enter a zip code to begin</p>
     <div id="controls" class="controls">
       <button id="useLocationBtn">Use my location</button>
       <input id="zipInput" type="text" maxlength="5" inputmode="numeric" pattern="\d*" placeholder="Enter ZIP code">
@@ -41,9 +40,10 @@
     </div>
     <details>
       <summary>
-        Acknowledgements
+        Acknowledgements and info
       </summary>
-      <p>UV Index information courtesy of the EPA. Geolocation to zip courtesy of BigDataCloud.</p>
+      <p>UV Index information courtesy of the EPA. <a href="https://www.epa.gov/sunsafety/uv-index-scale-0">Learn more about the UV index scale</a> </p>
+      <p class="uv-placeholder">Geolocation to zip courtesy of BigDataCloud.</p>
     </details>
   </main>
 </body>
@@ -101,6 +101,16 @@
       resultEl.innerHTML = '<p>No UV index data available between 9am and 6pm.</p>';
       return;
     }
+
+    // Add row labels column right before the loops render the chart bars
+    resultEl.innerHTML = `
+      <div class="uv-bar-item uv-chart-labels">
+        <div class="uv-bar-value">UV</div>
+        <div class="uv-time-label">Time</div>
+      </div>
+    `;
+
+
 
     for (const { key, value } of entries) {
       const uvValue = Number(value['UV_VALUE']) || 0;
@@ -274,6 +284,11 @@
   // (Must be triggered by a user action like a button click due to browser security)
   useLocationBtn.addEventListener('click', loadUVIndex);
   searchByZipBtn.addEventListener('click', loadUVIndexByZip);
+  zipInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      loadUVIndexByZip();
+    }
+  });
 
   initializeUVIndexApp();
 
@@ -320,9 +335,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1.9rem;
+    width: 1rem;
     flex-shrink: 0;
   }
+
+  /* Specific styles for the label row */
+  .uv-chart-labels {
+    width: auto !important;
+    margin-right: 0.5rem;
+    align-items: flex-end;
+  }
+
+  .uv-chart-labels .uv-bar-value,
+  .uv-chart-labels .uv-time-label {
+    font-weight: 500;
+    opacity: 0.6;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+  }
+
+
 
   .uv-bar-label {
     font-size: 0.4rem;
@@ -389,8 +421,7 @@
   }
 
   .uv-bar {
-    max-width: 3.5rem;
-  }
+    max-width: 1rem;
   }
 </style>
 
