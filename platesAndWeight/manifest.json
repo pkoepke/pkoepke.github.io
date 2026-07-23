@@ -41,19 +41,19 @@
   "screenshots": [
     {
       "src": "./screenshots/plates and weights calculator mobile 1.png",
-      "type": "image/jpg"
+      "type": "image/png"
     },
     {
       "src": "./screenshots/plates and weights calculator mobile 2.png",
-      "type": "image/jpg"
+      "type": "image/png"
     },
     {
       "src": "./screenshots/plates and weights calculator mobile 1 for Windows store.png",
-      "type": "image/jpg"
+      "type": "image/png"
     },
     {
       "src": "./screenshots/plates and weight screenshot desktop and large tablet view.png",
-      "type": "image/jpg"
+      "type": "image/png"
     }
   ],
   "shortcuts": [],
