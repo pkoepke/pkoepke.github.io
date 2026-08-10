@@ -413,7 +413,7 @@ input[type="number"] {
 
       <div class="row grayBox2 ">
         <input type="file" id="fileInput">
-        <button id="chooseFile">Choose a file to convert</button>
+        <button id="chooseFile" aria-label="Choose a file to convert">Choose a file to convert</button>
       </div>
       <div class="row grayBox2 "><label for="outputType">Choose an output type:</label>
         <select id="outputType">
@@ -452,7 +452,7 @@ input[type="number"] {
         </div>
       </details>
 
-      <div class="row grayBox2 "><button id="startTranscode">Begin conversion</button></div>
+      <div class="row grayBox2 "><button id="startTranscode" aria-label="Begin conversion">Begin conversion</button></div>
       <div class="row grayBox2  progressP">Progress: <span id="progress"></span></div>
     </div>
     <div id="outputs" class="centered">
