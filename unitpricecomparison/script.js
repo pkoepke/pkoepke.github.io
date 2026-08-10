@@ -47,6 +47,7 @@ const buildRow = (number) => {
   priceInput.classList.add(`price`);
   priceInput.placeholder = `Price ${currencySymbol}`;
   priceInput.id = `priceInput${number}`;
+  priceInput.ariaLabel = `Price input for item ${number}`;
   priceInput.addEventListener('input', runCalculations);
 
   const unitInput = document.createElement(`input`);
@@ -55,6 +56,7 @@ const buildRow = (number) => {
   unitInput.classList.add(`units`);
   unitInput.placeholder = `Units`;
   unitInput.id = `unitInput${number}`;
+  unitInput.ariaLabel = `Units input for item ${number}`;
   unitInput.addEventListener('input', runCalculations);
 
   const result = document.createElement(`span`);
@@ -76,18 +78,21 @@ const buildRow = (number) => {
   quantity.inputMode = `decimal`;
   quantity.placeholder = `Qty`;
   quantity.id = `quantityInput${number}`;
+  quantity.ariaLabel = `Quantity input for item ${number}`;
   quantity.addEventListener('input', runCalculations);
 
   const itemName = document.createElement(`input`);
   itemName.classList.add(`itemName`);
   itemName.placeholder = `Item name`;
   itemName.id = `itemNameInput${number}`;
+  itemName.ariaLabel = `Item name input for item ${number}`;
   itemName.addEventListener('input', runCalculations);
 
   const unitName = document.createElement(`input`);
   unitName.classList.add(`unitName`);
   unitName.placeholder = `Unit name`;
   unitName.id = `unitNameInput${number}`;
+  unitName.ariaLabel = `Unit name input for item ${number}`;
   unitName.addEventListener('input', runCalculations);
 
   const row2 = document.createElement(`div`);
