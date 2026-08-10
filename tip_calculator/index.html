@@ -263,9 +263,10 @@
 
 <body>
   <main>
-    <h1><img class="tipCalculatorIcon" alt="Tip Calculator Icon" src="tipCalculatorIcon_128x128.png"><span id="headerText">Tip Calculator</span><span id="themeButtonSpan"></span></h1>
+    <h1><img class="tipCalculatorIcon" alt="Tip Calculator Icon" src="tipCalculatorIcon_128x128.png"><label for="tipCalculatorForm" id="headerText">Tip Calculator</label><span id="themeButtonSpan"></span></h1>
     <div class="card" id="card">
-      <form>
+
+      <form id="tipCalculatorForm" onsubmit="return false;">
         <p class="amountAndPercent">
           <span class="noWhiteSpaceWrap">
             <label for="billAmount">Bill amount:<span id="dollarSignSpan">$</span></label><input type="number" id="billAmount" min="0" inputmode="decimal" step=0.01 onkeydown="return isAllowedKey(event)" oninput="calculatePercentWithRounding(event)" pattern="[0-9]*.?[0-9]*" />
