@@ -9,6 +9,7 @@
       navigator.serviceWorker.register('/sw.js')
     }
   </script>
+  <title>UV index</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -34,9 +35,9 @@
     <div id="uvIndexResult" class="uv-bar-chart"></div>
     <p id="uvIndexPlaceholder" class="uv-placeholder">Use your location or enter a zip code to begin</p>
     <div id="controls" class="controls">
-      <button id="useLocationBtn">Use my location</button>
-      <input id="zipInput" type="text" maxlength="5" inputmode="numeric" pattern="\d*" placeholder="Enter ZIP code">
-      <button id="searchByZipBtn">Search by ZIP</button>
+      <button id="useLocationBtn" aria-label="Use my location">Use my location</button>
+      <input id="zipInput" type="text" maxlength="5" inputmode="numeric" pattern="\d*" placeholder="Enter ZIP code" aria-label="Enter ZIP code">
+      <button id="searchByZipBtn" aria-label="Search by ZIP">Search by ZIP</button>
     </div>
     <details>
       <summary>
@@ -117,7 +118,6 @@
       const barHeight = Math.min(Math.max(uvValue, 0), 11) * 22 + 20;
       const dateTime = value['DATE_TIME'] || '';
       const dateParts = dateTime.split(' ');
-      console.log(dateParts);
       let displayTime = parseInt(dateParts[1]);
       if (displayTime == 9) {
         displayTime = `9 AM`;
@@ -422,6 +422,38 @@
 
   .uv-bar {
     max-width: 1rem;
+  }
+
+  button,
+  input {
+    -webkit-appearance: none;
+    /* Tell Safari to use my custom styles */
+    font-size: 1.2rem;
+    height: 2.5rem;
+    padding: 0.5rem;
+  }
+
+  input {
+    background: black;
+  }
+
+  #controls.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Target the inputs and buttons inside controls */
+  #controls.controls button,
+  #controls.controls input {
+    /* Each item wants at least 160px. If 3 items can't fit side-by-side (~500px total), 
+       flex-grow forces them to expand and stack cleanly. */
+    flex: 1 1 160px;
+    max-width: 90%;
+    text-align: center;
+    box-sizing: border-box;
   }
 </style>
 
