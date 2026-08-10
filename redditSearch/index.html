@@ -37,10 +37,13 @@
 						<option value="all" selected="selected">all time</option>
 					</select>
 				</p>
-				<p>Site:
+				<fieldset>
+					<legend>Site:</legend>
 					<input name="oldOrNewReddit" id="oldReddit" type="radio" value="old" checked="checked" oninput="generate()"><label for="oldReddit">old.reddit.com</label>
 					<input name="oldOrNewReddit" id="newReddit" type="radio" value="new" oninput="generate()"><label for="newReddit">www.reddit.com (new site)</label>
-				</p>
+					</p>
+				</fieldset>
+
 				<p>
 					<label for="nsfw">Include NSFW?</label><input id="nsfw" type="checkbox" oninput="generate()">
 				</p>
