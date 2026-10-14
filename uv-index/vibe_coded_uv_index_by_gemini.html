@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolSafe - Modern UV Index & Sun Protection Tracker</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        uvLow: '#10B981',      // Green (0-2)
+                        uvMod: '#F59E0B',      // Yellow/Amber (3-5)
+                        uvHigh: '#F97316',     // Orange (6-7)
+                        uvVeryHigh: '#EF4444', // Red (8-10)
+                        uvExtreme: '#8B5CF6'   // Purple (11+)
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js for Hourly UV Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Smooth transitions */
+        .transition-all-custom {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Custom scrollbar for hourly scrollable list */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(150, 150, 150, 0.1);
+            border-radius: 9999px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(150, 150, 150, 0.3);
+            border-radius: 9999px;
+        }
+
+        /* Animated Gauge / Glow Effects */
+        .uv-glow {
+            filter: drop-shadow(0 0 15px currentColor);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-100 min-h-full flex flex-col justify-between selection:bg-amber-500 selection:text-slate-900">
+
+    <!-- Top Navigation / Header -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            <!-- Logo -->
+            <div class="flex items-center gap-2.5 cursor-pointer" onclick="loadUserLocation()">
+                <div class="p-2 bg-gradient-to-tr from-amber-500 to-orange-500 rounded-xl shadow-lg shadow-amber-500/20">
+                    <i data-lucide="sun" class="w-6 h-6 text-slate-950 font-bold"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-amber-400 via-orange-300 to-yellow-200 bg-clip-text text-transparent">
+                    SolSafe
+                </span>
+                <span class="text-xs text-slate-500">Coded by Gemini</span>
+            </div>
+
+            <!-- Search Container -->
+            <div class="relative flex-1 max-w-md">
+                <div class="relative flex items-center">
+                    <input type="text" id="searchInput" placeholder="Search city or location worldwide..." class="w-full bg-slate-800/90 border border-slate-700/80 rounded-xl px-4 py-2 pl-10 pr-10 text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all" onkeydown="if(event.key === 'Enter') handleSearch()" />
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
+                    <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 text-slate-400 hover:text-slate-200 p-1" aria-label="Clear Search">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+                <!-- Search Suggestions Dropdown -->
+                <div id="searchResults" class="hidden absolute left-0 right-0 top-full mt-2 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl overflow-hidden z-50 max-h-60 overflow-y-auto custom-scrollbar">
+                </div>
+            </div>
+
+            <!-- Geolocation Button -->
+            <button onclick="loadUserLocation()" title="Use Current Location" class="p-2.5 bg-slate-800 border border-slate-700 hover:bg-slate-700 text-slate-300 hover:text-amber-400 rounded-xl transition-all flex items-center gap-2 text-sm font-medium">
+                <i data-lucide="locate-fixed" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">My Location</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow space-y-6">
+
+        <!-- Loading Overlay / State -->
+        <div id="loadingState" class="flex flex-col items-center justify-center py-20 space-y-4">
+            <div class="relative">
+                <div class="w-12 h-12 rounded-full border-4 border-amber-500/20 border-t-amber-500 animate-spin"></div>
+                <i data-lucide="sun" class="w-6 h-6 text-amber-400 absolute top-3 left-3 animate-pulse"></i>
+            </div>
+            <p id="loadingText" class="text-slate-400 text-sm font-medium animate-pulse">Detecting your location...</p>
+        </div>
+
+        <!-- Error Banner -->
+        <div id="errorState" class="hidden bg-rose-500/10 border border-rose-500/30 rounded-2xl p-4 flex items-center justify-between text-rose-300">
+            <div class="flex items-center gap-3">
+                <i data-lucide="alert-triangle" class="w-5 h-5 text-rose-400 flex-shrink-0"></i>
+                <span id="errorMessage" class="text-sm">Unable to fetch location data. Please search manually.</span>
+            </div>
+            <button onclick="dismissError()" class="text-rose-400 hover:text-rose-200">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+        </div>
+
+        <!-- Dashboard Content (Hidden until loaded) -->
+        <div id="dashboardContent" class="hidden space-y-6">
+
+            <!-- Location Header & Date -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800/80 pb-4">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-amber-400"></i>
+                        <h1 id="locationName" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Location</h1>
+                    </div>
+                    <p id="locationCoords" class="text-xs text-slate-400 ml-7 mt-0.5">Coordinates</p>
+                </div>
+                <div class="text-left sm:text-right ml-7 sm:ml-0">
+                    <p id="currentDate" class="text-sm font-semibold text-slate-200">Today</p>
+                    <p id="localTime" class="text-xs text-slate-400">Local Time: --:--</p>
+                </div>
+            </div>
+
+            <!-- Top Grid: Current UV Card + Protection Recommendations -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+                <!-- Main UV Status Card (5 Cols) -->
+                <div class="lg:col-span-5 bg-slate-800/60 border border-slate-700/60 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden backdrop-blur-sm">
+                    <!-- Subtle background radial tint -->
+                    <div id="uvBgGradient" class="absolute inset-0 opacity-15 pointer-events-none transition-all duration-500"></div>
+
+                    <!-- Header inside card -->
+                    <div class="flex items-center justify-between z-10">
+                        <span class="text-xs font-bold tracking-wider text-slate-400 uppercase">Current UV Index</span>
+                        <span id="uvBadge" class="px-3 py-1 rounded-full text-xs font-bold text-slate-950 uppercase tracking-wider">
+                            Low
+                        </span>
+                    </div>
+
+                    <!-- Main Metric Display -->
+                    <div class="my-6 flex flex-col items-center justify-center text-center z-10">
+                        <!-- Gauge SVG ring representation -->
+                        <div class="relative w-48 h-48 flex items-center justify-center">
+                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                                <!-- Background Circle Track -->
+                                <path class="text-slate-700/50" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <!-- Progress Circle -->
+                                <path id="gaugeProgress" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" stroke-dasharray="100, 100" stroke-dashoffset="100" class="transition-all duration-1000 ease-out" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            </svg>
+                            <!-- Center Content -->
+                            <div class="absolute flex flex-col items-center">
+                                <span id="uvValue" class="text-6xl font-black text-white tracking-tighter">0.0</span>
+                                <span id="uvCategoryText" class="text-sm font-semibold mt-1">Low Danger</span>
+                            </div>
+                        </div>
+
+                        <!-- Peak UV Summary -->
+                        <div class="mt-4 flex items-center gap-2 bg-slate-900/60 border border-slate-700/50 px-4 py-2 rounded-2xl">
+                            <i data-lucide="trending-up" class="w-4 h-4 text-amber-400"></i>
+                            <span class="text-xs text-slate-300">
+                                Today's Peak: <strong id="peakUvValue" class="text-white font-bold">0.0</strong>
+                                <span id="peakTimeText" class="text-slate-400">at --:--</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- UV Level Scale Bar (0 to 11+) -->
+                    <div class="z-10 space-y-1.5">
+                        <div class="flex justify-between text-[10px] font-semibold text-slate-400">
+                            <span>0 Low</span>
+                            <span>3 Mod</span>
+                            <span>6 High</span>
+                            <span>8 V.High</span>
+                            <span>11+ Extr</span>
+                        </div>
+                        <div class="h-2.5 w-full bg-slate-700/60 rounded-full overflow-hidden flex">
+                            <div class="w-[20%] bg-emerald-500 h-full" title="Low (0-2)"></div>
+                            <div class="w-[25%] bg-amber-500 h-full" title="Moderate (3-5)"></div>
+                            <div class="w-[17%] bg-orange-500 h-full" title="High (6-7)"></div>
+                            <div class="w-[25%] bg-rose-500 h-full" title="Very High (8-10)"></div>
+                            <div class="w-[13%] bg-purple-600 h-full" title="Extreme (11+)"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sun Protection Guidelines (7 Cols) -->
+                <div class="lg:col-span-7 bg-slate-800/60 border border-slate-700/60 rounded-3xl p-6 flex flex-col justify-between backdrop-blur-sm">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="shield-check" class="w-5 h-5 text-amber-400"></i>
+                                <h2 class="text-lg font-bold text-white">Sun Protection Advice</h2>
+                            </div>
+                            <span id="burnTimeNotice" class="text-xs text-amber-300/90 font-medium bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full">
+                                Max Sun Exposure: ~60+ min
+                            </span>
+                        </div>
+                        <p id="uvDescription" class="text-sm text-slate-300 mb-6 leading-relaxed">
+                            Minimal sun protection required. Safe to enjoy outdoors!
+                        </p>
+
+                        <!-- Protection Checklist Cards Grid -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <!-- Sunscreen Card -->
+                            <div id="recSpf" class="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-3.5 flex flex-col items-center text-center gap-2 transition-all">
+                                <div class="p-2.5 rounded-xl bg-slate-800 text-slate-400 icon-box">
+                                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-slate-200">Sunscreen</span>
+                                <span class="text-[11px] text-slate-400 status-label">Not Needed</span>
+                            </div>
+
+                            <!-- Sunglasses Card -->
+                            <div id="recGlasses" class="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-3.5 flex flex-col items-center text-center gap-2 transition-all">
+                                <div class="p-2.5 rounded-xl bg-slate-800 text-slate-400 icon-box">
+                                    <i data-lucide="glasses" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-slate-200">Sunglasses</span>
+                                <span class="text-[11px] text-slate-400 status-label">Optional</span>
+                            </div>
+
+                            <!-- Hat/Clothing Card -->
+                            <div id="recHat" class="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-3.5 flex flex-col items-center text-center gap-2 transition-all">
+                                <div class="p-2.5 rounded-xl bg-slate-800 text-slate-400 icon-box">
+                                    <i data-lucide="shirt" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-slate-200">Cover Up</span>
+                                <span class="text-[11px] text-slate-400 status-label">Optional</span>
+                            </div>
+
+                            <!-- Shade Card -->
+                            <div id="recShade" class="bg-slate-900/50 border border-slate-700/50 rounded-2xl p-3.5 flex flex-col items-center text-center gap-2 transition-all">
+                                <div class="p-2.5 rounded-xl bg-slate-800 text-slate-400 icon-box">
+                                    <i data-lucide="umbrella" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-slate-200">Seek Shade</span>
+                                <span class="text-[11px] text-slate-400 status-label">Not Needed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Environmental Factors -->
+                    <div class="mt-6 pt-4 border-t border-slate-700/40 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs text-slate-400">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="cloud-sun" class="w-4 h-4 text-slate-400"></i>
+                            <span>Cloud Cover: <strong id="cloudCoverVal" class="text-slate-200">--%</strong></span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="sunset" class="w-4 h-4 text-slate-400"></i>
+                            <span>Solar Noon: <strong id="solarNoonVal" class="text-slate-200">--:--</strong></span>
+                        </div>
+                        <div class="flex items-center gap-2 col-span-2 sm:col-span-1">
+                            <i data-lucide="gauge" class="w-4 h-4 text-slate-400"></i>
+                            <span>Max Daily UV: <strong id="maxUvVal" class="text-slate-200">0.0</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Section: Hourly Interactive Chart & Hourly Timeline Cards -->
+            <div class="bg-slate-800/60 border border-slate-700/60 rounded-3xl p-6 space-y-6 backdrop-blur-sm">
+
+                <!-- Chart Header & Mode Toggle -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i data-lucide="clock" class="w-5 h-5 text-amber-400"></i>
+                            Today's Hourly UV Forecast
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-0.5">Track UV radiation levels throughout the day to plan outdoor activities safely.</p>
+                    </div>
+
+                    <!-- Direct Legend indicator -->
+                    <div class="flex items-center gap-3 text-xs font-medium text-slate-300">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>0-2</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>3-5</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>6-7</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>8-10</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>11+</span>
+                    </div>
+                </div>
+
+                <!-- Interactive Chart Canvas -->
+                <div class="w-full h-64 sm:h-72 relative">
+                    <canvas id="hourlyUvChart"></canvas>
+                </div>
+
+                <!-- Scrollable Hourly Timeline Cards -->
+                <div>
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Hourly Breakdown</h3>
+                    <div id="hourlyTimeline" class="flex gap-3 overflow-x-auto pb-3 custom-scrollbar">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-900/50 py-6 mt-12 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p>© 2026 SolSafe. Powered by Open-Meteo Solar & Weather API.</p>
+            <p class="flex items-center gap-1">
+                <span>Always check local radiation alerts</span>
+                <i data-lucide="sun" class="w-3.5 h-3.5 text-amber-500"></i>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Global App State
+        let chartInstance = null;
+        let searchTimeout = null;
+        let currentLocationData = null;
+
+        // Color & Category Configuration for UV Levels
+        const UV_LEVELS = {
+            low: {
+                max: 2.9,
+                label: 'Low',
+                dangerText: 'Minimal Danger',
+                color: '#10B981', // Green
+                bgClass: 'bg-emerald-500',
+                badgeBg: 'bg-emerald-400',
+                glowColor: 'rgba(16, 185, 129, 0.3)',
+                desc: 'Minimal sun protection required. Safe to enjoy the outdoors!',
+                burnTime: '60+ mins',
+                spf: 'Not Needed',
+                glasses: 'Optional',
+                hat: 'Optional',
+                shade: 'Not Needed'
+            },
+            moderate: {
+                max: 5.9,
+                label: 'Moderate',
+                dangerText: 'Moderate Danger',
+                color: '#F59E0B', // Amber
+                bgClass: 'bg-amber-500',
+                badgeBg: 'bg-amber-400',
+                glowColor: 'rgba(245, 158, 11, 0.3)',
+                desc: 'Protection recommended. Stay in shade during midday sun!',
+                burnTime: '~30-45 mins',
+                spf: 'SPF 30+',
+                glasses: 'Recommended',
+                hat: 'Recommended',
+                shade: 'Midday'
+            },
+            high: {
+                max: 7.9,
+                label: 'High',
+                dangerText: 'High Danger',
+                color: '#F97316', // Orange
+                bgClass: 'bg-orange-500',
+                badgeBg: 'bg-orange-400',
+                glowColor: 'rgba(249, 115, 22, 0.3)',
+                desc: 'Protection required! Reduce time in the sun between 10 a.m. and 4 p.m.',
+                burnTime: '~15-25 mins',
+                spf: 'SPF 30 - 50+',
+                glasses: 'Essential',
+                hat: 'Wide Brim',
+                shade: 'Required'
+            },
+            veryHigh: {
+                max: 10.9,
+                label: 'Very High',
+                dangerText: 'Very High Danger',
+                color: '#EF4444', // Red
+                bgClass: 'bg-rose-500',
+                badgeBg: 'bg-rose-400',
+                glowColor: 'rgba(239, 68, 68, 0.3)',
+                desc: 'Extra protection needed! Unprotected skin and eyes can burn quickly.',
+                burnTime: '~10-15 mins',
+                spf: 'SPF 50+',
+                glasses: 'UV400 Required',
+                hat: 'Wide Brim',
+                shade: 'Seek Shade'
+            },
+            extreme: {
+                max: 99,
+                label: 'Extreme',
+                dangerText: 'Extreme Danger',
+                color: '#8B5CF6', // Purple
+                bgClass: 'bg-purple-600',
+                badgeBg: 'bg-purple-400',
+                glowColor: 'rgba(139, 92, 246, 0.3)',
+                desc: 'Take all precautions! Unprotected skin will burn in minutes. Avoid peak sun.',
+                burnTime: '< 10 mins',
+                spf: 'SPF 50+ Reapply',
+                glasses: 'UV400 Shield',
+                hat: 'Full Protection',
+                shade: 'Avoid Sun'
+            }
+        };
+
+        // Helper to determine UV Level Object
+        function getUvInfo(uvVal) {
+            const val = parseFloat(uvVal) || 0;
+            if (val <= 2.9) return UV_LEVELS.low;
+            if (val <= 5.9) return UV_LEVELS.moderate;
+            if (val <= 7.9) return UV_LEVELS.high;
+            if (val <= 10.9) return UV_LEVELS.veryHigh;
+            return UV_LEVELS.extreme;
+        }
+
+        // Initialize Lucide icons
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            loadUserLocation();
+
+            // Handle typing search input debounce
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                const query = e.target.value.trim();
+                const clearBtn = document.getElementById('clearSearchBtn');
+
+                if (query.length > 0) {
+                    clearBtn.classList.remove('hidden');
+                } else {
+                    clearBtn.classList.add('hidden');
+                    document.getElementById('searchResults').classList.add('hidden');
+                }
+
+                clearTimeout(searchTimeout);
+                if (query.length >= 2) {
+                    searchTimeout = setTimeout(() => fetchCitySuggestions(query), 300);
+                } else {
+                    document.getElementById('searchResults').classList.add('hidden');
+                }
+            });
+
+            // Close search dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                const searchContainer = document.getElementById('searchInput').parentElement.parentElement;
+                if (!searchContainer.contains(e.target)) {
+                    document.getElementById('searchResults').classList.add('hidden');
+                }
+            });
+        });
+
+        // Clear Search Input
+        function clearSearch() {
+            const input = document.getElementById('searchInput');
+            input.value = '';
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            document.getElementById('searchResults').classList.add('hidden');
+            input.focus();
+        }
+
+        // Step 1: Detect User Geolocation
+        function loadUserLocation() {
+            showLoading(true, "Detecting your current location...");
+            dismissError();
+
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        reverseGeocodeAndFetch(latitude, longitude);
+                    },
+                    (error) => {
+                        console.warn("Geolocation denied or unavailable:", error.message);
+                        // Fallback to London if geolocation is blocked/unavailable
+                        fetchUvData(51.5074, -0.1278, "London", "United Kingdom");
+                    },
+                    { timeout: 8000, enableHighAccuracy: true }
+                );
+            } else {
+                // Fallback location
+                fetchUvData(51.5074, -0.1278, "London", "United Kingdom");
+            }
+        }
+
+        // Step 2: Reverse Geocode coordinates to a readable city name using Open-Meteo Geocoding
+        async function reverseGeocodeAndFetch(lat, lon) {
+            try {
+                const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${lat.toFixed(2)},${lon.toFixed(2)}&count=1&language=en&format=json`);
+                // If direct coordinate name lookup fails, fetch UV data directly with coordinates label
+                fetchUvData(lat, lon, "Your Location", "");
+            } catch (err) {
+                fetchUvData(lat, lon, "Your Location", "");
+            }
+        }
+
+        // Step 3: Fetch City Search Suggestions
+        async function fetchCitySuggestions(query) {
+            try {
+                const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=5&language=en&format=json`);
+                const data = await res.json();
+
+                const resultsContainer = document.getElementById('searchResults');
+                resultsContainer.innerHTML = '';
+
+                if (data.results && data.results.length > 0) {
+                    data.results.forEach((city) => {
+                        const country = city.country ? `, ${city.country}` : '';
+                        const admin = city.admin1 ? ` (${city.admin1})` : '';
+
+                        const item = document.createElement('div');
+                        item.className = 'px-4 py-3 hover:bg-slate-700/80 cursor-pointer flex items-center justify-between border-b border-slate-700/50 last:border-none text-sm transition-colors';
+                        item.innerHTML = `
+                            <div class="flex items-center gap-2 overflow-hidden">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-amber-400 flex-shrink-0"></i>
+                                <span class="text-slate-100 font-medium truncate">${city.name}${admin}</span>
+                                <span class="text-xs text-slate-400 truncate">${country}</span>
+                            </div>
+                            <span class="text-[10px] text-slate-500 font-mono">${city.latitude.toFixed(2)}°, ${city.longitude.toFixed(2)}°</span>
+                        `;
+                        item.onclick = () => {
+                            document.getElementById('searchInput').value = `${city.name}${country}`;
+                            resultsContainer.classList.add('hidden');
+                            fetchUvData(city.latitude, city.longitude, city.name, city.country || '');
+                        };
+                        resultsContainer.appendChild(item);
+                    });
+                    lucide.createIcons();
+                    resultsContainer.classList.remove('hidden');
+                } else {
+                    resultsContainer.innerHTML = `<div class="px-4 py-3 text-xs text-slate-400 text-center">No locations found</div>`;
+                    resultsContainer.classList.remove('hidden');
+                }
+            } catch (err) {
+                console.error("Geocoding search failed:", err);
+            }
+        }
+
+        // Manual Search Handler (Pressing Enter)
+        async function handleSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query) return;
+
+            showLoading(true, `Searching for "${query}"...`);
+            try {
+                const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1&language=en&format=json`);
+                const data = await res.json();
+
+                if (data.results && data.results.length > 0) {
+                    const first = data.results[0];
+                    document.getElementById('searchResults').classList.add('hidden');
+                    fetchUvData(first.latitude, first.longitude, first.name, first.country || '');
+                } else {
+                    showError(`No locations found matching "${query}". Please try another search.`);
+                    showLoading(false);
+                }
+            } catch (err) {
+                showError("Error searching location. Please try again.");
+                showLoading(false);
+            }
+        }
+
+        // Step 4: Fetch Forecast & UV Data from Open-Meteo
+        async function fetchUvData(lat, lon, cityName, countryName) {
+            showLoading(true, `Loading UV forecast for ${cityName}...`);
+            dismissError();
+
+            try {
+                const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=uv_index,cloud_cover&hourly=uv_index,cloud_cover&daily=uv_index_max&timezone=auto`;
+                const response = await fetch(apiUrl);
+
+                if (!response.ok) throw new Error("Weather API returned an error");
+
+                const data = await response.json();
+                renderDashboard(data, cityName, countryName, lat, lon);
+                showLoading(false);
+            } catch (err) {
+                console.error("Error fetching UV data:", err);
+                showError("Failed to retrieve UV index data. Please check your internet connection.");
+                showLoading(false);
+            }
+        }
+
+        // Step 5: Render Dashboard Content
+        function renderDashboard(data, cityName, countryName, lat, lon) {
+            currentLocationData = data;
+
+            // Location Header
+            const displayLocation = countryName ? `${cityName}, ${countryName}` : cityName;
+            document.getElementById('locationName').innerText = displayLocation;
+            document.getElementById('locationCoords').innerText = `Lat: ${lat.toFixed(2)}°, Lon: ${lon.toFixed(2)}° • Timezone: ${data.timezone || 'Local'}`;
+
+            // Local Time Formatting
+            const now = new Date();
+            document.getElementById('currentDate').innerText = now.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' });
+
+            // Current Hourly Index Match
+            const currentHourISO = now.toISOString().slice(0, 13); // "YYYY-MM-THH"
+            const hourlyTimes = data.hourly.time;
+            const hourlyUv = data.hourly.uv_index;
+            const hourlyClouds = data.hourly.cloud_cover;
+
+            // Find current hour index or default to first index matching today
+            let currentIndex = hourlyTimes.findIndex(t => t.startsWith(currentHourISO));
+            if (currentIndex === -1) currentIndex = 0;
+
+            const currentUvVal = data.current?.uv_index ?? hourlyUv[currentIndex] ?? 0;
+            const currentCloudVal = data.current?.cloud_cover ?? hourlyClouds[currentIndex] ?? 0;
+
+            // Calculate Peak UV for today (first 24 hours)
+            const todayUvList = hourlyUv.slice(0, 24);
+            const peakVal = Math.max(...todayUvList);
+            const peakIndex = todayUvList.indexOf(peakVal);
+            const peakTimeString = todayUvList.length > 0 ? formatHourString(hourlyTimes[peakIndex]) : '--:--';
+
+            // Current UV Info Setup
+            const uvInfo = getUvInfo(currentUvVal);
+
+            // Update Current Gauge Display
+            document.getElementById('uvValue').innerText = currentUvVal.toFixed(1);
+            document.getElementById('uvValue').style.color = uvInfo.color;
+            document.getElementById('uvCategoryText').innerText = uvInfo.dangerText;
+            document.getElementById('uvCategoryText').style.color = uvInfo.color;
+
+            // Update Gauge Ring
+            const progressCircle = document.getElementById('gaugeProgress');
+            const percent = Math.min((currentUvVal / 12) * 100, 100);
+            // 100 is full circumference stroke-dashoffset
+            const offset = 100 - percent;
+            progressCircle.style.strokeDashoffset = offset;
+            progressCircle.style.stroke = uvInfo.color;
+
+            // Badge
+            const badge = document.getElementById('uvBadge');
+            badge.innerText = uvInfo.label;
+            badge.style.backgroundColor = uvInfo.color;
+
+            // Background Tint Glow
+            const bgGlow = document.getElementById('uvBgGradient');
+            bgGlow.style.background = `radial-gradient(circle at center, ${uvInfo.color} 0%, transparent 70%)`;
+
+            // Update Peak UV Elements
+            document.getElementById('peakUvValue').innerText = peakVal.toFixed(1);
+            document.getElementById('peakTimeText').innerText = `at ${peakTimeString}`;
+            document.getElementById('maxUvVal').innerText = peakVal.toFixed(1);
+
+            // Update Protection Guidelines
+            document.getElementById('uvDescription').innerText = uvInfo.desc;
+            document.getElementById('burnTimeNotice').innerText = `Est. Max Safe Exposure: ${uvInfo.burnTime}`;
+
+            // Update Protection Cards
+            updateProtectionCard('recSpf', uvInfo.spf, currentUvVal >= 3);
+            updateProtectionCard('recGlasses', uvInfo.glasses, currentUvVal >= 3);
+            updateProtectionCard('recHat', uvInfo.hat, currentUvVal >= 3);
+            updateProtectionCard('recShade', uvInfo.shade, currentUvVal >= 6);
+
+            // Environmental Indicators
+            document.getElementById('cloudCoverVal').innerText = `${currentCloudVal}%`;
+            document.getElementById('solarNoonVal').innerText = peakTimeString;
+
+            // Render Interactive Chart & Timeline Cards
+            renderHourlyChart(hourlyTimes.slice(0, 24), todayUvList);
+            renderHourlyTimeline(hourlyTimes.slice(0, 24), todayUvList, currentIndex);
+
+            // Reveal Dashboard UI
+            document.getElementById('dashboardContent').classList.remove('hidden');
+        }
+
+        // Helper to update recommendation card highlights
+        function updateProtectionCard(cardId, label, isActive) {
+            const card = document.getElementById(cardId);
+            const labelSpan = card.querySelector('.status-label');
+            const iconBox = card.querySelector('.icon-box');
+
+            labelSpan.innerText = label;
+
+            if (isActive) {
+                card.classList.remove('bg-slate-900/50', 'border-slate-700/50');
+                card.classList.add('bg-amber-500/10', 'border-amber-500/40');
+                iconBox.classList.remove('bg-slate-800', 'text-slate-400');
+                iconBox.classList.add('bg-amber-500/20', 'text-amber-400');
+            } else {
+                card.classList.add('bg-slate-900/50', 'border-slate-700/50');
+                card.classList.remove('bg-amber-500/10', 'border-amber-500/40');
+                iconBox.classList.add('bg-slate-800', 'text-slate-400');
+                iconBox.classList.remove('bg-amber-500/20', 'text-amber-400');
+            }
+        }
+
+        // Helper to format ISO time strings (e.g. "2026-10-14T13:00" -> "1:00 PM")
+        function formatHourString(isoString) {
+            const date = new Date(isoString);
+            return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+        }
+
+        // Helper to format concise hour label (e.g. "1 PM")
+        function formatShortHour(isoString) {
+            const date = new Date(isoString);
+            return date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true });
+        }
+
+        // Step 6: Render Interactive Chart.js UV Chart
+        function renderHourlyChart(times, uvValues) {
+            const ctx = document.getElementById('hourlyUvChart').getContext('2d');
+
+            const labels = times.map(t => formatShortHour(t));
+
+            // Generate point background colors according to UV severity
+            const pointColors = uvValues.map(v => getUvInfo(v).color);
+
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            // Create gradient fill under line
+            const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+            gradient.addColorStop(0, 'rgba(245, 158, 11, 0.4)');
+            gradient.addColorStop(1, 'rgba(245, 158, 11, 0.0)');
+
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'UV Index',
+                        data: uvValues,
+                        borderColor: '#F59E0B',
+                        borderWidth: 3,
+                        fill: true,
+                        backgroundColor: gradient,
+                        tension: 0.4,
+                        pointBackgroundColor: pointColors,
+                        pointBorderColor: '#0F172A',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 7
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1E293B',
+                            titleColor: '#F8FAFC',
+                            bodyColor: '#CBD5E1',
+                            borderColor: '#334155',
+                            borderWidth: 1,
+                            padding: 10,
+                            displayColors: false,
+                            callbacks: {
+                                label: function (context) {
+                                    const val = context.parsed.y;
+                                    const info = getUvInfo(val);
+                                    return `UV Index: ${val.toFixed(1)} (${info.label})`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(51, 65, 85, 0.3)' },
+                            ticks: { color: '#94A3B8', font: { size: 11 } }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            suggestedMax: 11,
+                            grid: { color: 'rgba(51, 65, 85, 0.3)' },
+                            ticks: { color: '#94A3B8', font: { size: 11 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Step 7: Render Horizontal Scrollable Hourly Cards
+        function renderHourlyTimeline(times, uvValues, currentIndex) {
+            const container = document.getElementById('hourlyTimeline');
+            container.innerHTML = '';
+
+            times.forEach((timeStr, idx) => {
+                const uvVal = uvValues[idx];
+                const info = getUvInfo(uvVal);
+                const isCurrent = idx === currentIndex;
+
+                const card = document.createElement('div');
+                card.className = `flex-shrink-0 w-20 p-3 rounded-2xl flex flex-col items-center justify-between text-center transition-all border ${isCurrent
+                    ? 'bg-amber-500/15 border-amber-500/60 ring-1 ring-amber-500/40 shadow-lg'
+                    : 'bg-slate-900/60 border-slate-700/50 hover:border-slate-600'
+                    }`;
+
+                card.innerHTML = `
+                    <span class="text-[11px] font-semibold text-slate-300">${formatShortHour(timeStr)}</span>
+                    <div class="my-2 flex flex-col items-center">
+                        <span class="text-lg font-black" style="color: ${info.color}">${uvVal.toFixed(1)}</span>
+                    </div>
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full text-slate-950 uppercase" style="background-color: ${info.color}">
+                        ${info.label}
+                    </span>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // UI State Helpers
+        function showLoading(isLoading, text = "") {
+            const loader = document.getElementById('loadingState');
+            const dashboard = document.getElementById('dashboardContent');
+            const loadingText = document.getElementById('loadingText');
+
+            if (isLoading) {
+                loadingText.innerText = text;
+                loader.classList.remove('hidden');
+                dashboard.classList.add('hidden');
+            } else {
+                loader.classList.add('hidden');
+            }
+        }
+
+        function showError(msg) {
+            const errBanner = document.getElementById('errorState');
+            const errMsg = document.getElementById('errorMessage');
+            errMsg.innerText = msg;
+            errBanner.classList.remove('hidden');
+        }
+
+        function dismissError() {
+            document.getElementById('errorState').classList.add('hidden');
+        }
+    </script>
+</body>
+
+</html>
