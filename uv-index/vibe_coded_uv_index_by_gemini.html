@@ -500,7 +500,10 @@
         // Step 2: Reverse Geocode coordinates to a readable city name using Open-Meteo Geocoding
         async function reverseGeocodeAndFetch(lat, lon) {
             try {
-                const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${lat.toFixed(2)},${lon.toFixed(2)}&count=1&language=en&format=json`);
+                const res = await fetch(
+                    `https://geocoding-api.open-meteo.com/v1/search?name=${lat.toFixed(2)},${lon.toFixed(2)}&count=1&language=en&format=json`,
+                    { cache: 'no-store' }
+                );
                 // If direct coordinate name lookup fails, fetch UV data directly with coordinates label
                 fetchUvData(lat, lon, "Your Location", "");
             } catch (err) {
@@ -511,7 +514,10 @@
         // Step 3: Fetch City Search Suggestions
         async function fetchCitySuggestions(query) {
             try {
-                const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=5&language=en&format=json`);
+                const res = await fetch(
+                    `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=5&language=en&format=json`,
+                    { cache: 'no-store' }
+                );
                 const data = await res.json();
 
                 const resultsContainer = document.getElementById('searchResults');
@@ -557,7 +563,10 @@
 
             showLoading(true, `Searching for "${query}"...`);
             try {
-                const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1&language=en&format=json`);
+                const res = await fetch(
+                    `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1&language=en&format=json`,
+                    { cache: 'no-store' }
+                );
                 const data = await res.json();
 
                 if (data.results && data.results.length > 0) {
@@ -581,7 +590,7 @@
 
             try {
                 const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=uv_index,cloud_cover&hourly=uv_index,cloud_cover&daily=uv_index_max&timezone=auto`;
-                const response = await fetch(apiUrl);
+                const response = await fetch(apiUrl, { cache: 'no-store' });
 
                 if (!response.ok) throw new Error("Weather API returned an error");
 
