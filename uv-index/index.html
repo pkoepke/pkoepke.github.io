@@ -221,7 +221,7 @@
       // Note: BigDataCloud provides free reverse geocoding up to a limit
       const apiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
 
-      const response = await fetch(apiUrl);
+      const response = await fetch(apiUrl, { cache: "no-store" }); // Don't store the response in cache to ensure fresh data.
       if (!response.ok) throw new Error("Failed to fetch location data.");
 
       const data = await response.json();
@@ -267,7 +267,7 @@
     }
 
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, { cache: "no-store" }); // Don't store the response in cache to ensure fresh data.
 
       if (!response.ok) {
         throw new Error(`EPA API error: ${response.status} ${response.statusText}`);
