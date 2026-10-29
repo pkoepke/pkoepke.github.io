@@ -36,7 +36,7 @@
     }
   ],
   "screenshots": [],
-  "id": "com.paulkoepke.imageconverter",
+  "id": "/imageconverter/",
   "display_override": ["window-controls-overlay"],
   "launch_handler": {
     "client_mode": ["focus-existing", "auto"]

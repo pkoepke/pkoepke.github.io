@@ -30,7 +30,7 @@
     }
   ],
   "shortcuts": [],
-  "id": "filename-fixer",
+  "id": "/filename-fixer/",
   "display_override": ["window-controls-overlay"],
   "share_target": {
     "action": "./",
