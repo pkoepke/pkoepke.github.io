@@ -1,0 +1,63 @@
+{
+  "background_color": "#000000",
+  "description": "Converts images to different formats. No ads or private data.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Image Converter",
+  "scope": "/imageconverter/",
+  "short_name": "Image Converter",
+  "start_url": "/imageconverter/",
+  "theme_color": "#012169",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    {
+      "src": "image_converter_icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "image_converter_icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "upc icon maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "upc icon monochrome.png",
+      "type": "image/png",
+      "sizes": "2560x2560",
+      "purpose": "monochrome"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./screenshots/upc screenshot 1.png",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "./screenshots/upc screenshot wide.png",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "id": "com.paulkoepke.imageconverter",
+  "display_override": ["window-controls-overlay"],
+  "launch_handler": {
+    "client_mode": ["focus-existing", "auto"]
+  },
+  "lang": "en-us",
+  "scope_extensions": [
+    { "type": "origin", "origin": "https://paulkoepke.com" },
+    { "type": "origin", "origin": "https://www.paulkoepke.com" }
+  ],
+  "iarc_rating_id": "63acb05c-6b70-4285-ab7f-2be2afe451d1",
+  "prefer_related_applications": false,
+  "related_applications": []
+}
