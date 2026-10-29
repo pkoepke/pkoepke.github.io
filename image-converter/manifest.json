@@ -23,30 +23,19 @@
       "purpose": "any"
     },
     {
-      "src": "upc icon maskable.png",
+      "src": "image-converter-icon-maskable-512x512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
     },
     {
-      "src": "upc icon monochrome.png",
+      "src": "image-converter-icon-monochrome-512x512.png",
       "type": "image/png",
       "sizes": "2560x2560",
       "purpose": "monochrome"
     }
   ],
-  "screenshots": [
-    {
-      "src": "./screenshots/upc screenshot 1.png",
-      "type": "image/png",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "./screenshots/upc screenshot wide.png",
-      "type": "image/png",
-      "form_factor": "wide"
-    }
-  ],
+  "screenshots": [],
   "id": "com.paulkoepke.imageconverter",
   "display_override": ["window-controls-overlay"],
   "launch_handler": {
