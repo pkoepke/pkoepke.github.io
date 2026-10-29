@@ -11,13 +11,13 @@
   "categories": ["utilities", "productivity"],
   "icons": [
     {
-      "src": "image_converter_icon.png",
+      "src": "image-converter-icon.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any"
     },
     {
-      "src": "image_converter_icon.svg",
+      "src": "image-converter-icon.svg",
       "type": "image/svg+xml",
       "sizes": "512x512",
       "purpose": "any"
