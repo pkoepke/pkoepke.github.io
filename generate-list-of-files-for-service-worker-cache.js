@@ -40,6 +40,7 @@ walk('./', function (err, results) {
       path.includes(`/bettingOddsTranslator/`) ||
       path.includes(`/filename-fixer/`) ||
       path.includes(`/pkoepke.github.io/icons/`) ||
+      path.includes(`/image-converter/`) ||
       path.includes(`/internet-access-checker-notifier/`) ||
       path.includes(`/platesAndWeight/`) ||
       path.includes(`/redditSearch/`) ||
@@ -90,7 +91,8 @@ walk('./', function (err, results) {
     `/redditSearch/`,
     `/tip_calculator/`,
     `/twitternitter/`,
-    `/unitpricecomparison/`,)
+    `/unitpricecomparison/`,
+    `/image-converter/`,)
   //console.log(results);
   //process.stdout.write(JSON.stringify(results) + `\n`);
   fs.writeFile(`sw-files-to-cache.json`, JSON.stringify(results, null, ` `) + `\n`, // Blanks space in JSON.strigify adds line breaks to make it easier to read.

@@ -20,6 +20,13 @@
  "/icons/favicon 128x128.png",
  "/icons/favicon 512x512.png",
  "/icons/favicon maskable.png",
+ "/image-converter/image-converter-icon-maskable-512x512.png",
+ "/image-converter/image-converter-icon-monochrome-512x512.png",
+ "/image-converter/image-converter-icon.png",
+ "/image-converter/image-converter-icon.svg",
+ "/image-converter/image-converter-icon.webp",
+ "/image-converter/index.html",
+ "/image-converter/manifest.json",
  "/internet-access-checker-notifier/cell signal white foreground blue background.png",
  "/internet-access-checker-notifier/index.html",
  "/internet-access-checker-notifier/manifest.json",
@@ -74,5 +81,6 @@
  "/redditSearch/",
  "/tip_calculator/",
  "/twitternitter/",
- "/unitpricecomparison/"
+ "/unitpricecomparison/",
+ "/image-converter/"
 ]
