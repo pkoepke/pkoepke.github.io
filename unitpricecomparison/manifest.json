@@ -3,6 +3,7 @@
   "description": "Compares the price per unit for items. No ads or private data.",
   "dir": "ltr",
   "display": "standalone",
+  "orientation": "any",
   "name": "Unit Price Comparison",
   "scope": "/unitpricecomparison/",
   "short_name": "Unit Price Comparison",
@@ -31,7 +32,7 @@
     {
       "src": "upc icon monochrome.png",
       "type": "image/png",
-      "sizes": "2560x2560",
+      "sizes": "512x512",
       "purpose": "monochrome"
     }
   ],
